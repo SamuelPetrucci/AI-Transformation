@@ -15,13 +15,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AI Transformation LLC - Transform Your Business with AI",
   description: "AI Transformation LLC specializes in cutting-edge AI solutions that drive business growth and operational efficiency. Book your free consultation today.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>

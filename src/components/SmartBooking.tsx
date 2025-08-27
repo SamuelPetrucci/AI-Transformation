@@ -349,12 +349,12 @@ export default function SmartBooking() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 z-50 max-w-md"
+            className="fixed top-20 right-4 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 z-50 max-w-md"
           >
             <CheckCircle className="w-6 h-6 flex-shrink-0" />
             <div>
               <div className="font-semibold">Thank you!</div>
-                                 <div className="text-sm">We&apos;ll be in touch soon to discuss your AI transformation needs.</div>
+              <div className="text-sm">We&apos;ll be in touch soon to discuss your AI transformation needs.</div>
             </div>
           </motion.div>
         )}

@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const emailResult = await resend.emails.send({
       from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
       to: process.env.TO_EMAIL || 'info@aitransformationllc.com',
-      subject: 'New Contact Form Submission - AI Transformation',
+      subject: '[LEAD] New Contact Form Submission - AI Transformation',
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>

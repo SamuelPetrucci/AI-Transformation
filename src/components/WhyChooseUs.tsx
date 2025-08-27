@@ -7,7 +7,7 @@ const reasons = [
   {
     icon: Award,
     title: 'Expert Team',
-    description: 'Certified AI professionals with years of experience in enterprise solutions.',
+    description: 'Certified AI professionals with proven solutions for enterprise transformation.',
     color: 'from-blue-500 to-blue-600'
   },
   {
@@ -24,8 +24,8 @@ const reasons = [
   },
   {
     icon: Shield,
-    title: 'Secure & Reliable',
-    description: 'We use enterprise grade tech solutions.',
+    title: 'Industry-Standard Security',
+    description: 'We implement industry-standard technologies with built-in protection and monitoring capabilities.',
     color: 'from-red-500 to-red-600'
   }
 ]

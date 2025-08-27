@@ -24,8 +24,8 @@ const features = [
   },
   {
     icon: Shield,
-    title: 'Cybersecurity Solutions',
-    description: 'Protect your business with advanced security measures and threat detection systems.',
+    title: 'Industry-Grade Protection',
+    description: 'Build secure solutions with industry-standard technologies, comprehensive monitoring, and robust protection systems.',
     color: 'from-red-500 to-red-600'
   }
 ]
