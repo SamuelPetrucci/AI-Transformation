@@ -6,6 +6,7 @@ import HowItWorks from '@/components/HowItWorks'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import SmartBooking from '@/components/SmartBooking'
 import Footer from '@/components/Footer'
+import HashNavigation from '@/components/HashNavigation'
 
 export default function Home() {
   const structuredData = {
@@ -79,6 +80,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <HashNavigation />
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Header />
         <Hero />

@@ -24,12 +24,22 @@ export default function Header() {
     if (href) {
       window.location.href = href
     } else if (sectionId) {
-      const element = document.getElementById(sectionId)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      // If we're on the industries page and trying to go to a section, navigate to home first
+      if (isIndustriesPage) {
+        window.location.href = `/#${sectionId}`
+      } else {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
       }
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      // Home button - navigate to home page
+      if (isIndustriesPage) {
+        window.location.href = '/'
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }
     setIsMenuOpen(false)
   }
