@@ -25,7 +25,7 @@ const reasons = [
   {
     icon: Shield,
     title: 'Secure & Reliable',
-    description: 'Enterprise-grade security and reliability for your peace of mind.',
+    description: 'We use enterprise grade tech solutions.',
     color: 'from-red-500 to-red-600'
   }
 ]
