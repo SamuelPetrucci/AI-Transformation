@@ -7,17 +7,23 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
+  // Check if we're on the industries page
+  const isIndustriesPage = typeof window !== 'undefined' && window.location.pathname === '/industries'
+
   const navItems = [
-    { id: 'home', name: 'Home', sectionId: null },
-    { id: 'services', name: 'Services', sectionId: 'features' },
-    { id: 'about', name: 'About', sectionId: 'how-it-works' },
-    { id: 'booking', name: 'Book Consultation', sectionId: 'booking' },
-    { id: 'contact', name: 'Contact', sectionId: 'contact' },
+    { id: 'home', name: 'Home', sectionId: null, href: null },
+    { id: 'services', name: 'Services', sectionId: 'features', href: null },
+    { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
+    { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
+    { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
+    { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
   ]
 
-  // Function to scroll to section
-  const scrollToSection = (sectionId: string | null) => {
-    if (sectionId) {
+  // Function to scroll to section or navigate to page
+  const scrollToSection = (sectionId: string | null, href: string | null) => {
+    if (href) {
+      window.location.href = href
+    } else if (sectionId) {
       const element = document.getElementById(sectionId)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -30,6 +36,12 @@ export default function Header() {
 
   // Function to detect which section is currently in view
   const detectActiveSection = () => {
+    // If we're on the industries page, set industries as active
+    if (isIndustriesPage) {
+      setActiveSection('industries')
+      return
+    }
+
     const sections = navItems.filter(item => item.sectionId).map(item => item.sectionId!)
     const scrollPosition = window.scrollY + 100 // Offset for header height
 
@@ -62,13 +74,17 @@ export default function Header() {
       detectActiveSection()
     }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Check initial position
+    // Set initial active section based on current page
+    detectActiveSection()
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
+    // Only add scroll listener if not on industries page
+    if (!isIndustriesPage) {
+      window.addEventListener('scroll', handleScroll)
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, [])
+  }, [isIndustriesPage])
 
   return (
     <header className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-gray-700/50">
@@ -77,7 +93,7 @@ export default function Header() {
           {/* Logo */}
           <div 
             className="flex items-center space-x-3 cursor-pointer" 
-            onClick={() => scrollToSection(null)}
+            onClick={() => scrollToSection(null, null)}
           >
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">AI</span>
@@ -92,7 +108,7 @@ export default function Header() {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.sectionId)}
+                onClick={() => scrollToSection(item.sectionId, item.href)}
                 className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   activeSection === item.id
                     ? 'text-white bg-blue-500/20 border border-blue-500/30'
@@ -124,7 +140,7 @@ export default function Header() {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.sectionId)}
+                  onClick={() => scrollToSection(item.sectionId, item.href)}
                   className={`block w-full text-left px-3 py-2 rounded-md transition-all duration-200 ${
                     activeSection === item.id
                       ? 'text-white bg-blue-500/20 border border-blue-500/30'
