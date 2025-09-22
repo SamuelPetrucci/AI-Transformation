@@ -1,31 +1,31 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Brain, Zap, BarChart3, Shield } from 'lucide-react'
+import { Brain, Zap, BarChart3, Shield, ArrowRight } from 'lucide-react'
 
 const features = [
   {
     icon: Brain,
-    title: 'AI Strategy & Implementation',
-    description: 'Develop comprehensive AI strategies and implement cutting-edge solutions tailored to your business needs.',
+    title: 'Custom Development & AI Integration',
+    description: 'Custom landing pages with AI integration, POS systems, and development partnerships that bridge the gap between idea and solution.',
     color: 'from-blue-500 to-blue-600'
   },
   {
     icon: Zap,
-    title: 'Business Process Automation',
-    description: 'Streamline operations with intelligent automation that reduces costs and increases efficiency.',
+    title: 'AI-Powered Business Solutions',
+    description: 'AI receptionists, research assistants, automated reporting, and intelligent project management systems.',
     color: 'from-purple-500 to-purple-600'
   },
   {
     icon: BarChart3,
-    title: 'Data Analytics & Insights',
-    description: 'Transform raw data into actionable insights that drive informed business decisions.',
+    title: 'Data Analytics & Dashboarding',
+    description: 'Comprehensive data analytics, consolidation through advanced dashboards, and actionable business insights.',
     color: 'from-green-500 to-green-600'
   },
   {
     icon: Shield,
-    title: 'Industry-Grade Protection',
-    description: 'Build secure solutions with industry-standard technologies, comprehensive monitoring, and robust protection systems.',
+    title: 'Knowledge Base & Consulting',
+    description: 'Expert knowledge base consulting, solution implementation, and ongoing support to ensure your success.',
     color: 'from-red-500 to-red-600'
   }
 ]
@@ -46,9 +46,23 @@ export default function Features() {
               Core Capabilities
             </span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Our foundational AI capabilities that power all our business solutions and drive transformation.
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+            From custom landing pages with AI integration to comprehensive development partnerships, we bring ideas to impactful solutions.
           </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <button
+              onClick={() => window.location.href = '/services'}
+              className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
+            >
+              <span>Explore All Services</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

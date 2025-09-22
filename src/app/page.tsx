@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
-import DemoShowcase from '@/components/DemoShowcase'
 import HowItWorks from '@/components/HowItWorks'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import SmartBooking from '@/components/SmartBooking'
@@ -86,7 +85,6 @@ export default function Home() {
         <Header />
         <Hero />
         <Features />
-        <DemoShowcase />
         <HowItWorks />
         <WhyChooseUs />
         <SmartBooking />

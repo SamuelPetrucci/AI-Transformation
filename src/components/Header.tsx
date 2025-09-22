@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+// Using CSS-based brand icon in header (not the favicon image)
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,7 +13,7 @@ export default function Header() {
 
   const navItems = [
     { id: 'home', name: 'Home', sectionId: null, href: null },
-    { id: 'services', name: 'Services', sectionId: 'features', href: null },
+    { id: 'services', name: 'Services', sectionId: null, href: '/services' },
     { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
     { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
     { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
@@ -28,9 +29,9 @@ export default function Header() {
       if (isIndustriesPage) {
         window.location.href = `/#${sectionId}`
       } else {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
       }
     } else {
@@ -109,7 +110,7 @@ export default function Header() {
               <span className="text-white font-bold text-lg">AI</span>
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
-              AI Transformation LLC
+              Transformation
             </span>
           </div>
 

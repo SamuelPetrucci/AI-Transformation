@@ -2,31 +2,36 @@
 
 import { motion } from 'framer-motion'
 import { Play, Settings, TrendingUp, CheckCircle } from 'lucide-react'
+import Image from 'next/image'
 
 const steps = [
   {
     icon: Play,
     title: 'Discovery & Assessment',
     description: 'We analyze your current business processes and identify opportunities for AI integration.',
-    color: 'from-blue-500 to-blue-600'
+    color: 'from-blue-500 to-blue-600',
+    image: '/images/discovery.webp'
   },
   {
     icon: Settings,
     title: 'Strategy & Planning',
     description: 'Develop a comprehensive AI strategy tailored to your business goals and objectives.',
-    color: 'from-purple-500 to-purple-600'
+    color: 'from-purple-500 to-purple-600',
+    image: '/images/strategy.avif'
   },
   {
     icon: TrendingUp,
     title: 'Implementation & Training',
     description: 'Deploy AI solutions and provide comprehensive training for your team.',
-    color: 'from-green-500 to-green-600'
+    color: 'from-green-500 to-green-600',
+    image: '/images/implementation.webp'
   },
   {
     icon: CheckCircle,
     title: 'Optimization & Support',
     description: 'Continuous monitoring, optimization, and ongoing support to ensure maximum ROI.',
-    color: 'from-teal-500 to-teal-600'
+    color: 'from-teal-500 to-teal-600',
+    image: '/images/optimization.webp'
   }
 ]
 
@@ -61,20 +66,33 @@ export default function HowItWorks() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative z-10 bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 text-center hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105">
-                <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <step.icon className="w-8 h-8 text-white" />
+              <div className="relative z-10 bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 text-center hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105 h-full flex flex-col">
+                {/* Image */}
+                <div className="relative mb-6 rounded-xl overflow-hidden flex-shrink-0">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    width={300}
+                    height={200}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  
+                  {/* Step number */}
+                  <div className="absolute top-4 left-4 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">0{index + 1}</span>
+                  </div>
                 </div>
                 
-                <div className="text-2xl font-bold text-blue-400 mb-2">0{index + 1}</div>
-                
-                <h3 className="text-xl font-semibold text-white mb-4">
-                  {step.title}
-                </h3>
-                
-                <p className="text-gray-400 leading-relaxed">
-                  {step.description}
-                </p>
+                <div className="flex flex-col flex-grow">
+                  <h3 className="text-xl font-semibold text-white mb-4">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 leading-relaxed flex-grow">
+                    {step.description}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}

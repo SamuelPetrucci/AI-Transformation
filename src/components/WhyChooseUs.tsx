@@ -1,32 +1,32 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Clock, Users, Shield } from 'lucide-react'
+import { Award, Clock, Users, Shield, MessageSquare, Zap } from 'lucide-react'
 
 const reasons = [
   {
     icon: Award,
     title: 'Expert Team',
-    description: 'Certified AI professionals with proven solutions for enterprise transformation.',
+    description: 'Certified technology professionals with proven solutions for enterprise transformation.',
     color: 'from-blue-500 to-blue-600'
   },
   {
-    icon: Clock,
-    title: 'Fast Implementation',
-    description: 'Quick deployment with minimal disruption to your existing operations.',
+    icon: MessageSquare,
+    title: 'Tailored SMB Solutions',
+    description: 'We consult closely with small and medium businesses to create custom solutions that fit your unique needs and budget.',
     color: 'from-green-500 to-green-600'
   },
   {
-    icon: Users,
-    title: 'Dedicated Support',
-    description: '24/7 support team ready to assist you with any questions or issues.',
+    icon: Clock,
+    title: 'Continuous Support',
+    description: 'Ongoing improvement and support to ensure your tech operations run smoothly and efficiently.',
     color: 'from-purple-500 to-purple-600'
   },
   {
-    icon: Shield,
-    title: 'Industry-Standard Security',
-    description: 'We implement industry-standard technologies with built-in protection and monitoring capabilities.',
-    color: 'from-red-500 to-red-600'
+    icon: Zap,
+    title: 'Tech Operations Made Easy',
+    description: 'We make navigating complex tech operations a breeze, so you can focus on growing your business.',
+    color: 'from-orange-500 to-orange-600'
   }
 ]
 
