@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { supabase } from '@/lib/supabase'
+import { sendEmail, createContactEmailHTML } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,23 +20,43 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Send email notification via Resend
-    const emailResult = await resend.emails.send({
-      from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
+    // Split name into first and last name
+    const nameParts = name.trim().split(' ')
+    const firstName = nameParts[0] || ''
+    const lastName = nameParts.slice(1).join(' ') || ''
+
+    // Store in database using the dedicated AI Transformation contact table
+    const { data: dbResult, error: dbError } = await supabase
+      .from('ai_transformation_contact')
+      .insert({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone || null,
+        company: company || null,
+        consultation_type: consultationType,
+        message: message || null,
+        status: 'new',
+        source: 'AI Transformation Website'
+      })
+
+    if (dbError) {
+      console.error('Database error:', dbError)
+      // Continue with email notification even if database fails
+    }
+
+    // Send email notification via SMTP
+    const emailResult = await sendEmail({
       to: process.env.TO_EMAIL || 'info@aitransformationllc.com',
       subject: '[LEAD] New Contact Form Submission - AI Transformation',
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Company:</strong> ${company || 'Not provided'}</p>
-        <p><strong>Consultation Type:</strong> ${consultationType}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message || 'No message provided'}</p>
-        <hr>
-        <p><em>Submitted on: ${new Date().toLocaleString()}</em></p>
-      `
+      html: createContactEmailHTML({
+        name,
+        email,
+        phone,
+        company,
+        consultationType,
+        message
+      })
     })
 
     // Log the submission
@@ -49,8 +68,15 @@ export async function POST(request: NextRequest) {
       consultationType,
       message,
       timestamp: new Date().toISOString(),
-      emailResult
+      emailResult,
+      dbResult,
+      dbError
     })
+
+    // Check if email was sent successfully
+    if (!emailResult.success) {
+      console.error('Email sending failed:', emailResult.error)
+    }
 
     // Redirect to success page or back to form
     return NextResponse.redirect(new URL('/?success=true', request.url))

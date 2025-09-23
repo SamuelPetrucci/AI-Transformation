@@ -5,7 +5,103 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Database types for TypeScript
+// Database types for TypeScript - Centralized Database Schema
+
+// AI Transformation website contact form
+export interface AITransformationContact {
+  id: string
+  first_name: string
+  last_name: string
+  email: string
+  phone: string | null
+  company: string | null
+  consultation_type: string
+  message: string | null
+  status: 'new' | 'contacted' | 'in_progress' | 'closed'
+  source: string
+  created_at: string
+  updated_at: string
+}
+
+// RLJ Enterprise contact form
+export interface RLJContact {
+  id: string
+  first_name: string
+  last_name: string
+  email: string
+  phone: string
+  company: string | null
+  interest: string
+  message: string
+  status: 'new' | 'contacted' | 'in_progress' | 'closed'
+  source: string
+  form_type: 'contact' | 'partnership'
+  created_at: string
+  updated_at: string
+}
+
+// Austin Woodruff Insurance submissions
+export interface AustinWoodruffSubmission {
+  id: string
+  first_name: string
+  last_name: string
+  email: string
+  phone: string
+  zip_code: string
+  date_of_birth: string
+  annual_income: string
+  health_status: string
+  medications: string | null
+  dependents: string | null
+  monthly_budget: string
+  coverage_type: string
+  additional_info: string | null
+  status: 'new' | 'contacted' | 'quoted' | 'closed'
+  source: string
+  agent_name: string
+  created_at: string
+  updated_at: string
+  referred_by: boolean
+  referral_name: string | null
+}
+
+// Sports tracking tables
+export interface Game {
+  id: string
+  name: string
+  date: string
+  opponent: string
+  home_away: 'home' | 'away'
+  created_at: string
+  updated_at: string
+}
+
+export interface Player {
+  id: string
+  name: string
+  position: string | null
+  jersey_number: number | null
+  created_at: string
+  updated_at: string
+}
+
+export interface Play {
+  id: string
+  game_id: string | null
+  quarter: number
+  down: number
+  distance: number
+  yard_line: number
+  play_type: string
+  player_name: string
+  yards_gained: number
+  offense_defense: 'offense' | 'defense'
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
+
+// Legacy types for backward compatibility (if needed)
 export interface Lead {
   id: string
   created_at: string

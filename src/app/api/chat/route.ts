@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 import { generateChatResponse, analyzeConversation } from '@/lib/openai'
-import { Lead } from '@/lib/supabase'
+import { AITransformationContact } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,158 +28,102 @@ export async function POST(request: NextRequest) {
       ...aiResponse.extractedData
     }
 
-    // Check if we have a lead in the database
-    let leadId = null
-    let lead: Lead | null = null
+    // Check if we have a contact in the database
+    let contactId = null
+    let contact: AITransformationContact | null = null
 
     if (extractedData.email) {
-      // Try to find existing lead by email
-      const { data: existingLead } = await supabase
-        .from('leads')
+      // Try to find existing contact by email
+      const { data: existingContact } = await supabase
+        .from('ai_transformation_contact')
         .select('*')
         .eq('email', extractedData.email)
         .single()
 
-      if (existingLead) {
-        leadId = existingLead.id
-        lead = existingLead
+      if (existingContact) {
+        contactId = existingContact.id
+        contact = existingContact
       } else {
-        // Create new lead
-        const { data: newLead, error: leadError } = await supabase
-          .from('leads')
+        // Create new contact
+        const { data: newContact, error: contactError } = await supabase
+          .from('ai_transformation_contact')
           .insert({
+            first_name: extractedData.name?.split(' ')[0] || '',
+            last_name: extractedData.name?.split(' ').slice(1).join(' ') || '',
             email: extractedData.email,
-            name: extractedData.name,
-            phone: extractedData.phone,
-            company: extractedData.company,
-            industry: extractedData.industry,
-            budget_range: extractedData.budget,
-            timeline: extractedData.timeline,
-            project_type: extractedData.projectType,
-            requirements: extractedData.requirements,
-            lead_score: Math.max(analysis.leadScore, aiResponse.leadScore || 0),
-            is_qualified: analysis.isQualified,
-            source: 'chatbot'
+            phone: extractedData.phone || null,
+            company: extractedData.company || null,
+            consultation_type: extractedData.projectType || 'General Inquiry',
+            message: `Chatbot conversation data:
+            Industry: ${extractedData.industry || 'Not specified'}
+            Budget: ${extractedData.budget || 'Not specified'}
+            Timeline: ${extractedData.timeline || 'Not specified'}
+            Requirements: ${extractedData.requirements || 'Not specified'}
+            Lead Score: ${Math.max(analysis.leadScore, aiResponse.leadScore || 0)}
+            Qualified: ${analysis.isQualified ? 'Yes' : 'No'}`,
+            status: 'new',
+            source: 'AI Transformation Website - Chatbot'
           })
           .select()
           .single()
 
-        if (leadError) {
-          console.error('Error creating lead:', leadError)
+        if (contactError) {
+          console.error('Error creating contact:', contactError)
         } else {
-          leadId = newLead.id
-          lead = newLead
+          contactId = newContact.id
+          contact = newContact
         }
       }
     }
 
-    // Save or update conversation
-    let currentConversationId = conversationId
-
-    if (!currentConversationId) {
-      // Create new conversation
-      const { data: newConversation, error: convError } = await supabase
-        .from('conversations')
-        .insert({
-          lead_id: leadId,
-          session_id: sessionId,
-          user_agent: request.headers.get('user-agent'),
-          ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || null,
-          messages: messages.concat([{
-            id: Date.now().toString(),
-            text: aiResponse.message,
-            sender: 'bot',
-            timestamp: new Date()
-          }]),
-          message_count: messages.length + 1
-        })
-        .select()
-        .single()
-
-      if (convError) {
-        console.error('Error creating conversation:', convError)
-      } else {
-        currentConversationId = newConversation.id
-      }
-    } else {
-      // Update existing conversation
-      const { error: updateError } = await supabase
-        .from('conversations')
-        .update({
-          messages: messages.concat([{
-            id: Date.now().toString(),
-            text: aiResponse.message,
-            sender: 'bot',
-            timestamp: new Date()
-          }]),
-          message_count: messages.length + 1
-        })
-        .eq('id', currentConversationId)
-
-      if (updateError) {
-        console.error('Error updating conversation:', updateError)
-      }
-    }
-
-    // Track lead events
-    if (leadId) {
-      const events = []
-
-      if (extractedData.email && !lead?.email) {
-        events.push({
-          lead_id: leadId,
-          event_type: 'email_provided',
-          event_data: { email: extractedData.email }
-        })
-      }
-
-      if (extractedData.budget) {
-        events.push({
-          lead_id: leadId,
-          event_type: 'budget_discussed',
-          event_data: { budget: extractedData.budget }
-        })
-      }
-
-      if (extractedData.timeline) {
-        events.push({
-          lead_id: leadId,
-          event_type: 'timeline_discussed',
-          event_data: { timeline: extractedData.timeline }
-        })
-      }
-
-      if (events.length > 0) {
-        const { error: eventsError } = await supabase
-          .from('lead_events')
-          .insert(events)
-
-        if (eventsError) {
-          console.error('Error creating lead events:', eventsError)
-        }
-      }
-    }
-
-    // Update lead score if we have new information
-    if (leadId && (analysis.leadScore > 0 || aiResponse.leadScore)) {
-      const newScore = Math.max(analysis.leadScore, aiResponse.leadScore || 0)
+    // Update contact with new information if we have additional details
+    if (contactId && (extractedData.phone || extractedData.company || extractedData.projectType)) {
+      const updateData: any = {}
       
-      const { error: scoreError } = await supabase
-        .from('leads')
-        .update({ 
-          lead_score: newScore,
-          is_qualified: newScore >= 50
-        })
-        .eq('id', leadId)
+      if (extractedData.phone && !contact?.phone) {
+        updateData.phone = extractedData.phone
+      }
+      
+      if (extractedData.company && !contact?.company) {
+        updateData.company = extractedData.company
+      }
+      
+      if (extractedData.projectType && contact?.consultation_type === 'General Inquiry') {
+        updateData.consultation_type = extractedData.projectType
+      }
 
-      if (scoreError) {
-        console.error('Error updating lead score:', scoreError)
+      // Update the message with additional conversation data
+      const updatedMessage = `${contact?.message || ''}\n\nAdditional conversation data:
+      Phone: ${extractedData.phone || 'Not provided'}
+      Company: ${extractedData.company || 'Not provided'}
+      Project Type: ${extractedData.projectType || 'Not specified'}
+      Industry: ${extractedData.industry || 'Not specified'}
+      Budget: ${extractedData.budget || 'Not specified'}
+      Timeline: ${extractedData.timeline || 'Not specified'}
+      Requirements: ${extractedData.requirements || 'Not specified'}
+      Lead Score: ${Math.max(analysis.leadScore, aiResponse.leadScore || 0)}
+      Qualified: ${analysis.isQualified ? 'Yes' : 'No'}
+      Session ID: ${sessionId}
+      Timestamp: ${new Date().toISOString()}`
+
+      updateData.message = updatedMessage
+
+      if (Object.keys(updateData).length > 0) {
+        const { error: updateError } = await supabase
+          .from('ai_transformation_contact')
+          .update(updateData)
+          .eq('id', contactId)
+
+        if (updateError) {
+          console.error('Error updating contact:', updateError)
+        }
       }
     }
+
 
     return NextResponse.json({
       message: aiResponse.message,
-      conversationId: currentConversationId,
+      conversationId: conversationId,
       extractedData,
       leadScore: Math.max(analysis.leadScore, aiResponse.leadScore || 0),
       isQualified: analysis.isQualified,

@@ -164,21 +164,174 @@ export default function ProofOfConcept() {
                 </div>
               </div>
 
-              {/* Demo Interface Placeholder */}
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl p-6 mb-6 min-h-[300px] flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Play className="w-8 h-8 text-gray-400" />
+              {/* Interactive Demo Interface */}
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl p-6 mb-6 min-h-[300px]">
+                {selectedDemo.title === 'Smart Booking System' && (
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white mb-4">Live Booking Demo</h4>
+                    <div className="bg-white rounded-lg p-4">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                          <Calendar className="w-4 h-4 text-white" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-800">Schedule Consultation</h5>
+                          <p className="text-gray-600 text-sm">Available slots for next week</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 mb-4">
+                        <button className="bg-blue-50 border border-blue-200 text-blue-700 py-2 px-3 rounded text-sm hover:bg-blue-100">
+                          Mon 2:00 PM
+                        </button>
+                        <button className="bg-blue-50 border border-blue-200 text-blue-700 py-2 px-3 rounded text-sm hover:bg-blue-100">
+                          Tue 10:00 AM
+                        </button>
+                        <button className="bg-gray-100 border border-gray-200 text-gray-500 py-2 px-3 rounded text-sm">
+                          Wed 3:00 PM
+                        </button>
+                        <button className="bg-blue-50 border border-blue-200 text-blue-700 py-2 px-3 rounded text-sm hover:bg-blue-100">
+                          Thu 1:00 PM
+                        </button>
+                      </div>
+                      <button className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                        Book This Slot
+                      </button>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Interactive Demo</h4>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Experience {selectedDemo.title.toLowerCase()} in action
-                  </p>
-                  <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 flex items-center space-x-2 mx-auto">
-                    <Play className="w-4 h-4" />
-                    <span>Launch Demo</span>
-                  </button>
-                </div>
+                )}
+
+                {selectedDemo.title === 'Data Analytics Dashboard' && (
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white mb-4">Live Analytics Demo</h4>
+                    <div className="bg-white rounded-lg p-4">
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-blue-600">1,247</div>
+                          <div className="text-sm text-gray-600">Active Users</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-green-600">94.2%</div>
+                          <div className="text-sm text-gray-600">Success Rate</div>
+                        </div>
+                      </div>
+                      <div className="h-32 bg-gray-100 rounded flex items-center justify-center">
+                        <BarChart3 className="w-8 h-8 text-gray-400" />
+                      </div>
+                      <div className="text-center text-sm text-gray-600 mt-2">
+                        Real-time data visualization
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedDemo.title === 'AI Customer Assistant' && (
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white mb-4">Live Chat Demo</h4>
+                    <div className="bg-white rounded-lg p-4">
+                      <div className="space-y-3">
+                        <div className="flex justify-end">
+                          <div className="bg-blue-600 text-white p-3 rounded-lg max-w-xs">
+                            Hi! How can I help you today?
+                          </div>
+                        </div>
+                        <div className="flex justify-start">
+                          <div className="bg-gray-100 text-gray-800 p-3 rounded-lg max-w-xs">
+                            I need help with my account
+                          </div>
+                        </div>
+                        <div className="flex justify-end">
+                          <div className="bg-blue-600 text-white p-3 rounded-lg max-w-xs">
+                            I'd be happy to help! What specific issue are you experiencing?
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-4 flex space-x-2">
+                        <input 
+                          type="text" 
+                          placeholder="Type your message..." 
+                          className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm"
+                        />
+                        <button className="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">
+                          Send
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedDemo.title === 'POS System' && (
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white mb-4">Live POS Demo</h4>
+                    <div className="bg-white rounded-lg p-4">
+                      <div className="grid grid-cols-3 gap-2 mb-4">
+                        <button className="bg-gray-100 hover:bg-gray-200 p-3 rounded text-sm">Coffee $3.50</button>
+                        <button className="bg-gray-100 hover:bg-gray-200 p-3 rounded text-sm">Sandwich $8.99</button>
+                        <button className="bg-gray-100 hover:bg-gray-200 p-3 rounded text-sm">Salad $6.50</button>
+                      </div>
+                      <div className="border-t pt-4">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span>Subtotal:</span>
+                          <span>$18.99</span>
+                        </div>
+                        <div className="flex justify-between text-sm mb-4">
+                          <span>Tax:</span>
+                          <span>$1.52</span>
+                        </div>
+                        <div className="flex justify-between font-semibold border-t pt-2">
+                          <span>Total:</span>
+                          <span>$20.51</span>
+                        </div>
+                        <button className="w-full bg-green-600 text-white py-2 px-4 rounded mt-4 hover:bg-green-700">
+                          Process Payment
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedDemo.title === 'Custom Website Builder' && (
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white mb-4">Live Website Builder</h4>
+                    <div className="bg-white rounded-lg p-4">
+                      <div className="flex space-x-2 mb-4">
+                        <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm">Header</button>
+                        <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Content</button>
+                        <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Footer</button>
+                      </div>
+                      <div className="h-32 bg-gray-100 rounded flex items-center justify-center mb-4">
+                        <Globe className="w-8 h-8 text-gray-400" />
+                      </div>
+                      <div className="text-center text-sm text-gray-600">
+                        Drag and drop to build your website
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedDemo.title === 'Business Automation' && (
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white mb-4">Live Automation Demo</h4>
+                    <div className="bg-white rounded-lg p-4">
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                          <span className="text-sm">Email automation active</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                          <span className="text-sm">Inventory sync running</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                          <span className="text-sm">Report generation pending</span>
+                        </div>
+                      </div>
+                      <button className="w-full bg-purple-600 text-white py-2 px-4 rounded mt-4 hover:bg-purple-700">
+                        Configure Automation
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Features */}

@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import Header from '@/components/Header'
 import ServicesHero from '@/components/ServicesHero'
 import ServiceCategories from '@/components/ServiceCategories'
-import ProofOfConcept from '@/components/ProofOfConcept'
 import ServiceProcess from '@/components/ServiceProcess'
 import ServiceCTA from '@/components/ServiceCTA'
 import Chatbot from '@/components/Chatbot'
@@ -103,7 +102,6 @@ export default function ServicesPage() {
         <Header />
         <ServicesHero />
         <ServiceCategories />
-        <ProofOfConcept />
         <ServiceProcess />
         <ServiceCTA />
       </main>
