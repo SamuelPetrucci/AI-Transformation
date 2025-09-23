@@ -20,10 +20,10 @@ export default function ServicesHero() {
           src="/images/services-hero-bg.webp"
           alt="Services background"
           fill
-          className="object-cover opacity-15"
+          className="object-cover opacity-40"
           priority
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/30" />
         {/* Fade gradient overlays for smoother transitions */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/20 to-black/40" />

@@ -17,26 +17,27 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
-  // Check if we're on the industries page
+  // Check if we're on the industries or services page
   const isIndustriesPage = typeof window !== 'undefined' && window.location.pathname === '/industries'
+  const isServicesPage = typeof window !== 'undefined' && window.location.pathname === '/services'
 
   // Function to scroll to section or navigate to page
   const scrollToSection = (sectionId: string | null, href: string | null) => {
     if (href) {
       window.location.href = href
     } else if (sectionId) {
-      // If we're on the industries page and trying to go to a section, navigate to home first
-      if (isIndustriesPage) {
+      // If we're on the industries or services page and trying to go to a section, navigate to home first
+      if (isIndustriesPage || isServicesPage) {
         window.location.href = `/#${sectionId}`
       } else {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
       }
     } else {
       // Home button - navigate to home page
-      if (isIndustriesPage) {
+      if (isIndustriesPage || isServicesPage) {
         window.location.href = '/'
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -50,6 +51,12 @@ export default function Header() {
     // If we're on the industries page, set industries as active
     if (isIndustriesPage) {
       setActiveSection('industries')
+      return
+    }
+    
+    // If we're on the services page, set services as active
+    if (isServicesPage) {
+      setActiveSection('services')
       return
     }
 
@@ -77,7 +84,7 @@ export default function Header() {
         }
       }
     }
-  }, [isIndustriesPage])
+  }, [isIndustriesPage, isServicesPage])
 
   // Add scroll listener
   useEffect(() => {
