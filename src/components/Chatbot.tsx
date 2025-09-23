@@ -22,17 +22,17 @@ interface QuickReply {
   value: string
 }
 
-interface ExtractedData {
-  name?: string
-  email?: string
-  phone?: string
-  company?: string
-  industry?: string
-  budget?: string
-  timeline?: string
-  projectType?: string
-  requirements?: string
-}
+// interface ExtractedData {
+//   name?: string
+//   email?: string
+//   phone?: string
+//   company?: string
+//   industry?: string
+//   budget?: string
+//   timeline?: string
+//   projectType?: string
+//   requirements?: string
+// }
 
 const quickReplies: QuickReply[] = [
   { text: "Tell me about your services", action: 'response', value: 'services' },
@@ -57,8 +57,8 @@ export default function Chatbot() {
   const [isTyping, setIsTyping] = useState(false)
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`)
   const [conversationId, setConversationId] = useState<string | null>(null)
-  const [extractedData, setExtractedData] = useState<ExtractedData>({})
-  const [leadScore, setLeadScore] = useState(0)
+  // const [extractedData, setExtractedData] = useState<ExtractedData>({})
+  // const [leadScore, setLeadScore] = useState(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -177,13 +177,13 @@ export default function Chatbot() {
       setMessages(prev => [...prev, botMessage])
       setConversationId(data.conversationId)
       
-      if (data.extractedData) {
-        setExtractedData(prev => ({ ...prev, ...data.extractedData }))
-      }
+      // if (data.extractedData) {
+      //   setExtractedData(prev => ({ ...prev, ...data.extractedData }))
+      // }
       
-      if (data.leadScore) {
-        setLeadScore(data.leadScore)
-      }
+      // if (data.leadScore) {
+      //   setLeadScore(data.leadScore)
+      // }
 
       // If we have enough information, suggest booking
       if (data.isQualified && data.extractedData?.email && !messages.some(m => m.text.includes('schedule') || m.text.includes('book'))) {

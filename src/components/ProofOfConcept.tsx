@@ -8,7 +8,6 @@ import {
   BarChart3, 
   ShoppingCart, 
   Globe, 
-  Play,
   ExternalLink,
   CheckCircle,
   ArrowRight,
@@ -241,7 +240,7 @@ export default function ProofOfConcept() {
                         </div>
                         <div className="flex justify-end">
                           <div className="bg-blue-600 text-white p-3 rounded-lg max-w-xs">
-                            I'd be happy to help! What specific issue are you experiencing?
+                            I&apos;d be happy to help! What specific issue are you experiencing?
                           </div>
                         </div>
                       </div>

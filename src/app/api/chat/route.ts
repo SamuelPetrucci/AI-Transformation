@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     // Update contact with new information if we have additional details
     if (contactId && (extractedData.phone || extractedData.company || extractedData.projectType)) {
-      const updateData: any = {}
+      const updateData: Record<string, string> = {}
       
       if (extractedData.phone && !contact?.phone) {
         updateData.phone = extractedData.phone

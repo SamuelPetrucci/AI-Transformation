@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Brain, Zap, BarChart3, Shield, Code, Bot, Database, Users, ArrowRight } from 'lucide-react'
+import { BarChart3, Code, Bot, Users, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
 
@@ -144,7 +144,7 @@ export default function ServiceCategories() {
   }
 
   const activeCategory = openIndex !== null ? serviceCategories[openIndex] : null
-  const ActiveIcon = activeCategory ? activeCategory.icon : null
+  // const ActiveIcon = activeCategory ? activeCategory.icon : null
 
   return (
     <section id="service-categories" className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">

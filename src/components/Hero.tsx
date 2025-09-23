@@ -13,25 +13,31 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Hero Background Image */}
       <div className="absolute inset-0">
         <Image
           src="/images/hero.avif"
           alt="AI Transformation - Business Intelligence and Automation"
           fill
-          className="object-cover opacity-10"
+          className="object-cover opacity-15"
           priority
         />
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/50" />
+        {/* Fade gradient overlays for smoother transitions to next section */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/10 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
+        {/* Bottom fade for smooth transition to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent" />
       </div>
 
       {/* Futuristic Background Elements */}
       <div className="absolute inset-0">
         {/* Primary Nebula Effects - More Pronounced */}
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.4, 0.7, 0.4],
@@ -43,7 +49,7 @@ export default function Hero() {
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-purple-500/12 to-pink-500/12 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 sm:w-[500px] sm:h-[500px] bg-gradient-to-r from-purple-500/12 to-pink-500/12 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -216,17 +222,17 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto text-center w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="mb-6 flex items-center justify-center gap-4">
-            <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-3xl">AI</span>
+          <div className="mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+            <div className="w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl sm:text-3xl">AI</span>
             </div>
-            <span className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-gray-300 bg-clip-text text-transparent">
+            <span className="text-3xl sm:text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-gray-300 bg-clip-text text-transparent">
               Transformation
             </span>
           </div>
@@ -237,7 +243,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h2 className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-light text-gray-300 mb-6 sm:mb-8 px-4">
             Transform Your Business with Intelligent AI Solutions
           </h2>
         </motion.div>
@@ -247,7 +253,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
             We specialize in cutting-edge AI solutions that drive business growth and operational efficiency. 
             From intelligent automation to data analytics, we help businesses leverage the power of artificial intelligence 
             to stay ahead in today&apos;s competitive landscape.
@@ -261,7 +267,7 @@ export default function Hero() {
         >
           <button
             onClick={scrollToBooking}
-            className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
+            className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-full text-base sm:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
           >
             <span>Book Free Consultation</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -273,19 +279,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4"
         >
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">Reliable</div>
-            <div className="text-gray-400">Development Partner</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 mb-2">Reliable</div>
+            <div className="text-sm sm:text-base text-gray-400">Development Partner</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">Fast</div>
-            <div className="text-gray-400">Turnaround Time</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 mb-2">Fast</div>
+            <div className="text-sm sm:text-base text-gray-400">Turnaround Time</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">24/7</div>
-            <div className="text-gray-400">Support Available</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 mb-2">24/7</div>
+            <div className="text-sm sm:text-base text-gray-400">Support Available</div>
           </div>
         </motion.div>
       </div>

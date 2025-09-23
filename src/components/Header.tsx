@@ -1,8 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Menu, X } from 'lucide-react'
 // Using CSS-based brand icon in header (not the favicon image)
+
+const navItems = [
+  { id: 'home', name: 'Home', sectionId: null, href: null },
+  { id: 'services', name: 'Services', sectionId: null, href: '/services' },
+  { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
+  { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
+  { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
+  { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
+]
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -10,15 +19,6 @@ export default function Header() {
 
   // Check if we're on the industries page
   const isIndustriesPage = typeof window !== 'undefined' && window.location.pathname === '/industries'
-
-  const navItems = [
-    { id: 'home', name: 'Home', sectionId: null, href: null },
-    { id: 'services', name: 'Services', sectionId: null, href: '/services' },
-    { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
-    { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
-    { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
-    { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
-  ]
 
   // Function to scroll to section or navigate to page
   const scrollToSection = (sectionId: string | null, href: string | null) => {
@@ -46,7 +46,7 @@ export default function Header() {
   }
 
   // Function to detect which section is currently in view
-  const detectActiveSection = () => {
+  const detectActiveSection = useCallback(() => {
     // If we're on the industries page, set industries as active
     if (isIndustriesPage) {
       setActiveSection('industries')
@@ -77,7 +77,7 @@ export default function Header() {
         }
       }
     }
-  }
+  }, [isIndustriesPage])
 
   // Add scroll listener
   useEffect(() => {
@@ -95,7 +95,7 @@ export default function Header() {
         window.removeEventListener('scroll', handleScroll)
       }
     }
-  }, [isIndustriesPage])
+  }, [isIndustriesPage, detectActiveSection])
 
   return (
     <header className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-gray-700/50">
@@ -104,7 +104,13 @@ export default function Header() {
           {/* Logo */}
           <div 
             className="flex items-center space-x-3 cursor-pointer" 
-            onClick={() => scrollToSection(null, null)}
+            onClick={() => {
+              if (window.location.pathname !== '/') {
+                window.location.href = '/'
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }
+            }}
           >
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">AI</span>

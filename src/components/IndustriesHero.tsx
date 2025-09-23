@@ -73,6 +73,10 @@ export default function IndustriesHero() {
             delay: 2
           }}
         />
+        {/* Fade gradient overlays for smoother transitions */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/10 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
