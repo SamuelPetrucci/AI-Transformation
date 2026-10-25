@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f5f5f7;
+  --muted: #a1a1aa;
+  --surface: #0c0c0e;
+  --surface-elevated: #121216;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #8b5cf6;
+  --accent-soft: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.45);
+  --cta-from: #e9e3ff;
+  --cta-to: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+  background: var(--background);
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Subtle film grain for premium depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.scroll-slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100svh;
+}
+
+/* Keep marketing slides closer to one viewport on large screens */
+@media (min-width: 1024px) {
+  .scroll-slide--compact {
+    min-height: 100svh;
+    max-height: none;
+  }
+
+  .scroll-slide--compact .compact-stack {
+    gap: 0.75rem;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+}
+
+.overline {
+  letter-spacing: 0.28em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, var(--cta-from), var(--cta-to));
+  color: #0a0a0a;
+  font-weight: 600;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 12px 40px rgba(139, 92, 246, 0.25);
+}
+
+.cta-pill:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 50px rgba(139, 92, 246, 0.4);
+}
+
+.glass-panel {
+  background: rgba(12, 12, 14, 0.72);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+
+.ribbed-glow {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 7px,
+      rgba(167, 139, 250, 0.08) 7px,
+      rgba(167, 139, 250, 0.08) 8px
+    ),
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(139, 92, 246, 0.55), transparent 70%),
+    linear-gradient(180deg, #1a1228 0%, #0a0a0c 55%);
+}
+
+.theme-preview-frame {
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: #0a0a0c;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* Hide scrollbar but keep scroll for slideshow feel on supporting browsers */
+.slideshow-root {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.35) transparent;
 }

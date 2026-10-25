@@ -19,11 +19,11 @@ export const CALENDLY_CONFIG = {
   
   // Page settings for the widget
   PAGE_SETTINGS: {
-    backgroundColor: '1f2937', // Dark gray to match your theme
+    backgroundColor: '050505',
     hideEventTypeDetails: false,
     hideLandingPageDetails: false,
-    primaryColor: '3b82f6', // Blue to match your theme
-    textColor: 'ffffff' // White text
+    primaryColor: '8b5cf6',
+    textColor: 'ffffff'
   },
   
   // Prefill settings (can be customized based on form data)

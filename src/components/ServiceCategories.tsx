@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { BarChart3, Code, Bot, Users, ArrowRight } from 'lucide-react'
+import { BarChart3, Code, Bot, Users, Megaphone, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
 
@@ -124,6 +124,33 @@ const serviceCategories = [
         </ul>
         <h5 className="text-white font-semibold">Ideal use cases</h5>
         <p className="text-gray-400">Customer support, internal IT/HR help desk, sales enablement, onboarding, compliance Q&A, SOP guidance.</p>
+      </div>
+    )
+  },
+  {
+    icon: Megaphone,
+    title: 'Social Media & Advertising Package',
+    description: 'Full-funnel content and paid media that fill your pipeline—paired with theme-matched landing pages.',
+    features: [
+      'Social content systems',
+      'Meta & Google paid ads',
+      'Creative production',
+      'Funnel & retargeting',
+      'Performance reporting'
+    ],
+    color: 'from-violet-500 to-violet-600',
+    bgColor: 'from-violet-500/10 to-violet-600/10',
+    imagePlaceholder: '/images/services-hero-bg.webp',
+    details: (
+      <div className="text-left space-y-4">
+        <h4 className="text-white text-lg font-semibold">What&apos;s included</h4>
+        <p className="text-gray-400">Launch, Growth, and Scale packages covering organic social, paid acquisition, creative production, and reporting—wired to your landing themes and CRM.</p>
+        <h5 className="text-white font-semibold">Outcomes</h5>
+        <ul className="list-disc list-inside space-y-1 text-gray-400">
+          <li>Lower CAC through continuous creative and audience testing</li>
+          <li>Consistent brand presence across LinkedIn, Instagram, Meta, and Google</li>
+          <li>Clear ROAS and pipeline attribution every sprint</li>
+        </ul>
       </div>
     )
   }

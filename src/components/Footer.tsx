@@ -5,10 +5,10 @@ import { Mail, Phone, Linkedin } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Company Info */}
+    <footer id="contact" className="relative overflow-hidden border-t border-white/8 bg-[#050505]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.2),transparent_70%)]" />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -16,63 +16,58 @@ export default function Footer() {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AI</span>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
+            <div className="mb-6 flex items-center gap-3">
+              <svg viewBox="0 0 40 40" className="h-10 w-10" fill="none" aria-hidden>
+                <rect x="4" y="8" width="18" height="18" rx="5" stroke="#a78bfa" strokeWidth="2.2" />
+                <rect x="16" y="14" width="18" height="18" rx="5" stroke="#e9e3ff" strokeWidth="2.2" />
+              </svg>
+              <span className="font-display text-2xl font-semibold text-white">
                 AI Transformation LLC
               </span>
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
-              Transform your business with cutting-edge AI solutions. We help organizations leverage the power of artificial intelligence to drive growth and operational efficiency.
+            <p className="mb-6 max-w-md text-zinc-400">
+              Elite AI solutions, custom landing themes, and social advertising packages that drive
+              measurable growth for U.S. businesses.
             </p>
-            <div className="flex space-x-4">
-                             <a href="https://www.linkedin.com/company/ai-transformations/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800/50 border border-gray-700/50 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-blue-500 transition-all duration-300">
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
+            <a
+              href="https://www.linkedin.com/company/ai-transformations/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-zinc-400 transition-all hover:border-violet-400/50 hover:text-white"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-semibold text-white mb-6">Contact Info</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">(959) 910-1693</span>
+            <h3 className="font-display mb-6 text-lg font-medium text-white">Contact</h3>
+            <div className="space-y-4 text-zinc-400">
+              <div className="flex items-center gap-3">
+                <Phone className="h-5 w-5 text-violet-400" />
+                <span>(959) 910-1693</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">info@aitransformationllc.com</span>
+              <div className="flex items-center gap-3">
+                <Mail className="h-5 w-5 text-violet-400" />
+                <span>info@aitransformationllc.com</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">support@aitransformationllc.com</span>
+              <div className="flex items-center gap-3">
+                <Mail className="h-5 w-5 text-violet-400" />
+                <span>support@aitransformationllc.com</span>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="border-t border-gray-700/50 mt-12 pt-8"
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © 2025 AI Transformation LLC. All rights reserved.
-            </p>
-          </div>
-        </motion.div>
+        <div className="mt-12 border-t border-white/8 pt-8">
+          <p className="text-sm text-zinc-500">
+            © {new Date().getFullYear()} AI Transformation LLC. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   )
