@@ -43,7 +43,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.55 }}
             className="overline mb-4"
           >
-            Why Choose Us
+            Our difference
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

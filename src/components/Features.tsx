@@ -42,7 +42,7 @@ export default function Features() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Core Capabilities
+            What we deliver
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Mail, Phone, Linkedin } from 'lucide-react'
+import BrandLogo from './BrandLogo'
 
 export default function Footer() {
   return (
@@ -16,13 +17,12 @@ export default function Footer() {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-violet-700">
-                <span className="font-bold text-white">AI</span>
-              </div>
-              <span className="font-display text-2xl font-semibold text-white">
-                AI Transformation LLC
-              </span>
+            <div className="mb-6">
+              <BrandLogo
+                markClassName="h-10 w-10"
+                wordmark="AI Transformation LLC"
+                className="[&>span:last-child]:text-2xl"
+              />
             </div>
             <p className="mb-6 max-w-md text-zinc-400">
               Transform your business with cutting-edge AI solutions. We help organizations leverage

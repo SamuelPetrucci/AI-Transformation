@@ -41,7 +41,7 @@ export default function HowItWorks() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            How We Work
+            Our process
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

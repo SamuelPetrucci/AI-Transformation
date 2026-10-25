@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import BrandLogo from './BrandLogo'
 
 const navItems = [
   { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
@@ -96,18 +97,17 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between md:h-20">
           <button
             type="button"
-            className="flex items-center gap-3"
+            className="flex items-center"
             onClick={() => {
               if (window.location.pathname !== '/') window.location.href = '/'
               else window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-violet-700">
-              <span className="text-sm font-bold text-white">AI</span>
-            </div>
-            <span className="font-display text-lg font-semibold tracking-tight text-white sm:text-xl">
-              Transformation
-            </span>
+            <BrandLogo
+              markClassName="h-9 w-9"
+              wordmark="AI Transformation"
+              className="[&>span:last-child]:text-lg sm:[&>span:last-child]:text-xl"
+            />
           </button>
 
           <nav className="hidden items-center gap-1 lg:flex">

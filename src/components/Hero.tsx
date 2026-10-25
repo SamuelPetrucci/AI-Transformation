@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
+import { LogoMark } from './BrandLogo'
 
 export default function Hero() {
   const scrollToBooking = () => {
@@ -14,12 +15,9 @@ export default function Hero() {
       <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-[58%] z-0 h-[min(70vw,420px)] w-[min(70vw,420px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.12]"
+          className="pointer-events-none absolute left-1/2 top-[58%] z-0 h-[min(70vw,420px)] w-[min(70vw,420px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.14]"
         >
-          <svg viewBox="0 0 120 120" fill="none" className="h-full w-full">
-            <rect x="18" y="28" width="52" height="52" rx="14" stroke="white" strokeWidth="6" />
-            <rect x="50" y="40" width="52" height="52" rx="14" stroke="white" strokeWidth="6" />
-          </svg>
+          <LogoMark className="h-full w-full" />
         </div>
 
         <motion.div
@@ -28,9 +26,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
         >
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-violet-700 sm:h-16 sm:w-16">
-            <span className="text-xl font-bold text-white sm:text-2xl">AI</span>
-          </div>
+          <LogoMark className="h-14 w-14 sm:h-16 sm:w-16" />
           <span className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
             Transformation
           </span>
