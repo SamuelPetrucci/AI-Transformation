@@ -14,11 +14,13 @@ const InlineWidget = dynamic(() => import('react-calendly').then(mod => ({ defau
 
 const consultationTypes = [
   'AI Strategy & Implementation',
+  'Custom Landing Themes',
+  'Social Media & Advertising Package',
   'Business Process Automation',
   'Digital Transformation',
   'Custom AI Solutions',
   'Data Analytics & Insights',
-  'Technology Consulting'
+  'Technology Consulting',
 ]
 
 export default function SmartBooking() {
@@ -97,41 +99,35 @@ export default function SmartBooking() {
 
 
   return (
-    <section id="booking" className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gray-500/5 rounded-full blur-3xl"></div>
-      </div>
+    <section id="booking" className="scroll-slide relative min-h-[100svh] overflow-hidden py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.18),transparent_55%)]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-12 text-center md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
-              Book Your Consultation
-            </span>
+          <p className="overline mb-4">Schedule call</p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+            Book Your Consultation
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Transform your business with AI. Schedule a free consultation with our experts.
+          <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg">
+            AI systems, landing themes, or social advertising—tell us where you want lift.
           </p>
         </motion.div>
 
-        {/* Booking Method Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-gray-800/50 rounded-xl p-1 flex">
+        <div className="mb-8 flex justify-center">
+          <div className="flex rounded-full border border-white/10 bg-white/5 p-1">
             <button
               type="button"
               onClick={() => setBookingMethod('form')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+              className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
                 bookingMethod === 'form'
-                  ? 'bg-blue-500 text-white shadow-lg'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'bg-violet-500 text-white shadow-lg shadow-violet-500/30'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
               Contact Form
@@ -139,10 +135,10 @@ export default function SmartBooking() {
             <button
               type="button"
               onClick={() => setBookingMethod('calendly')}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+              className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
                 bookingMethod === 'calendly'
-                  ? 'bg-blue-500 text-white shadow-lg'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'bg-violet-500 text-white shadow-lg shadow-violet-500/30'
+                  : 'text-zinc-400 hover:text-white'
               }`}
             >
               Book Directly
@@ -159,12 +155,12 @@ export default function SmartBooking() {
             className="w-full max-w-4xl"
           >
             {bookingMethod === 'form' ? (
-              <div className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-3xl p-8 shadow-2xl">
-                <div className="flex items-center mb-8">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
-                    <Calendar className="w-6 h-6 text-white" />
+              <div className="glass-panel rounded-3xl p-8 shadow-2xl">
+                <div className="mb-8 flex items-center">
+                  <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-300">
+                    <Calendar className="h-6 w-6" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Contact Form</h3>
+                  <h3 className="font-display text-2xl font-semibold text-white">Contact Form</h3>
                 </div>
 
                                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -180,8 +176,8 @@ export default function SmartBooking() {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className={`w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
                         }`}
                         placeholder="Enter your full name"
                       />
@@ -199,8 +195,8 @@ export default function SmartBooking() {
                         onChange={handleChange}
                         required
                         disabled={isSubmitting}
-                        className={`w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
                         }`}
                         placeholder="Enter your email"
                       />
@@ -217,8 +213,8 @@ export default function SmartBooking() {
                         value={formData.phone}
                         onChange={handleChange}
                         disabled={isSubmitting}
-                        className={`w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
                         }`}
                         placeholder="Enter your phone number"
                       />
@@ -235,8 +231,8 @@ export default function SmartBooking() {
                         value={formData.company}
                         onChange={handleChange}
                         disabled={isSubmitting}
-                        className={`w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                          isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
                         }`}
                         placeholder="Enter your company name"
                       />
@@ -252,13 +248,13 @@ export default function SmartBooking() {
                     onChange={handleChange}
                     required
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                    className={`w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                      isSubmitting ? 'cursor-not-allowed opacity-50' : ''
                     }`}
                   >
                     <option value="">Select consultation type</option>
                     {consultationTypes.map((type) => (
-                      <option key={type} value={type} className="bg-gray-800 text-white">
+                      <option key={type} value={type} className="bg-[#121216] text-white">
                         {type}
                       </option>
                     ))}
@@ -273,8 +269,8 @@ export default function SmartBooking() {
                     onChange={handleChange}
                     rows={4}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                    className={`w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
+                      isSubmitting ? 'cursor-not-allowed opacity-50' : ''
                     }`}
                     placeholder="Describe your business needs and goals..."
                   />
@@ -283,10 +279,10 @@ export default function SmartBooking() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full font-semibold py-4 px-8 rounded-xl text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
+                  className={`flex w-full items-center justify-center space-x-2 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 ${
                     isSubmitting
-                      ? 'bg-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25'
+                      ? 'cursor-not-allowed bg-zinc-600'
+                      : 'cta-pill w-full justify-center'
                   }`}
                 >
                   {isSubmitting ? (
@@ -304,25 +300,25 @@ export default function SmartBooking() {
               </form>
             </div>
           ) : (
-            <div className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4">
-                  <Calendar className="w-6 h-6 text-white" />
+            <div className="glass-panel rounded-3xl p-8 shadow-2xl">
+              <div className="mb-8 flex items-center">
+                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-300">
+                  <Calendar className="h-6 w-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Book Your Consultation</h3>
+                <h3 className="font-display text-2xl font-semibold text-white">Book Your Consultation</h3>
               </div>
-              
-              <div className="text-center mb-6">
-                <p className="text-gray-400 mb-4">
-                  Choose a time that works best for you. Our AI experts are ready to help transform your business.
+
+              <div className="mb-6 text-center">
+                <p className="mb-4 text-zinc-400">
+                  Choose a time that works best for you. Our experts are ready to help.
                 </p>
-                <div className="flex items-center justify-center space-x-2 text-blue-400">
-                  <ExternalLink className="w-4 h-4" />
+                <div className="flex items-center justify-center space-x-2 text-violet-300">
+                  <ExternalLink className="h-4 w-4" />
                   <span className="text-sm">Select your preferred time slot below</span>
                 </div>
               </div>
 
-              <div className="w-full h-[700px]">
+              <div className="h-[700px] w-full">
                 {isClient ? (
                   <InlineWidget
                     url={CALENDLY_CONFIG.CALENDLY_URL}
@@ -331,10 +327,10 @@ export default function SmartBooking() {
                     prefill={CALENDLY_CONFIG.PREFILL}
                   />
                 ) : (
-                  <div className="w-full h-[700px] bg-gray-800 rounded-lg flex items-center justify-center">
+                  <div className="flex h-[700px] w-full items-center justify-center rounded-lg bg-white/5">
                     <div className="text-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                      <p className="text-gray-400">Loading booking widget...</p>
+                      <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-violet-500" />
+                      <p className="text-zinc-400">Loading booking widget...</p>
                     </div>
                   </div>
                 )}

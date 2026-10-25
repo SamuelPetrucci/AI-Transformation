@@ -1,185 +1,164 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-// Using CSS-based brand icon in header (not the favicon image)
 
 const navItems = [
-  { id: 'home', name: 'Home', sectionId: null, href: null },
+  { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
+  { id: 'themes', name: 'Themes', sectionId: 'themes', href: null },
+  { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
   { id: 'services', name: 'Services', sectionId: null, href: '/services' },
-  { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
-  { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
-  { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
+  { id: 'booking', name: 'Schedule call', sectionId: 'booking', href: null },
   { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
 ]
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [scrolled, setScrolled] = useState(false)
 
-  // Check if we're on the industries or services page
-  const isIndustriesPage = typeof window !== 'undefined' && window.location.pathname === '/industries'
-  const isServicesPage = typeof window !== 'undefined' && window.location.pathname === '/services'
+  const isIndustriesPage =
+    typeof window !== 'undefined' && window.location.pathname === '/industries'
+  const isServicesPage =
+    typeof window !== 'undefined' && window.location.pathname === '/services'
 
-  // Function to scroll to section or navigate to page
   const scrollToSection = (sectionId: string | null, href: string | null) => {
     if (href) {
       window.location.href = href
     } else if (sectionId) {
-      // If we're on the industries or services page and trying to go to a section, navigate to home first
       if (isIndustriesPage || isServicesPage) {
         window.location.href = `/#${sectionId}`
       } else {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
+    } else if (isIndustriesPage || isServicesPage) {
+      window.location.href = '/'
     } else {
-      // Home button - navigate to home page
-      if (isIndustriesPage || isServicesPage) {
-        window.location.href = '/'
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
     setIsMenuOpen(false)
   }
 
-  // Function to detect which section is currently in view
-  const detectActiveSection = useCallback(() => {
-    // If we're on the industries page, set industries as active
+  useEffect(() => {
     if (isIndustriesPage) {
       setActiveSection('industries')
       return
     }
-    
-    // If we're on the services page, set services as active
     if (isServicesPage) {
       setActiveSection('services')
       return
     }
 
-    const sections = navItems.filter(item => item.sectionId).map(item => item.sectionId!)
-    const scrollPosition = window.scrollY + 100 // Offset for header height
+    const onScrollChrome = () => setScrolled(window.scrollY > 24)
+    onScrollChrome()
+    window.addEventListener('scroll', onScrollChrome, { passive: true })
 
-    // Check if we're at the top (home section)
-    if (scrollPosition < 200) {
-      setActiveSection('home')
-      return
-    }
+    const sectionIds = ['home', 'themes', 'social-ads', 'features', 'how-it-works', 'booking', 'why-us']
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[]
 
-    // Check each section
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const sectionId = sections[i]
-      const element = document.getElementById(sectionId)
-      if (element) {
-        const { offsetTop, offsetHeight } = element
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          const navItem = navItems.find(item => item.sectionId === sectionId)
-          if (navItem) {
-            setActiveSection(navItem.id)
-          }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (!visible?.target?.id) return
+
+        const id = visible.target.id
+        if (id === 'why-us') {
+          setActiveSection('home')
           return
         }
-      }
+        if (id === 'features' || id === 'how-it-works') {
+          setActiveSection('')
+          return
+        }
+        const match = navItems.find((item) => item.id === id || item.sectionId === id)
+        if (match) setActiveSection(match.id)
+      },
+      { threshold: [0.35, 0.55, 0.7] }
+    )
+
+    elements.forEach((el) => observer.observe(el))
+    return () => {
+      window.removeEventListener('scroll', onScrollChrome)
+      observer.disconnect()
     }
   }, [isIndustriesPage, isServicesPage])
 
-  // Add scroll listener
-  useEffect(() => {
-    const handleScroll = () => {
-      detectActiveSection()
-    }
-
-    // Set initial active section based on current page
-    detectActiveSection()
-
-    // Only add scroll listener if not on industries page
-    if (!isIndustriesPage) {
-      window.addEventListener('scroll', handleScroll)
-      return () => {
-        window.removeEventListener('scroll', handleScroll)
-      }
-    }
-  }, [isIndustriesPage, detectActiveSection])
-
   return (
-    <header className="sticky top-0 z-50 bg-black/20 backdrop-blur-md border-b border-gray-700/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div 
-            className="flex items-center space-x-3 cursor-pointer" 
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? 'border-b border-white/8 bg-black/50 backdrop-blur-xl'
+          : 'border-b border-transparent bg-transparent'
+      }`}
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between md:h-20">
+          <button
+            type="button"
+            className="flex items-center gap-3"
             onClick={() => {
-              if (window.location.pathname !== '/') {
-                window.location.href = '/'
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }
+              if (window.location.pathname !== '/') window.location.href = '/'
+              else window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">AI</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
-              Transformation
+            <span className="relative flex h-9 w-9 items-center justify-center">
+              <svg viewBox="0 0 40 40" className="h-9 w-9" fill="none" aria-hidden>
+                <rect x="4" y="8" width="18" height="18" rx="5" stroke="#a78bfa" strokeWidth="2.2" />
+                <rect x="16" y="14" width="18" height="18" rx="5" stroke="#e9e3ff" strokeWidth="2.2" />
+              </svg>
             </span>
-          </div>
+            <span className="font-display text-lg font-semibold tracking-tight text-white sm:text-xl">
+              AI Transformation
+            </span>
+          </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) => (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => scrollToSection(item.sectionId, item.href)}
-                className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-300 ${
                   activeSection === item.id
-                    ? 'text-white bg-blue-500/20 border border-blue-500/30'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800/30'
+                    ? 'bg-white/10 text-white'
+                    : 'text-zinc-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 {item.name}
-                {/* Active indicator */}
-                {activeSection === item.id && (
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full animate-pulse" />
-                )}
               </button>
             ))}
           </nav>
 
-          {/* Mobile menu button */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-white transition-colors duration-200"
+            className="text-zinc-300 transition-colors hover:text-white lg:hidden"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 border border-gray-700/50">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.sectionId, item.href)}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-all duration-200 ${
-                    activeSection === item.id
-                      ? 'text-white bg-blue-500/20 border border-blue-500/30'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span>{item.name}</span>
-                    {activeSection === item.id && (
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                    )}
-                  </div>
-                </button>
-              ))}
-            </div>
+          <div className="glass-panel mb-4 rounded-2xl p-2 lg:hidden">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.sectionId, item.href)}
+                className={`block w-full rounded-xl px-4 py-3 text-left text-sm transition-all ${
+                  activeSection === item.id
+                    ? 'bg-violet-500/20 text-white'
+                    : 'text-zinc-300 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
           </div>
         )}
       </div>
