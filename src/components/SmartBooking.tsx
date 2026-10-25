@@ -14,12 +14,13 @@ const InlineWidget = dynamic(() => import('react-calendly').then(mod => ({ defau
 
 const consultationTypes = [
   'AI Strategy & Implementation',
-  'Custom Landing Themes',
-  'Social Media & Advertising Package',
   'Business Process Automation',
   'Digital Transformation',
   'Custom AI Solutions',
   'Data Analytics & Insights',
+  'Starter Social ($149/mo)',
+  'Social Growth ($299/mo)',
+  'Facebook Ads + Social ($499/mo)',
   'Technology Consulting',
 ]
 
@@ -110,12 +111,12 @@ export default function SmartBooking() {
           viewport={{ once: true }}
           className="mb-12 text-center md:mb-16"
         >
-          <p className="overline mb-4">Schedule call</p>
+          <p className="overline mb-4">Book a consultation</p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
             Book Your Consultation
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg">
-            AI systems, landing themes, or social advertising—tell us where you want lift.
+            Transform your business with AI. Schedule a free consultation with our experts.
           </p>
         </motion.div>
 

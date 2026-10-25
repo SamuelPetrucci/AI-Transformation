@@ -28,8 +28,9 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  scroll-padding-top: 0;
+  /* proximity feels smoother than mandatory hard stops */
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 4.5rem;
   background: var(--background);
   height: 100%;
 }
@@ -61,7 +62,7 @@ body::before {
 
 .scroll-slide {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   min-height: 100svh;
 }
 

@@ -12,22 +12,21 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.55 }}
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
             <div className="mb-6 flex items-center gap-3">
-              <svg viewBox="0 0 40 40" className="h-10 w-10" fill="none" aria-hidden>
-                <rect x="4" y="8" width="18" height="18" rx="5" stroke="#a78bfa" strokeWidth="2.2" />
-                <rect x="16" y="14" width="18" height="18" rx="5" stroke="#e9e3ff" strokeWidth="2.2" />
-              </svg>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-violet-700">
+                <span className="font-bold text-white">AI</span>
+              </div>
               <span className="font-display text-2xl font-semibold text-white">
                 AI Transformation LLC
               </span>
             </div>
             <p className="mb-6 max-w-md text-zinc-400">
-              Elite AI solutions, custom landing themes, and social advertising packages that drive
-              measurable growth for U.S. businesses.
+              Transform your business with cutting-edge AI solutions. We help organizations leverage
+              the power of artificial intelligence to drive growth and operational efficiency.
             </p>
             <a
               href="https://www.linkedin.com/company/ai-transformations/"
@@ -42,10 +41,10 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            transition={{ duration: 0.55, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="font-display mb-6 text-lg font-medium text-white">Contact</h3>
+            <h3 className="font-display mb-6 text-lg font-medium text-white">Contact Info</h3>
             <div className="space-y-4 text-zinc-400">
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-violet-400" />

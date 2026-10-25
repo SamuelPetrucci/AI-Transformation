@@ -5,10 +5,11 @@ import { Menu, X } from 'lucide-react'
 
 const navItems = [
   { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
-  { id: 'themes', name: 'Themes', sectionId: 'themes', href: null },
-  { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
   { id: 'services', name: 'Services', sectionId: null, href: '/services' },
-  { id: 'booking', name: 'Schedule call', sectionId: 'booking', href: null },
+  { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
+  { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
+  { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
+  { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
   { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
 ]
 
@@ -53,7 +54,7 @@ export default function Header() {
     onScrollChrome()
     window.addEventListener('scroll', onScrollChrome, { passive: true })
 
-    const sectionIds = ['home', 'themes', 'social-ads', 'features', 'how-it-works', 'booking', 'why-us']
+    const sectionIds = ['home', 'features', 'how-it-works', 'why-us', 'social-ads', 'booking', 'contact']
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
@@ -66,18 +67,14 @@ export default function Header() {
         if (!visible?.target?.id) return
 
         const id = visible.target.id
-        if (id === 'why-us') {
-          setActiveSection('home')
-          return
-        }
-        if (id === 'features' || id === 'how-it-works') {
-          setActiveSection('')
+        if (id === 'home' || id === 'features' || id === 'why-us') {
+          setActiveSection(id === 'home' ? 'home' : id === 'features' ? 'services' : 'home')
           return
         }
         const match = navItems.find((item) => item.id === id || item.sectionId === id)
         if (match) setActiveSection(match.id)
       },
-      { threshold: [0.35, 0.55, 0.7] }
+      { threshold: [0.3, 0.5, 0.65] }
     )
 
     elements.forEach((el) => observer.observe(el))
@@ -105,14 +102,11 @@ export default function Header() {
               else window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
-            <span className="relative flex h-9 w-9 items-center justify-center">
-              <svg viewBox="0 0 40 40" className="h-9 w-9" fill="none" aria-hidden>
-                <rect x="4" y="8" width="18" height="18" rx="5" stroke="#a78bfa" strokeWidth="2.2" />
-                <rect x="16" y="14" width="18" height="18" rx="5" stroke="#e9e3ff" strokeWidth="2.2" />
-              </svg>
-            </span>
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-violet-700">
+              <span className="text-sm font-bold text-white">AI</span>
+            </div>
             <span className="font-display text-lg font-semibold tracking-tight text-white sm:text-xl">
-              AI Transformation
+              Transformation
             </span>
           </button>
 

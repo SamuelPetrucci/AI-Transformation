@@ -16,8 +16,8 @@ const body = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "AI Transformation LLC - Elite AI, Themes & Growth Packages",
-  description: "AI Transformation LLC delivers production AI systems, custom landing themes, and social media advertising packages that accelerate growth. Book your free consultation today.",
+  title: "AI Transformation LLC - Transform Your Business with AI Solutions",
+  description: "AI Transformation LLC specializes in cutting-edge AI solutions that drive business growth and operational efficiency. We provide AI strategy, automation, data analytics, and social media advertising packages. Book your free consultation today.",
   keywords: [
     "AI solutions",
     "artificial intelligence",

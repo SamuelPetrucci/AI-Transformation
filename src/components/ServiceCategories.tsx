@@ -129,28 +129,28 @@ const serviceCategories = [
   },
   {
     icon: Megaphone,
-    title: 'Social Media & Advertising Package',
-    description: 'Full-funnel content and paid media that fill your pipeline—paired with theme-matched landing pages.',
+    title: 'Social Media Automation & Advertising',
+    description: 'Active social presence and optional Meta ads management—Starter Social, Social Growth, or Facebook Ads + Social.',
     features: [
-      'Social content systems',
-      'Meta & Google paid ads',
-      'Creative production',
-      'Funnel & retargeting',
-      'Performance reporting'
+      'Starter Social — $149/month',
+      'Social Growth — $299/month (recommended)',
+      'Facebook Ads + Social — $499/month',
+      'AI-assisted captions and graphics',
+      'Optional AI automation add-ons'
     ],
     color: 'from-violet-500 to-violet-600',
     bgColor: 'from-violet-500/10 to-violet-600/10',
     imagePlaceholder: '/images/services-hero-bg.webp',
     details: (
       <div className="text-left space-y-4">
-        <h4 className="text-white text-lg font-semibold">What&apos;s included</h4>
-        <p className="text-gray-400">Launch, Growth, and Scale packages covering organic social, paid acquisition, creative production, and reporting—wired to your landing themes and CRM.</p>
-        <h5 className="text-white font-semibold">Outcomes</h5>
+        <h4 className="text-white text-lg font-semibold">Packages</h4>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
-          <li>Lower CAC through continuous creative and audience testing</li>
-          <li>Consistent brand presence across LinkedIn, Instagram, Meta, and Google</li>
-          <li>Clear ROAS and pipeline attribution every sprint</li>
+          <li><strong className="text-white">Starter Social ($149/mo)</strong> — 8 posts, AI captions/graphics, one platform (Facebook or Instagram)</li>
+          <li><strong className="text-white">Social Growth ($299/mo)</strong> — 12 posts, Facebook + Instagram, content calendar, basic performance report</li>
+          <li><strong className="text-white">Facebook Ads + Social ($499/mo)</strong> — Social Growth essentials plus one Meta campaign; client pays ad spend separately</li>
         </ul>
+        <h5 className="text-white font-semibold">Optional AI automation (separate)</h5>
+        <p className="text-gray-400">Monitoring &amp; maintenance ($99–$299/mo), AI receptionist, automated lead follow-up, website/CRM integration, and custom AI agents—quoted as needed.</p>
       </div>
     )
   }
