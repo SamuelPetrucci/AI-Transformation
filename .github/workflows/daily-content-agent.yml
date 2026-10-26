@@ -2,18 +2,22 @@ name: Daily Grok content draft
 
 on:
   schedule:
-    # Weekdays 13:00 UTC ≈ 9:00 AM America/New_York (EST) / 8:00 AM EDT adjust as needed
+    # Weekdays 13:00 UTC ≈ 9:00 AM America/New_York (EST) / 8:00 AM EDT
     - cron: '0 13 * * 1-5'
   workflow_dispatch:
     inputs:
       topic:
-        description: 'Optional topic override'
+        description: 'Optional topic override (leave blank to use marketing calendar)'
         required: false
         default: ''
 
 permissions:
   contents: write
   pull-requests: write
+
+concurrency:
+  group: daily-grok-content
+  cancel-in-progress: false
 
 jobs:
   draft:
@@ -25,43 +29,78 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate draft with content agent
+      - name: Generate draft with Grok marketing bot
         env:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          XAI_MODEL: ${{ vars.XAI_MODEL }}
           CONTENT_TOPIC: ${{ github.event.inputs.topic }}
+          REQUIRE_API_KEY: '1'
         run: |
           TOPIC="${CONTENT_TOPIC:-}"
-          if [ -z "$TOPIC" ]; then
-            # Rotate simple weekday topics if none provided
-            DAY=$(date -u +%u)
-            case "$DAY" in
-              1) TOPIC="AI receptionist ROI for small service businesses" ;;
-              2) TOPIC="How agents cut SMB marketing busywork without looking cheap" ;;
-              3) TOPIC="Discovery to pilot in four weeks for AI automation" ;;
-              4) TOPIC="Facebook ads plus social for local businesses without agency bloat" ;;
-              5) TOPIC="Reengineering ops to save money on SaaS and manual work" ;;
-              *) TOPIC="Practical AI automation for growing U.S. businesses" ;;
-            esac
+          if [ -n "$TOPIC" ]; then
+            echo "Topic override: $TOPIC"
+            node scripts/content-agent/run.mjs --topic "$TOPIC" --write --require-key
+          else
+            echo "Topic: marketing calendar (weekday rotation)"
+            node scripts/content-agent/run.mjs --write --require-key
           fi
-          echo "Topic: $TOPIC"
-          node scripts/content-agent/run.mjs --topic "$TOPIC" --write
+
+      - name: Build PR body with social pack
+        id: pack
+        run: |
+          if [ -f scripts/content-agent/last-social-pack.json ]; then
+            node -e '
+              const p = require("./scripts/content-agent/last-social-pack.json");
+              const s = p.social || {};
+              const body = [
+                "Automated weekday draft from the **Grok AI Marketing Bot**.",
+                "",
+                `**Post:** ${p.title}`,
+                `**Slug:** \`/blog/${p.slug}\``,
+                `**Provider:** ${p.provider}`,
+                "",
+                "### Review checklist",
+                "- [ ] Facts/claims look accurate (no invented stats)",
+                "- [ ] Tone matches AI Transformation brand",
+                "- [ ] Internal links (/agents, /services) make sense",
+                "- [ ] Merge → confirm `/blog` and sitemap include the post",
+                "- [ ] Schedule social captions after merge",
+                "",
+                "### Social pack (copy after merge)",
+                "",
+                "**Hook:** " + (p.socialHook || ""),
+                "",
+                "**Facebook:**",
+                s.facebook || "_n/a_",
+                "",
+                "**Instagram:**",
+                s.instagram || "_n/a_",
+                "",
+                "**LinkedIn:**",
+                s.linkedin || "_n/a_",
+                "",
+                "**X:**",
+                s.x || "_n/a_",
+                "",
+                p.cta ? "**CTA:** " + p.cta : "",
+                "",
+                "Nothing auto-publishes until this PR is merged.",
+              ].filter(Boolean).join("\n");
+              const fs = require("fs");
+              fs.writeFileSync("pr-body.md", body);
+            '
+          else
+            echo "Automated weekday draft from the Grok AI Marketing Bot." > pr-body.md
+          fi
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: 'content: daily grok blog draft'
-          title: 'content: daily Grok blog draft'
-          body: |
-            Automated weekday draft from the Grok content agent.
-
-            **Review checklist**
-            - [ ] Facts/claims look accurate (no invented stats)
-            - [ ] Tone matches AI Transformation brand
-            - [ ] Social hook is usable for FB/IG/X
-            - [ ] Merge → confirm `/blog` and sitemap include the post
-            - [ ] Schedule social captions after merge
-
-            Nothing auto-publishes until this PR is merged.
+          commit-message: 'content: daily grok marketing blog draft'
+          title: 'content: daily Grok marketing blog draft'
+          body-path: pr-body.md
           branch: content/daily-draft
           delete-branch: true
+          add-paths: |
+            src/content/blog/posts.ts
