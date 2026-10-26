@@ -126,10 +126,10 @@ export default async function BlogPostPage({ params }: Props) {
               approve before scheduling—same workflow we sell in Social Growth and Ads packages.
             </p>
             <Link
-              href="/agents"
+              href="/#social-ads"
               className="mt-4 inline-block text-sm text-violet-300 hover:underline"
             >
-              See the daily orchestration steps →
+              See the social content engine →
             </Link>
           </aside>
         </article>

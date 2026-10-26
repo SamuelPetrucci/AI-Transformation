@@ -66,10 +66,10 @@ export default function ServicesHero() {
             <ArrowUpRight className="h-4 w-4" />
           </button>
           <Link
-            href="/agents"
+            href="/#social-ads"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-violet-400/40 hover:bg-violet-500/10"
           >
-            See agent orchestration
+            See the social engine
           </Link>
         </motion.div>
       </div>

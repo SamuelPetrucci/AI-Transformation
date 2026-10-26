@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Check, ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
+import SocialContentEngine from './SocialContentEngine'
 
 const packages = [
   {
@@ -64,6 +65,15 @@ export default function SocialAdsPackage() {
   return (
     <ScrollSlide id="social-ads" glow="right" className="py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 md:mb-16"
+        >
+          <SocialContentEngine />
+        </motion.div>
+
         <div className="mx-auto mb-10 max-w-3xl text-center md:mb-14">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -79,7 +89,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
           >
-            Social & ads — one way we help you grow
+            Pick the plan. We run the engine.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -88,9 +98,8 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-zinc-400 sm:text-lg"
           >
-            Under the same umbrella as custom software and AI automation: clear monthly plans from
-            $149—so marketing stays consistent while we build the bigger tech that saves you time
-            and cost.
+            Clear monthly plans from $149—content, scheduling, and optional Meta ads—so you stay
+            visible without living in the apps.
           </motion.p>
         </div>
 

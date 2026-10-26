@@ -64,8 +64,8 @@ Return STRICT JSON only (no markdown fences) with keys:
 - tags (array of 2–4 lowercase strings)
 - socialHook (primary short hook usable on X / LinkedIn)
 - social (object with facebook, instagram, linkedin, x — each a ready-to-post caption; IG can include line breaks as \\n)
-- cta (one sentence pointing to /services, /agents, /blog, or booking)
-- body (array of 5–8 short paragraphs; weave 1 internal path like /agents or /services naturally; no fake statistics; mention human approval when relevant)`
+- cta (one sentence pointing to /services, /#social-ads, /blog, or booking)
+- body (array of 5–8 short paragraphs; weave 1 internal path like /services or /blog naturally; no fake statistics; mention human approval when relevant)`
 
 const user = `Write today's marketing draft.
 Topic: ${topic}
@@ -95,7 +95,7 @@ async function callModel() {
       body: [
         `This is a staged placeholder for: ${topic}.`,
         'Add XAI_API_KEY (Grok), re-run with --write, then human-review before merge.',
-        'See /agents for the full orchestration playbook we run and sell.',
+        'See /#social-ads for the social content engine we run and sell.',
       ],
       _offline: true,
     }

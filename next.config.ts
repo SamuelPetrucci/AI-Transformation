@@ -62,6 +62,15 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/agents',
+        destination: '/#social-ads',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;

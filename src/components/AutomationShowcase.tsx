@@ -624,9 +624,9 @@ function ContentAgentDemo() {
         ))}
       </div>
       <p className="text-sm text-zinc-400">
-        We run this pipeline on AI Transformation first—then install it for clients. Full steps on{' '}
-        <Link href="/agents" className="text-violet-300 hover:underline">
-          Agent Ops
+        We run this pipeline on AI Transformation first—then install it for clients. See the{' '}
+        <Link href="/#social-ads" className="text-violet-300 hover:underline">
+          social content engine
         </Link>{' '}
         · live drafts on{' '}
         <Link href="/blog" className="text-violet-300 hover:underline">

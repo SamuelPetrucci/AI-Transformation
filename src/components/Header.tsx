@@ -10,9 +10,8 @@ const navItems = [
   { id: 'services', name: 'Services', sectionId: null, href: '/services' },
   { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
   { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
-  { id: 'agents', name: 'Agent Ops', sectionId: null, href: '/agents' },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
-  { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
+  { id: 'social-ads', name: 'Social Engine', sectionId: 'social-ads', href: null },
   {
     id: 'booking',
     name: 'Book Consultation',
@@ -29,11 +28,10 @@ export default function Header() {
   const path = typeof window !== 'undefined' ? window.location.pathname : ''
   const isIndustriesPage = path === '/industries'
   const isServicesPage = path === '/services'
-  const isAgentsPage = path === '/agents'
   const isBlogPage = path === '/blog' || path.startsWith('/blog/')
 
   const scrollToSection = (sectionId: string | null, href: string | null) => {
-    const onSubpage = isIndustriesPage || isServicesPage || isAgentsPage || isBlogPage
+    const onSubpage = isIndustriesPage || isServicesPage || isBlogPage
     if (href) {
       if (href.startsWith('http')) {
         window.open(href, '_blank', 'noopener,noreferrer')
@@ -61,10 +59,6 @@ export default function Header() {
     }
     if (isServicesPage) {
       setActiveSection('services')
-      return
-    }
-    if (isAgentsPage) {
-      setActiveSection('agents')
       return
     }
     if (isBlogPage) {
@@ -104,7 +98,7 @@ export default function Header() {
       window.removeEventListener('scroll', onScrollChrome)
       observer.disconnect()
     }
-  }, [isIndustriesPage, isServicesPage, isAgentsPage, isBlogPage])
+  }, [isIndustriesPage, isServicesPage, isBlogPage])
 
   return (
     <header

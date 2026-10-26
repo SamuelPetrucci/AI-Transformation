@@ -45,10 +45,10 @@ export default function ServiceCTA() {
               <ArrowUpRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/agents"
+              href="/#social-ads"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-violet-400/40 hover:bg-violet-500/10"
             >
-              How we run agents
+              See the social engine
             </Link>
           </div>
         </motion.div>

@@ -34,10 +34,10 @@ export default function BlogPage() {
               Blog — written with the same agents we deploy for clients
             </h1>
             <p className="mt-5 max-w-2xl text-zinc-400">
-              Our daily Grok content agent drafts posts and social copy. Humans approve. Then we
-              publish. See the full orchestration steps on{' '}
-              <Link href="/agents" className="text-violet-300 underline-offset-4 hover:underline">
-                Agent Ops
+              Our content engine drafts posts and social copy. Humans approve. Then we publish. See
+              how the social engine works on the{' '}
+              <Link href="/#social-ads" className="text-violet-300 underline-offset-4 hover:underline">
+                homepage
               </Link>
               .
             </p>

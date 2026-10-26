@@ -47,4 +47,4 @@ Edit `scripts/content-agent/topics.json` to change the rotating marketing angles
 - Article JSON-LD on blog posts
 - After each merge: schedule the social pack (FB/IG via Social Growth)
 
-See `/agents` on the site for the client-facing playbook.
+See `/#social-ads` on the site for the social content engine demo.

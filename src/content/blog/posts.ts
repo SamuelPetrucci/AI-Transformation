@@ -31,7 +31,7 @@ export const blogPosts: BlogPost[] = [
       'Then the bot stops. Nothing publishes automatically. A person on our team reads the draft, checks the facts, adjusts the tone, and approves or rejects it. That human approval gate is the core of the design, because an agent that posts unchecked will eventually put your name on something you’d never say.',
       'Running the bot on ourselves teaches us things a demo can’t. We see which instructions produce useful drafts, where the model drifts into generic phrasing, and which guardrails matter, like banning invented statistics and holding a consistent voice from one day to the next.',
       'For a small business owner, the value isn’t handing marketing off completely. The value is never starting from a blank page again. Reviewing and refining a solid draft takes far less effort than writing from scratch, and you stay in control of every word that goes out.',
-      'The same pattern works beyond marketing: an agent does the repetitive first pass, and a person makes the final call. You can see the agents we build and run on our /agents page, including the one that drafted the first version of this post.',
+      'The same pattern works beyond marketing: an agent does the repetitive first pass, and a person makes the final call. You can see the social content engine on our homepage, including the workflow that drafted the first version of this post.',
       'If you want to know what a supervised agent could take off your plate, start with a conversation. We’ll show you what we run ourselves and help you decide whether it fits your business.',
     ],
   },
@@ -51,7 +51,7 @@ export const blogPosts: BlogPost[] = [
       'Every weekday, a Grok content agent wakes up, pulls a topic from our content calendar, drafts a blog article for this site, and writes platform-ready social captions for Facebook, Instagram, and X.',
       'Nothing auto-publishes without a human gate. The agent creates files and drafts; we approve, then schedule through our Social Growth / Ads packages—or push to the blog via PR.',
       'That “approval gate” is intentional. Clients get the speed of AI with brand-safe control.',
-      'If you want the same system for your business, the steps are identical: calendar → generate → review → publish → report. We document the full playbook on our Agent Ops page.',
+      'If you want the same system for your business, the steps are identical: calendar → generate → review → publish → report. See the social content engine demo on the homepage.',
     ],
   },
   {
