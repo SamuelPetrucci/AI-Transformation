@@ -1,16 +1,9 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Building, User, Mail, Phone, Send, CheckCircle, ExternalLink } from 'lucide-react'
-import dynamic from 'next/dynamic'
 import { CALENDLY_CONFIG } from '@/config/calendly'
-
-// Dynamically import Calendly widget to avoid SSR issues
-const InlineWidget = dynamic(() => import('react-calendly').then(mod => ({ default: mod.InlineWidget })), {
-  ssr: false,
-  loading: () => null
-})
 
 const consultationTypes = [
   'AI Strategy & Implementation',
@@ -32,55 +25,42 @@ export default function SmartBooking() {
     phone: '',
     company: '',
     consultationType: '',
-    message: ''
+    message: '',
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [bookingMethod, setBookingMethod] = useState('calendly') // 'form' or 'calendly'
-  const [isClient, setIsClient] = useState(false)
+  const [showForm, setShowForm] = useState(false)
 
-  useEffect(() => {
-    // Ensure we're on the client side and the component has mounted
-    if (typeof window !== 'undefined') {
-      setIsClient(true)
-    }
-  }, [])
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
       const formDataToSend = new FormData(e.currentTarget)
       const response = await fetch('/api/contact', {
         method: 'POST',
         body: formDataToSend,
       })
-      
+
       if (response.ok) {
-        // Reset form after successful submission
         setFormData({
           name: '',
           email: '',
           phone: '',
           company: '',
           consultationType: '',
-          message: ''
+          message: '',
         })
-        
-        // Reset form fields using ref
-        if (formRef.current) {
-          formRef.current.reset()
-        }
-        
-        console.log('Form submitted successfully!')
+        if (formRef.current) formRef.current.reset()
         setIsSubmitted(true)
       } else {
         console.error('Form submission failed')
@@ -90,14 +70,9 @@ export default function SmartBooking() {
     } finally {
       setIsSubmitting(false)
     }
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-    }, 5000)
+
+    setTimeout(() => setIsSubmitted(false), 5000)
   }
-
-
 
   return (
     <section id="booking" className="scroll-slide relative min-h-[100svh] overflow-hidden py-20">
@@ -116,125 +91,134 @@ export default function SmartBooking() {
             Book Your Consultation
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg">
-            Transform your business with AI. Schedule a free consultation with our experts.
+            Pick a time on Calendly for a free discovery call—or send a message if you prefer.
           </p>
         </motion.div>
 
-        <div className="mb-8 flex justify-center">
-          <div className="flex rounded-full border border-white/10 bg-white/5 p-1">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto mb-10 max-w-xl text-center"
+        >
+          <div className="glass-panel rounded-3xl p-8 sm:p-10">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+              <Calendar className="h-7 w-7" />
+            </div>
+            <h3 className="font-display text-2xl font-semibold text-white">Discovery call</h3>
+            <p className="mx-auto mt-3 max-w-md text-sm text-zinc-400">
+              Opens Calendly in a new tab so you can choose a time that works.
+            </p>
+            <a
+              href={CALENDLY_CONFIG.CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-pill mx-auto mt-8"
+            >
+              Book on Calendly
+              <ExternalLink className="h-4 w-4" />
+            </a>
             <button
               type="button"
-              onClick={() => setBookingMethod('form')}
-              className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
-                bookingMethod === 'form'
-                  ? 'bg-violet-500 text-white shadow-lg shadow-violet-500/30'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
+              onClick={() => setShowForm((v) => !v)}
+              className="mt-5 text-sm text-zinc-500 underline-offset-4 transition hover:text-zinc-300 hover:underline"
             >
-              Contact Form
-            </button>
-            <button
-              type="button"
-              onClick={() => setBookingMethod('calendly')}
-              className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 ${
-                bookingMethod === 'calendly'
-                  ? 'bg-violet-500 text-white shadow-lg shadow-violet-500/30'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
-            >
-              Book Directly
+              {showForm ? 'Hide contact form' : 'Prefer email? Use the contact form'}
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex justify-center">
+        {showForm && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="w-full max-w-4xl"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mx-auto w-full max-w-4xl"
           >
-            {bookingMethod === 'form' ? (
-              <div className="glass-panel rounded-3xl p-8 shadow-2xl">
-                <div className="mb-8 flex items-center">
-                  <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-300">
-                    <Calendar className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display text-2xl font-semibold text-white">Contact Form</h3>
+            <div className="glass-panel rounded-3xl p-8 shadow-2xl">
+              <div className="mb-8 flex items-center">
+                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+                  <Send className="h-6 w-6" />
                 </div>
+                <div>
+                  <h3 className="font-display text-2xl font-semibold text-white">Contact Form</h3>
+                  <p className="text-zinc-400">We&apos;ll get back to you shortly</p>
+                </div>
+              </div>
 
-                                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {isSubmitted && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-4"
+                >
+                  <div className="flex items-center">
+                    <CheckCircle className="mr-3 h-5 w-5 text-emerald-400" />
+                    <span className="font-medium text-emerald-300">
+                      Thank you! Your message has been sent successfully.
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Full Name</label>
+                    <label className="mb-2 block text-sm font-medium text-zinc-300">Full Name *</label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        disabled={isSubmitting}
-                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
-                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
-                        }`}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
                         placeholder="Enter your full name"
                       />
                     </div>
                   </div>
-
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Email</label>
+                    <label className="mb-2 block text-sm font-medium text-zinc-300">Email *</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        disabled={isSubmitting}
-                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
-                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
-                        }`}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
                         placeholder="Enter your email"
                       />
                     </div>
                   </div>
+                </div>
 
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Phone</label>
+                    <label className="mb-2 block text-sm font-medium text-zinc-300">Phone</label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Phone className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        disabled={isSubmitting}
-                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
-                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
-                        }`}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
                         placeholder="Enter your phone number"
                       />
                     </div>
                   </div>
-
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">Company</label>
+                    <label className="mb-2 block text-sm font-medium text-zinc-300">Company</label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Building className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
                       <input
                         type="text"
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        disabled={isSubmitting}
-                        className={`w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
-                          isSubmitting ? 'cursor-not-allowed opacity-50' : ''
-                        }`}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
                         placeholder="Enter your company name"
                       />
                     </div>
@@ -242,20 +226,21 @@ export default function SmartBooking() {
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">Consultation Type</label>
+                  <label className="mb-2 block text-sm font-medium text-zinc-300">
+                    Consultation Type *
+                  </label>
                   <select
                     name="consultationType"
                     value={formData.consultationType}
                     onChange={handleChange}
                     required
-                    disabled={isSubmitting}
-                    className={`w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
-                      isSubmitting ? 'cursor-not-allowed opacity-50' : ''
-                    }`}
+                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
                   >
-                    <option value="">Select consultation type</option>
+                    <option value="" className="bg-zinc-900">
+                      Select consultation type
+                    </option>
                     {consultationTypes.map((type) => (
-                      <option key={type} value={type} className="bg-[#121216] text-white">
+                      <option key={type} value={type} className="bg-zinc-900">
                         {type}
                       </option>
                     ))}
@@ -263,95 +248,31 @@ export default function SmartBooking() {
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 text-sm font-medium mb-2">Tell us about your project</label>
+                  <label className="mb-2 block text-sm font-medium text-zinc-300">Message</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    disabled={isSubmitting}
-                    className={`w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-zinc-500 transition-all duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500 ${
-                      isSubmitting ? 'cursor-not-allowed opacity-50' : ''
-                    }`}
-                    placeholder="Describe your business needs and goals..."
+                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    placeholder="Tell us about your project or questions..."
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`flex w-full items-center justify-center space-x-2 rounded-full px-8 py-4 text-lg font-semibold transition-all duration-300 ${
-                    isSubmitting
-                      ? 'cursor-not-allowed bg-zinc-600'
-                      : 'cta-pill w-full justify-center'
-                  }`}
-                >
+                <button type="submit" disabled={isSubmitting} className="cta-pill w-full justify-center">
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      <span>Sending...</span>
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      Sending...
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
-                      <span>Send Message</span>
+                      <Send className="h-5 w-5" />
+                      Send Message
                     </>
                   )}
                 </button>
               </form>
-            </div>
-          ) : (
-            <div className="glass-panel rounded-3xl p-8 shadow-2xl">
-              <div className="mb-8 flex items-center">
-                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-300">
-                  <Calendar className="h-6 w-6" />
-                </div>
-                <h3 className="font-display text-2xl font-semibold text-white">Book Your Consultation</h3>
-              </div>
-
-              <div className="mb-6 text-center">
-                <p className="mb-4 text-zinc-400">
-                  Choose a time that works best for you. Our experts are ready to help.
-                </p>
-                <div className="flex items-center justify-center space-x-2 text-violet-300">
-                  <ExternalLink className="h-4 w-4" />
-                  <span className="text-sm">Select your preferred time slot below</span>
-                </div>
-              </div>
-
-              <div className="h-[700px] w-full">
-                {isClient ? (
-                  <InlineWidget
-                    url={CALENDLY_CONFIG.CALENDLY_URL}
-                    styles={CALENDLY_CONFIG.WIDGET_STYLES}
-                    pageSettings={CALENDLY_CONFIG.PAGE_SETTINGS}
-                    prefill={CALENDLY_CONFIG.PREFILL}
-                  />
-                ) : (
-                  <div className="flex h-[700px] w-full items-center justify-center rounded-lg bg-white/5">
-                    <div className="text-center">
-                      <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-violet-500" />
-                      <p className="text-zinc-400">Loading booking widget...</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-          </motion.div>
-        </div>
-
-        {/* Success Message */}
-        {isSubmitted && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="fixed top-20 right-4 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 z-50 max-w-md"
-          >
-            <CheckCircle className="w-6 h-6 flex-shrink-0" />
-            <div>
-              <div className="font-semibold">Thank you!</div>
-              <div className="text-sm">We&apos;ll be in touch soon to discuss your AI transformation needs.</div>
             </div>
           </motion.div>
         )}

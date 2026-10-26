@@ -8,7 +8,7 @@ import SocialAdsPackage from '@/components/SocialAdsPackage'
 import SmartBooking from '@/components/SmartBooking'
 import Footer from '@/components/Footer'
 import HashNavigation from '@/components/HashNavigation'
-import Chatbot from '@/components/Chatbot'
+import BookCallButton from '@/components/BookCallButton'
 import SlideNav from '@/components/SlideNav'
 
 export default function Home() {
@@ -111,7 +111,7 @@ export default function Home() {
         <SmartBooking />
         <Footer />
       </main>
-      <Chatbot />
+      <BookCallButton />
     </>
   )
 }

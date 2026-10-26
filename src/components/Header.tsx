@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import BrandLogo from './BrandLogo'
+import { CALENDLY_CONFIG } from '@/config/calendly'
 
 const navItems = [
   { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
@@ -12,7 +13,12 @@ const navItems = [
   { id: 'agents', name: 'Agent Ops', sectionId: null, href: '/agents' },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
   { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
-  { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
+  {
+    id: 'booking',
+    name: 'Book Consultation',
+    sectionId: null,
+    href: CALENDLY_CONFIG.CALENDLY_URL,
+  },
 ]
 
 export default function Header() {
@@ -29,7 +35,11 @@ export default function Header() {
   const scrollToSection = (sectionId: string | null, href: string | null) => {
     const onSubpage = isIndustriesPage || isServicesPage || isAgentsPage || isBlogPage
     if (href) {
-      window.location.href = href
+      if (href.startsWith('http')) {
+        window.open(href, '_blank', 'noopener,noreferrer')
+      } else {
+        window.location.href = href
+      }
     } else if (sectionId) {
       if (onSubpage) {
         window.location.href = `/#${sectionId}`

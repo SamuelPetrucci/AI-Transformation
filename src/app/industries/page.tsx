@@ -3,7 +3,7 @@ import Header from '@/components/Header'
 import IndustriesHero from '@/components/IndustriesHero'
 import IndustryBenefits from '@/components/IndustryBenefits'
 import IndustryCTA from '@/components/IndustryCTA'
-import Chatbot from '@/components/Chatbot'
+import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
   title: "AI Solutions for Industries - Insurance, Real Estate, Finance, Medical, Legal & Retail",
@@ -101,7 +101,7 @@ export default function IndustriesPage() {
         <IndustryBenefits />
         <IndustryCTA />
       </main>
-      <Chatbot />
+      <BookCallButton />
     </>
   )
 }

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Chatbot from '@/components/Chatbot'
+import BookCallButton from '@/components/BookCallButton'
 import { getAllPosts, getPost } from '@/lib/blog'
 
 const site = 'https://aitransformationllc.com'
@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: Props) {
         </article>
         <Footer />
       </main>
-      <Chatbot />
+      <BookCallButton />
     </>
   )
 }

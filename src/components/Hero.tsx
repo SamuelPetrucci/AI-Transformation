@@ -5,11 +5,9 @@ import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { LogoMark } from './BrandLogo'
 import { POSITIONING } from '@/config/positioning'
+import { CALENDLY_CONFIG } from '@/config/calendly'
 
 export default function Hero() {
-  const scrollToBooking = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
 
   return (
     <ScrollSlide id="home" glow="top" className="pt-20">
@@ -57,10 +55,15 @@ export default function Hero() {
           transition={{ duration: 0.75, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mt-10"
         >
-          <button type="button" onClick={scrollToBooking} className="cta-pill">
+          <a
+            href={CALENDLY_CONFIG.CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta-pill"
+          >
             Book Free Consultation
             <ArrowUpRight className="h-4 w-4" />
-          </button>
+          </a>
         </motion.div>
 
         <motion.div

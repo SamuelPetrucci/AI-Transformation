@@ -4,7 +4,7 @@ import ServicesHero from '@/components/ServicesHero'
 import ServiceCategories from '@/components/ServiceCategories'
 import ServiceProcess from '@/components/ServiceProcess'
 import ServiceCTA from '@/components/ServiceCTA'
-import Chatbot from '@/components/Chatbot'
+import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
   title: 'Services — Custom Software, AI Automation & Modern Tech | AI Transformation LLC',
@@ -105,7 +105,7 @@ export default function ServicesPage() {
         <ServiceProcess />
         <ServiceCTA />
       </main>
-      <Chatbot />
+      <BookCallButton />
     </>
   )
 }
