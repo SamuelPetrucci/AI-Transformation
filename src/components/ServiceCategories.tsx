@@ -174,21 +174,20 @@ export default function ServiceCategories() {
   // const ActiveIcon = activeCategory ? activeCategory.icon : null
 
   return (
-    <section id="service-categories" className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="service-categories" className="relative overflow-hidden py-20">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
-              Our Service Categories
-            </span>
+          <p className="overline mb-4">Service catalog</p>
+          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+            Our Service Categories
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-zinc-400">
             Comprehensive AI services designed to transform your business operations and drive growth.
           </p>
         </motion.div>
@@ -203,7 +202,7 @@ export default function ServiceCategories() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 h-full hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-[1.02]">
+              <div className="glass-panel h-full rounded-3xl p-8 transition-all duration-300 hover:border-violet-400/30 hover:scale-[1.01]">
                 {/* Header */}
                 <div className="flex items-start space-x-4 mb-6">
                   <div className={`w-16 h-16 bg-gradient-to-r ${category.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>

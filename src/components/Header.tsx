@@ -7,12 +7,12 @@ import BrandLogo from './BrandLogo'
 const navItems = [
   { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
   { id: 'services', name: 'Services', sectionId: null, href: '/services' },
+  { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
   { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
-  { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
+  { id: 'agents', name: 'Agent Ops', sectionId: null, href: '/agents' },
+  { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
   { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
   { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
-  { id: 'contact', name: 'Contact', sectionId: 'contact', href: null },
-  { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
 ]
 
 export default function Header() {
@@ -20,21 +20,23 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState('home')
   const [scrolled, setScrolled] = useState(false)
 
-  const isIndustriesPage =
-    typeof window !== 'undefined' && window.location.pathname === '/industries'
-  const isServicesPage =
-    typeof window !== 'undefined' && window.location.pathname === '/services'
+  const path = typeof window !== 'undefined' ? window.location.pathname : ''
+  const isIndustriesPage = path === '/industries'
+  const isServicesPage = path === '/services'
+  const isAgentsPage = path === '/agents'
+  const isBlogPage = path === '/blog' || path.startsWith('/blog/')
 
   const scrollToSection = (sectionId: string | null, href: string | null) => {
+    const onSubpage = isIndustriesPage || isServicesPage || isAgentsPage || isBlogPage
     if (href) {
       window.location.href = href
     } else if (sectionId) {
-      if (isIndustriesPage || isServicesPage) {
+      if (onSubpage) {
         window.location.href = `/#${sectionId}`
       } else {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
-    } else if (isIndustriesPage || isServicesPage) {
+    } else if (onSubpage) {
       window.location.href = '/'
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -49,6 +51,14 @@ export default function Header() {
     }
     if (isServicesPage) {
       setActiveSection('services')
+      return
+    }
+    if (isAgentsPage) {
+      setActiveSection('agents')
+      return
+    }
+    if (isBlogPage) {
+      setActiveSection('blog')
       return
     }
 
@@ -84,7 +94,7 @@ export default function Header() {
       window.removeEventListener('scroll', onScrollChrome)
       observer.disconnect()
     }
-  }, [isIndustriesPage, isServicesPage])
+  }, [isIndustriesPage, isServicesPage, isAgentsPage, isBlogPage])
 
   return (
     <header

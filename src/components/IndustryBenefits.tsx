@@ -7,84 +7,87 @@ const benefits = [
   {
     icon: TrendingUp,
     title: 'Increased Efficiency',
-    description: 'Automate repetitive tasks and streamline workflows to boost productivity by up to 80%.',
-    color: 'from-green-500 to-green-600'
+    description:
+      'Automate repetitive tasks and streamline workflows to boost productivity by up to 80%.',
   },
   {
     icon: Clock,
     title: 'Time Savings',
-    description: 'Reduce manual processing time and focus on high-value activities that drive growth.',
-    color: 'from-blue-500 to-blue-600'
+    description:
+      'Reduce manual processing time and focus on high-value activities that drive growth.',
   },
   {
     icon: DollarSign,
     title: 'Cost Reduction',
     description: 'Lower operational costs through automation and improved resource allocation.',
-    color: 'from-yellow-500 to-yellow-600'
   },
   {
     icon: Users,
     title: 'Better Customer Experience',
-    description: 'Provide faster, more personalized service that improves customer satisfaction.',
-    color: 'from-purple-500 to-purple-600'
+    description:
+      'Provide faster, more personalized service that improves customer satisfaction.',
   },
   {
     icon: Shield,
     title: 'Enhanced Security',
     description: 'Implement industry-grade protection and monitoring for your business data.',
-    color: 'from-red-500 to-red-600'
   },
   {
     icon: Zap,
     title: 'Fast Implementation',
-    description: 'Get your custom solution up and running quickly with our streamlined development process.',
-    color: 'from-orange-500 to-orange-600'
-  }
+    description:
+      'Get your custom solution up and running quickly with our streamlined development process.',
+  },
 ]
 
 export default function IndustryBenefits() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
-              Why Choose Our Tailored Solutions?
-            </span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            We focus on understanding your unique business needs and delivering custom solutions that scale with your growth.
-          </p>
-        </motion.div>
+    <section className="relative overflow-hidden py-20">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-14 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="overline mb-4"
+          >
+            Why industry teams choose us
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
+          >
+            Why Choose Our Tailored Solutions?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-4 max-w-2xl text-zinc-400"
+          >
+            We focus on understanding your unique business needs and delivering custom solutions that
+            scale with your growth.
+          </motion.p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, index) => (
-            <motion.div
+            <motion.article
               key={benefit.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group"
+              transition={{ delay: index * 0.06 }}
+              className="glass-panel rounded-3xl p-6"
             >
-              <div className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 h-full hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105">
-                <div className={`w-12 h-12 bg-gradient-to-r ${benefit.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <benefit.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  {benefit.description}
-                </p>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+                <benefit.icon className="h-6 w-6" />
               </div>
-            </motion.div>
+              <h3 className="font-display text-xl font-medium text-white">{benefit.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">{benefit.description}</p>
+            </motion.article>
           ))}
         </div>
       </div>

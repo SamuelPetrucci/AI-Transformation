@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Bot,
@@ -29,6 +30,7 @@ type DemoId =
   | 'marketing'
   | 'ops'
   | 'discovery'
+  | 'content'
 
 const demos: {
   id: DemoId
@@ -85,6 +87,14 @@ const demos: {
     icon: Search,
     title: 'Discovery → Implementation',
     blurb: 'Map processes, score ROI, pilot fast, then scale what works.',
+  },
+  {
+    id: 'content',
+    label: 'Content agent',
+    icon: Sparkles,
+    title: 'Daily Grok blog + social agent',
+    blurb:
+      'We orchestrate a Grok content agent on ourselves—draft blog, social hooks, human approve, publish. Lead by example.',
   },
 ]
 
@@ -418,6 +428,56 @@ function DiscoveryDemo() {
   )
 }
 
+function ContentAgentDemo() {
+  const flow = [
+    'Content calendar topic',
+    'Grok drafts blog + social',
+    'Stage on /blog',
+    'Human approval',
+    'Publish + schedule',
+  ]
+  const [step, setStep] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setStep((s) => (s + 1) % flow.length), 1500)
+    return () => clearInterval(t)
+  }, [flow.length])
+
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        {flow.map((label, i) => (
+          <div
+            key={label}
+            className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm ${
+              i === step
+                ? 'border-violet-400/40 bg-violet-500/15 text-white'
+                : i < step
+                  ? 'border-white/10 text-zinc-300'
+                  : 'border-transparent text-zinc-500'
+            }`}
+          >
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-xs">
+              {i + 1}
+            </span>
+            {label}
+          </div>
+        ))}
+      </div>
+      <p className="text-sm text-zinc-400">
+        We run this pipeline on AI Transformation first—then install it for clients. Full steps on{' '}
+        <Link href="/agents" className="text-violet-300 hover:underline">
+          Agent Ops
+        </Link>{' '}
+        · live drafts on{' '}
+        <Link href="/blog" className="text-violet-300 hover:underline">
+          Blog
+        </Link>
+        .
+      </p>
+    </div>
+  )
+}
+
 function DemoPanel({ id }: { id: DemoId }) {
   switch (id) {
     case 'agents':
@@ -434,6 +494,8 @@ function DemoPanel({ id }: { id: DemoId }) {
       return <OpsSavingsDemo />
     case 'discovery':
       return <DiscoveryDemo />
+    case 'content':
+      return <ContentAgentDemo />
   }
 }
 
