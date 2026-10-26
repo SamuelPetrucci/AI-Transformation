@@ -27,6 +27,7 @@ export default function Home() {
     },
     contactPoint: {
       '@type': 'ContactPoint',
+      telephone: '+1-860-705-3417',
       contactType: 'customer service',
       availableLanguage: 'English',
     },

@@ -132,7 +132,7 @@ export default function Chatbot() {
       } else if (responseType === 'consultation') {
         responseText = "Great! I'd be happy to help you schedule a consultation. You can either:\n\n• Book directly through our calendar\n• Fill out our contact form\n\nWhich would you prefer?"
       } else if (responseType === 'contact') {
-        responseText = "You can reach us through:\n\n• 📧 Email: info@aitransformationllc.com\n• 📞 Phone: (555) 123-4567\n• 📅 Book a consultation\n• 📝 Contact form\n\nWhat's the best way to help you?"
+        responseText = "You can reach us through:\n\n• 📧 Email: info@aitransformationllc.com\n• 📞 Phone: (860) 705-3417\n• 📅 Book a consultation\n• 📝 Contact form\n\nWhat's the best way to help you?"
       }
 
       const botMessage: Message = {

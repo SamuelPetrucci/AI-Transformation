@@ -50,7 +50,7 @@ OPENAI_MODEL=gpt-4-turbo-preview
 
 # Business Configuration
 COMPANY_EMAIL=info@aitransformationllc.com
-COMPANY_PHONE=(555) 123-4567
+COMPANY_PHONE=(860) 705-3417
 ```
 
 ### **Step 4: Test the Chatbot**

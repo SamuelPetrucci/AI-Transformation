@@ -31,8 +31,18 @@ export default function IndustryCTA() {
         <div className="mb-10 grid grid-cols-1 gap-5 md:grid-cols-3">
           {[
             { icon: Calendar, title: 'Book a call', detail: 'Pick a time that works for you' },
-            { icon: Phone, title: 'Talk strategy', detail: '(959) 910-1693' },
-            { icon: Mail, title: 'Email us', detail: 'info@aitransformationllc.com' },
+            {
+              icon: Phone,
+              title: 'Talk strategy',
+              detail: '(860) 705-3417',
+              href: 'tel:+18607053417',
+            },
+            {
+              icon: Mail,
+              title: 'Email us',
+              detail: 'info@aitransformationllc.com',
+              href: 'mailto:info@aitransformationllc.com',
+            },
           ].map((item, i) => (
             <motion.div
               key={item.title}
@@ -46,7 +56,13 @@ export default function IndustryCTA() {
                 <item.icon className="h-6 w-6" />
               </div>
               <h3 className="font-display text-lg text-white">{item.title}</h3>
-              <p className="mt-1 text-sm text-zinc-400">{item.detail}</p>
+              {'href' in item && item.href ? (
+                <a href={item.href} className="mt-1 block text-sm text-zinc-400 transition hover:text-white">
+                  {item.detail}
+                </a>
+              ) : (
+                <p className="mt-1 text-sm text-zinc-400">{item.detail}</p>
+              )}
             </motion.div>
           ))}
         </div>
