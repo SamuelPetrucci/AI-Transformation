@@ -12,6 +12,7 @@ import {
   PiggyBank,
   Search,
   ArrowUpRight,
+  ArrowRight,
   Check,
   Sparkles,
   Server,
@@ -19,6 +20,11 @@ import {
   MessageSquare,
   TrendingDown,
   Workflow,
+  Database,
+  Puzzle,
+  Shield,
+  Users,
+  Layers,
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 
@@ -78,8 +84,9 @@ const demos: {
     id: 'ops',
     label: 'Save on tech',
     icon: PiggyBank,
-    title: 'Reengineer ops & cut spend',
-    blurb: 'Replace brittle stacks and manual work with leaner automations that save money every year.',
+    title: 'Rebuild their stack. Own it. Pay less.',
+    blurb:
+      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost. We’re the bridge.',
   },
   {
     id: 'discovery',
@@ -360,36 +367,189 @@ function MarketingDemo() {
 }
 
 function OpsSavingsDemo() {
-  const savings = [
-    { item: 'Consolidate SaaS tools', yearly: '$4,800' },
-    { item: 'Automate intake / booking', yearly: '$9,600' },
-    { item: 'Replace manual reporting', yearly: '$3,200' },
-    { item: 'Reduce after-hours coverage', yearly: '$7,100' },
+  const platforms = [
+    {
+      id: 'crm',
+      name: 'CRM',
+      icon: Users,
+      saas: 'HubSpot / Salesforce seat tax',
+      saasCost: '$800–$2,400/mo',
+      rebuild: 'Your CRM — self-hosted',
+      rebuildCost: 'Fixed build + low host',
+      upgrades: ['Custom pipelines', 'AI lead scoring', 'SMS + email agents'],
+    },
+    {
+      id: 'booking',
+      name: 'Booking',
+      icon: Calendar,
+      saas: 'Calendly / Acuity / Mindbody',
+      saasCost: '$50–$400/mo',
+      rebuild: 'Booking you own',
+      rebuildCost: 'One-time + hosting',
+      upgrades: ['Deposit rules', 'Staff routing', 'CRM sync'],
+    },
+    {
+      id: 'ops',
+      name: 'Ops suite',
+      icon: Layers,
+      saas: 'Notion + Zapier + sheets stack',
+      saasCost: '$200–$900/mo',
+      rebuild: 'Unified ops app',
+      rebuildCost: 'Purpose-built',
+      upgrades: ['One login', 'Audit trails', 'Agent workflows'],
+    },
+    {
+      id: 'vertical',
+      name: 'Vertical SaaS',
+      icon: Database,
+      saas: 'Industry CRM / PMS / POS',
+      saasCost: '$300–$1,500/mo',
+      rebuild: 'Replicated + improved',
+      rebuildCost: 'You own the code',
+      upgrades: ['Missing features', 'New integrations', 'No per-seat tax'],
+    },
   ]
+
+  const bridge = [
+    { icon: Search, label: 'Map what they use' },
+    { icon: Workflow, label: 'Replicate workflows' },
+    { icon: Server, label: 'Self-host / secure' },
+    { icon: Puzzle, label: 'Improve + integrate' },
+    { icon: Shield, label: 'Hand off ownership' },
+  ]
+
+  const [active, setActive] = useState(0)
+  const [phase, setPhase] = useState(0)
+  const platform = platforms[active]
+
+  useEffect(() => {
+    const t = setInterval(() => setPhase((p) => (p + 1) % bridge.length), 1600)
+    return () => clearInterval(t)
+  }, [bridge.length])
+
+  // Illustrative monthly SaaS vs rebuilt (for selected platform)
+  const saasHigh = [2400, 400, 900, 1500][active]
+  const rebuilt = [450, 120, 280, 380][active]
+  const yearlySave = (saasHigh - rebuilt) * 12
+
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border border-emerald-400/20 bg-emerald-500/10 p-5 text-center">
-        <p className="text-xs uppercase tracking-wider text-emerald-300/80">Illustrative annual savings</p>
-        <p className="mt-1 font-display text-4xl font-semibold text-white">$24,700</p>
-        <p className="mt-2 flex items-center justify-center gap-1 text-sm text-emerald-300">
-          <TrendingDown className="h-4 w-4" />
-          Lower tech + labor spend after reengineering
-        </p>
-      </div>
-      <ul className="space-y-2">
-        {savings.map((s) => (
-          <li
-            key={s.item}
-            className="flex items-center justify-between rounded-xl border border-white/8 px-3 py-2.5 text-sm"
+      <p className="text-sm text-zinc-400">
+        Pick a platform they already pay for. We rebuild it, self-host it, make it better, and keep
+        shipping integrations—so they stop renting forever.
+      </p>
+
+      <div className="flex flex-wrap gap-2">
+        {platforms.map((p, i) => (
+          <button
+            key={p.id}
+            type="button"
+            onClick={() => setActive(i)}
+            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+              i === active
+                ? 'border-violet-400/50 bg-violet-500/20 text-white'
+                : 'border-white/10 text-zinc-400 hover:border-white/20 hover:text-white'
+            }`}
           >
-            <span className="text-zinc-300">{s.item}</span>
-            <span className="font-medium text-emerald-300">{s.yearly}/yr</span>
-          </li>
+            <p.icon className="h-3.5 w-3.5" />
+            {p.name}
+          </button>
         ))}
-      </ul>
-      <p className="text-xs text-zinc-500">
-        Figures are examples for planning conversations—not guarantees. We baseline your stack in
-        discovery, then target the highest-ROI automations first.
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={platform.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-stretch"
+        >
+          <div className="rounded-2xl border border-red-400/20 bg-red-500/5 p-4">
+            <p className="text-[10px] uppercase tracking-wider text-red-300/80">What they rent today</p>
+            <p className="mt-2 font-display text-sm text-white">{platform.saas}</p>
+            <p className="mt-3 text-xs text-zinc-500">Typical spend</p>
+            <p className="font-display text-xl text-red-300">{platform.saasCost}</p>
+            <ul className="mt-3 space-y-1 text-xs text-zinc-500">
+              <li>· Per-seat pricing that scales against them</li>
+              <li>· Feature gates & vendor roadmaps</li>
+              <li>· Data locked in someone else’s product</li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-2 py-2">
+            <span className="rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-violet-200">
+              AI Transformation
+            </span>
+            <ArrowRight className="hidden h-5 w-5 text-violet-400 sm:block" />
+            <p className="text-center text-[10px] text-zinc-500 sm:max-w-[5.5rem]">
+              Bridge: rebuild → own → improve
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-emerald-400/25 bg-emerald-500/10 p-4">
+            <p className="text-[10px] uppercase tracking-wider text-emerald-300/80">What we deliver</p>
+            <p className="mt-2 font-display text-sm text-white">{platform.rebuild}</p>
+            <p className="mt-3 text-xs text-zinc-500">Model</p>
+            <p className="font-display text-xl text-emerald-300">{platform.rebuildCost}</p>
+            <ul className="mt-3 space-y-1 text-xs text-emerald-100/80">
+              {platform.upgrades.map((u) => (
+                <li key={u} className="flex items-center gap-1.5">
+                  <Check className="h-3 w-3 shrink-0 text-emerald-400" />
+                  {u}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+        <p className="mb-3 text-[10px] uppercase tracking-wider text-zinc-500">
+          How the reengineering run works
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {bridge.map((b, i) => (
+            <div
+              key={b.label}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition ${
+                i === phase
+                  ? 'border-violet-400/50 bg-violet-500/20 text-white'
+                  : i < phase
+                    ? 'border-emerald-400/30 text-emerald-300'
+                    : 'border-white/10 text-zinc-500'
+              }`}
+            >
+              <b.icon className="h-3.5 w-3.5" />
+              {b.label}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 text-center">
+        <div className="rounded-xl border border-white/8 bg-white/[0.03] px-2 py-3">
+          <p className="text-[10px] text-zinc-500">SaaS (high)</p>
+          <p className="font-display text-sm text-red-300">${saasHigh}/mo</p>
+        </div>
+        <div className="rounded-xl border border-white/8 bg-white/[0.03] px-2 py-3">
+          <p className="text-[10px] text-zinc-500">Rebuilt ops</p>
+          <p className="font-display text-sm text-emerald-300">${rebuilt}/mo</p>
+        </div>
+        <div className="rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-2 py-3">
+          <p className="text-[10px] text-emerald-300/80">Illustrative save</p>
+          <p className="font-display text-sm text-white">
+            <TrendingDown className="mr-0.5 inline h-3.5 w-3.5 text-emerald-400" />$
+            {yearlySave.toLocaleString()}/yr
+          </p>
+        </div>
+      </div>
+
+      <p className="text-xs leading-relaxed text-zinc-500">
+        CRM, booking, inventory, POS, industry platforms—almost anything they can name can be
+        replicated, self-hosted, and improved. Figures are planning examples, not guarantees. We
+        baseline their real stack in discovery, then bridge them off rent forever.
       </p>
     </div>
   )
