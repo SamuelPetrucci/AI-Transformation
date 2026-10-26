@@ -2,7 +2,7 @@
 export const CALENDLY_CONFIG = {
   // Replace this with your actual Calendly link
   // You can find this in your Calendly dashboard under "Event Types" > "Share" > "Link"
-  CALENDLY_URL: "https://calendly.com/aitransformationllc-info/30min",
+  CALENDLY_URL: "https://calendly.com/aitransformationllc-info/discovery-call",
   
   // Event type settings
   EVENT_TYPES: {

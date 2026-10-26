@@ -6,7 +6,6 @@ import WhyChooseUs from '@/components/WhyChooseUs'
 import SmartBooking from '@/components/SmartBooking'
 import Footer from '@/components/Footer'
 import HashNavigation from '@/components/HashNavigation'
-import Chatbot from '@/components/Chatbot'
 
 export default function Home() {
   const structuredData = {
@@ -90,7 +89,6 @@ export default function Home() {
         <SmartBooking />
         <Footer />
       </main>
-      <Chatbot />
     </>
   )
 }
