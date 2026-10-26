@@ -16,7 +16,7 @@ export default function IndustryCTA() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
           >
-            Ready to Transform Your Industry?
+            Ready to save time and grow in your industry?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

@@ -19,7 +19,7 @@ export default function Home() {
     url: 'https://aitransformationllc.com',
     logo: 'https://aitransformationllc.com/favicon.svg',
     description:
-      'AI Transformation LLC specializes in cutting-edge AI solutions that drive business growth and operational efficiency. We provide AI strategy, automation, data analytics, and social media advertising packages.',
+      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.',
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',
@@ -41,33 +41,42 @@ export default function Home() {
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'AI Services',
+      name: 'Technology Solutions',
       itemListElement: [
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'AI Strategy & Implementation',
+            name: 'Custom Software',
             description:
-              'Develop comprehensive AI strategies and implement cutting-edge solutions tailored to your business needs.',
+              'Websites, apps, CRMs, booking tools, and custom project builds businesses own.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Business Process Automation',
+            name: 'AI Automation',
             description:
-              'Streamline operations with intelligent automation that reduces costs and increases efficiency.',
+              'AI receptionists, lead follow-up, content agents, and workflow automation.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Data Analytics & Insights',
+            name: 'Modern Technology Solutions',
             description:
-              'Transform raw data into actionable insights that drive informed business decisions.',
+              'Integrations, analytics, SaaS rebuilds, and practical tech upgrades.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Starter Social',
+            description:
+              '8 social media posts per month with AI-assisted captions and scheduling for $149/month.',
           },
         },
         {
@@ -76,16 +85,7 @@ export default function Home() {
             '@type': 'Service',
             name: 'Social Growth',
             description:
-              '12 social media posts per month with Facebook and Instagram scheduling, content calendar, and performance reporting for $299/month.',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Facebook Ads + Social',
-            description:
-              'Social media management plus Meta advertising campaign management for $499/month. Client pays ad spend separately.',
+              '12 social media posts per month with Facebook and Instagram scheduling for $299/month.',
           },
         },
       ],

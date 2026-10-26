@@ -61,7 +61,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="mt-4 text-base text-zinc-400 sm:text-lg"
           >
-            We combine cutting-edge technology with proven expertise to deliver exceptional results.
+            One positioning. Flexible packaging—from monthly growth plans to custom implementations.
           </motion.p>
         </div>
 

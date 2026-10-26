@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { LogoMark } from './BrandLogo'
+import { POSITIONING } from '@/config/positioning'
 
 export default function Hero() {
   const scrollToBooking = () => {
@@ -28,7 +29,7 @@ export default function Hero() {
         >
           <LogoMark className="h-14 w-14 sm:h-16 sm:w-16" />
           <span className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Transformation
+            {POSITIONING.shortName}
           </span>
         </motion.div>
 
@@ -38,7 +39,7 @@ export default function Hero() {
           transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="font-display relative z-10 text-xl font-medium tracking-tight text-zinc-200 sm:text-2xl md:text-3xl"
         >
-          Transform Your Business with Intelligent AI Solutions
+          {POSITIONING.headline}
         </motion.h1>
 
         <motion.p
@@ -47,9 +48,7 @@ export default function Hero() {
           transition={{ duration: 0.75, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
         >
-          We specialize in cutting-edge AI solutions that drive business growth and operational
-          efficiency. From intelligent automation to data analytics, we help businesses leverage the
-          power of artificial intelligence to stay ahead in today&apos;s competitive landscape.
+          {POSITIONING.support}
         </motion.p>
 
         <motion.div
@@ -68,18 +67,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 mt-14 grid w-full max-w-3xl grid-cols-1 gap-8 md:grid-cols-3"
+          className="relative z-10 mt-14 grid w-full max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3"
         >
-          {[
-            { value: 'Reliable', label: 'Development Partner' },
-            { value: 'Fast', label: 'Turnaround Time' },
-            { value: '24/7', label: 'Support Available' },
-          ].map((stat) => (
-            <div key={stat.value} className="text-center">
-              <div className="font-display text-2xl font-semibold text-violet-300 sm:text-3xl">
-                {stat.value}
+          {POSITIONING.pillars.map((pillar) => (
+            <div key={pillar.id} className="text-center">
+              <div className="font-display text-lg font-semibold text-violet-300 sm:text-xl">
+                {pillar.title}
               </div>
-              <div className="mt-1 text-sm text-zinc-500">{stat.label}</div>
+              <div className="mt-1 text-xs leading-snug text-zinc-500 sm:text-sm">
+                {pillar.id === 'custom-software' && 'Builds & systems you own'}
+                {pillar.id === 'ai-automation' && 'Agents that cut busywork'}
+                {pillar.id === 'modern-tech' && 'Growth packages & upgrades'}
+              </div>
             </div>
           ))}
         </motion.div>

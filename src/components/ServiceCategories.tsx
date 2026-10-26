@@ -183,12 +183,13 @@ export default function ServiceCategories() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <p className="overline mb-4">Service catalog</p>
+          <p className="overline mb-4">Packaged under one positioning</p>
           <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
-            Our Service Categories
+            Services that fit the job
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-zinc-400">
-            Comprehensive AI services designed to transform your business operations and drive growth.
+            Save time, reduce costs, and grow—through custom software, AI automation, and modern
+            technology solutions. Pick the engagement size that matches your goals.
           </p>
         </motion.div>
 

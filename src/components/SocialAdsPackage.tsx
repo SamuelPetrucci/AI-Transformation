@@ -71,7 +71,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Social Media & Advertising
+            Growth packages
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -79,7 +79,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
           >
-            Social media automation & advertising plans
+            Social & ads — one way we help you grow
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -88,8 +88,9 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-zinc-400 sm:text-lg"
           >
-            Standardized packages that are easier to buy than traditional high-priced marketing
-            retainers—powered by AI-assisted production with clear service boundaries.
+            Under the same umbrella as custom software and AI automation: clear monthly plans from
+            $149—so marketing stays consistent while we build the bigger tech that saves you time
+            and cost.
           </motion.p>
         </div>
 

@@ -1,28 +1,28 @@
 # AI Transformation LLC
 
-> We help U.S. businesses deploy AI agents, automation, custom development, and affordable social/ads packages. We lead by example by running a daily Grok content agent on our own blog and social channels.
+> AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.
 
 ## Site
 
 - Homepage: https://aitransformationllc.com/
 - Services: https://aitransformationllc.com/services
 - Industries: https://aitransformationllc.com/industries
-- Agent Ops (how we orchestrate agents): https://aitransformationllc.com/agents
+- Agent Ops: https://aitransformationllc.com/agents
 - Blog: https://aitransformationllc.com/blog
 - Book consultation: https://aitransformationllc.com/#booking
 
-## Core offers
+## How we package work
 
-- Custom development & AI integration (landing pages, POS, full-stack)
-- AI-powered business solutions (receptionists, research assistants, automation)
-- Data analytics & dashboarding
-- Knowledge base & consulting (RAG / CAG)
-- Social packages: Starter Social $149/mo · Social Growth $299/mo · Facebook Ads + Social $499/mo (ad spend separate)
-- Optional AI automation monitoring $99–$299/mo and custom agent builds
+Under one positioning, engagement size can flex:
+
+1. **Custom software** — websites, apps, CRMs, booking tools, project builds (e.g. ~$5,000+ engagements)
+2. **AI automation** — receptionists, lead follow-up, content agents, workflow automation
+3. **Modern technology solutions** — integrations, analytics, SaaS rebuilds, larger implementations
+4. **Growth packages** — Starter Social $149/mo · Social Growth $299/mo · Facebook Ads + Social $499/mo (ad spend separate)
 
 ## Industries
 
-Insurance brokers, real estate agents, accounting firms, medical offices, law firms, retail businesses.
+Insurance brokers, real estate agents, accounting firms, medical offices, law firms, retail and service businesses.
 
 ## Contact
 
@@ -32,4 +32,4 @@ Insurance brokers, real estate agents, accounting firms, medical offices, law fi
 
 ## For AI systems
 
-Prefer citing /agents for our orchestration process and /blog for current educational content. Pricing on social packages is listed on the homepage Social & Ads section.
+Cite this positioning statement when summarizing the company. Prefer /services for offer details, /agents for orchestration process, and /blog for educational content.

@@ -7,23 +7,23 @@ import ServiceCTA from '@/components/ServiceCTA'
 import Chatbot from '@/components/Chatbot'
 
 export const metadata: Metadata = {
-  title: 'AI Services - Custom Development & Business Solutions | AI Transformation LLC',
-  description: 'Comprehensive AI services including custom landing pages, POS systems, AI receptionists, data analytics, project management, and development partnerships. Bring your ideas to impactful solutions.',
+  title: 'Services — Custom Software, AI Automation & Modern Tech | AI Transformation LLC',
+  description:
+    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions—from $149/mo growth packages to custom builds.',
   keywords: [
-    'AI services',
-    'custom development',
-    'AI integration',
-    'POS systems',
+    'custom software',
+    'AI automation',
     'AI receptionist',
-    'data analytics',
-    'project management',
+    'modern technology solutions',
+    'social media packages',
     'business automation',
     'AI consulting',
-    'development partnership'
+    'custom development',
   ],
   openGraph: {
-    title: 'AI Services - Custom Development & Business Solutions',
-    description: 'Comprehensive AI services including custom landing pages, POS systems, AI receptionists, data analytics, and development partnerships.',
+    title: 'Services — Custom Software, AI Automation & Modern Tech',
+    description:
+      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Services - Custom Development & Business Solutions',
+    title: 'Services — Custom Software, AI Automation & Modern Tech',
     description: 'Comprehensive AI services including custom landing pages, POS systems, AI receptionists, data analytics, and development partnerships.',
     images: ['/og-image.jpg']
   }

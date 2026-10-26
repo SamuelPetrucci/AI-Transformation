@@ -12,9 +12,9 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "AI Transformation LLC - Transform Your Business with AI Solutions",
-  description = "AI Transformation LLC specializes in cutting-edge AI solutions that drive business growth and operational efficiency. We provide AI strategy, automation, data analytics, and industry-grade protection.",
-  keywords = ["AI solutions", "artificial intelligence", "business automation", "AI transformation"],
+  title = "AI Transformation LLC — Custom Software, AI Automation & Modern Tech",
+  description = "AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.",
+  keywords = ["custom software", "AI automation", "modern technology solutions", "AI transformation"],
   canonical = "https://aitransformationllc.com",
   ogImage = "/og-image.jpg",
   ogType = "website"

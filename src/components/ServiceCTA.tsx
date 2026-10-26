@@ -15,7 +15,7 @@ export default function ServiceCTA() {
           viewport={{ once: true }}
           className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
         >
-          Ready to Transform Your Business?
+          Ready to save time, cut costs, and grow?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -23,8 +23,8 @@ export default function ServiceCTA() {
           viewport={{ once: true }}
           className="mx-auto mt-4 max-w-2xl text-zinc-400"
         >
-          Let&apos;s discuss how our AI services can bring your ideas to life and drive meaningful
-          business impact.
+          Tell us what you need—social growth, an AI receptionist, custom software, or a larger tech
+          build. Same company. Right-sized engagement.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -33,11 +33,11 @@ export default function ServiceCTA() {
           className="glass-panel mt-10 rounded-3xl p-8 sm:p-12"
         >
           <h3 className="font-display text-2xl font-semibold text-white sm:text-3xl">
-            Start Your AI Transformation Journey Today
+            Book a free discovery call
           </h3>
           <p className="mx-auto mt-4 max-w-xl text-zinc-400">
-            From custom development to social automation and agent orchestration, we&apos;re here to
-            bring your ideas to life.
+            We&apos;ll map the fastest path to results under custom software, AI automation, or modern
+            technology solutions.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/#booking" className="cta-pill">

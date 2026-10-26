@@ -25,8 +25,8 @@ export default function Footer() {
               />
             </div>
             <p className="mb-6 max-w-md text-zinc-400">
-              Transform your business with cutting-edge AI solutions. We help organizations leverage
-              the power of artificial intelligence to drive growth and operational efficiency.
+              AI Transformation LLC helps businesses save time, reduce costs, and grow through custom
+              software, AI automation, and modern technology solutions.
             </p>
             <a
               href="https://www.linkedin.com/company/ai-transformations/"

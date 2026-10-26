@@ -685,7 +685,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
           >
-            See how agents & automation work
+            See the work in action
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -694,8 +694,8 @@ export default function AutomationShowcase() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-zinc-400 sm:text-lg"
           >
-            Click through live-style demos: agents, websites, ads, marketing automation, ops savings,
-            and discovery-to-implementation.
+            Agents, websites, ads, marketing, ops rebuilds, and discovery—demos of how we help you
+            save time, reduce costs, and grow.
           </motion.p>
         </div>
 

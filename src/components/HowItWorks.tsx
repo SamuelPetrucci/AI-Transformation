@@ -8,18 +8,18 @@ const steps = [
   {
     title: 'Discovery & Assessment',
     description:
-      'We analyze your current business processes and identify opportunities for AI integration.',
+      'We map where you lose time and money—then match the right mix of software, automation, and modern tech.',
     image: '/images/discovery.webp',
   },
   {
     title: 'Strategy & Planning',
     description:
-      'Develop a comprehensive AI strategy tailored to your business goals and objectives.',
+      'Scope the right engagement: a growth package, an agent pilot, or a custom build—with clear ROI.',
     image: '/images/strategy.avif',
   },
   {
     title: 'Implementation & Training',
-    description: 'Deploy AI solutions and provide comprehensive training for your team.',
+    description: 'Ship the software, agents, or packages—and train your team so it sticks.',
     image: '/images/implementation.webp',
   },
   {
@@ -58,7 +58,8 @@ export default function HowItWorks() {
             transition={{ delay: 0.06 }}
             className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg"
           >
-            Our proven process ensures successful AI transformation from concept to implementation.
+            Same process whether you start with a $149 social plan, an AI receptionist, or a custom
+            software build.
           </motion.p>
         </div>
 

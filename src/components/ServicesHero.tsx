@@ -41,7 +41,7 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.05 }}
           className="font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
         >
-          AI Services That Transform Ideas Into Impact
+          Custom software. AI automation. Modern tech.
         </motion.h1>
 
         <motion.p
@@ -50,8 +50,9 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.12 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
         >
-          From custom landing pages and POS systems to AI receptionists, data analytics, social
-          automation, and development partnerships—we bring ideas to production.
+          AI Transformation LLC helps businesses save time, reduce costs, and grow—whether that starts
+          as a $149/mo social package, an AI receptionist, a custom software project, or a larger
+          technology implementation.
         </motion.p>
 
         <motion.div
