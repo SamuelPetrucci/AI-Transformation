@@ -16,6 +16,26 @@ export type BlogPost = {
  */
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'lead-by-example-daily-grok-marketing-bot',
+    title: 'Lead by Example: Running a Daily Grok Marketing Bot on Ourselves',
+    excerpt:
+      'Before we sell an AI marketing agent to anyone, we run one on our own business every weekday. Here’s how it works, with a human approving every post.',
+    date: '2026-10-26',
+    author: 'AI Transformation LLC',
+    tags: ['agents', 'marketing', 'grok', 'lead-by-example'],
+    socialHook: "We don't sell AI agents we won't run on ourselves.",
+    generatedBy: 'grok-content-agent',
+    body: [
+      "We have a simple rule at AI Transformation LLC: we don't recommend an AI agent to a client until we've run it on our own business. Marketing is the first place we put that rule to work.",
+      'Every weekday, a Grok-powered marketing bot drafts one blog post along with captions for Facebook, Instagram, LinkedIn, and X. It works from a topic, our brand voice, and a fixed output format, so each draft arrives structured and ready to review instead of as a loose block of text.',
+      'Then the bot stops. Nothing publishes automatically. A person on our team reads the draft, checks the facts, adjusts the tone, and approves or rejects it. That human approval gate is the core of the design, because an agent that posts unchecked will eventually put your name on something you’d never say.',
+      'Running the bot on ourselves teaches us things a demo can’t. We see which instructions produce useful drafts, where the model drifts into generic phrasing, and which guardrails matter, like banning invented statistics and holding a consistent voice from one day to the next.',
+      'For a small business owner, the value isn’t handing marketing off completely. The value is never starting from a blank page again. Reviewing and refining a solid draft takes far less effort than writing from scratch, and you stay in control of every word that goes out.',
+      'The same pattern works beyond marketing: an agent does the repetitive first pass, and a person makes the final call. You can see the agents we build and run on our /agents page, including the one that drafted the first version of this post.',
+      'If you want to know what a supervised agent could take off your plate, start with a conversation. We’ll show you what we run ourselves and help you decide whether it fits your business.',
+    ],
+  },
+  {
     slug: 'how-we-orchestrate-daily-content-agents',
     title: 'How We Orchestrate Daily Blog & Social Agents (Lead by Example)',
     excerpt:
