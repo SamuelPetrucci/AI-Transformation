@@ -1,77 +1,50 @@
-# Grok Content Agent (daily blog + social)
+# Grok AI Marketing Bot (daily blog + social)
 
-Lead-by-example pipeline used by AI Transformation LLC.
+Lead-by-example pipeline for AI Transformation LLC. Weekday GitHub Action calls Grok, stages a blog draft + social pack, opens a PR for human approval.
 
 ## What it does
 
-1. Reads a topic brief (CLI args or `CONTENT_TOPIC` env)
-2. Calls **Grok (xAI)** when `XAI_API_KEY` is set, otherwise OpenAI
-3. Prints a structured draft: blog fields + social hooks
-4. Optionally appends to `src/content/blog/posts.ts` with `--write`
+1. Picks a topic from `topics.json` (or `--topic` / `CONTENT_TOPIC`)
+2. Calls **Grok** via `XAI_API_KEY` (model `grok-4.7` by default; override with `XAI_MODEL`)
+3. Prints blog fields + Facebook / Instagram / LinkedIn / X captions
+4. With `--write`, appends to `src/content/blog/posts.ts` and writes `last-social-pack.json`
 
-**Nothing auto-publishes.** A human reviews, then merges / schedules.
+**Nothing auto-publishes.** You review the PR, merge, then schedule social.
 
-## One-time setup (about 10 minutes)
+## One-time setup (required to go live)
 
-### 1. API key
+### 1. Add your xAI (Grok) API key to GitHub
 
-In [GitHub → Settings → Secrets and variables → Actions](https://github.com/SamuelPetrucci/AI-Transformation/settings/secrets/actions) add:
+1. Open [GitHub Actions secrets](https://github.com/SamuelPetrucci/AI-Transformation/settings/secrets/actions)
+2. **New repository secret** → name: `XAI_API_KEY` → paste your key from [console.x.ai](https://console.x.ai)
+3. Optional: Actions → Variables → `XAI_MODEL` (defaults to `grok-4.7` in the script)
 
-- `XAI_API_KEY` (preferred — Grok via xAI), **or**
-- `OPENAI_API_KEY` (fallback)
+This key stays in GitHub Secrets. It is **not** sent to Vercel by this workflow.
 
-Locally:
+### 2. Kick the first run
 
-```bash
-export XAI_API_KEY=...   # or OPENAI_API_KEY=...
-```
+1. [Actions → Daily Grok content draft](https://github.com/SamuelPetrucci/AI-Transformation/actions/workflows/daily-content-agent.yml)
+2. **Run workflow** (optional topic override, or leave blank for the calendar)
+3. Review the PR on branch `content/daily-draft` → merge → Vercel deploys `/blog`
 
-### 2. Enable the weekday workflow
+After that it runs **Mon–Fri ~9 AM ET** automatically.
 
-The workflow is already in the repo:
-
-`.github/workflows/daily-content-agent.yml`
-
-- Runs **Mon–Fri 13:00 UTC** (~9 AM ET)
-- Or run manually: **Actions → Daily Grok content draft → Run workflow**
-- Opens a PR on `content/daily-draft` for you to review and merge
-
-### 3. Get found in Google + AI answers
-
-After Vercel deploys `main`:
-
-1. [Google Search Console](https://search.google.com/search-console) → add `https://aitransformationllc.com`
-2. Submit sitemap: `https://aitransformationllc.com/sitemap.xml`
-3. Request indexing for `/`, `/blog`, `/agents`, `/services`
-4. Optional: Bing Webmaster Tools (helps Copilot / some AI crawlers)
-5. Confirm `https://aitransformationllc.com/llms.txt` loads (AI systems use this)
-
-### 4. Local dry run
+## Local dry run
 
 ```bash
+export XAI_API_KEY=...   # your key — local shell only
 npm run content-agent -- --topic "AI receptionist ROI for dental offices"
 npm run content-agent:write -- --topic "Weekly ops automation wins"
 ```
 
-Then open a PR, review on `/blog`, approve social copy, schedule posts.
+## Topic calendar
 
-## SEO / AI discoverability checklist (ongoing)
+Edit `scripts/content-agent/topics.json` to change the rotating marketing angles.
 
-- **Publish consistently** — weekday drafts compound topical authority
-- **Answer real questions** in titles (“How…”, “ROI…”, industry + problem)
-- **Internal links** — each post should mention `/services`, `/agents`, or a package
-- **Keep Article schema** — already on blog posts (JSON-LD)
-- **Fresh sitemap** — dynamic; new posts appear after merge + deploy
-- **Share socially** — FB/IG (and X) drive crawl discovery faster than waiting on Google alone
-- **Don’t invent stats** — review every agent draft before merge (hurts trust & rankings)
+## SEO / AI discovery (already on main)
 
-## Cursor Cloud Agent alternative
-
-Schedule a weekday Cloud Agent that:
-
-1. Runs `npm run content-agent:write`
-2. Opens a PR titled `content: daily grok draft`
-3. Pings you for approval
-4. After merge, you schedule social in Meta / your Social Growth package
+- Dynamic sitemap + robots + `/llms.txt`
+- Article JSON-LD on blog posts
+- After each merge: schedule the social pack (FB/IG via Social Growth)
 
 See `/agents` on the site for the client-facing playbook.
