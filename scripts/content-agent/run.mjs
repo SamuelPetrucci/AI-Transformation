@@ -36,9 +36,14 @@ const topic = arg('topic') || process.env.CONTENT_TOPIC || weekdayTopic()
 const shouldWrite = process.argv.includes('--write')
 const requireKey = process.env.REQUIRE_API_KEY === '1' || process.argv.includes('--require-key')
 
-const xaiKey = process.env.XAI_API_KEY
-const openaiKey = process.env.OPENAI_API_KEY
-const xaiModel = process.env.XAI_MODEL || 'grok-4.7'
+function normalizeSecret(value) {
+  if (!value) return ''
+  return String(value).trim().replace(/^['"]|['"]$/g, '')
+}
+
+const xaiKey = normalizeSecret(process.env.XAI_API_KEY)
+const openaiKey = normalizeSecret(process.env.OPENAI_API_KEY)
+const xaiModel = normalizeSecret(process.env.XAI_MODEL) || 'grok-3-latest'
 
 if (requireKey && !xaiKey && !openaiKey) {
   console.error(

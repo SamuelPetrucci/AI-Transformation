@@ -134,7 +134,8 @@ export async function POST(request: NextRequest) {
       extractedData,
       leadScore: Math.max(analysis.leadScore, aiResponse.leadScore || 0),
       isQualified: analysis.isQualified,
-      shouldCollectInfo: aiResponse.shouldCollectInfo
+      shouldCollectInfo: aiResponse.shouldCollectInfo,
+      ...(aiResponse.errorCode ? { errorCode: aiResponse.errorCode } : {}),
     })
 
   } catch (error) {
