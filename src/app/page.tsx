@@ -1,6 +1,7 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
+import AutomationShowcase from '@/components/AutomationShowcase'
 import HowItWorks from '@/components/HowItWorks'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import SocialAdsPackage from '@/components/SocialAdsPackage'
@@ -102,6 +103,7 @@ export default function Home() {
         <SlideNav />
         <Hero />
         <Features />
+        <AutomationShowcase />
         <HowItWorks />
         <WhyChooseUs />
         <SocialAdsPackage />

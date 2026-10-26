@@ -7,6 +7,7 @@ import BrandLogo from './BrandLogo'
 const navItems = [
   { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
   { id: 'services', name: 'Services', sectionId: null, href: '/services' },
+  { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
   { id: 'about', name: 'About', sectionId: 'how-it-works', href: null },
   { id: 'social-ads', name: 'Social & Ads', sectionId: 'social-ads', href: null },
   { id: 'booking', name: 'Book Consultation', sectionId: 'booking', href: null },
@@ -55,7 +56,7 @@ export default function Header() {
     onScrollChrome()
     window.addEventListener('scroll', onScrollChrome, { passive: true })
 
-    const sectionIds = ['home', 'features', 'how-it-works', 'why-us', 'social-ads', 'booking', 'contact']
+    const sectionIds = ['home', 'features', 'demos', 'how-it-works', 'why-us', 'social-ads', 'booking', 'contact']
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
