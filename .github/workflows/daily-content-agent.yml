@@ -1,0 +1,67 @@
+name: Daily Grok content draft
+
+on:
+  schedule:
+    # Weekdays 13:00 UTC ≈ 9:00 AM America/New_York (EST) / 8:00 AM EDT adjust as needed
+    - cron: '0 13 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Optional topic override'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate draft with content agent
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CONTENT_TOPIC: ${{ github.event.inputs.topic }}
+        run: |
+          TOPIC="${CONTENT_TOPIC:-}"
+          if [ -z "$TOPIC" ]; then
+            # Rotate simple weekday topics if none provided
+            DAY=$(date -u +%u)
+            case "$DAY" in
+              1) TOPIC="AI receptionist ROI for small service businesses" ;;
+              2) TOPIC="How agents cut SMB marketing busywork without looking cheap" ;;
+              3) TOPIC="Discovery to pilot in four weeks for AI automation" ;;
+              4) TOPIC="Facebook ads plus social for local businesses without agency bloat" ;;
+              5) TOPIC="Reengineering ops to save money on SaaS and manual work" ;;
+              *) TOPIC="Practical AI automation for growing U.S. businesses" ;;
+            esac
+          fi
+          echo "Topic: $TOPIC"
+          node scripts/content-agent/run.mjs --topic "$TOPIC" --write
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'content: daily grok blog draft'
+          title: 'content: daily Grok blog draft'
+          body: |
+            Automated weekday draft from the Grok content agent.
+
+            **Review checklist**
+            - [ ] Facts/claims look accurate (no invented stats)
+            - [ ] Tone matches AI Transformation brand
+            - [ ] Social hook is usable for FB/IG/X
+            - [ ] Merge → confirm `/blog` and sitemap include the post
+            - [ ] Schedule social captions after merge
+
+            Nothing auto-publishes until this PR is merged.
+          branch: content/daily-draft
+          delete-branch: true

@@ -6,6 +6,8 @@ import Footer from '@/components/Footer'
 import Chatbot from '@/components/Chatbot'
 import { getAllPosts, getPost } from '@/lib/blog'
 
+const site = 'https://aitransformationllc.com'
+
 type Props = { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
@@ -16,9 +18,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = getPost(slug)
   if (!post) return { title: 'Post not found' }
+  const url = `${site}/blog/${post.slug}`
   return {
     title: `${post.title} | AI Transformation LLC`,
     description: post.excerpt,
+    keywords: post.tags,
+    authors: [{ name: post.author }],
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      url,
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags,
+      siteName: 'AI Transformation LLC',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
   }
 }
 
@@ -27,8 +48,37 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPost(slug)
   if (!post) notFound()
 
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Organization',
+      name: post.author,
+      url: site,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AI Transformation LLC',
+      url: site,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${site}/favicon.svg`,
+      },
+    },
+    mainEntityOfPage: `${site}/blog/${post.slug}`,
+    keywords: post.tags.join(', '),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
       <main className="min-h-screen bg-[#050505] text-white">
         <Header />
         <article className="relative mx-auto max-w-3xl px-4 pb-20 pt-28 sm:px-6">
@@ -50,7 +100,9 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
             ))}
             <span className="rounded-full border border-violet-400/30 bg-violet-500/10 px-3 py-1 text-[10px] uppercase tracking-wider text-violet-300">
-              {post.generatedBy === 'grok-content-agent' ? 'Drafted by Grok content agent' : 'Human authored'}
+              {post.generatedBy === 'grok-content-agent'
+                ? 'Drafted by Grok content agent'
+                : 'Human authored'}
             </span>
           </div>
 
@@ -63,8 +115,12 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           <aside className="glass-panel mt-12 rounded-3xl p-6">
-            <p className="text-xs uppercase tracking-wider text-violet-300">Social hook (agent output)</p>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-300">&ldquo;{post.socialHook}&rdquo;</p>
+            <p className="text-xs uppercase tracking-wider text-violet-300">
+              Social hook (agent output)
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+              &ldquo;{post.socialHook}&rdquo;
+            </p>
             <p className="mt-4 text-xs text-zinc-500">
               This caption is generated alongside the blog draft for Facebook / Instagram / X. Humans
               approve before scheduling—same workflow we sell in Social Growth and Ads packages.

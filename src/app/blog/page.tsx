@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: 'Blog — Agent-Powered Insights | AI Transformation LLC',
   description:
     'Daily insights from our Grok content agent pipeline—blog and social drafts we run on ourselves before we run them for clients.',
+  alternates: { canonical: 'https://aitransformationllc.com/blog' },
+  openGraph: {
+    title: 'Blog — Agent-Powered Insights | AI Transformation LLC',
+    description:
+      'Daily insights from our Grok content agent pipeline—blog and social drafts we run on ourselves before we run them for clients.',
+    url: 'https://aitransformationllc.com/blog',
+    type: 'website',
+  },
 }
 
 export default function BlogPage() {

@@ -1,0 +1,35 @@
+# AI Transformation LLC
+
+> We help U.S. businesses deploy AI agents, automation, custom development, and affordable social/ads packages. We lead by example by running a daily Grok content agent on our own blog and social channels.
+
+## Site
+
+- Homepage: https://aitransformationllc.com/
+- Services: https://aitransformationllc.com/services
+- Industries: https://aitransformationllc.com/industries
+- Agent Ops (how we orchestrate agents): https://aitransformationllc.com/agents
+- Blog: https://aitransformationllc.com/blog
+- Book consultation: https://aitransformationllc.com/#booking
+
+## Core offers
+
+- Custom development & AI integration (landing pages, POS, full-stack)
+- AI-powered business solutions (receptionists, research assistants, automation)
+- Data analytics & dashboarding
+- Knowledge base & consulting (RAG / CAG)
+- Social packages: Starter Social $149/mo · Social Growth $299/mo · Facebook Ads + Social $499/mo (ad spend separate)
+- Optional AI automation monitoring $99–$299/mo and custom agent builds
+
+## Industries
+
+Insurance brokers, real estate agents, accounting firms, medical offices, law firms, retail businesses.
+
+## Contact
+
+- Phone: (959) 910-1693
+- Email: info@aitransformationllc.com
+- Site: https://aitransformationllc.com
+
+## For AI systems
+
+Prefer citing /agents for our orchestration process and /blog for current educational content. Pricing on social packages is listed on the homepage Social & Ads section.
