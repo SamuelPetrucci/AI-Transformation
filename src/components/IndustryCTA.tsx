@@ -1,98 +1,62 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Calendar, Phone, Mail } from 'lucide-react'
+import { ArrowUpRight, Calendar, Phone, Mail } from 'lucide-react'
 
 export default function IndustryCTA() {
-  const navigateToHome = () => {
-    window.location.href = '/#booking'
-  }
-
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 to-gray-300 bg-clip-text text-transparent">
-              Ready to Transform Your Industry?
-            </span>
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Schedule a free consultation for your industry-specific tech needs.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6"
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Free Consultation</h3>
-              <p className="text-gray-400">
-                Schedule a free consultation for your industry-specific tech needs.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6"
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Expert Guidance</h3>
-              <p className="text-gray-400">
-                Get expert guidance on implementing the tech solution.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6"
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Custom Solutions</h3>
-              <p className="text-gray-400">
-                Receive a specially tailored solution for your industry needs.
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+    <section className="relative overflow-hidden py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.18),transparent_55%)]" />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
             viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
           >
-            <button
-              onClick={navigateToHome}
-              className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2"
+            Ready to Transform Your Industry?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-4 max-w-2xl text-zinc-400"
+          >
+            Schedule a free consultation for your industry-specific tech needs.
+          </motion.p>
+        </div>
+
+        <div className="mb-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {[
+            { icon: Calendar, title: 'Book a call', detail: 'Pick a time that works for you' },
+            { icon: Phone, title: 'Talk strategy', detail: '(959) 910-1693' },
+            { icon: Mail, title: 'Email us', detail: 'info@aitransformationllc.com' },
+          ].map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="glass-panel rounded-3xl p-6 text-center"
             >
-              <span>Book Free Consultation</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-          </motion.div>
-        </motion.div>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+                <item.icon className="h-6 w-6" />
+              </div>
+              <h3 className="font-display text-lg text-white">{item.title}</h3>
+              <p className="mt-1 text-sm text-zinc-400">{item.detail}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link href="/#booking" className="cta-pill">
+            Schedule consultation
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </section>
   )

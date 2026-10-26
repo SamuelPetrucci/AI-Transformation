@@ -8,24 +8,24 @@ const steps = [
   {
     title: 'Discovery & Assessment',
     description:
-      'We analyze your current business processes and identify opportunities for AI, themes, and growth.',
+      'We analyze your current business processes and identify opportunities for AI integration.',
     image: '/images/discovery.webp',
   },
   {
     title: 'Strategy & Planning',
     description:
-      'Develop a comprehensive strategy tailored to your goals—product, brand system, and acquisition.',
+      'Develop a comprehensive AI strategy tailored to your business goals and objectives.',
     image: '/images/strategy.avif',
   },
   {
     title: 'Implementation & Training',
-    description: 'Deploy solutions and provide training so your team can operate with confidence.',
+    description: 'Deploy AI solutions and provide comprehensive training for your team.',
     image: '/images/implementation.webp',
   },
   {
     title: 'Optimization & Support',
     description:
-      'Continuous monitoring, creative testing, and support to ensure maximum ROI over time.',
+      'Continuous monitoring, optimization, and ongoing support to ensure maximum ROI.',
     image: '/images/optimization.webp',
   },
 ]
@@ -36,29 +36,29 @@ export default function HowItWorks() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center md:mb-16">
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            How We Work
+            Our process
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
           >
-            A process that feels like progress.
+            How We Work
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.08 }}
+            transition={{ delay: 0.06 }}
             className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg"
           >
-            From concept to campaigns—structured delivery with slideshow-clear milestones.
+            Our proven process ensures successful AI transformation from concept to implementation.
           </motion.p>
         </div>
 
@@ -66,10 +66,10 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <motion.article
               key={step.title}
-              initial={{ opacity: 0, y: 36 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.55, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="glass-panel group overflow-hidden rounded-3xl"
             >
               <div className="relative h-40 overflow-hidden">

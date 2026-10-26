@@ -7,12 +7,11 @@ interface ScrollSlideProps {
   id?: string
   children: ReactNode
   className?: string
-  /** Optional ambient purple glow placement */
   glow?: 'top' | 'center' | 'right' | 'none'
 }
 
 /**
- * Full-viewport slide with scroll-snap and slideshow-style enter/exit motion.
+ * Full-viewport slide with gentle scroll-linked motion (slideshow feel without harsh jumps).
  */
 export default function ScrollSlide({
   id,
@@ -28,20 +27,16 @@ export default function ScrollSlide({
     offset: ['start end', 'end start'],
   })
 
+  // Softer ranges so content stays readable and motion feels fluid
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.18, 0.5, 0.82, 1],
-    reduceMotion ? [1, 1, 1, 1, 1] : [0.35, 1, 1, 1, 0.35]
-  )
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.18, 0.5, 0.82, 1],
-    reduceMotion ? [1, 1, 1, 1, 1] : [0.94, 1, 1, 1, 0.94]
+    [0, 0.12, 0.5, 0.88, 1],
+    reduceMotion ? [1, 1, 1, 1, 1] : [0.72, 1, 1, 1, 0.72]
   )
   const y = useTransform(
     scrollYProgress,
-    [0, 0.18, 0.5, 0.82, 1],
-    reduceMotion ? [0, 0, 0, 0, 0] : [48, 0, 0, 0, -48]
+    [0, 0.15, 0.5, 0.85, 1],
+    reduceMotion ? [0, 0, 0, 0, 0] : [28, 0, 0, 0, -28]
   )
 
   return (
@@ -53,7 +48,7 @@ export default function ScrollSlide({
       {glow !== 'none' && (
         <div
           aria-hidden
-          className={`pointer-events-none absolute rounded-full blur-[120px] opacity-40 ${
+          className={`pointer-events-none absolute rounded-full blur-[120px] opacity-35 ${
             glow === 'top'
               ? 'top-[-10%] left-1/2 -translate-x-1/2 h-[50vh] w-[70vw] bg-[radial-gradient(circle,rgba(124,58,237,0.55),transparent_70%)]'
               : glow === 'right'
@@ -64,8 +59,8 @@ export default function ScrollSlide({
       )}
 
       <motion.div
-        style={{ opacity, scale, y }}
-        className="relative z-10 w-full flex-1 flex flex-col justify-center"
+        style={{ opacity, y }}
+        className="relative z-10 w-full flex-1 flex flex-col justify-center will-change-transform"
       >
         {children}
       </motion.div>

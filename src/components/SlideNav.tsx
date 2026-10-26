@@ -1,15 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 
 const slides = [
   { id: 'home', label: 'Home' },
-  { id: 'why-us', label: 'Why us' },
-  { id: 'themes', label: 'Themes' },
-  { id: 'social-ads', label: 'Ads' },
-  { id: 'features', label: 'Services' },
+  { id: 'features', label: 'Capabilities' },
+  { id: 'demos', label: 'Demos' },
   { id: 'how-it-works', label: 'Process' },
+  { id: 'why-us', label: 'Why us' },
+  { id: 'social-ads', label: 'Social' },
   { id: 'booking', label: 'Book' },
 ]
 
@@ -30,7 +29,7 @@ export default function SlideNav() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
         if (visible?.target?.id) setActive(visible.target.id)
       },
-      { threshold: [0.35, 0.55, 0.7] }
+      { threshold: [0.25, 0.45, 0.65] }
     )
 
     elements.forEach((el) => observer.observe(el))
@@ -56,22 +55,16 @@ export default function SlideNav() {
             }
             className="group relative flex items-center justify-end"
           >
-            <span className="mr-3 translate-x-2 rounded-md bg-black/70 px-2 py-1 text-[10px] uppercase tracking-wider text-white opacity-0 backdrop-blur transition-all group-hover:translate-x-0 group-hover:opacity-100">
+            <span className="mr-3 translate-x-2 rounded-md bg-black/70 px-2 py-1 text-[10px] uppercase tracking-wider text-white opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
               {slide.label}
             </span>
             <span
-              className={`block rounded-full transition-all duration-300 ${
+              className={`block rounded-full transition-all duration-500 ease-out ${
                 isActive
                   ? 'h-8 w-2 bg-violet-400 shadow-[0_0_16px_rgba(167,139,250,0.8)]'
                   : 'h-2 w-2 bg-white/30 group-hover:bg-white/70'
               }`}
             />
-            {isActive && (
-              <motion.span
-                layoutId="slide-dot"
-                className="pointer-events-none absolute inset-0"
-              />
-            )}
           </button>
         )
       })}

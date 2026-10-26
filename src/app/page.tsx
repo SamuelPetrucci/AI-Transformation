@@ -1,10 +1,10 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import WhyChooseUs from '@/components/WhyChooseUs'
-import ThemeShowcase from '@/components/ThemeShowcase'
-import SocialAdsPackage from '@/components/SocialAdsPackage'
 import Features from '@/components/Features'
+import AutomationShowcase from '@/components/AutomationShowcase'
 import HowItWorks from '@/components/HowItWorks'
+import WhyChooseUs from '@/components/WhyChooseUs'
+import SocialAdsPackage from '@/components/SocialAdsPackage'
 import SmartBooking from '@/components/SmartBooking'
 import Footer from '@/components/Footer'
 import HashNavigation from '@/components/HashNavigation'
@@ -19,7 +19,7 @@ export default function Home() {
     url: 'https://aitransformationllc.com',
     logo: 'https://aitransformationllc.com/favicon.svg',
     description:
-      'AI Transformation LLC specializes in cutting-edge AI solutions, custom landing themes, and social media advertising packages that drive business growth.',
+      'AI Transformation LLC specializes in cutting-edge AI solutions that drive business growth and operational efficiency. We provide AI strategy, automation, data analytics, and social media advertising packages.',
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',
@@ -40,7 +40,7 @@ export default function Home() {
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'AI & Growth Services',
+      name: 'AI Services',
       itemListElement: [
         {
           '@type': 'Offer',
@@ -55,27 +55,36 @@ export default function Home() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Custom Landing Themes',
-            description:
-              'Production-ready website themes with motion, conversion structure, and brand customization.',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Social Media & Advertising Package',
-            description:
-              'Content systems, paid media, creative production, and performance reporting for pipeline growth.',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
             name: 'Business Process Automation',
             description:
               'Streamline operations with intelligent automation that reduces costs and increases efficiency.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Data Analytics & Insights',
+            description:
+              'Transform raw data into actionable insights that drive informed business decisions.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Social Growth',
+            description:
+              '12 social media posts per month with Facebook and Instagram scheduling, content calendar, and performance reporting for $299/month.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Facebook Ads + Social',
+            description:
+              'Social media management plus Meta advertising campaign management for $499/month. Client pays ad spend separately.',
           },
         },
       ],
@@ -93,11 +102,11 @@ export default function Home() {
         <Header />
         <SlideNav />
         <Hero />
-        <WhyChooseUs />
-        <ThemeShowcase />
-        <SocialAdsPackage />
         <Features />
+        <AutomationShowcase />
         <HowItWorks />
+        <WhyChooseUs />
+        <SocialAdsPackage />
         <SmartBooking />
         <Footer />
       </main>

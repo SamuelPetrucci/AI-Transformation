@@ -1,136 +1,75 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 
 export default function ServicesHero() {
   const scrollToServices = () => {
-    const element = document.getElementById('service-categories')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    document.getElementById('service-categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Image */}
+    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0">
         <Image
           src="/images/services-hero-bg.webp"
           alt="Services background"
           fill
-          className="object-cover opacity-40"
+          className="object-cover opacity-30"
           priority
         />
-        <div className="absolute inset-0 bg-black/30" />
-        {/* Fade gradient overlays for smoother transitions */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/20 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-[#050505]/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.35),transparent_55%)]" />
       </div>
 
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-r from-purple-500/8 to-pink-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-violet-300"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Sparkles className="w-8 h-8 text-blue-400 mr-3" />
-            <span className="text-blue-400 font-semibold text-lg">Comprehensive AI Services</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-gray-300 bg-clip-text text-transparent">
-              Bring Ideas to Impactful Solutions
-            </span>
-          </h1>
+          <Sparkles className="h-3.5 w-3.5" />
+          Our Services
         </motion.div>
 
-        <motion.div
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.05 }}
+          className="font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
         >
-          <h2 className="text-2xl md:text-3xl font-light text-gray-300 mb-8">
-            From Custom Development to AI-Powered Business Solutions
-          </h2>
-        </motion.div>
+          AI Services That Transform Ideas Into Impact
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.12 }}
+          className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
+        >
+          From custom landing pages and POS systems to AI receptionists, data analytics, social
+          automation, and development partnerships—we bring ideas to production.
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
-          <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed">
-            We specialize in transforming your business ideas into powerful, AI-driven solutions. 
-            From custom landing pages and POS systems to AI receptionists and data analytics, 
-            we provide comprehensive development partnerships that bridge the gap between concept and reality.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <button
-            onClick={scrollToServices}
-            className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
-          >
-            <span>Explore Our Services</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          <button type="button" onClick={scrollToServices} className="cta-pill">
+            Explore services
+            <ArrowUpRight className="h-4 w-4" />
           </button>
-        </motion.div>
-
-        {/* Service Highlights */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-        >
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">Custom</div>
-            <div className="text-gray-400">Development Solutions</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">AI-Powered</div>
-            <div className="text-gray-400">Business Automation</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">Full-Service</div>
-            <div className="text-gray-400">Development Partnership</div>
-          </div>
+          <Link
+            href="/agents"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-violet-400/40 hover:bg-violet-500/10"
+          >
+            See agent orchestration
+          </Link>
         </motion.div>
       </div>
     </section>
