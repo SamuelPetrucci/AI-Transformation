@@ -3,7 +3,8 @@
 ## 🚀 **What We've Built**
 
 Your chatbot now has:
-- ✅ **Real LLM Integration** (OpenAI GPT-4)
+- ✅ **Grok via xAI** (`XAI_API_KEY`) — OpenAI is not used for chat
+- ✅ **Bubble hidden** until `XAI_API_KEY` is set in the runtime env (e.g. Vercel)
 - ✅ **Database Storage** (Supabase)
 - ✅ **Lead Qualification** & Scoring
 - ✅ **Conversation Tracking**
@@ -27,31 +28,31 @@ Your chatbot now has:
    - Go to Settings → API
    - Copy your Project URL and anon/public key
 
-### **Step 2: Set up OpenAI**
+### **Step 2: Set up xAI (Grok)**
 
-1. **Get OpenAI API Key**
-   - Go to [platform.openai.com](https://platform.openai.com)
-   - Create account or sign in
-   - Go to API Keys section
-   - Create new API key
+1. **Get xAI API Key**
+   - Go to [console.x.ai](https://console.x.ai)
+   - Create / copy an API key
 
 ### **Step 3: Configure Environment Variables**
 
-Create a `.env.local` file in your project root:
+Create a `.env.local` file (and add the same on **Vercel → Project → Settings → Environment Variables**):
 
 ```env
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-4-turbo-preview
+# xAI / Grok (required for chat bubble)
+XAI_API_KEY=your_xai_api_key
+XAI_MODEL=grok-4.7
 
 # Business Configuration
 COMPANY_EMAIL=info@aitransformationllc.com
 COMPANY_PHONE=(860) 705-3417
 ```
+
+Without `XAI_API_KEY`, the chat bubble stays hidden and `/api/chat` returns 503.
 
 ### **Step 4: Test the Chatbot**
 

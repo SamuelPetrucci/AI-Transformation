@@ -1,8 +1,20 @@
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || 'sk-placeholder-for-build',
-})
+/** Chat uses xAI Grok only — OpenAI is not used for the site chatbot. */
+export function isChatEnabled() {
+  return Boolean(process.env.XAI_API_KEY)
+}
+
+function getXaiClient() {
+  const apiKey = process.env.XAI_API_KEY
+  if (!apiKey) {
+    throw new Error('XAI_API_KEY is not configured')
+  }
+  return new OpenAI({
+    apiKey,
+    baseURL: 'https://api.x.ai/v1',
+  })
+}
 
 // Business context for the AI
 const businessContext = `
@@ -54,8 +66,18 @@ export interface ChatResponse {
 
 export async function generateChatResponse(
   messages: Array<{ role: 'user' | 'assistant' | 'system'; content: string }>,
-  conversationHistory: string
+  conversationHistory: string,
 ): Promise<ChatResponse> {
+  if (!isChatEnabled()) {
+    return {
+      message:
+        'Our chat assistant is temporarily unavailable. Please call (860) 705-3417 or email info@aitransformationllc.com.',
+      extractedData: {},
+      shouldCollectInfo: false,
+      leadScore: 0,
+    }
+  }
+
   try {
     const systemPrompt = `${businessContext}
 
@@ -86,18 +108,16 @@ After your response, provide a JSON object with any extracted data in this forma
   "leadScore": 0-100
 }`
 
-    const response = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL || 'gpt-4-turbo-preview',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        ...messages
-      ],
+    const xai = getXaiClient()
+    const response = await xai.chat.completions.create({
+      model: process.env.XAI_MODEL || 'grok-4.7',
+      messages: [{ role: 'system', content: systemPrompt }, ...messages],
       temperature: 0.7,
       max_tokens: 500,
     })
 
     const content = response.choices[0]?.message?.content || ''
-    
+
     // Try to extract JSON data from the response
     const jsonMatch = content.match(/\{[\s\S]*\}/)
     let extractedData: Record<string, unknown> = {}
@@ -126,15 +146,16 @@ After your response, provide a JSON object with any extracted data in this forma
       message: cleanMessage,
       extractedData,
       shouldCollectInfo,
-      leadScore
+      leadScore,
     }
   } catch (error) {
-    console.error('OpenAI API error:', error)
+    console.error('xAI chat API error:', error)
     return {
-      message: "I apologize, but I'm having trouble processing your request right now. Could you please try again or contact us directly at info@aitransformationllc.com?",
+      message:
+        "I apologize, but I'm having trouble processing your request right now. Could you please try again or contact us directly at info@aitransformationllc.com or (860) 705-3417?",
       extractedData: {},
       shouldCollectInfo: false,
-      leadScore: 0
+      leadScore: 0,
     }
   }
 }
@@ -147,36 +168,41 @@ export function analyzeConversation(messages: Array<{ text: string; sender: stri
 } {
   let leadScore = 0
   const extractedData: Record<string, unknown> = {}
-  
-  const conversation = messages.map(m => m.text).join(' ').toLowerCase()
-  
+
+  const conversation = messages.map((m) => m.text).join(' ').toLowerCase()
+
   // Score based on engagement
   if (messages.length > 5) leadScore += 20
   if (messages.length > 10) leadScore += 10
-  
+
   // Score based on information provided
   if (conversation.includes('@') || conversation.includes('email')) leadScore += 15
-  if (conversation.includes('phone') || /\d{3}[-.]?\d{3}[-.]?\d{4}/.test(conversation)) leadScore += 15
+  if (conversation.includes('phone') || /\d{3}[-.]?\d{3}[-.]?\d{4}/.test(conversation))
+    leadScore += 15
   if (conversation.includes('company') || conversation.includes('business')) leadScore += 10
   if (conversation.includes('budget') || /\$[\d,]+/.test(conversation)) leadScore += 20
   if (conversation.includes('timeline') || conversation.includes('when')) leadScore += 15
   if (conversation.includes('consult') || conversation.includes('meeting')) leadScore += 25
-  
+
   // Extract specific information
   const emailMatch = conversation.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)
   if (emailMatch) extractedData.email = emailMatch[0]
-  
+
   const phoneMatch = conversation.match(/\d{3}[-.]?\d{3}[-.]?\d{4}/)
   if (phoneMatch) extractedData.phone = phoneMatch[0]
-  
+
   if (conversation.includes('insurance')) extractedData.industry = 'Insurance'
-  if (conversation.includes('real estate') || conversation.includes('realtor')) extractedData.industry = 'Real Estate'
-  if (conversation.includes('accounting') || conversation.includes('bookkeeping')) extractedData.industry = 'Accounting'
-  if (conversation.includes('medical') || conversation.includes('healthcare')) extractedData.industry = 'Medical'
+  if (conversation.includes('real estate') || conversation.includes('realtor'))
+    extractedData.industry = 'Real Estate'
+  if (conversation.includes('accounting') || conversation.includes('bookkeeping'))
+    extractedData.industry = 'Accounting'
+  if (conversation.includes('medical') || conversation.includes('healthcare'))
+    extractedData.industry = 'Medical'
   if (conversation.includes('legal') || conversation.includes('law')) extractedData.industry = 'Legal'
-  if (conversation.includes('retail') || conversation.includes('store')) extractedData.industry = 'Retail'
-  
+  if (conversation.includes('retail') || conversation.includes('store'))
+    extractedData.industry = 'Retail'
+
   const isQualified = leadScore >= 50
-  
+
   return { leadScore, extractedData, isQualified }
 }

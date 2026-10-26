@@ -43,12 +43,15 @@ const quickReplies: QuickReply[] = [
 ]
 
 export default function Chatbot() {
+  // Hidden unless Vercel/runtime has XAI_API_KEY (Grok) — no OpenAI fallback
+  const [enabled, setEnabled] = useState(false)
+  const [statusChecked, setStatusChecked] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [showNudge, setShowNudge] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm your AI assistant from AI Transformation LLC. I can help you learn about our AI solutions and services. What would you like to know?",
+      text: "Hi! I'm the AI Transformation assistant (powered by Grok). I can help you learn about custom software, AI automation, and our growth packages. What would you like to know?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -61,6 +64,24 @@ export default function Chatbot() {
   // const [leadScore, setLeadScore] = useState(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/chat/status')
+      .then((r) => r.json())
+      .then((data: { enabled?: boolean }) => {
+        if (!cancelled) setEnabled(Boolean(data.enabled))
+      })
+      .catch(() => {
+        if (!cancelled) setEnabled(false)
+      })
+      .finally(() => {
+        if (!cancelled) setStatusChecked(true)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -80,6 +101,7 @@ export default function Chatbot() {
 
   // One-time subtle nudge to notify availability
   useEffect(() => {
+    if (!enabled) return
     try {
       const shown = typeof window !== 'undefined' && sessionStorage.getItem('chat_nudge_shown')
       if (!shown) {
@@ -94,7 +116,7 @@ export default function Chatbot() {
     } catch {
       // no-op if sessionStorage unavailable
     }
-  }, [])
+  }, [enabled])
 
   const handleQuickReply = (reply: QuickReply) => {
     // Add user message
@@ -238,6 +260,11 @@ export default function Chatbot() {
       handleSendMessage()
     }
     // Shift+Enter falls through to insert newline
+  }
+
+  // Hide bubble until status confirms XAI_API_KEY is configured
+  if (!statusChecked || !enabled) {
+    return null
   }
 
   return (

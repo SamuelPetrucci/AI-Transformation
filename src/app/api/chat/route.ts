@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
-import { generateChatResponse, analyzeConversation } from '@/lib/openai'
+import { generateChatResponse, analyzeConversation, isChatEnabled } from '@/lib/openai'
 import { AITransformationContact } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isChatEnabled()) {
+      return NextResponse.json(
+        { error: 'Chat is unavailable. Add XAI_API_KEY to enable the Grok-powered assistant.' },
+        { status: 503 },
+      )
+    }
+
     const { sessionId, conversationId, messages } = await request.json()
 
     // Generate AI response
