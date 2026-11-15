@@ -12,13 +12,12 @@ interface BrandLogoProps {
 }
 
 /**
- * Tech interlocking mark — dual frames with teal signal gradients + node accents.
+ * AT signal mark — geometric “A” in an ink seal with a teal signal crossbar.
+ * Reads as growth (ascending strokes) + forward motion (signal node).
  */
 export function LogoMark({ className = 'h-9 w-9' }: { className?: string }) {
   const uid = useId().replace(/:/g, '')
-  const strokeId = `ait-stroke-${uid}`
-  const coreId = `ait-core-${uid}`
-  const glowId = `ait-glow-${uid}`
+  const signalId = `ait-signal-${uid}`
 
   return (
     <svg
@@ -29,62 +28,44 @@ export function LogoMark({ className = 'h-9 w-9' }: { className?: string }) {
       aria-hidden
     >
       <defs>
-        <linearGradient id={strokeId} x1="4" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#18b894" />
-          <stop offset="0.5" stopColor="#0f8f75" />
-          <stop offset="1" stopColor="#0c1a17" />
+        <linearGradient id={signalId} x1="10" y1="20" x2="32" y2="20" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#0f8f75" />
+          <stop offset="1" stopColor="#18b894" />
         </linearGradient>
-        <linearGradient id={coreId} x1="14" y1="14" x2="26" y2="26" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#18b894" stopOpacity="0.95" />
-          <stop offset="1" stopColor="#0f8f75" stopOpacity="0.95" />
-        </linearGradient>
-        <filter id={glowId} x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="1.15" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
       </defs>
 
-      <rect
-        x="5"
-        y="7"
-        width="17"
-        height="17"
-        rx="4"
-        stroke={`url(#${strokeId})`}
-        strokeWidth="2"
-        opacity="0.85"
-      />
-      <rect
-        x="16"
-        y="14"
-        width="17"
-        height="17"
-        rx="4"
-        stroke={`url(#${strokeId})`}
-        strokeWidth="2"
-        filter={`url(#${glowId})`}
-      />
+      {/* Seal */}
+      <rect x="1.5" y="1.5" width="37" height="37" rx="11" fill="#0c1a17" />
 
-      <circle cx="18.5" cy="18.5" r="2.15" fill={`url(#${coreId})`} />
-      <circle
-        cx="18.5"
-        cy="18.5"
-        r="3.45"
-        stroke="#18b894"
-        strokeOpacity="0.35"
-        strokeWidth="0.8"
-      />
-
-      <path
-        d="M18.5 16.15V14.35M18.5 22.65v1.8M16.15 18.5H14.35M22.65 18.5h1.8"
-        stroke="#0f8f75"
+      {/* Soft inner rim */}
+      <rect
+        x="3.25"
+        y="3.25"
+        width="33.5"
+        height="33.5"
+        rx="9.5"
+        stroke="rgba(243,246,244,0.12)"
         strokeWidth="1"
-        strokeLinecap="round"
-        opacity="0.95"
       />
+
+      {/* Geometric A — ascending legs */}
+      <path
+        d="M12.5 29.5 L20 9.5 L27.5 29.5"
+        stroke="#f3f6f4"
+        strokeWidth="3.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Teal signal crossbar + forward node */}
+      <path
+        d="M14.25 22.25 H26.75"
+        stroke={`url(#${signalId})`}
+        strokeWidth="2.6"
+        strokeLinecap="round"
+      />
+      <circle cx="29.4" cy="22.25" r="2.15" fill="#18b894" />
+      <circle cx="29.4" cy="22.25" r="3.6" stroke="#18b894" strokeOpacity="0.35" strokeWidth="1" />
     </svg>
   )
 }
@@ -97,11 +78,11 @@ export default function BrandLogo({
   onDark = false,
 }: BrandLogoProps) {
   return (
-    <span className={`inline-flex items-center gap-3 ${className}`}>
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <LogoMark className={markClassName} />
       {withWordmark && (
         <span
-          className={`font-display font-semibold tracking-tight ${
+          className={`font-display font-bold tracking-[-0.03em] leading-none ${
             onDark ? 'text-paper' : 'text-ink'
           }`}
         >

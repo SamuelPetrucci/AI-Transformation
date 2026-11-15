@@ -27,9 +27,9 @@ export default function Hero() {
           className="grid-fade pointer-events-none absolute inset-0 -z-10 opacity-70"
         />
 
-        <motion.div {...rise(0.05)} className="relative z-10 mb-5 flex items-center gap-3">
+        <motion.div {...rise(0.05)} className="relative z-10 mb-5 flex items-center gap-3.5">
           <LogoMark className="h-12 w-12 sm:h-14 sm:w-14" />
-          <span className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+          <span className="font-display text-2xl font-bold tracking-[-0.03em] text-ink sm:text-3xl">
             {POSITIONING.shortName}
           </span>
         </motion.div>
