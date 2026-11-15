@@ -37,7 +37,7 @@ export default function Footer() {
             </div>
             <p className="mb-6 max-w-md text-ink-soft">
               AI Transformation LLC helps businesses save time, reduce costs, and grow through custom
-              software, AI assistance, and modern technology solutions.
+              software, AI agents, and modern technology solutions.
             </p>
             <a
               href={getSmsConsultHref()}

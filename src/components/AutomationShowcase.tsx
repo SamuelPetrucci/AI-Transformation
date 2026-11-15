@@ -47,11 +47,11 @@ const demos: {
   },
   {
     id: 'agents',
-    label: 'AI Assistance',
+    label: 'AI Agents',
     icon: Bot,
-    title: 'Cron jobs, triggers, and tasks',
+    title: 'Fine-tuned for the work you hate repeating',
     blurb:
-      'Agents fire on schedules or application actions—watch one triage a lead, pull context, and hand off a booked call.',
+      'We train agents on repetitive, error-prone tasks—then queue the output for your review before anything goes live.',
   },
   {
     id: 'marketing',
