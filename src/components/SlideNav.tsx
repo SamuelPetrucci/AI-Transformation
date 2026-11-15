@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
+/** Matches homepage section order + Header labels where they overlap. */
 const slides = [
   { id: 'home', label: 'Home' },
   { id: 'products', label: 'Products' },

@@ -5,16 +5,17 @@ import { Menu, X } from 'lucide-react'
 import BrandLogo from './BrandLogo'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 
+/** Top bar: homepage story first, then secondary pages, then Book CTA. Logo = Home. */
 const navItems = [
-  { id: 'home', name: 'Home', sectionId: null as string | null, href: null as string | null },
-  { id: 'products', name: 'Products', sectionId: 'products', href: null },
+  { id: 'products', name: 'Products', sectionId: 'products' as string | null, href: null as string | null },
   { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
-  { id: 'services', name: 'Services', sectionId: null, href: '/services' },
+  { id: 'process', name: 'Process', sectionId: 'how-it-works', href: null },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
+  { id: 'services', name: 'Services', sectionId: null, href: '/services' },
   {
     id: 'booking',
     name: 'Book Consultation',
-    sectionId: null,
+    sectionId: 'booking',
     href: CALENDLY_CONFIG.CALENDLY_URL,
   },
 ]
@@ -69,6 +70,7 @@ export default function Header() {
     onScrollChrome()
     window.addEventListener('scroll', onScrollChrome, { passive: true })
 
+    // Real homepage section IDs only (matches page.tsx order)
     const sectionIds = ['home', 'products', 'demos', 'social-ads', 'how-it-works', 'booking', 'contact']
     const elements = sectionIds
       .map((id) => document.getElementById(id))
@@ -82,8 +84,13 @@ export default function Header() {
         if (!visible?.target?.id) return
 
         const id = visible.target.id
-        if (id === 'home' || id === 'features' || id === 'why-us') {
-          setActiveSection(id === 'home' ? 'home' : id === 'features' ? 'services' : 'home')
+        if (id === 'home' || id === 'contact') {
+          setActiveSection('home')
+          return
+        }
+        // Content Engine walkthrough sits between demos and process — keep Process nearby highlight
+        if (id === 'social-ads') {
+          setActiveSection('demos')
           return
         }
         const match = navItems.find((item) => item.id === id || item.sectionId === id)
