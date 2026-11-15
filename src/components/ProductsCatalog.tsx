@@ -45,7 +45,7 @@ export default function ProductsCatalog() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            What we sell
+            Product offers
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
