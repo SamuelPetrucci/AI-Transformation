@@ -110,11 +110,11 @@ export default function ValueFlow({ onSelectDemo }: ValueFlowProps) {
         <div>
           <p className="section-label mb-2">How we connect the dots</p>
           <h3 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            Friction in → systems out → results.
+            Systems in → friction out → results.
           </h3>
           <p className="mt-2 max-w-2xl text-sm text-ink-soft sm:text-base">
-            Tap a pillar to see which problems we attack and which outcomes light up—then jump into a live
-            diagram of that work.
+            We put systems into the business so the busywork, missed leads, and SaaS sprawl drop out. Tap a
+            pillar to see what lights up—then jump into a live diagram of that work.
           </p>
         </div>
         <button
