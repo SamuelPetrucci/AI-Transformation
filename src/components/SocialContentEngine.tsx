@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Sparkles,
-  Megaphone,
   Check,
   Play,
   MessageSquare,
   Bot,
-  Workflow,
   GraduationCap,
   Search,
   Rocket,
@@ -18,10 +16,15 @@ import {
   Plug,
   ShieldCheck,
   Pause,
+  Database,
+  PenLine,
+  CalendarClock,
+  Package,
 } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
+import { PLATFORMS } from '@/components/PlatformLogos'
 
 type CapabilityId = 'web-agents' | 'training' | 'social'
 
@@ -84,64 +87,95 @@ const capabilities: {
   {
     id: 'social',
     label: 'Content & Ads',
-    overline: 'Automated content engines & product advertising',
+    overline: 'Content engines across the platforms you already use',
     headline: 'We build content engines.',
-    highlight: 'Train. Script. Human-approve. Post anywhere.',
+    highlight: 'Your data → AI drafts → you approve → scheduled everywhere.',
     blurb:
-      'We train an agent on your business data, brand, and logos. It plans scripts and drafts for any media platform you use—Facebook, Instagram, LinkedIn, X, TikTok, YouTube, and more—then a human approves every piece before it goes live. Past content becomes product ads when you have it; otherwise we plan a new approach. Checks and balances keep the agent on brand while automation saves the hours.',
+      'We train on your product, company data, and brand—then AI generates scripts and creatives. You iterate and approve. We schedule so your branding shows up consistently across Instagram, Facebook, LinkedIn, X, TikTok, YouTube, and more.',
     steps: [
       {
-        id: 'train',
-        label: 'Train the agent',
-        detail: 'Business data, brand, logos, voice',
-        icon: Search,
+        id: 'data',
+        label: 'Your data',
+        detail: 'Products, brand, logos, voice, offers',
+        icon: Database,
       },
       {
-        id: 'scripts',
-        label: 'Plan scripts',
-        detail: 'Hooks, offers, SEO-minded outlines',
+        id: 'idea',
+        label: 'AI script idea',
+        detail: 'Hooks and outlines trained on your business',
         icon: Sparkles,
       },
       {
+        id: 'create',
+        label: 'Create content',
+        detail: 'Platform-native drafts and ad creatives',
+        icon: PenLine,
+      },
+      {
         id: 'approve',
-        label: 'Human approval',
-        detail: 'Checks & balances before publish',
+        label: 'Iterate & approve',
+        detail: 'Human gate—nothing ships without a yes',
         icon: ShieldCheck,
       },
       {
-        id: 'post',
-        label: 'Post + advertise',
-        detail: 'Any platforms you choose',
-        icon: Megaphone,
+        id: 'schedule',
+        label: 'Schedule & distribute',
+        detail: 'Consistent branding across every channel',
+        icon: CalendarClock,
       },
     ],
   },
 ]
 
-const feedPosts = [
+/** Fake product-company creatives for the multi-platform demo */
+const DEMO_BRAND = {
+  name: 'Aether Goods',
+  product: 'Trail Flask Pro',
+  tagline: 'Hydration that lasts the ridge',
+}
+
+const PLATFORM_POSTS = [
   {
-    platform: 'LinkedIn',
-    tone: 'from-ember/40 to-ember/30',
-    title: 'Before vs after HVAC tune-up',
-    caption: 'Draft ready. Human approved. Posted while you were on jobs.',
+    platformId: 'instagram' as const,
+    format: 'Feed + Stories',
+    headline: 'Ridge-ready in one pour',
+    body: 'Trail Flask Pro · double-wall · 24hr cold. New colorways in the shop.',
+    cta: 'Shop the drop',
   },
   {
-    platform: 'TikTok',
-    tone: 'from-signal/40 to-signal-bright/25',
-    title: 'Spring service special',
-    caption: 'Same script, platform-native cut—agent drafted, you signed off.',
+    platformId: 'facebook' as const,
+    format: 'Ad creative',
+    headline: 'Weekend kit, sorted',
+    body: 'Aether Goods customers save 15% this week—Flask Pro + sling pack.',
+    cta: 'Claim offer',
   },
   {
-    platform: 'YouTube Shorts',
-    tone: 'from-signal/45 to-signal-bright/30',
-    title: 'Lead form campaign live',
-    caption: 'Organic post → product ad creative. Your budget works; brand stays yours.',
+    platformId: 'linkedin' as const,
+    format: 'Brand post',
+    headline: 'Built for crews who move',
+    body: 'How Aether Goods ships consistent product stories without a full-time studio.',
+    cta: 'Read more',
   },
   {
-    platform: 'X · Instagram · more',
-    tone: 'from-ember/35 to-signal/30',
-    title: 'Team tip Tuesday',
-    caption: 'Any channel you name. Calendar fills. Nothing publishes without a human yes.',
+    platformId: 'tiktok' as const,
+    format: 'Short',
+    headline: 'Hook: “One bottle. Whole trail.”',
+    body: '15s product demo · on-brand VO · end card with offer.',
+    cta: 'Watch cut',
+  },
+  {
+    platformId: 'youtube' as const,
+    format: 'Shorts',
+    headline: 'Trail Flask Pro — 30s',
+    body: 'Feature reel from your product shots + approved script.',
+    cta: 'Publish Short',
+  },
+  {
+    platformId: 'x' as const,
+    format: 'Post',
+    headline: 'Cold for 24 hrs. Looks good on the desk too.',
+    body: 'Aether Goods · Trail Flask Pro · link in bio energy, without the chaos.',
+    cta: 'Learn more',
   },
 ]
 
@@ -285,6 +319,141 @@ function TrainingDiagram({ step }: { step: number }) {
   )
 }
 
+function PipelineStage({ step }: { step: number }) {
+  const phase = Math.min(step, 4)
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={phase}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+        className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.03] p-4"
+      >
+        {phase === 0 && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-signal/25 text-signal-bright">
+                <Package className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-paper">{DEMO_BRAND.name}</p>
+                <p className="text-[11px] text-paper/65">Product · brand kit · company data</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {['Logo', 'Product shots', 'Voice'].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-lg border border-white/10 bg-black/25 px-2 py-3 text-center"
+                >
+                  <Database className="mx-auto mb-1 h-3.5 w-3.5 text-signal-bright" />
+                  <p className="text-[10px] font-medium text-paper/80">{item}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs leading-relaxed text-paper/75">
+              Ingest {DEMO_BRAND.product}, offers, and brand rules so every draft sounds like you.
+            </p>
+          </div>
+        )}
+
+        {phase === 1 && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-signal-bright">
+              <Sparkles className="h-4 w-4" />
+              <p className="text-xs font-semibold uppercase tracking-wider">AI script idea</p>
+            </div>
+            <div className="rounded-xl border border-signal/30 bg-signal/10 p-3">
+              <p className="font-mono text-[10px] text-signal-bright/80">HOOK</p>
+              <p className="mt-1 font-display text-base text-paper">
+                “One bottle. Whole trail.”
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-paper/75">
+                Angle: product proof → lifestyle payoff → soft CTA. SEO phrases: trail flask, all-day
+                cold, weekend kit.
+              </p>
+            </div>
+            <p className="text-[11px] text-paper/60">Generated from your data—not a generic template.</p>
+          </div>
+        )}
+
+        {phase === 2 && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-signal-bright">
+              <PenLine className="h-4 w-4" />
+              <p className="text-xs font-semibold uppercase tracking-wider">Creating content</p>
+            </div>
+            <div className="overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-ember/35 to-signal/25">
+              <div className="flex aspect-[4/3] flex-col items-center justify-center gap-2 p-4 text-center">
+                <motion.div
+                  animate={{ scale: [1, 1.04, 1] }}
+                  transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
+                  className="rounded-2xl border border-white/20 bg-black/25 px-4 py-3"
+                >
+                  <p className="font-display text-lg text-paper">{DEMO_BRAND.product}</p>
+                  <p className="text-xs text-paper/75">{DEMO_BRAND.tagline}</p>
+                </motion.div>
+                <p className="text-[10px] uppercase tracking-wider text-paper/60">
+                  Draft creative · platform-native cuts
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {phase === 3 && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 text-signal-bright">
+                <ShieldCheck className="h-4 w-4" />
+                <p className="text-xs font-semibold uppercase tracking-wider">Iterate & approve</p>
+              </div>
+              <span className="rounded-full bg-amber-400/20 px-2 py-0.5 text-[10px] font-semibold text-amber-200">
+                Needs review
+              </span>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/25 p-3">
+              <p className="text-sm text-paper">Caption v2 — punchier CTA, keep product name.</p>
+              <p className="mt-2 text-xs text-paper/65">
+                You tweak tone → engine revises → human yes before anything goes live.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <span className="rounded-full border border-white/15 px-3 py-1.5 text-[11px] text-paper/70">
+                Request edit
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full bg-signal px-3 py-1.5 text-[11px] font-semibold text-paper">
+                <Check className="h-3 w-3" /> Approve
+              </span>
+            </div>
+          </div>
+        )}
+
+        {phase === 4 && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-signal-bright">
+              <CalendarClock className="h-4 w-4" />
+              <p className="text-xs font-semibold uppercase tracking-wider">Schedule & distribute</p>
+            </div>
+            <div className="rounded-xl border border-signal/35 bg-signal/15 px-3 py-2.5">
+              <p className="text-sm font-semibold text-paper">Calendar locked · Tue–Fri cadence</p>
+              <p className="mt-1 text-xs text-paper/70">
+                Same brand story, native formats—consistent presence without a full-time studio.
+              </p>
+            </div>
+            <p className="text-[11px] text-paper/60">
+              Fake posts below light up as the engine ships across platforms.
+            </p>
+          </div>
+        )}
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
 function SocialDiagram({
   step,
   post,
@@ -294,15 +463,18 @@ function SocialDiagram({
   post: number
   stepLabel: string
 }) {
-  const current = feedPosts[post % feedPosts.length]
-  const icons = [Search, Sparkles, ShieldCheck, Megaphone]
-  const StepIcon = icons[step % icons.length]
+  const pipeline = ['Data', 'Idea', 'Create', 'Approve', 'Schedule']
+  const activePhase = Math.min(step, pipeline.length - 1)
+  const distribute = activePhase >= 4
+  const featured = PLATFORM_POSTS[post % PLATFORM_POSTS.length]
+  const featuredMeta = PLATFORMS.find((p) => p.id === featured.platformId)!
+  const FeaturedLogo = featuredMeta.Logo
 
   return (
     <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] shadow-[0_0_60px_rgba(15,143,117,0.18)]">
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
         <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-          Live content engine
+          Content engine · {DEMO_BRAND.name}
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
@@ -310,43 +482,93 @@ function SocialDiagram({
         </span>
       </div>
 
-      <div className="relative min-h-[340px] p-4">
+      <div className="space-y-3 p-4">
+        <div className="flex flex-wrap gap-1.5">
+          {pipeline.map((label, i) => (
+            <div
+              key={label}
+              className={`rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide ${
+                i === activePhase
+                  ? 'bg-signal text-paper'
+                  : i < activePhase
+                    ? 'bg-signal/25 text-signal-bright'
+                    : 'bg-white/5 text-paper/45'
+              }`}
+            >
+              {i < activePhase ? '✓ ' : ''}
+              {label}
+            </div>
+          ))}
+        </div>
+
+        <PipelineStage step={step} />
+
+        <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+          <div className="mb-2 flex items-center justify-between">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-paper/60">
+              Platforms
+            </p>
+            <p className="text-[10px] text-paper/50">
+              {distribute ? 'Distributing…' : 'Waiting on schedule'}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {PLATFORMS.map((platform, i) => {
+              const Logo = platform.Logo
+              const lit = distribute && i <= post % PLATFORMS.length
+              return (
+                <motion.div
+                  key={platform.id}
+                  animate={{
+                    opacity: lit || !distribute ? 1 : 0.35,
+                    scale: lit ? 1.06 : 1,
+                    y: lit ? -2 : 0,
+                  }}
+                  transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border ${
+                    lit
+                      ? 'border-white/30 bg-white text-ink shadow-[0_0_16px_rgba(15,143,117,0.35)]'
+                      : 'border-white/10 bg-white/5 text-paper/70'
+                  }`}
+                  style={lit ? { color: platform.color } : undefined}
+                  title={platform.name}
+                >
+                  <Logo className="h-4 w-4" />
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${current.platform}-${post}-${step}`}
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -18, scale: 0.98 }}
+            key={`${featured.platformId}-${post}-${distribute}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: distribute ? 1 : 0.55, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
-            className={`overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${current.tone}`}
+            className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-transparent p-3"
           >
-            <div className="flex items-center justify-between px-4 pt-4">
-              <p className="text-xs font-semibold text-paper/90">{current.platform}</p>
-              <p className="text-[10px] uppercase tracking-wider text-paper/60">Scheduled</p>
-            </div>
-            <div className="mx-4 mt-4 aspect-square rounded-xl border border-white/10 bg-black/25">
-              <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-                <motion.div
-                  animate={{ rotate: [0, 6, -4, 0], scale: [1, 1.04, 1] }}
-                  transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
-                  className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-paper"
-                >
-                  <StepIcon className="h-7 w-7" />
-                </motion.div>
-                <p className="font-display text-lg text-paper">{current.title}</p>
+            <div className="mb-2 flex items-center gap-2">
+              <span
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white"
+                style={{ color: featuredMeta.color }}
+              >
+                <FeaturedLogo className="h-3.5 w-3.5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold text-paper">{featuredMeta.name}</p>
+                <p className="text-[10px] text-paper/55">{featured.format}</p>
               </div>
+              <span className="ml-auto rounded-full bg-signal/20 px-2 py-0.5 text-[10px] font-semibold text-signal-bright">
+                {distribute ? 'Scheduled' : 'Draft'}
+              </span>
             </div>
-            <p className="px-4 py-4 text-sm leading-relaxed text-paper/85">{current.caption}</p>
+            <p className="font-display text-sm text-paper">{featured.headline}</p>
+            <p className="mt-1 text-xs leading-relaxed text-paper/70">{featured.body}</p>
+            <p className="mt-2 text-[11px] font-semibold text-signal-bright">{featured.cta} →</p>
           </motion.div>
         </AnimatePresence>
-
-        <motion.div
-          className="mt-4 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs text-paper/75"
-          animate={{ opacity: [0.55, 1, 0.55] }}
-          transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          Engine: research → scripts → auto-post → product ads · {stepLabel.toLowerCase()}
-        </motion.div>
       </div>
     </div>
   )
@@ -375,12 +597,12 @@ export default function SocialContentEngine() {
   }, [running, touring, stepCount])
 
   useEffect(() => {
-    if (!running || touring || capability !== 'social') return
+    if (!running || touring || capability !== 'social' || step < 4) return
     const t = setInterval(() => {
-      setPost((p) => (p + 1) % feedPosts.length)
+      setPost((p) => (p + 1) % PLATFORM_POSTS.length)
     }, PRODUCT_MOTION.rotateMs)
     return () => clearInterval(t)
-  }, [running, touring, capability])
+  }, [running, touring, capability, step])
 
   const runOneClickDemo = () => {
     setRunning(false)
@@ -392,7 +614,7 @@ export default function SocialContentEngine() {
     const sequence: { cap: CapabilityId; steps: number }[] = [
       { cap: 'web-agents', steps: 5 },
       { cap: 'training', steps: 5 },
-      { cap: 'social', steps: 4 },
+      { cap: 'social', steps: 5 },
     ]
 
     let capIndex = 0
@@ -402,8 +624,8 @@ export default function SocialContentEngine() {
       const currentSeq = sequence[capIndex]
       setCapability(currentSeq.cap)
       setStep(localStep)
-      if (currentSeq.cap === 'social' && localStep % 2 === 0) {
-        setPost((p) => (p + 1) % feedPosts.length)
+      if (currentSeq.cap === 'social' && localStep >= 4) {
+        setPost((p) => (p + 1) % PLATFORM_POSTS.length)
       }
 
       localStep += 1
@@ -525,7 +747,11 @@ export default function SocialContentEngine() {
           </p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
+        <div
+          className={`relative mx-auto w-full ${
+            capability === 'social' ? 'max-w-md' : 'max-w-sm'
+          }`}
+        >
           <div className="absolute -inset-6 rounded-[2rem] bg-signal/10 blur-2xl" />
           <div className="relative">
             <AnimatePresence mode="wait">
