@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "@fontsource-variable/syne/wght.css";
+@import "@fontsource-variable/dm-sans/wght.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
 
 :root {
   --ink: #0c1a17;
@@ -22,6 +26,9 @@
   --accent-glow: var(--glow);
   --cta-from: var(--ink);
   --cta-to: var(--ink);
+  --font-display: "Syne Variable", "Syne", system-ui, sans-serif;
+  --font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 @theme inline {
