@@ -1027,7 +1027,7 @@ export default function AutomationShowcase() {
           <div
             role="tablist"
             aria-label="Automation demos"
-            className="mb-5 flex flex-wrap gap-2"
+            className="mb-5 flex w-full gap-0 overflow-x-auto border-b border-[var(--line)]"
           >
             {demos.map((demo) => {
               const Icon = demo.icon
@@ -1044,13 +1044,13 @@ export default function AutomationShowcase() {
                     e.stopPropagation()
                     setActive(demo.id)
                   }}
-                  className={`relative z-20 flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
+                  className={`relative z-20 flex shrink-0 items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors duration-200 sm:px-5 ${
                     isActive
-                      ? 'border-signal/50 bg-signal/15 text-ink shadow-[0_0_24px_rgba(15,143,117,0.25)]'
-                      : 'border-[var(--line)] bg-white/55 text-ink-soft hover:border-signal/40 hover:text-ink'
+                      ? 'border-signal text-ink'
+                      : 'border-transparent text-ink-soft hover:border-signal/30 hover:text-ink'
                   }`}
                 >
-                  <Icon className="h-4 w-4 shrink-0" />
+                  <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'text-signal' : ''}`} />
                   {demo.label}
                 </button>
               )

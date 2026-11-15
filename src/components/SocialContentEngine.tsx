@@ -552,7 +552,7 @@ export default function SocialContentEngine() {
           <div
             role="tablist"
             aria-label="Capability demos"
-            className="mt-7 flex flex-wrap gap-2"
+            className="mt-7 flex w-full gap-0 overflow-x-auto border-b border-[var(--line)]"
           >
             {capabilities.map((cap) => {
               const isActive = cap.id === capability
@@ -568,10 +568,10 @@ export default function SocialContentEngine() {
                     setTouring(false)
                     setRunning(true)
                   }}
-                  className={`rounded-full border px-3.5 py-2 text-xs font-semibold transition sm:text-sm ${
+                  className={`relative shrink-0 border-b-2 px-3.5 py-3 text-xs font-semibold transition-colors duration-200 sm:px-4 sm:text-sm ${
                     isActive
-                      ? 'border-signal/60 bg-signal/15 text-ink shadow-[0_0_20px_rgba(15,143,117,0.2)]'
-                      : 'border-[var(--line)] text-ink-soft hover:border-signal/40 hover:text-ink'
+                      ? 'border-signal text-ink'
+                      : 'border-transparent text-ink-soft hover:border-signal/30 hover:text-ink'
                   }`}
                 >
                   {cap.label}
