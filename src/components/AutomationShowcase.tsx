@@ -56,18 +56,19 @@ const demos: {
   },
   {
     id: 'agents',
-    label: 'AI Agents',
+    label: 'AI Assistance',
     icon: Bot,
-    title: 'How agents work',
-    blurb: 'Watch an agent triage a lead, pull context, and hand off a booked call—without a human in the loop.',
+    title: 'Cron jobs, triggers, and tasks',
+    blurb:
+      'Agents fire on schedules or application actions—watch one triage a lead, pull context, and hand off a booked call.',
   },
   {
     id: 'website',
     label: 'Build & Implement',
     icon: Globe,
-    title: 'Custom software, agent implementation & staff training',
+    title: 'Custom software, AI assistance & staff training',
     blurb:
-      'Websites and ops software to organize the business—then AI agent implementation and staff AI training so lead capture, booking, and day-to-day workflows actually stick.',
+      'Websites and operation software to organize the business—then AI Assistance (audit → cron/triggers) and staff training so workflows stick.',
   },
   {
     id: 'ads',
@@ -78,11 +79,11 @@ const demos: {
   },
   {
     id: 'agent-setup',
-    label: 'Agent setup',
+    label: 'Assistance setup',
     icon: Settings2,
-    title: 'Agent creation & training',
+    title: 'Audit → wire cron & triggers → train',
     blurb:
-      'Connect tools, define guardrails, test workflows, train your team, then go live with monitoring.',
+      'Audit efficiency opportunities, connect tools, set cron jobs and triggers, train your team, then go live with monitoring.',
   },
   {
     id: 'marketing',
@@ -90,7 +91,7 @@ const demos: {
     icon: Mail,
     title: 'Social media automation',
     blurb:
-      'Content calendar, captions, scheduling, and nurture sequences—AI drafts, you approve, we keep the feed warm.',
+      'Train the agent, draft for any platforms you use, human-approve every piece, then schedule and advertise—checks and balances built in.',
   },
   {
     id: 'discovery',
@@ -184,7 +185,7 @@ function WebsiteDemo() {
     {
       icon: Globe,
       title: 'Custom software',
-      desc: 'Sites, CRMs, booking tools, and ops hubs you own',
+      desc: 'Sites, CRMs, booking tools, and custom operation software you own',
     },
     {
       icon: Bot,
@@ -354,7 +355,7 @@ function AdsDemo() {
         </div>
       </div>
       <p className="text-sm text-ink-soft">
-        Pairs with Facebook Ads + Social ($499/mo). You pay ad spend separately—we manage creative,
+        Pairs with Content Engine + Product Ads ($499/mo). You pay ad spend separately—we manage creative,
         targeting, and reporting.
       </p>
     </div>
@@ -432,10 +433,10 @@ function AgentSetupDemo() {
 
 function MarketingDemo() {
   const posts = [
-    { day: 'Mon', status: 'Scheduled', channel: 'IG' },
-    { day: 'Wed', status: 'Scheduled', channel: 'FB' },
-    { day: 'Fri', status: 'Draft', channel: 'IG + FB' },
-    { day: 'Sun', status: 'Queued', channel: 'FB' },
+    { day: 'Mon', status: 'Approved', channel: 'LinkedIn' },
+    { day: 'Wed', status: 'Scheduled', channel: 'TikTok' },
+    { day: 'Fri', status: 'In review', channel: 'IG + X' },
+    { day: 'Sun', status: 'Queued', channel: 'YouTube' },
   ]
   return (
     <div className="space-y-4">
@@ -453,7 +454,10 @@ function MarketingDemo() {
           <Calendar className="h-4 w-4" />
           Monthly content calendar
         </div>
-        <p>AI drafts captions + graphics → you approve → we schedule to Facebook & Instagram.</p>
+        <p>
+          We train the agent → it drafts for any platforms you use → a human approves every piece →
+          we schedule and publish.
+        </p>
         <div className="flex items-center gap-2 pt-1 text-signal">
           <MessageSquare className="h-4 w-4" />
           Nurture sequences

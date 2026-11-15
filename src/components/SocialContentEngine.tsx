@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Sparkles,
-  CalendarClock,
   Megaphone,
   Check,
   Play,
@@ -37,23 +36,23 @@ const capabilities: {
   {
     id: 'web-agents',
     label: 'Build & Implement',
-    overline: 'Web, agents, ops software & staff training',
+    overline: 'Web, AI assistance, ops software & staff training',
     headline: 'We build the systems.',
-    highlight: 'Implement agents. Train your team.',
+    highlight: 'AI assistance. Train your team.',
     blurb:
-      'Custom websites and ops software to operate and organize the business—plus AI agent implementation and staff AI training so the stack ships, sticks, and your team can run it.',
+      'Custom websites and operation software—plus AI Assistance: we audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks, with staff training so your team stays in control.',
     steps: [
-      { id: 'brief', label: 'Brief', detail: 'Goals, ops map, agent scopes', icon: Search },
+      { id: 'brief', label: 'Brief', detail: 'Goals, ops map, assistance scopes', icon: Search },
       {
         id: 'software',
         label: 'Custom software',
-        detail: 'Sites, CRMs, booking, ops hubs',
+        detail: 'Sites, CRMs, booking, custom ops software',
         icon: Code2,
       },
       {
         id: 'agents',
-        label: 'Agent implementation',
-        detail: 'Intents, tools, guardrails, go-live',
+        label: 'AI assistance',
+        detail: 'Cron jobs, triggers, app actions',
         icon: Bot,
       },
       {
@@ -68,14 +67,14 @@ const capabilities: {
   {
     id: 'training',
     label: 'Train & Implement',
-    overline: 'Staff AI training & rollout',
+    overline: 'Efficiency audit → assistance → staff training',
     headline: 'We implement it.',
     highlight: 'Then we train your staff.',
     blurb:
-      'AI agent implementation with hands-on staff training—discovery → pilot → production—so your team owns the workflows, not a black box they never open.',
+      'Start with an efficiency audit, wire AI Assistance to cron schedules or triggers, then train your staff—discovery → pilot → production so the team owns the workflows.',
     steps: [
-      { id: 'discover', label: 'Discover', detail: 'Process map + ROI score', icon: Search },
-      { id: 'design', label: 'Design', detail: 'Scopes, integrations, metrics', icon: Plug },
+      { id: 'discover', label: 'Audit', detail: 'Efficiency opportunities mapped', icon: Search },
+      { id: 'design', label: 'Design', detail: 'Cron + trigger scopes', icon: Plug },
       { id: 'pilot', label: 'Pilot', detail: '2–4 week sandbox build', icon: Sparkles },
       { id: 'train', label: 'Train staff', detail: 'AI playbooks + live sessions', icon: GraduationCap },
       { id: 'scale', label: 'Scale', detail: 'Production + ongoing optimize', icon: ShieldCheck },
@@ -86,14 +85,14 @@ const capabilities: {
     label: 'Content & Ads',
     overline: 'Automated content engines & product advertising',
     headline: 'We build content engines.',
-    highlight: 'Research. Scripts. Post. Advertise.',
+    highlight: 'Train. Script. Human-approve. Post anywhere.',
     blurb:
-      'An agent researches your market from your business data and brand assets (including logos), plans scripts, then runs automated posting—and product ads—from past content when you have it, or a new plan when you don’t. SEO-optimized for organic traffic so you grow without living in the apps.',
+      'We train an agent on your business data, brand, and logos. It plans scripts and drafts for any media platform you use—Facebook, Instagram, LinkedIn, X, TikTok, YouTube, and more—then a human approves every piece before it goes live. Past content becomes product ads when you have it; otherwise we plan a new approach. Checks and balances keep the agent on brand while automation saves the hours.',
     steps: [
       {
-        id: 'research',
-        label: 'Market research',
-        detail: 'Business data, brand, logos, competitors',
+        id: 'train',
+        label: 'Train the agent',
+        detail: 'Business data, brand, logos, voice',
         icon: Search,
       },
       {
@@ -103,15 +102,15 @@ const capabilities: {
         icon: Sparkles,
       },
       {
-        id: 'post',
-        label: 'Auto-posting',
-        detail: 'Configured calendar + approvals',
-        icon: CalendarClock,
+        id: 'approve',
+        label: 'Human approval',
+        detail: 'Checks & balances before publish',
+        icon: ShieldCheck,
       },
       {
-        id: 'ads',
-        label: 'Product ads',
-        detail: 'From past content—or a new approach',
+        id: 'post',
+        label: 'Post + advertise',
+        detail: 'Any platforms you choose',
         icon: Megaphone,
       },
     ],
@@ -120,37 +119,37 @@ const capabilities: {
 
 const feedPosts = [
   {
-    platform: 'Instagram',
+    platform: 'LinkedIn',
     tone: 'from-ember/40 to-ember/30',
     title: 'Before vs after HVAC tune-up',
-    caption: 'Same truck. New booking flow. Posts went out while you were on jobs.',
+    caption: 'Draft ready. Human approved. Posted while you were on jobs.',
   },
   {
-    platform: 'Facebook',
+    platform: 'TikTok',
     tone: 'from-signal/40 to-signal-bright/25',
     title: 'Spring service special',
-    caption: 'Caption + creative drafted, scheduled, and tracked—no late nights in Canva.',
+    caption: 'Same script, platform-native cut—agent drafted, you signed off.',
   },
   {
-    platform: 'Meta Ads',
+    platform: 'YouTube Shorts',
     tone: 'from-signal/45 to-signal-bright/30',
     title: 'Lead form campaign live',
-    caption: 'Constant presence. Your ad budget works while you run the business.',
+    caption: 'Organic post → product ad creative. Your budget works; brand stays yours.',
   },
   {
-    platform: 'Instagram',
+    platform: 'X · Instagram · more',
     tone: 'from-ember/35 to-signal/30',
     title: 'Team tip Tuesday',
-    caption: 'Calendar fills itself. You approve. We publish and keep the feed warm.',
+    caption: 'Any channel you name. Calendar fills. Nothing publishes without a human yes.',
   },
 ]
 
 function WebAgentsDiagram({ step }: { step: number }) {
   const nodes = [
     { label: 'Custom software', icon: Code2, x: '14%', y: '24%' },
-    { label: 'AI agents', icon: Bot, x: '50%', y: '22%' },
+    { label: 'AI assistance', icon: Bot, x: '50%', y: '22%' },
     { label: 'Staff training', icon: GraduationCap, x: '86%', y: '28%' },
-    { label: 'Ops hub / CRM', icon: Plug, x: '28%', y: '72%' },
+    { label: 'Custom ops software', icon: Plug, x: '28%', y: '72%' },
     { label: 'Your team', icon: Users, x: '72%', y: '74%' },
   ]
   const active = Math.min(step, nodes.length - 1)
@@ -295,7 +294,7 @@ function SocialDiagram({
   stepLabel: string
 }) {
   const current = feedPosts[post % feedPosts.length]
-  const icons = [Search, Sparkles, CalendarClock, Megaphone]
+  const icons = [Search, Sparkles, ShieldCheck, Megaphone]
   const StepIcon = icons[step % icons.length]
 
   return (

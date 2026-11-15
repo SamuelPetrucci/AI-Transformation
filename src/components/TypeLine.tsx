@@ -5,14 +5,14 @@ import { useReducedMotion } from 'framer-motion'
 
 const phrases = [
   'Custom software',
-  'AI automation',
+  'AI assistance',
   'Modern tech upgrades',
   'Application integrations',
   'Automated content engines',
   'Product advertising',
   'SEO for organic traffic',
   'Staff AI training',
-  'CRM & ops hubs',
+  'CRM & custom operation software',
 ]
 
 type TypeLineProps = {

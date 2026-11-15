@@ -51,7 +51,7 @@ const pillars: {
   {
     id: 'custom-software',
     title: 'Custom Software',
-    short: 'Sites, ops hubs, booking—owned by you',
+    short: 'Sites, custom operation software, booking—owned by you',
     icon: Code2,
     demoId: 'ops',
     delivers: ['Own the stack', 'Cut SaaS rent', 'Ops software'],

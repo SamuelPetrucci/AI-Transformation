@@ -7,33 +7,33 @@ export const POSITIONING = {
   shortName: 'AI Transformation',
   /** Canonical one-liner — website, email, social */
   statement:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.',
+    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI assistance, and modern technology solutions.',
   /** Hero headline (brand stays separate / larger) */
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
   support:
-    'We build automated content engines for your business and advertising for your products—SEO-optimized so you can earn organic traffic—plus custom software, AI agents, and modern tech upgrades.',
-  metaTitle: 'AI Transformation LLC — Custom Software, AI Automation & Modern Tech',
+    'Concrete products to grow, save time, and cut tech spend—Content Engine, AI Assistance, Custom Software, Save on Tech, and Training & Knowledge.',
+  metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend',
   metaDescription:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow. We build automated content engines and product advertising (SEO-optimized for organic traffic), custom ops software, AI agent implementation, staff training, and application integrations.',
+    'Buy clear products from AI Transformation LLC: Content Engine, AI Assistance (efficiency audits, cron & trigger agents), CRM & custom operation software, Stack Rebuild, Integrations, Staff AI Training, and more.',
   pillars: [
     {
       id: 'custom-software',
       title: 'Custom Software',
       description:
-        'Websites, apps, CRMs, booking tools, and ops hubs that organize the business—owned by you, built for how you actually work.',
+        'Products you own: Business Website System, Booking & Scheduling, CRM & custom operation software—built for how you work.',
     },
     {
-      id: 'ai-automation',
-      title: 'AI Automation',
+      id: 'ai-assistance',
+      title: 'AI Assistance',
       description:
-        'AI agent implementation plus staff AI training—receptionists, lead follow-up, content agents, and workflows your team can run.',
+        'We audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks as they come up—plus an Assistance Care Plan.',
     },
     {
       id: 'modern-tech',
       title: 'Modern Technology Solutions',
       description:
-        'Application integrations, modern tech upgrades, and automated content engines that research your business, plan scripts, auto-post, and run product ads—SEO-optimized for organic growth.',
+        'Content Engine (any platforms, human-approved), Save on Tech stack rebuilds, Application Integrations, and Analytics Dashboards.',
     },
   ],
 } as const

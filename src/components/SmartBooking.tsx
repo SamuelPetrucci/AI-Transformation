@@ -4,16 +4,11 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Building, User, Mail, Phone, Send, CheckCircle, ExternalLink } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
+import { PRODUCTS_BOOKING_OPTIONS } from '@/config/products'
 
 const consultationTypes = [
-  'AI Strategy & Implementation',
-  'Business Process Automation',
-  'Digital Transformation',
-  'Custom AI Solutions',
-  'Data Analytics & Insights',
-  'Starter Social ($149/mo)',
-  'Social Growth ($299/mo)',
-  'Facebook Ads + Social ($499/mo)',
+  'Not sure — match me to a product',
+  ...PRODUCTS_BOOKING_OPTIONS,
   'Technology Consulting',
 ]
 

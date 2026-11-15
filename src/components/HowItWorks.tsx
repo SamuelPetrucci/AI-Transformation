@@ -14,7 +14,7 @@ const steps = [
   {
     title: 'Strategy & Planning',
     description:
-      'Scope the right engagement: a growth package, an agent pilot, or a custom build—with clear ROI.',
+      'Match you to a product—Content Engine, AI Assistance, Custom Software, or Save on Tech—with clear ROI.',
     image: '/images/strategy.jpg',
   },
   {
@@ -58,8 +58,8 @@ export default function HowItWorks() {
             transition={{ delay: 0.06 }}
             className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg"
           >
-            Same process whether you start with a $149 social plan, an AI receptionist, or a custom
-            software build.
+            Same process whether you buy Content Engine Starter, AI Assistance, a Stack Rebuild, or
+            CRM & custom operation software.
           </motion.p>
         </div>
 
