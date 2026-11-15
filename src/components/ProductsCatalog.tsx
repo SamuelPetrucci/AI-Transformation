@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { PRODUCT_LINES, type ProductLine } from '@/config/products'
+import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 
 const goalMeta: Record<
   ProductLine['goal'],
@@ -122,7 +123,7 @@ export default function ProductsCatalog() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: PRODUCT_MOTION.expand, ease: PRODUCT_EASE }}
                       className="overflow-hidden"
                     >
                       <div className="space-y-3 border-t border-[var(--line)] px-5 py-5 sm:px-6">

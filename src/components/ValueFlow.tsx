@@ -14,6 +14,7 @@ import {
   Layers,
   ArrowRight,
 } from 'lucide-react'
+import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 type PillarId = 'custom-software' | 'ai-automation' | 'modern-tech'
 
 const frictions = [
@@ -96,7 +97,7 @@ export default function ValueFlow({ onSelectDemo }: ValueFlowProps) {
         const i = pillars.findIndex((p) => p.id === prev)
         return pillars[(i + 1) % pillars.length].id
       })
-    }, 5200)
+    }, PRODUCT_MOTION.pillarMs)
     return () => clearInterval(t)
   }, [reduceMotion])
 
@@ -249,7 +250,7 @@ export default function ValueFlow({ onSelectDemo }: ValueFlowProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
-          transition={{ duration: 0.35 }}
+          transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
           className="relative z-10 mt-5 flex flex-wrap items-center gap-2 border-t border-[var(--line)] pt-5"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-signal">

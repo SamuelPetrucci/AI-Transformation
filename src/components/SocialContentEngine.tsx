@@ -21,6 +21,7 @@ import {
 } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
+import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 
 type CapabilityId = 'web-agents' | 'training' | 'social'
 
@@ -176,7 +177,7 @@ function WebAgentsDiagram({ step }: { step: number }) {
             strokeDasharray="6 6"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: Math.min(1, (step + 1) / 5) }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
           />
         </svg>
 
@@ -316,7 +317,7 @@ function SocialDiagram({
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -18, scale: 0.98 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
             className={`overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${current.tone}`}
           >
             <div className="flex items-center justify-between px-4 pt-4">
@@ -327,7 +328,7 @@ function SocialDiagram({
               <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
                 <motion.div
                   animate={{ rotate: [0, 6, -4, 0], scale: [1, 1.04, 1] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                  transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
                   className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-paper"
                 >
                   <StepIcon className="h-7 w-7" />
@@ -342,7 +343,7 @@ function SocialDiagram({
         <motion.div
           className="mt-4 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs text-paper/75"
           animate={{ opacity: [0.55, 1, 0.55] }}
-          transition={{ duration: 2.2, repeat: Infinity }}
+          transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
         >
           Engine: research → scripts → auto-post → product ads · {stepLabel.toLowerCase()}
         </motion.div>
@@ -369,7 +370,7 @@ export default function SocialContentEngine() {
     if (!running || touring) return
     const t = setInterval(() => {
       setStep((s) => (s + 1) % stepCount)
-    }, 2800)
+    }, PRODUCT_MOTION.stepMs)
     return () => clearInterval(t)
   }, [running, touring, stepCount])
 
@@ -377,7 +378,7 @@ export default function SocialContentEngine() {
     if (!running || touring || capability !== 'social') return
     const t = setInterval(() => {
       setPost((p) => (p + 1) % feedPosts.length)
-    }, 4200)
+    }, PRODUCT_MOTION.rotateMs)
     return () => clearInterval(t)
   }, [running, touring, capability])
 
@@ -412,7 +413,7 @@ export default function SocialContentEngine() {
       }
 
       if (capIndex < sequence.length) {
-        window.setTimeout(tick, 1100)
+        window.setTimeout(tick, PRODUCT_MOTION.tourTickMs)
       } else {
         setTouring(false)
         setRunning(true)
@@ -421,7 +422,7 @@ export default function SocialContentEngine() {
       }
     }
 
-    window.setTimeout(tick, 600)
+    window.setTimeout(tick, PRODUCT_MOTION.tourStartMs)
   }
 
   const activeStep = current.steps[Math.min(step, current.steps.length - 1)]
@@ -533,7 +534,7 @@ export default function SocialContentEngine() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35 }}
+                transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
               >
                 {capability === 'web-agents' && <WebAgentsDiagram step={step} />}
                 {capability === 'training' && <TrainingDiagram step={step} />}
