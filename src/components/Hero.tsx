@@ -7,6 +7,7 @@ import { LogoMark } from './BrandLogo'
 import { TypeLine } from './TypeLine'
 import { POSITIONING } from '@/config/positioning'
 import { CALENDLY_CONFIG } from '@/config/calendly'
+import { getSmsConsultHref } from '@/config/contact'
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
@@ -72,8 +73,8 @@ export default function Hero() {
           <a href="/services" className="btn-ghost">
             Explore Services
           </a>
-          <a href="#contact" className="btn-ghost">
-            Contact
+          <a href={getSmsConsultHref()} className="btn-ghost">
+            Text my number for contact
           </a>
         </motion.div>
       </div>
