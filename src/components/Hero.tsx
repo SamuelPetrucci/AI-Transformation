@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { LogoMark } from './BrandLogo'
+import { TypeLine } from './TypeLine'
 import { POSITIONING } from '@/config/positioning'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 
@@ -48,8 +49,15 @@ export default function Hero() {
           {POSITIONING.support}
         </motion.p>
 
+        <motion.p
+          {...rise(0.28)}
+          className="relative z-10 mt-4 font-display text-xl font-semibold sm:text-2xl"
+        >
+          We build <TypeLine />
+        </motion.p>
+
         <motion.div
-          {...rise(0.35)}
+          {...rise(0.38)}
           className="relative z-10 mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
         >
           <a
