@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }: Props) {
               href="/#social-ads"
               className="mt-4 inline-block text-sm text-signal hover:underline"
             >
-              See the social content engine →
+              See the content engines demo →
             </Link>
           </aside>
         </article>

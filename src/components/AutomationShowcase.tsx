@@ -532,7 +532,7 @@ function AdsDemo() {
         </div>
       </div>
       <p className="text-sm text-ink-soft">
-        Pairs with Content Engine + Product Ads ($499/mo). You pay ad spend separately—we manage creative,
+        Pairs with Content Engines + Product Ads ($499/mo). You pay ad spend separately—we manage creative,
         targeting, and reporting.
       </p>
     </div>
@@ -927,7 +927,7 @@ function ContentAgentDemo() {
       <p className="text-sm text-ink-soft">
         We run this pipeline on AI Transformation first—then install it for clients. See the{' '}
         <Link href="/#social-ads" className="text-signal hover:underline">
-          social content engine
+          content engines demo
         </Link>{' '}
         · live drafts on{' '}
         <Link href="/blog" className="text-signal hover:underline">

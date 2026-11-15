@@ -85,9 +85,9 @@ const capabilities: {
     label: 'Content & Ads',
     overline: 'Automated content engines & product advertising',
     headline: 'We build content engines.',
-    highlight: 'Train. Script. Human-approve. Post anywhere.',
+    highlight: 'Tailored frameworks. Human-approved. Any platform.',
     blurb:
-      'We train an agent on your business data, brand, and logos. It plans scripts and drafts for any media platform you use—Facebook, Instagram, LinkedIn, X, TikTok, YouTube, and more—then a human approves every piece before it goes live. Past content becomes product ads when you have it; otherwise we plan a new approach. Checks and balances keep the agent on brand while automation saves the hours.',
+      'Each engine is a framework tailored to how your business operates—trained on your data, brand, and logos. It plans scripts and drafts for the platforms you use, then a human approves every piece before it goes live. Past content becomes product ads when you have it; otherwise we plan a new approach.',
     steps: [
       {
         id: 'train',
@@ -301,7 +301,7 @@ function SocialDiagram({
     <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] shadow-[0_0_60px_rgba(15,143,117,0.18)]">
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
         <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-          Live content engine
+          Live content engines
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />

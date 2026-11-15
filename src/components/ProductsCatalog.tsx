@@ -175,13 +175,13 @@ export default function ProductsCatalog() {
                           </article>
                         ))}
 
-                        {line.id === 'content-engine' && (
+                        {line.id === 'content-engines' && (
                           <button
                             type="button"
                             onClick={scrollToEngine}
                             className="inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-ink hover:text-signal"
                           >
-                            See the Content Engine in action
+                            See Content Engines in action
                             <ArrowUpRight className="h-4 w-4" />
                           </button>
                         )}
