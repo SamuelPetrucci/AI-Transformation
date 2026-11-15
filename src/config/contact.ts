@@ -1,13 +1,12 @@
-/** Public contact — Quo SMS line for agent consultation. */
+/** Public contact — Sam’s number for call and text. */
 export const CONTACT_CONFIG = {
-  /** E.164 number visitors text to opt in for a consult */
-  SMS_E164: '+17253381895',
-  SMS_DISPLAY: '(725) 338-1895',
-  /** Legacy / voice line shown elsewhere on the site */
+  /** E.164 — same line for SMS and voice */
+  SMS_E164: '+18607053417',
+  SMS_DISPLAY: '(860) 705-3417',
   VOICE_E164: '+18607053417',
   VOICE_DISPLAY: '(860) 705-3417',
   EMAIL: 'info@aitransformationllc.com',
-  /** Prefill when the visitor opens Messages — sending this opts them into a consult thread */
+  /** Prefill when the visitor opens Messages */
   SMS_OPT_IN_BODY:
     "Hi — I'd like to talk about AI Transformation for my business. Please text me to start a consult.",
 } as const

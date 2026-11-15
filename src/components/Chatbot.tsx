@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageSquare, X, Send, Smartphone } from 'lucide-react'
+import { CONTACT_CONFIG } from '@/config/contact'
 
 interface Message {
   id: string
@@ -18,8 +19,8 @@ interface QuickReply {
   emoji?: string
 }
 
-const AGENT_PHONE = '(725) 338-1895'
-const AGENT_PHONE_E164 = '+17253381895'
+const AGENT_PHONE = CONTACT_CONFIG.SMS_DISPLAY
+const AGENT_PHONE_E164 = CONTACT_CONFIG.SMS_E164
 const AGENT_NAME = 'My Agent'
 
 const quickReplies: QuickReply[] = [
