@@ -99,7 +99,7 @@ AI Workforce (save time):
 Custom Software (own the stack):
 - Business Website System
 - Booking & Scheduling System
-- Custom CRM / Ops Hub
+- CRM & Custom Operation Software
 (all project quotes)
 
 Save on Tech (save money):

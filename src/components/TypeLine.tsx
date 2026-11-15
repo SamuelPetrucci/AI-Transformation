@@ -12,7 +12,7 @@ const phrases = [
   'Product advertising',
   'SEO for organic traffic',
   'Staff AI training',
-  'CRM & ops hubs',
+  'CRM & custom operation software',
 ]
 
 type TypeLineProps = {

@@ -9,7 +9,7 @@ import BookCallButton from '@/components/BookCallButton'
 export const metadata: Metadata = {
   title: 'Products — Content Engine, AI Workforce, Software & Save on Tech | AI Transformation LLC',
   description:
-    'Buy clear products: Content Engine, AI Receptionist, Lead Follow-up, Custom CRM, Stack Rebuild, Integrations, Staff AI Training, and more.',
+    'Buy clear products: Content Engine, AI Receptionist, Lead Follow-up, CRM & custom operation software, Stack Rebuild, Integrations, Staff AI Training, and more.',
   keywords: [
     'content engine',
     'AI receptionist',

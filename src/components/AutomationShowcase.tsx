@@ -184,7 +184,7 @@ function WebsiteDemo() {
     {
       icon: Globe,
       title: 'Custom software',
-      desc: 'Sites, CRMs, booking tools, and ops hubs you own',
+      desc: 'Sites, CRMs, booking tools, and custom operation software you own',
     },
     {
       icon: Bot,

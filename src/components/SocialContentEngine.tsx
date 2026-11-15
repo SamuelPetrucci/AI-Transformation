@@ -46,7 +46,7 @@ const capabilities: {
       {
         id: 'software',
         label: 'Custom software',
-        detail: 'Sites, CRMs, booking, ops hubs',
+        detail: 'Sites, CRMs, booking, custom ops software',
         icon: Code2,
       },
       {
@@ -149,7 +149,7 @@ function WebAgentsDiagram({ step }: { step: number }) {
     { label: 'Custom software', icon: Code2, x: '14%', y: '24%' },
     { label: 'AI agents', icon: Bot, x: '50%', y: '22%' },
     { label: 'Staff training', icon: GraduationCap, x: '86%', y: '28%' },
-    { label: 'Ops hub / CRM', icon: Plug, x: '28%', y: '72%' },
+    { label: 'Custom ops software', icon: Plug, x: '28%', y: '72%' },
     { label: 'Your team', icon: Users, x: '72%', y: '74%' },
   ]
   const active = Math.min(step, nodes.length - 1)

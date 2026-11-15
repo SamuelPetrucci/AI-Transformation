@@ -59,7 +59,7 @@ export default function HowItWorks() {
             className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg"
           >
             Same process whether you buy Content Engine Starter, an AI Receptionist, a Stack Rebuild,
-            or a Custom CRM.
+            or CRM & custom operation software.
           </motion.p>
         </div>
 

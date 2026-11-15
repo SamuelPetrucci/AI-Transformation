@@ -147,7 +147,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     id: 'custom-software',
     name: 'Custom Software',
     blurb:
-      'Websites, booking tools, CRMs, and ops hubs built for how you work—and owned by you.',
+      'Websites, booking tools, CRMs, and custom operation software built for how you work—and owned by you.',
     goal: 'own-stack',
     products: [
       {
@@ -177,8 +177,8 @@ export const PRODUCT_LINES: ProductLine[] = [
         ],
       },
       {
-        id: 'ops-hub',
-        name: 'Custom CRM / Ops Hub',
+        id: 'custom-operation-software',
+        name: 'CRM & Custom Operation Software',
         job: 'One place for pipelines, jobs, and customer history',
         outcome: 'Save time hunting data; own the system of record',
         price: { kind: 'quote', amount: 'Project quote' },

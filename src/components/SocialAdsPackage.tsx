@@ -113,7 +113,7 @@ const relatedProducts = [
   { product: 'Lead Follow-up Agent', line: 'AI Workforce', pricing: 'Setup quote' },
   { product: 'Agent Care Plan', line: 'AI Workforce', pricing: '$99–$299/mo' },
   { product: 'Business Website System', line: 'Custom Software', pricing: 'Project quote' },
-  { product: 'Custom CRM / Ops Hub', line: 'Custom Software', pricing: 'Project quote' },
+  { product: 'CRM & Custom Operation Software', line: 'Custom Software', pricing: 'Project quote' },
   { product: 'Stack Rebuild (Own vs Rent)', line: 'Save on Tech', pricing: 'Project quote' },
 ]
 
