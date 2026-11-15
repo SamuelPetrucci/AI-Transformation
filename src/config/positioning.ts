@@ -12,28 +12,26 @@ export const POSITIONING = {
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
   support:
-    'Concrete products to grow, save time, and cut tech spend—Content Engine, AI Assistance, Custom Software, Save on Tech, and Training & Knowledge.',
+    'Clear products to grow, save time, and cut what you spend on tech—open one line at a time.',
   metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend',
   metaDescription:
-    'Buy clear products from AI Transformation LLC: Content Engine, AI Assistance (efficiency audits, cron & trigger agents), CRM & custom operation software, Stack Rebuild, Integrations, Staff AI Training, and more.',
+    'AI Transformation LLC: Content Engine, AI Assistance, Custom Software, Save on Tech, and Training—clear products for business owners.',
   pillars: [
     {
       id: 'custom-software',
       title: 'Custom Software',
-      description:
-        'Products you own: Business Website System, Booking & Scheduling, CRM & custom operation software—built for how you work.',
+      description: 'Websites, booking, and CRM & custom operation software you own.',
     },
     {
       id: 'ai-assistance',
       title: 'AI Assistance',
       description:
-        'We audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks as they come up—plus an Assistance Care Plan.',
+        'Audit efficiency, then agents on cron jobs or triggers for tasks as they come up.',
     },
     {
       id: 'modern-tech',
       title: 'Modern Technology Solutions',
-      description:
-        'Content Engine (any platforms, human-approved), Save on Tech stack rebuilds, Application Integrations, and Analytics Dashboards.',
+      description: 'Content Engine, Save on Tech rebuilds, and the integrations that tie it together.',
     },
   ],
 } as const

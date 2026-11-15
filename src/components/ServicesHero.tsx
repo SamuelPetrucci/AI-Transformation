@@ -59,16 +59,17 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
-          <button type="button" onClick={scrollToServices} className="cta-pill">
-            Explore services
+          <Link href="/#products" className="cta-pill">
+            See products
             <ArrowUpRight className="h-4 w-4" />
-          </button>
-          <Link
-            href="/#products"
+          </Link>
+          <button
+            type="button"
+            onClick={scrollToServices}
             className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10"
           >
-            See all products
-          </Link>
+            Browse service areas
+          </button>
         </motion.div>
       </div>
     </section>

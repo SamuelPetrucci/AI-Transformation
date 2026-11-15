@@ -4,6 +4,17 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, Linkedin, MessageSquare } from 'lucide-react'
 import BrandLogo from './BrandLogo'
 import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
+import { CALENDLY_CONFIG } from '@/config/calendly'
+
+const exploreLinks = [
+  { label: 'Products', href: '/#products' },
+  { label: 'Demos', href: '/#demos' },
+  { label: 'Process', href: '/#how-it-works' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Services', href: '/services' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Book Consultation', href: CALENDLY_CONFIG.CALENDLY_URL, external: true },
+]
 
 export default function Footer() {
   return (
@@ -16,7 +27,6 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
             viewport={{ once: true }}
-            className="lg:col-span-2"
           >
             <div className="mb-6">
               <BrandLogo
@@ -46,6 +56,30 @@ export default function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.05 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="font-display mb-6 text-lg font-medium text-ink">Explore</h3>
+            <ul className="space-y-3 text-ink-soft">
+              {exploreLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    {...(link.external
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                    className="transition hover:text-ink"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
           <motion.div

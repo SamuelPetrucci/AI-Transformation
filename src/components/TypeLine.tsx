@@ -4,15 +4,10 @@ import { useEffect, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 
 const phrases = [
-  'Custom software',
+  'content engines',
   'AI assistance',
-  'Modern tech upgrades',
-  'Application integrations',
-  'Automated content engines',
-  'Product advertising',
-  'SEO for organic traffic',
-  'Staff AI training',
-  'CRM & custom operation software',
+  'custom software',
+  'Save on Tech rebuilds',
 ]
 
 type TypeLineProps = {

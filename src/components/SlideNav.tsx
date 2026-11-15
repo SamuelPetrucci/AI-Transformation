@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from 'react'
 
+/** Matches homepage section order + Header labels where they overlap. */
 const slides = [
   { id: 'home', label: 'Home' },
-  { id: 'demos', label: 'Demos' },
-  { id: 'features', label: 'Capabilities' },
-  { id: 'how-it-works', label: 'Process' },
-  { id: 'why-us', label: 'Why us' },
   { id: 'products', label: 'Products' },
+  { id: 'demos', label: 'Demos' },
   { id: 'social-ads', label: 'Engine' },
+  { id: 'how-it-works', label: 'Process' },
   { id: 'booking', label: 'Book' },
 ]
 
