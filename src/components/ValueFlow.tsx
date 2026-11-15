@@ -27,7 +27,7 @@ const paths: Path[] = [
     id: 'ops',
     friction: 'SaaS sprawl',
     system: 'Custom Software',
-    result: 'Owned ops stack',
+    result: 'Data you control',
     icon: Code2,
     demoId: 'ops',
   },
