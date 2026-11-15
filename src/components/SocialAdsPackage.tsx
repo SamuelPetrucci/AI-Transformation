@@ -41,8 +41,7 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.05 }}
             className="mt-3 text-base text-ink-soft"
           >
-            Train → script → human-approve → post anywhere. Pricing lives in Products above—this is
-            the walkthrough.
+            Pricing lives in Products above. Here is the problem it solves—and the four steps.
           </motion.p>
         </div>
 
