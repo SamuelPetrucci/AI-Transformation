@@ -11,7 +11,7 @@ const navItems = [
   { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
   { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
-  { id: 'social-ads', name: 'Social Engine', sectionId: 'social-ads', href: null },
+  { id: 'products', name: 'Products', sectionId: 'products', href: null },
   {
     id: 'booking',
     name: 'Book Consultation',
@@ -70,7 +70,7 @@ export default function Header() {
     onScrollChrome()
     window.addEventListener('scroll', onScrollChrome, { passive: true })
 
-    const sectionIds = ['home', 'features', 'demos', 'how-it-works', 'why-us', 'social-ads', 'booking', 'contact']
+    const sectionIds = ['home', 'features', 'demos', 'how-it-works', 'why-us', 'products', 'social-ads', 'booking', 'contact']
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]

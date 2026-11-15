@@ -12,28 +12,28 @@ export const POSITIONING = {
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
   support:
-    'We build automated content engines for your business and advertising for your products—SEO-optimized so you can earn organic traffic—plus custom software, AI agents, and modern tech upgrades.',
-  metaTitle: 'AI Transformation LLC — Custom Software, AI Automation & Modern Tech',
+    'Concrete products to grow, save time, and cut tech spend—Content Engine, AI Workforce, Custom Software, Save on Tech, and Training & Knowledge.',
+  metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend',
   metaDescription:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow. We build automated content engines and product advertising (SEO-optimized for organic traffic), custom ops software, AI agent implementation, staff training, and application integrations.',
+    'Buy clear products from AI Transformation LLC: Content Engine, AI Receptionist, Lead Follow-up, Custom CRM/Ops Hub, Stack Rebuild, Integrations, Staff AI Training, and more—built to save time, reduce costs, and grow.',
   pillars: [
     {
       id: 'custom-software',
       title: 'Custom Software',
       description:
-        'Websites, apps, CRMs, booking tools, and ops hubs that organize the business—owned by you, built for how you actually work.',
+        'Products you own: Business Website System, Booking & Scheduling, Custom CRM / Ops Hub—built for how you work.',
     },
     {
       id: 'ai-automation',
       title: 'AI Automation',
       description:
-        'AI agent implementation plus staff AI training—receptionists, lead follow-up, content agents, and workflows your team can run.',
+        'AI Workforce products: Receptionist, Lead Follow-up, Custom Ops Agents, and Agent Care—plus staff training so the team stays in control.',
     },
     {
       id: 'modern-tech',
       title: 'Modern Technology Solutions',
       description:
-        'Application integrations, modern tech upgrades, and automated content engines—we train the agent on your business, require human approval on every draft, post to any platforms you use, and run product ads—SEO-optimized for organic growth.',
+        'Content Engine (any platforms, human-approved), Save on Tech stack rebuilds, Application Integrations, and Analytics Dashboards.',
     },
   ],
 } as const

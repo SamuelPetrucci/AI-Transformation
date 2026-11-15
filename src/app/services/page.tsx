@@ -7,23 +7,23 @@ import ServiceCTA from '@/components/ServiceCTA'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Services — Custom Software, AI Automation & Modern Tech | AI Transformation LLC',
+  title: 'Products — Content Engine, AI Workforce, Software & Save on Tech | AI Transformation LLC',
   description:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions—from $149/mo growth packages to custom builds.',
+    'Buy clear products: Content Engine, AI Receptionist, Lead Follow-up, Custom CRM, Stack Rebuild, Integrations, Staff AI Training, and more.',
   keywords: [
-    'custom software',
-    'AI automation',
+    'content engine',
     'AI receptionist',
-    'modern technology solutions',
-    'social media packages',
+    'custom software',
+    'save on tech',
+    'AI agents',
     'business automation',
-    'AI consulting',
-    'custom development',
+    'stack rebuild',
+    'staff AI training',
   ],
   openGraph: {
-    title: 'Services — Custom Software, AI Automation & Modern Tech',
+    title: 'Products — Grow, Save Time & Cut Tech Spend',
     description:
-      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.',
+      'Content Engine, AI Workforce, Custom Software, Save on Tech, and Training—products with clear outcomes.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -37,10 +37,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Services — Custom Software, AI Automation & Modern Tech',
-    description: 'Comprehensive AI services including custom landing pages, POS systems, AI receptionists, data analytics, and development partnerships.',
-    images: ['/og-image.jpg']
-  }
+    title: 'Products — Grow, Save Time & Cut Tech Spend',
+    description:
+      'Content Engine, AI Workforce, Custom Software, Save on Tech, and Training—products with clear outcomes.',
+    images: ['/og-image.jpg'],
+  },
 }
 
 export default function ServicesPage() {

@@ -40,7 +40,7 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.05 }}
           className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl md:text-6xl"
         >
-          Custom software. AI automation. Modern tech.
+          Products to grow, save time, and cut tech spend.
         </motion.h1>
 
         <motion.p
@@ -49,9 +49,8 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.12 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg"
         >
-          AI Transformation LLC helps businesses save time, reduce costs, and grow—whether that starts
-          as a $149/mo social package, an AI receptionist, a custom software project, or a larger
-          technology implementation.
+          Content Engine, AI Workforce, Custom Software, Save on Tech, and Training & Knowledge—
+          clear products with outcomes, not a vague service menu.
         </motion.p>
 
         <motion.div
@@ -65,10 +64,10 @@ export default function ServicesHero() {
             <ArrowUpRight className="h-4 w-4" />
           </button>
           <Link
-            href="/#social-ads"
+            href="/#products"
             className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10"
           >
-            See the social engine
+            See all products
           </Link>
         </motion.div>
       </div>

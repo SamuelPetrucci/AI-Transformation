@@ -8,7 +8,8 @@ const slides = [
   { id: 'features', label: 'Capabilities' },
   { id: 'how-it-works', label: 'Process' },
   { id: 'why-us', label: 'Why us' },
-  { id: 'social-ads', label: 'Social' },
+  { id: 'products', label: 'Products' },
+  { id: 'social-ads', label: 'Engine' },
   { id: 'booking', label: 'Book' },
 ]
 

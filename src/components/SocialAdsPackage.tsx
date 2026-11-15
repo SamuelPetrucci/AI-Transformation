@@ -108,13 +108,13 @@ const outcomes = [
   },
 ]
 
-const optionalServices = [
-  { service: 'AI automation monitoring and maintenance', pricing: '$99–$299/month' },
-  { service: 'AI receptionist implementation', pricing: 'Custom setup quote' },
-  { service: 'Automated lead follow-up system', pricing: 'Custom setup quote' },
-  { service: 'Website or CRM integration', pricing: 'Custom project quote' },
-  { service: 'Custom AI agents and ops software', pricing: 'Custom project quote' },
-  { service: 'Save-on-tech stack rebuild (own vs rent)', pricing: 'Custom project quote' },
+const relatedProducts = [
+  { product: 'AI Receptionist', line: 'AI Workforce', pricing: 'Setup quote' },
+  { product: 'Lead Follow-up Agent', line: 'AI Workforce', pricing: 'Setup quote' },
+  { product: 'Agent Care Plan', line: 'AI Workforce', pricing: '$99–$299/mo' },
+  { product: 'Business Website System', line: 'Custom Software', pricing: 'Project quote' },
+  { product: 'Custom CRM / Ops Hub', line: 'Custom Software', pricing: 'Project quote' },
+  { product: 'Stack Rebuild (Own vs Rent)', line: 'Save on Tech', pricing: 'Project quote' },
 ]
 
 export default function SocialAdsPackage() {
@@ -141,7 +141,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            How the content engine works
+            Content Engine product
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -149,7 +149,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            Research → scripts → posting → ads
+            Train → script → human-approve → post
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -158,8 +158,9 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            We train the agent on your business, draft for any media platforms you use, and require
-            human approval on every piece—automation with checks and balances, not a black box.
+            One product line in the catalog: we train the agent on your business, draft for any media
+            platforms you use, and require human approval on every piece—then you can layer AI
+            Workforce, Custom Software, or Save on Tech when you’re ready.
           </motion.p>
         </div>
 
@@ -207,7 +208,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Growth packages
+            Content Engine pricing
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -224,9 +225,8 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Clear monthly products—from one channel to multi-platform posting plus ads. Every draft
-            gets a human yes before it goes live. Layer on custom software and Save-on-tech rebuilds
-            when you want to own more of the stack.
+            Monthly Content Engine products—from one channel to multi-platform posting plus ads.
+            See the full product catalog above for AI Workforce, Custom Software, and Save on Tech.
           </motion.p>
         </div>
 
@@ -325,26 +325,40 @@ export default function SocialAdsPackage() {
           className="mt-10"
         >
           <h3 className="font-display text-center text-xl font-semibold text-ink sm:text-2xl">
-            Pair with software, agents, and Save-on-tech
+            Other products that pair well
           </h3>
           <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-ink-soft">
-            Content engines grow demand. Custom software, AI agents, and stack rebuilds help you
-            capture it—and cut what you rent.
+            Content Engine grows demand. AI Workforce, Custom Software, and Save on Tech help you
+            capture it—and cut what you rent. Full catalog is in Products above.
           </p>
           <div className="mt-6 overflow-hidden rounded-3xl border border-[var(--line)]">
-            <div className="grid grid-cols-[1.4fr_1fr] border-b border-[var(--line)] bg-white/40 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-ink-soft/70 sm:px-6">
-              <span>Service</span>
+            <div className="grid grid-cols-[1.2fr_1fr_1fr] border-b border-[var(--line)] bg-white/40 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-ink-soft/70 sm:px-6">
+              <span>Product</span>
+              <span>Line</span>
               <span>Pricing</span>
             </div>
-            {optionalServices.map((row) => (
+            {relatedProducts.map((row) => (
               <div
-                key={row.service}
-                className="grid grid-cols-[1.4fr_1fr] border-b border-[var(--line)] px-4 py-4 text-sm last:border-b-0 sm:px-6"
+                key={row.product}
+                className="grid grid-cols-[1.2fr_1fr_1fr] border-b border-[var(--line)] px-4 py-4 text-sm last:border-b-0 sm:px-6"
               >
-                <span className="pr-3 text-ink-soft">{row.service}</span>
+                <span className="pr-3 text-ink-soft">{row.product}</span>
+                <span className="pr-3 text-ink-soft/70">{row.line}</span>
                 <span className="text-signal">{row.pricing}</span>
               </div>
             ))}
+          </div>
+          <div className="mt-6 text-center">
+            <button
+              type="button"
+              onClick={() =>
+                document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })
+              }
+              className="inline-flex items-center gap-2 text-sm font-semibold text-signal hover:underline"
+            >
+              Browse all products
+              <ArrowUpRight className="h-4 w-4" />
+            </button>
           </div>
         </motion.div>
       </div>
