@@ -36,8 +36,8 @@ export default function BlogPage() {
             <p className="mt-5 max-w-2xl text-ink-soft">
               Our content engine drafts posts and social copy. Humans approve. Then we publish. See
               how the social engine works on the{' '}
-              <Link href="/#social-ads" className="text-signal underline-offset-4 hover:underline">
-                homepage
+              <Link href="/content-engine" className="text-signal underline-offset-4 hover:underline">
+                Content Engine page
               </Link>
               .
             </p>

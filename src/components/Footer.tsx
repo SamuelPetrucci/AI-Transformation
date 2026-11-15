@@ -7,7 +7,8 @@ import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 
 const exploreLinks = [
-  { label: 'Products', href: '/#products' },
+  { label: 'Products', href: '/products' },
+  { label: 'Content Engine', href: '/content-engine' },
   { label: 'Demos', href: '/#demos' },
   { label: 'Process', href: '/#how-it-works' },
   { label: 'Blog', href: '/blog' },

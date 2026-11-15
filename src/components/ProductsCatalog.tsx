@@ -1,11 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 import {
   ArrowUpRight,
-  Check,
-  ChevronDown,
   Clock,
   PiggyBank,
   TrendingUp,
@@ -24,17 +22,8 @@ const goalMeta: Record<
   'own-stack': { label: 'Own your stack', icon: Wrench },
 }
 
+/** Homepage teaser — full catalog + diagrams live on /products */
 export default function ProductsCatalog() {
-  const [openId, setOpenId] = useState<string | null>(null)
-
-  const scrollToBooking = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const scrollToEngine = () => {
-    document.getElementById('social-ads')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
   return (
     <ScrollSlide id="products" glow="right" className="py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -62,149 +51,56 @@ export default function ProductsCatalog() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Pick a line to see the products inside. Nothing else loads until you ask—so it stays
-            clear, not overwhelming.
+            Each line has a systems diagram and clear packages. Explore offers on their own page—
+            not dumped into this scroll.
           </motion.p>
         </div>
 
-        <div className="mx-auto max-w-3xl space-y-2">
-          {PRODUCT_LINES.map((line) => {
+        <div className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {PRODUCT_LINES.map((line, index) => {
             const meta = goalMeta[line.goal]
             const GoalIcon = meta.icon
-            const isOpen = openId === line.id
-
             return (
-              <div
+              <motion.div
                 key={line.id}
-                className={`overflow-hidden rounded-2xl border transition-colors ${
-                  isOpen
-                    ? 'border-signal/40 bg-white/70'
-                    : 'border-[var(--line)] bg-white/45 hover:border-signal/25'
-                }`}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.04 }}
               >
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenId(isOpen ? null : line.id)}
-                  className="flex w-full items-start gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
+                <Link
+                  href={`/products#${line.id}`}
+                  className="flex h-full flex-col rounded-2xl border border-[var(--line)] bg-white/50 px-5 py-5 transition hover:border-signal/35 hover:bg-white/70"
                 >
-                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-signal/15 text-signal">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-signal/15 text-signal">
                     <GoalIcon className="h-5 w-5" />
                   </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-center gap-2">
-                      <span className="font-display text-lg font-semibold text-ink sm:text-xl">
-                        {line.name}
-                      </span>
-                      <span className="font-mono text-[10px] tracking-[0.14em] text-signal uppercase">
-                        {meta.label}
-                      </span>
-                    </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-ink-soft">
-                      {line.blurb}
-                    </span>
-                    {!isOpen && (
-                      <span className="mt-2 block font-mono text-[10px] tracking-wider text-ink-soft/60 uppercase">
-                        {line.products.length} products · tap to open
-                      </span>
-                    )}
+                  <span className="mt-3 font-mono text-[10px] tracking-[0.14em] text-signal uppercase">
+                    {meta.label}
                   </span>
-                  <ChevronDown
-                    className={`mt-2 h-5 w-5 shrink-0 text-ink-soft transition-transform ${
-                      isOpen ? 'rotate-180 text-signal' : ''
-                    }`}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div className="space-y-3 border-t border-[var(--line)] px-5 py-5 sm:px-6">
-                        {line.products.map((product) => (
-                          <article
-                            key={product.id}
-                            className={`rounded-xl border px-4 py-4 sm:px-5 ${
-                              product.recommended
-                                ? 'border-signal/35 bg-signal/10'
-                                : 'border-[var(--line)] bg-white/50'
-                            }`}
-                          >
-                            <div className="flex flex-wrap items-baseline justify-between gap-2">
-                              <h4 className="font-display text-base font-semibold text-ink sm:text-lg">
-                                {product.name}
-                                {product.recommended && (
-                                  <span className="ml-2 align-middle font-mono text-[9px] tracking-wider text-signal uppercase">
-                                    Popular
-                                  </span>
-                                )}
-                              </h4>
-                              <p className="font-display text-lg font-semibold text-signal">
-                                {product.price.amount}
-                              </p>
-                            </div>
-                            <p className="mt-1.5 text-sm text-ink">{product.job}</p>
-                            <p className="mt-0.5 text-sm text-ink-soft">{product.outcome}</p>
-                            {product.price.note && (
-                              <p className="mt-1 text-xs text-ink-soft/70">{product.price.note}</p>
-                            )}
-                            <ul className="mt-3 space-y-1.5">
-                              {product.includes.map((item) => (
-                                <li
-                                  key={item}
-                                  className="flex items-start gap-2 text-sm text-ink-soft"
-                                >
-                                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-signal" />
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                            <button
-                              type="button"
-                              onClick={scrollToBooking}
-                              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-signal hover:underline"
-                            >
-                              Get this product
-                              <ArrowUpRight className="h-4 w-4" />
-                            </button>
-                          </article>
-                        ))}
-
-                        {line.id === 'content-engine' && (
-                          <button
-                            type="button"
-                            onClick={scrollToEngine}
-                            className="inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-ink hover:text-signal"
-                          >
-                            See the Content Engine in action
-                            <ArrowUpRight className="h-4 w-4" />
-                          </button>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                  <h3 className="font-display mt-1 text-lg font-semibold text-ink">{line.name}</h3>
+                  <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-soft line-clamp-3">
+                    {line.blurb}
+                  </p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-signal">
+                    View diagram
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              </motion.div>
             )
           })}
         </div>
 
-        <p className="mt-10 text-center text-sm text-ink-soft">
-          Not sure which line fits?{' '}
-          <button
-            type="button"
-            onClick={scrollToBooking}
-            className="font-semibold text-signal hover:underline"
-          >
-            Book a consult
-          </button>
-          —we’ll match the product to the outcome you need.
-        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Link href="/products" className="cta-pill">
+            Explore product offers
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+          <Link href="/content-engine" className="btn-ghost">
+            Content Engine demo
+          </Link>
+        </div>
       </div>
     </ScrollSlide>
   )

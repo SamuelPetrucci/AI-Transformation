@@ -7,7 +7,7 @@ const slides = [
   { id: 'home', label: 'Home' },
   { id: 'products', label: 'Products' },
   { id: 'demos', label: 'Demos' },
-  { id: 'social-ads', label: 'Engine' },
+  { id: 'content-engine-teaser', label: 'Engine' },
   { id: 'how-it-works', label: 'Process' },
   { id: 'booking', label: 'Book' },
 ]

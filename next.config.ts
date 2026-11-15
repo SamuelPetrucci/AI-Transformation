@@ -66,7 +66,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/agents',
-        destination: '/#social-ads',
+        destination: '/content-engine',
         permanent: true,
       },
     ]
