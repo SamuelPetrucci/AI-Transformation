@@ -1,84 +1,44 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import {
-  Clock,
-  PiggyBank,
-  TrendingUp,
-  Code2,
-  Bot,
-  Cpu,
-  PhoneMissed,
-  Copy,
-  Layers,
-  ArrowRight,
-} from 'lucide-react'
+import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowRight, Bot, Code2, Cpu } from 'lucide-react'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
-type PillarId = 'custom-software' | 'ai-automation' | 'modern-tech'
 
-const frictions = [
-  {
-    id: 'leads',
-    label: 'Missed leads',
-    detail: 'Calls & forms go cold',
-    icon: PhoneMissed,
-    pillars: ['ai-automation', 'custom-software'] as PillarId[],
-  },
-  {
-    id: 'busywork',
-    label: 'Busywork',
-    detail: 'Copy-paste every day',
-    icon: Copy,
-    pillars: ['ai-automation', 'modern-tech'] as PillarId[],
-  },
-  {
-    id: 'saas',
-    label: 'SaaS sprawl',
-    detail: 'Tools you rent forever',
-    icon: Layers,
-    pillars: ['custom-software', 'modern-tech'] as PillarId[],
-  },
-]
-
-const pillars: {
-  id: PillarId
-  title: string
-  short: string
+type Path = {
+  id: string
+  friction: string
+  system: string
+  result: string
   icon: typeof Code2
   demoId: string
-  delivers: string[]
-}[] = [
+}
+
+const paths: Path[] = [
   {
-    id: 'custom-software',
-    title: 'Custom Software',
-    short: 'Sites, custom operation software, booking—owned by you',
-    icon: Code2,
-    demoId: 'ops',
-    delivers: ['Own the stack', 'Cut SaaS rent', 'Ops software'],
-  },
-  {
-    id: 'ai-automation',
-    title: 'AI Automation',
-    short: 'Agent implementation + staff training',
+    id: 'agents',
+    friction: 'Missed leads',
+    system: 'AI Automation',
+    result: 'Calls booked',
     icon: Bot,
     demoId: 'agents',
-    delivers: ['Faster response', 'Booked calls', 'Team playbooks'],
   },
   {
-    id: 'modern-tech',
-    title: 'Modern Tech',
-    short: 'Integrations, upgrades & content engines',
+    id: 'ops',
+    friction: 'SaaS sprawl',
+    system: 'Custom Software',
+    result: 'Owned ops stack',
+    icon: Code2,
+    demoId: 'ops',
+  },
+  {
+    id: 'marketing',
+    friction: 'Manual content',
+    system: 'Modern Tech',
+    result: 'Always-on ads',
     icon: Cpu,
     demoId: 'marketing',
-    delivers: ['App integrations', 'SEO content', 'Product ads'],
   },
-]
-
-const outcomes = [
-  { id: 'time', label: 'Save time', icon: Clock, pillars: ['ai-automation', 'custom-software'] as PillarId[] },
-  { id: 'cost', label: 'Reduce costs', icon: PiggyBank, pillars: ['custom-software', 'modern-tech'] as PillarId[] },
-  { id: 'grow', label: 'Grow', icon: TrendingUp, pillars: ['ai-automation', 'modern-tech'] as PillarId[] },
 ]
 
 type ValueFlowProps = {
@@ -87,185 +47,139 @@ type ValueFlowProps = {
 
 export default function ValueFlow({ onSelectDemo }: ValueFlowProps) {
   const reduceMotion = useReducedMotion()
-  const [active, setActive] = useState<PillarId>('ai-automation')
-  const pillar = pillars.find((p) => p.id === active)!
+  const [active, setActive] = useState(paths[0].id)
 
-  useEffect(() => {
-    if (reduceMotion) return
-    const t = setInterval(() => {
-      setActive((prev) => {
-        const i = pillars.findIndex((p) => p.id === prev)
-        return pillars[(i + 1) % pillars.length].id
-      })
-    }, PRODUCT_MOTION.pillarMs)
-    return () => clearInterval(t)
-  }, [reduceMotion])
-
-  const isLit = (ids: PillarId[]) => ids.includes(active)
+  const choose = (path: Path) => {
+    setActive(path.id)
+    onSelectDemo?.(path.demoId)
+  }
 
   return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-white/55 p-5 backdrop-blur-sm sm:p-8">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.12),transparent_55%)]" />
-
-      <div className="relative z-10 mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="section-label mb-2">How we connect the dots</p>
-          <h3 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            Friction in → systems out → results.
-          </h3>
-          <p className="mt-2 max-w-2xl text-sm text-ink-soft sm:text-base">
-            Tap a pillar to see which problems we attack and which outcomes light up—then jump into a live
-            diagram of that work.
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={() => onSelectDemo?.(pillar.demoId)}
-          className="btn-primary shrink-0 self-start !px-4 !py-2.5 text-sm"
-        >
-          See {pillar.title.split(' ')[0]} demo
-          <ArrowRight className="h-4 w-4" />
-        </button>
+    <div className="relative">
+      <div className="mb-6 max-w-2xl">
+        <p className="section-label mb-2">How we connect the dots</p>
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+          Friction → system → result
+        </h3>
+        <p className="mt-2 text-sm text-ink-soft sm:text-base">
+          Pick a path to open that live demo below.
+        </p>
       </div>
 
-      <div className="relative z-10 grid gap-4 lg:grid-cols-[0.9fr_1.2fr_0.9fr] lg:items-stretch">
-        {/* Friction */}
-        <div className="flex flex-col gap-2">
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-soft/70">Your ops</p>
-          {frictions.map((f) => {
-            const lit = isLit(f.pillars)
-            const Icon = f.icon
-            return (
-              <motion.div
-                key={f.id}
-                animate={{
-                  opacity: lit ? 1 : 0.45,
-                  x: reduceMotion ? 0 : lit ? 4 : 0,
-                }}
-                className={`flex items-start gap-3 rounded-2xl border px-3.5 py-3 transition-colors ${
-                  lit
-                    ? 'border-ember/35 bg-ember/10'
-                    : 'border-[var(--line)] bg-white/40'
-                }`}
-              >
+      <div className="flex flex-col gap-1" role="list">
+        <div
+          className="mb-1 hidden grid-cols-[1fr_auto_1.1fr_auto_1fr_auto] gap-3 px-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-soft/60 sm:grid"
+          aria-hidden
+        >
+          <span>Friction</span>
+          <span />
+          <span>What we build</span>
+          <span />
+          <span>Result</span>
+          <span />
+        </div>
+
+        {paths.map((path) => {
+          const selected = path.id === active
+          const Icon = path.icon
+          return (
+            <motion.button
+              key={path.id}
+              type="button"
+              role="listitem"
+              onClick={() => choose(path)}
+              aria-pressed={selected}
+              initial={false}
+              animate={{
+                backgroundColor: selected ? 'rgba(15, 143, 117, 0.1)' : 'rgba(255,255,255,0)',
+              }}
+              transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+              className={`group grid w-full grid-cols-1 items-center gap-3 rounded-xl px-3 py-3.5 text-left transition-colors sm:grid-cols-[1fr_auto_1.1fr_auto_1fr_auto] sm:gap-3 sm:px-4 ${
+                selected
+                  ? 'ring-1 ring-signal/35'
+                  : 'hover:bg-white/50'
+              }`}
+            >
+              <span className="min-w-0">
+                <span className="mb-0.5 block font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft/55 sm:hidden">
+                  Friction
+                </span>
                 <span
-                  className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    lit ? 'bg-ember/20 text-ember' : 'bg-paper-2 text-ink-soft'
+                  className={`text-sm font-semibold sm:text-base ${
+                    selected ? 'text-ink' : 'text-ink-soft'
+                  }`}
+                >
+                  {path.friction}
+                </span>
+              </span>
+
+              <Connector lit={selected} reduceMotion={!!reduceMotion} />
+
+              <span className="flex min-w-0 items-center gap-2.5">
+                <span
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
+                    selected ? 'bg-ink text-paper' : 'bg-signal/12 text-signal'
                   }`}
                 >
                   <Icon className="h-4 w-4" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-ink">{f.label}</p>
-                  <p className="text-xs text-ink-soft">{f.detail}</p>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-
-        {/* Pillars + connectors */}
-        <div className="relative flex flex-col justify-center gap-3">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-y-6 left-1/2 hidden w-px -translate-x-1/2 bg-[var(--line)] lg:block"
-          />
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-signal lg:text-center">
-            AI Transformation
-          </p>
-          {pillars.map((p) => {
-            const selected = p.id === active
-            const Icon = p.icon
-            return (
-              <button
-                key={p.id}
-                type="button"
-                onClick={() => {
-                  setActive(p.id)
-                  onSelectDemo?.(p.demoId)
-                }}
-                className={`relative z-10 flex w-full items-start gap-3 rounded-2xl border px-4 py-3.5 text-left transition-all ${
-                  selected
-                    ? 'border-signal/50 bg-signal/15 shadow-[0_0_40px_rgba(15,143,117,0.16)]'
-                    : 'border-[var(--line)] bg-white/60 hover:border-signal/35 hover:bg-white/80'
-                }`}
-              >
-                <span
-                  className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                    selected ? 'bg-ink text-paper' : 'bg-signal/15 text-signal'
-                  }`}
-                >
-                  <Icon className="h-5 w-5" />
                 </span>
                 <span className="min-w-0">
-                  <span className="font-display block text-base font-semibold text-ink">{p.title}</span>
-                  <span className="mt-0.5 block text-xs text-ink-soft sm:text-sm">{p.short}</span>
+                  <span className="mb-0.5 block font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft/55 sm:hidden">
+                    What we build
+                  </span>
+                  <span className="font-display block text-base font-semibold text-ink sm:text-lg">
+                    {path.system}
+                  </span>
                 </span>
-              </button>
-            )
-          })}
-        </div>
+              </span>
 
-        {/* Outcomes */}
-        <div className="flex flex-col gap-2">
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-soft/70">Outcomes</p>
-          {outcomes.map((o) => {
-            const lit = isLit(o.pillars)
-            const Icon = o.icon
-            return (
-              <motion.div
-                key={o.id}
-                animate={{
-                  opacity: lit ? 1 : 0.45,
-                  x: reduceMotion ? 0 : lit ? -4 : 0,
-                }}
-                className={`flex items-start gap-3 rounded-2xl border px-3.5 py-3 transition-colors ${
-                  lit
-                    ? 'border-signal/45 bg-signal/10'
-                    : 'border-[var(--line)] bg-white/40'
-                }`}
-              >
+              <Connector lit={selected} reduceMotion={!!reduceMotion} />
+
+              <span className="min-w-0">
+                <span className="mb-0.5 block font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft/55 sm:hidden">
+                  Result
+                </span>
                 <span
-                  className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    lit ? 'bg-signal text-paper' : 'bg-paper-2 text-ink-soft'
+                  className={`text-sm font-semibold sm:text-base ${
+                    selected ? 'text-signal' : 'text-ink-soft'
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  {path.result}
                 </span>
-                <div>
-                  <p className="text-sm font-semibold text-ink">{o.label}</p>
-                  <p className="text-xs text-ink-soft">
-                    {lit ? 'Active path' : 'Related path'}
-                  </p>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
+              </span>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active}
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
-          transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
-          className="relative z-10 mt-5 flex flex-wrap items-center gap-2 border-t border-[var(--line)] pt-5"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-signal">
-            {pillar.title} delivers
-          </span>
-          {pillar.delivers.map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-[var(--line)] bg-white/70 px-3 py-1 text-xs font-medium text-ink-soft"
-            >
-              {item}
-            </span>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+              <span
+                className={`inline-flex items-center gap-1 text-xs font-semibold transition ${
+                  selected ? 'text-signal' : 'text-ink-soft/50 group-hover:text-ink-soft'
+                }`}
+              >
+                Demo
+                <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </motion.button>
+          )
+        })}
+      </div>
     </div>
+  )
+}
+
+function Connector({ lit, reduceMotion }: { lit: boolean; reduceMotion: boolean }) {
+  return (
+    <span className="relative hidden h-px w-8 overflow-hidden sm:block md:w-12" aria-hidden>
+      <span
+        className={`absolute inset-0 border-t border-dashed transition-colors ${
+          lit ? 'border-signal/70' : 'border-[var(--line)]'
+        }`}
+      />
+      {!reduceMotion && lit && (
+        <motion.span
+          className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-signal"
+          initial={{ left: '0%' }}
+          animate={{ left: '100%' }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
+        />
+      )}
+    </span>
   )
 }
