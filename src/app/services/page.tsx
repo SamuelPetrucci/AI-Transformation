@@ -98,7 +98,7 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-[#050505] text-white">
+      <main className="min-h-screen bg-transparent text-ink">
         <Header />
         <ServicesHero />
         <ServiceCategories />

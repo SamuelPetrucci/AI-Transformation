@@ -83,7 +83,7 @@ export default function ServiceProcess() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl"
           >
             Our Process
           </motion.h2>
@@ -91,7 +91,7 @@ export default function ServiceProcess() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mx-auto mt-4 max-w-2xl text-zinc-400"
+            className="mx-auto mt-4 max-w-2xl text-ink-soft"
           >
             A clear path from discovery to ongoing support—so you always know what happens next.
           </motion.p>
@@ -107,18 +107,18 @@ export default function ServiceProcess() {
               transition={{ delay: index * 0.05 }}
               className="glass-panel grid grid-cols-1 gap-6 rounded-3xl p-6 md:grid-cols-[auto_1fr_1.2fr] md:items-start"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-signal/15 text-signal">
                 <step.icon className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-violet-300">Step 0{index + 1}</p>
-                <h3 className="font-display mt-1 text-xl font-medium text-white">{step.title}</h3>
-                <p className="mt-2 text-sm text-zinc-400">{step.description}</p>
+                <p className="text-xs uppercase tracking-wider text-signal">Step 0{index + 1}</p>
+                <h3 className="font-display mt-1 text-xl font-medium text-ink">{step.title}</h3>
+                <p className="mt-2 text-sm text-ink-soft">{step.description}</p>
               </div>
               <ul className="space-y-2">
                 {step.details.map((d) => (
-                  <li key={d} className="flex items-start gap-2 text-sm text-zinc-300">
-                    <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-violet-400" />
+                  <li key={d} className="flex items-start gap-2 text-sm text-ink-soft">
+                    <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
                     {d}
                   </li>
                 ))}

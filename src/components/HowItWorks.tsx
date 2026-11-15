@@ -47,7 +47,7 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
             How We Work
           </motion.h2>
@@ -56,7 +56,7 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.06 }}
-            className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg"
+            className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg"
           >
             Same process whether you start with a $149 social plan, an AI receptionist, or a custom
             software build.
@@ -81,14 +81,14 @@ export default function HowItWorks() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-black/20 to-transparent" />
-                <span className="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-violet-500 text-xs font-bold text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
+                <span className="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-bold text-paper">
                   0{index + 1}
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="font-display mb-2 text-lg font-medium text-white">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-zinc-400">{step.description}</p>
+                <h3 className="font-display mb-2 text-lg font-medium text-ink">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-ink-soft">{step.description}</p>
               </div>
             </motion.article>
           ))}

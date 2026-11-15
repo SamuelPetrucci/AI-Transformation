@@ -27,7 +27,6 @@ export default function ScrollSlide({
     offset: ['start end', 'end start'],
   })
 
-  // Softer ranges so content stays readable and motion feels fluid
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.12, 0.5, 0.88, 1],
@@ -48,12 +47,12 @@ export default function ScrollSlide({
       {glow !== 'none' && (
         <div
           aria-hidden
-          className={`pointer-events-none absolute rounded-full blur-[120px] opacity-35 ${
+          className={`pointer-events-none absolute rounded-full blur-[120px] opacity-40 ${
             glow === 'top'
-              ? 'top-[-10%] left-1/2 -translate-x-1/2 h-[50vh] w-[70vw] bg-[radial-gradient(circle,rgba(124,58,237,0.55),transparent_70%)]'
+              ? 'top-[-10%] left-1/2 -translate-x-1/2 h-[50vh] w-[70vw] bg-[radial-gradient(circle,rgba(15,143,117,0.35),transparent_70%)]'
               : glow === 'right'
-                ? 'top-1/3 right-[-10%] h-[55vh] w-[45vw] bg-[radial-gradient(circle,rgba(139,92,246,0.45),transparent_70%)]'
-                : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vh] w-[60vw] bg-[radial-gradient(circle,rgba(109,40,217,0.4),transparent_70%)]'
+                ? 'top-1/3 right-[-10%] h-[55vh] w-[45vw] bg-[radial-gradient(circle,rgba(24,184,148,0.28),transparent_70%)]'
+                : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vh] w-[60vw] bg-[radial-gradient(circle,rgba(217,119,58,0.18),transparent_70%)]'
           }`}
         />
       )}

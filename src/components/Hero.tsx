@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { LogoMark } from './BrandLogo'
@@ -8,82 +8,65 @@ import { POSITIONING } from '@/config/positioning'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion()
+  const rise = (delay: number) =>
+    reduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as const },
+        }
 
   return (
-    <ScrollSlide id="home" glow="top" className="pt-20">
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
+    <ScrollSlide id="home" glow="none" className="pt-20">
+      <div className="relative mx-auto flex max-w-5xl flex-col items-start px-4 sm:px-6 lg:px-8">
+        <div aria-hidden className="mesh absolute inset-0 -z-10" />
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-[58%] z-0 h-[min(70vw,420px)] w-[min(70vw,420px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.14]"
-        >
-          <LogoMark className="h-full w-full" />
-        </div>
+          className="grid-fade pointer-events-none absolute inset-0 -z-10 opacity-70"
+        />
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
-        >
-          <LogoMark className="h-14 w-14 sm:h-16 sm:w-16" />
-          <span className="font-display text-3xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+        <motion.div {...rise(0.05)} className="relative z-10 mb-5 flex items-center gap-3.5">
+          <LogoMark className="h-12 w-12 sm:h-14 sm:w-14" />
+          <span className="font-display text-2xl font-bold tracking-[-0.03em] text-ink sm:text-3xl">
             {POSITIONING.shortName}
           </span>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display relative z-10 text-xl font-medium tracking-tight text-zinc-200 sm:text-2xl md:text-3xl"
+          {...rise(0.12)}
+          className="font-display relative z-10 max-w-4xl text-[clamp(2.4rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-ink"
         >
           {POSITIONING.headline}
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
+          {...rise(0.22)}
+          className="relative z-10 mt-6 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl"
         >
           {POSITIONING.support}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 mt-10"
+          {...rise(0.35)}
+          className="relative z-10 mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
         >
           <a
             href={CALENDLY_CONFIG.CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-pill"
+            className="btn-primary"
           >
             Book Free Consultation
             <ArrowUpRight className="h-4 w-4" />
           </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 mt-14 grid w-full max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3"
-        >
-          {POSITIONING.pillars.map((pillar) => (
-            <div key={pillar.id} className="text-center">
-              <div className="font-display text-lg font-semibold text-violet-300 sm:text-xl">
-                {pillar.title}
-              </div>
-              <div className="mt-1 text-xs leading-snug text-zinc-500 sm:text-sm">
-                {pillar.id === 'custom-software' && 'Builds & systems you own'}
-                {pillar.id === 'ai-automation' && 'Agents that cut busywork'}
-                {pillar.id === 'modern-tech' && 'Growth packages & upgrades'}
-              </div>
-            </div>
-          ))}
+          <a href="/services" className="btn-ghost">
+            Explore Services
+          </a>
+          <a href="#contact" className="btn-ghost">
+            Contact
+          </a>
         </motion.div>
       </div>
     </ScrollSlide>

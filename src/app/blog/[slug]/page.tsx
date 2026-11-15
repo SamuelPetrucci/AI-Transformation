@@ -79,27 +79,27 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
-      <main className="min-h-screen bg-[#050505] text-white">
+      <main className="min-h-screen bg-transparent text-ink">
         <Header />
         <article className="relative mx-auto max-w-3xl px-4 pb-20 pt-28 sm:px-6">
-          <Link href="/blog" className="text-sm text-violet-300 hover:underline">
+          <Link href="/blog" className="text-sm text-signal hover:underline">
             ← All posts
           </Link>
           <p className="overline mt-8 mb-4">{post.date}</p>
           <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-4 text-zinc-400">{post.excerpt}</p>
+          <p className="mt-4 text-ink-soft">{post.excerpt}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-wider text-zinc-400"
+                className="rounded-full border border-[var(--line)] px-3 py-1 text-[10px] uppercase tracking-wider text-ink-soft"
               >
                 {tag}
               </span>
             ))}
-            <span className="rounded-full border border-violet-400/30 bg-violet-500/10 px-3 py-1 text-[10px] uppercase tracking-wider text-violet-300">
+            <span className="rounded-full border border-signal/30 bg-signal/10 px-3 py-1 text-[10px] uppercase tracking-wider text-signal">
               {post.generatedBy === 'grok-content-agent'
                 ? 'Drafted by Grok content agent'
                 : 'Human authored'}
@@ -108,26 +108,26 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div className="prose-invert mt-10 space-y-5">
             {post.body.map((para) => (
-              <p key={para.slice(0, 24)} className="text-base leading-relaxed text-zinc-300">
+              <p key={para.slice(0, 24)} className="text-base leading-relaxed text-ink-soft">
                 {para}
               </p>
             ))}
           </div>
 
           <aside className="glass-panel mt-12 rounded-3xl p-6">
-            <p className="text-xs uppercase tracking-wider text-violet-300">
+            <p className="text-xs uppercase tracking-wider text-signal">
               Social hook (agent output)
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
               &ldquo;{post.socialHook}&rdquo;
             </p>
-            <p className="mt-4 text-xs text-zinc-500">
+            <p className="mt-4 text-xs text-ink-soft/70">
               This caption is generated alongside the blog draft for Facebook / Instagram / X. Humans
               approve before scheduling—same workflow we sell in Social Growth and Ads packages.
             </p>
             <Link
               href="/#social-ads"
-              className="mt-4 inline-block text-sm text-violet-300 hover:underline"
+              className="mt-4 inline-block text-sm text-signal hover:underline"
             >
               See the social content engine →
             </Link>

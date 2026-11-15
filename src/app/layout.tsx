@@ -1,19 +1,6 @@
 import type { Metadata } from "next";
-import { Syne, Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-
-const display = Syne({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
-const body = Manrope({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   title: "AI Transformation LLC — Custom Software, AI Automation & Modern Tech",
@@ -98,20 +85,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full antialiased">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#050505" />
-        <meta name="msapplication-TileColor" content="#050505" />
+        <meta name="theme-color" content="#f3f6f4" />
+        <meta name="msapplication-TileColor" content="#f3f6f4" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="AI Transformation LLC" />
       </head>
-      <body
-        className={`${display.variable} ${body.variable} antialiased`}
-      >
+      <body className="min-h-full flex flex-col antialiased">
         {children}
         <Analytics />
       </body>

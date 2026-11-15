@@ -24,19 +24,19 @@ export default function BlogPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#050505] text-white">
+      <main className="min-h-screen bg-transparent text-ink">
         <Header />
         <section className="relative overflow-hidden px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.3),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.3),transparent_55%)]" />
           <div className="relative z-10 mx-auto max-w-6xl">
-            <p className="overline mb-4 text-violet-300">Lead by example</p>
+            <p className="overline mb-4 text-signal">Lead by example</p>
             <h1 className="font-display max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
               Blog — written with the same agents we deploy for clients
             </h1>
-            <p className="mt-5 max-w-2xl text-zinc-400">
+            <p className="mt-5 max-w-2xl text-ink-soft">
               Our content engine drafts posts and social copy. Humans approve. Then we publish. See
               how the social engine works on the{' '}
-              <Link href="/#social-ads" className="text-violet-300 underline-offset-4 hover:underline">
+              <Link href="/#social-ads" className="text-signal underline-offset-4 hover:underline">
                 homepage
               </Link>
               .
@@ -47,25 +47,25 @@ export default function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="glass-panel group flex flex-col rounded-3xl p-6 transition hover:border-violet-400/30"
+                  className="glass-panel group flex flex-col rounded-3xl p-6 transition hover:border-signal/30"
                 >
                   <div className="mb-3 flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/10 px-2.5 py-0.5 text-[10px] uppercase tracking-wider text-zinc-400"
+                        className="rounded-full border border-[var(--line)] px-2.5 py-0.5 text-[10px] uppercase tracking-wider text-ink-soft"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h2 className="font-display text-xl font-medium text-white group-hover:text-violet-200">
+                  <h2 className="font-display text-xl font-medium text-ink group-hover:text-signal-bright">
                     {post.title}
                   </h2>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">{post.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between text-xs text-zinc-500">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">{post.excerpt}</p>
+                  <div className="mt-5 flex items-center justify-between text-xs text-ink-soft/70">
                     <span>{post.date}</span>
-                    <span className="text-violet-300/80">
+                    <span className="text-signal/80">
                       {post.generatedBy === 'grok-content-agent' ? 'Grok agent draft' : 'Human'}
                     </span>
                   </div>

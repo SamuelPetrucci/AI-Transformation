@@ -24,7 +24,7 @@ export default function Features() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
             One company. Three ways we deliver.
           </motion.h2>
@@ -33,7 +33,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.06 }}
-            className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg"
+            className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg"
           >
             {POSITIONING.statement}
           </motion.p>
@@ -57,27 +57,32 @@ export default function Features() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="flex flex-col gap-3">
           {POSITIONING.pillars.map((pillar, index) => {
             const Icon = icons[index]
             return (
               <motion.article
                 key={pillar.id}
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="glass-panel group rounded-3xl p-6 md:p-8"
+                className="project-row flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-white/55 px-5 py-6 backdrop-blur-sm sm:flex-row sm:items-start sm:px-7"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300 transition-transform duration-300 group-hover:scale-110">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-signal/15 text-signal">
                   <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="font-display mb-3 text-xl font-medium text-white md:text-2xl">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-zinc-400 md:text-base">
-                  {pillar.description}
-                </p>
+                <div>
+                  <p className="font-mono text-xs tracking-[0.14em] text-signal uppercase">
+                    0{index + 1} · Pillar
+                  </p>
+                  <h3 className="font-display mt-1 text-xl font-medium text-ink md:text-2xl">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft md:text-base">
+                    {pillar.description}
+                  </p>
+                </div>
               </motion.article>
             )
           })}

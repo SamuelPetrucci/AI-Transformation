@@ -72,12 +72,12 @@ export default function IndustryCaseStudies() {
             >
               <div className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 h-full hover:border-gray-600/50 transition-all duration-300 hover:transform hover:scale-105">
                 <div className={`w-12 h-12 bg-gradient-to-r ${study.color} rounded-xl flex items-center justify-center mb-4`}>
-                  <Star className="w-6 h-6 text-white" />
+                  <Star className="w-6 h-6 text-ink" />
                 </div>
                 
                 <div className="mb-4">
                   <span className="text-sm text-blue-400 font-medium">{study.industry}</span>
-                  <h3 className="text-xl font-bold text-white mt-2">{study.title}</h3>
+                  <h3 className="text-xl font-bold text-ink mt-2">{study.title}</h3>
                 </div>
                 
                 <p className="text-gray-300 mb-6">
@@ -91,7 +91,7 @@ export default function IndustryCaseStudies() {
                         <metric.icon className="w-4 h-4 text-gray-400" />
                         <span className="text-gray-400 text-sm">{metric.label}</span>
                       </div>
-                      <span className="text-white font-semibold">{metric.value}</span>
+                      <span className="text-ink font-semibold">{metric.value}</span>
                     </div>
                   ))}
                 </div>
