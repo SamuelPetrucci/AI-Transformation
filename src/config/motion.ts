@@ -21,6 +21,4 @@ export const PRODUCT_MOTION = {
   /** One-click tour step (ms) */
   tourTickMs: 2800,
   tourStartMs: 1200,
-  /** Pillar / highlight cycle (ms) */
-  pillarMs: 7000,
 } as const

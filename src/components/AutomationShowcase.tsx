@@ -26,7 +26,6 @@ import {
   Layers,
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
-import ValueFlow from './ValueFlow'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 
 type DemoId = 'ops' | 'agents' | 'marketing' | 'website'
@@ -970,15 +969,6 @@ export default function AutomationShowcase() {
   const [active, setActive] = useState<DemoId>('ops')
   const current = demos.find((d) => d.id === active)!
 
-  const selectDemo = (demoId: string) => {
-    if (demos.some((d) => d.id === demoId)) {
-      setActive(demoId as DemoId)
-      window.requestAnimationFrame(() => {
-        document.getElementById('demo-stage')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-      })
-    }
-  }
-
   const scrollToBooking = () => {
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -993,7 +983,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Interactive demos
+            POC visualizations
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -1001,7 +991,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            See how the pieces connect
+            See how the work runs
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -1010,23 +1000,14 @@ export default function AutomationShowcase() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Four live walkthroughs—one per product line. Pick a tab to see how it works.
+            Four proof-of-concept walkthroughs—one per product line. Pick a tab to see how it works.
           </motion.p>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-8 md:mb-10"
-        >
-          <ValueFlow onSelectDemo={selectDemo} />
-        </motion.div>
 
         <div id="demo-stage" className="relative z-20 scroll-mt-28">
           <div
             role="tablist"
-            aria-label="Automation demos"
+            aria-label="POC visualizations"
             className="mb-5 flex w-full gap-0 overflow-x-auto border-b border-[var(--line)]"
           >
             {demos.map((demo) => {
