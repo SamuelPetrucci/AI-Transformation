@@ -9,8 +9,10 @@ import {
   Megaphone,
   Check,
   Play,
+  MessageSquare,
 } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
+import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
 
 const pipeline = [
   { id: 'brief', label: 'Brief', icon: Sparkles },
@@ -154,6 +156,14 @@ export default function SocialContentEngine() {
               One-click demo
             </button>
             <a
+              href={getSmsConsultHref()}
+              className="cta-pill"
+              aria-label={`Text ${CONTACT_CONFIG.SMS_DISPLAY} to start a consult`}
+            >
+              <MessageSquare className="h-4 w-4" />
+              Text my number for contact
+            </a>
+            <a
               href={CALENDLY_CONFIG.CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -162,6 +172,9 @@ export default function SocialContentEngine() {
               Get the engine for your business
             </a>
           </div>
+          <p className="mt-3 text-xs text-ink-soft/70">
+            Opens Messages to {CONTACT_CONFIG.SMS_DISPLAY} — send the draft to opt in for a consult by text.
+          </p>
         </div>
 
         {/* Phone / feed stage */}

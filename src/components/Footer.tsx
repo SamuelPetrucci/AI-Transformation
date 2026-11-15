@@ -1,8 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, Linkedin } from 'lucide-react'
+import { Mail, Phone, Linkedin, MessageSquare } from 'lucide-react'
 import BrandLogo from './BrandLogo'
+import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
 
 export default function Footer() {
   return (
@@ -29,13 +30,22 @@ export default function Footer() {
               software, AI automation, and modern technology solutions.
             </p>
             <a
-              href="https://www.linkedin.com/company/ai-transformations/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--line)] text-ink-soft transition-all hover:border-signal hover:text-signal"
+              href={getSmsConsultHref()}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/10 px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-signal/60 hover:bg-signal/15"
             >
-              <Linkedin className="h-5 w-5" />
+              <MessageSquare className="h-4 w-4 text-signal" />
+              Text my number for contact
             </a>
+            <div>
+              <a
+                href="https://www.linkedin.com/company/ai-transformations/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--line)] text-ink-soft transition-all hover:border-signal hover:text-signal"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
@@ -47,14 +57,20 @@ export default function Footer() {
             <h3 className="font-display mb-6 text-lg font-medium text-ink">Contact Info</h3>
             <div className="space-y-4 text-ink-soft">
               <div className="flex items-center gap-3">
+                <MessageSquare className="h-5 w-5 text-signal" />
+                <a href={getSmsConsultHref()} className="transition hover:text-ink">
+                  Text {CONTACT_CONFIG.SMS_DISPLAY}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-signal" />
-                <a href="tel:+18607053417" className="transition hover:text-ink">
-                  (860) 705-3417
+                <a href={`tel:${CONTACT_CONFIG.VOICE_E164}`} className="transition hover:text-ink">
+                  {CONTACT_CONFIG.VOICE_DISPLAY}
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-signal" />
-                <span>info@aitransformationllc.com</span>
+                <span>{CONTACT_CONFIG.EMAIL}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-signal" />
