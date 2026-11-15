@@ -36,11 +36,11 @@ const capabilities: {
   {
     id: 'web-agents',
     label: 'Build & Implement',
-    overline: 'Web, AI assistance, ops software & staff training',
+    overline: 'Web, AI agent implementation, ops software & staff training',
     headline: 'We build the systems.',
-    highlight: 'AI assistance. Train your team.',
+    highlight: 'AI agent implementation. Train your team.',
     blurb:
-      'Custom websites and operation software—plus AI Assistance: we audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks, with staff training so your team stays in control.',
+      'Custom websites and operation software—plus AI agent implementation: we audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks, with staff training so your team stays in control.',
     steps: [
       { id: 'brief', label: 'Brief', detail: 'Goals, ops map, assistance scopes', icon: Search },
       {
@@ -51,7 +51,7 @@ const capabilities: {
       },
       {
         id: 'agents',
-        label: 'AI assistance',
+        label: 'AI agent implementation',
         detail: 'Cron jobs, triggers, app actions',
         icon: Bot,
       },
@@ -71,7 +71,7 @@ const capabilities: {
     headline: 'We implement it.',
     highlight: 'Then we train your staff.',
     blurb:
-      'Start with an efficiency audit, wire AI Assistance to cron schedules or triggers, then train your staff—discovery → pilot → production so the team owns the workflows.',
+      'Start with an efficiency audit, wire AI agent implementation to cron schedules or triggers, then train your staff—discovery → pilot → production so the team owns the workflows.',
     steps: [
       { id: 'discover', label: 'Audit', detail: 'Efficiency opportunities mapped', icon: Search },
       { id: 'design', label: 'Design', detail: 'Cron + trigger scopes', icon: Plug },
@@ -147,7 +147,7 @@ const feedPosts = [
 function WebAgentsDiagram({ step }: { step: number }) {
   const nodes = [
     { label: 'Custom software', icon: Code2, x: '14%', y: '24%' },
-    { label: 'AI assistance', icon: Bot, x: '50%', y: '22%' },
+    { label: 'AI agent implementation', icon: Bot, x: '50%', y: '22%' },
     { label: 'Staff training', icon: GraduationCap, x: '86%', y: '28%' },
     { label: 'Custom ops software', icon: Plug, x: '28%', y: '72%' },
     { label: 'Your team', icon: Users, x: '72%', y: '74%' },

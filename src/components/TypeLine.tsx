@@ -5,7 +5,7 @@ import { useReducedMotion } from 'framer-motion'
 
 const phrases = [
   'content engines',
-  'AI assistance',
+  'AI agent implementation',
   'custom software',
   'Save on Tech rebuilds',
 ]

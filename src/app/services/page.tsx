@@ -7,9 +7,9 @@ import ServiceCTA from '@/components/ServiceCTA'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Products — Content Engine, AI Assistance, Software & Save on Tech | AI Transformation LLC',
+  title: 'Products — Content Engine, AI agent implementation, Software & Save on Tech | AI Transformation LLC',
   description:
-    'Buy clear products: Content Engine, AI Assistance (efficiency audits, cron & trigger agents), CRM & custom operation software, Stack Rebuild, Integrations, Staff AI Training, and more.',
+    'Buy clear products: Content Engine, AI agent implementation (efficiency audits, cron & trigger agents), CRM & custom operation software, Stack Rebuild, Integrations, Staff AI Training, and more.',
   keywords: [
     'content engine',
     'AI receptionist',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Products — Grow, Save Time & Cut Tech Spend',
     description:
-      'Content Engine, AI Assistance, Custom Software, Save on Tech, and Training—products with clear outcomes.',
+      'Content Engine, AI agent implementation, Custom Software, Save on Tech, and Training—products with clear outcomes.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Products — Grow, Save Time & Cut Tech Spend',
     description:
-      'Content Engine, AI Assistance, Custom Software, Save on Tech, and Training—products with clear outcomes.',
+      'Content Engine, AI agent implementation, Custom Software, Save on Tech, and Training—products with clear outcomes.',
     images: ['/og-image.jpg'],
   },
 }

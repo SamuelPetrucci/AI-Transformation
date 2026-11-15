@@ -83,8 +83,8 @@ export const PRODUCT_LINES: ProductLine[] = [
     ],
   },
   {
-    id: 'ai-assistance',
-    name: 'AI Assistance',
+    id: 'ai-agent-implementation',
+    name: 'AI agent implementation',
     blurb:
       'We audit where you’re losing time, then set agents on cron jobs or triggers—so application actions and everyday tasks get handled without you babysitting them.',
     goal: 'save-time',
@@ -92,7 +92,7 @@ export const PRODUCT_LINES: ProductLine[] = [
       {
         id: 'efficiency-audit',
         name: 'Efficiency Audit',
-        job: 'Find the highest-ROI places for AI assistance in your business',
+        job: 'Find the highest-ROI places for AI agent implementation in your business',
         outcome: 'Clear map of tasks to automate—before you spend on build',
         price: { kind: 'quote', amount: 'Audit quote' },
         includes: [

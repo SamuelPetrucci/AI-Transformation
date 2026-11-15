@@ -16,7 +16,7 @@ import { PRODUCT_LINES } from '@/config/products'
 
 const iconByLine: Record<string, typeof Code> = {
   'content-engine': Megaphone,
-  'ai-assistance': Bot,
+  'ai-agent-implementation': Bot,
   'custom-software': Code,
   'save-on-tech': PiggyBank,
   enablement: GraduationCap,
@@ -79,7 +79,7 @@ export default function ServiceCategories() {
             What you can buy
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
-            Five product lines—Content Engine, AI Assistance, Custom Software, Save on Tech, and
+            Five product lines—Content Engine, AI agent implementation, Custom Software, Save on Tech, and
             Training & Knowledge—each with named products and clear outcomes.
           </p>
         </div>

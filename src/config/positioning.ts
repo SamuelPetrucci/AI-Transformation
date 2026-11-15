@@ -7,7 +7,7 @@ export const POSITIONING = {
   shortName: 'AI Transformation',
   /** Canonical one-liner — website, email, social */
   statement:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI assistance, and modern technology solutions.',
+    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI agent implementation, and modern technology solutions.',
   /** Hero headline (brand stays separate / larger) */
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
@@ -15,7 +15,7 @@ export const POSITIONING = {
     'Clear products to grow, save time, and cut what you spend on tech—open one line at a time.',
   metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend',
   metaDescription:
-    'AI Transformation LLC: Content Engine, AI Assistance, Custom Software, Save on Tech, and Training—clear products for business owners.',
+    'AI Transformation LLC: Content Engine, AI agent implementation, Custom Software, Save on Tech, and Training—clear products for business owners.',
   pillars: [
     {
       id: 'custom-software',
@@ -23,8 +23,8 @@ export const POSITIONING = {
       description: 'Websites, booking, and CRM & custom operation software you own.',
     },
     {
-      id: 'ai-assistance',
-      title: 'AI Assistance',
+      id: 'ai-agent-implementation',
+      title: 'AI agent implementation',
       description:
         'Audit efficiency, then agents on cron jobs or triggers for tasks as they come up.',
     },
