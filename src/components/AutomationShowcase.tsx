@@ -47,6 +47,14 @@ const demos: {
   blurb: string
 }[] = [
   {
+    id: 'ops',
+    label: 'Save on tech',
+    icon: PiggyBank,
+    title: 'Rebuild their stack. Own it. Pay less.',
+    blurb:
+      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost. We’re the bridge.',
+  },
+  {
     id: 'agents',
     label: 'AI Agents',
     icon: Bot,
@@ -83,14 +91,6 @@ const demos: {
     title: 'Social media automation',
     blurb:
       'Content calendar, captions, scheduling, and nurture sequences—AI drafts, you approve, we keep the feed warm.',
-  },
-  {
-    id: 'ops',
-    label: 'Save on tech',
-    icon: PiggyBank,
-    title: 'Rebuild their stack. Own it. Pay less.',
-    blurb:
-      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost. We’re the bridge.',
   },
   {
     id: 'discovery',
@@ -780,7 +780,7 @@ function DemoPanel({ id }: { id: DemoId }) {
 }
 
 export default function AutomationShowcase() {
-  const [active, setActive] = useState<DemoId>('agents')
+  const [active, setActive] = useState<DemoId>('ops')
   const current = demos.find((d) => d.id === active)!
 
   const selectDemo = (demoId: string) => {
