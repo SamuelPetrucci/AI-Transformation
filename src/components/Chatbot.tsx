@@ -2,48 +2,33 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react'
+import { MessageSquare, X, Send, Smartphone, ArrowRight } from 'lucide-react'
 
 interface Message {
   id: string
   text: string
-  sender: 'user' | 'bot'
+  sender: 'user' | 'agent'
   timestamp: Date
-  metadata?: {
-    intent?: string
-    confidence?: number
-    extracted_data?: Record<string, unknown>
-  }
+  isMedia?: boolean
+  mediaType?: 'image' | 'video' | 'audio'
 }
 
 interface QuickReply {
   text: string
-  action: 'response' | 'scroll' | 'navigate'
-  value: string
+  emoji?: string
 }
 
-// interface ExtractedData {
-//   name?: string
-//   email?: string
-//   phone?: string
-//   company?: string
-//   industry?: string
-//   budget?: string
-//   timeline?: string
-//   projectType?: string
-//   requirements?: string
-// }
+const AGENT_PHONE = '(860) 705-3417'
+const AGENT_PHONE_E164 = '+18607053417'
 
 const quickReplies: QuickReply[] = [
-  { text: "Tell me about your services", action: 'response', value: 'services' },
-  { text: "What industries do you serve?", action: 'response', value: 'industries' },
-  { text: "How much do you charge?", action: 'response', value: 'pricing' },
-  { text: "Book a consultation", action: 'scroll', value: 'booking' },
-  { text: "Contact information", action: 'response', value: 'contact' }
+  { text: "What services do you offer?", emoji: "💡" },
+  { text: "How does AI automation work?", emoji: "🤖" },
+  { text: "I'd like a quote", emoji: "💰" },
+  { text: "Book a call", emoji: "📅" },
 ]
 
 export default function Chatbot() {
-  // Hidden unless Vercel/runtime has XAI_API_KEY (Grok) — no OpenAI fallback
   const [enabled, setEnabled] = useState(false)
   const [statusChecked, setStatusChecked] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -51,8 +36,8 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm the AI Transformation assistant (powered by Grok). I can help you learn about custom software, AI automation, and our growth packages. What would you like to know?",
-      sender: 'bot',
+      text: "Hey! 👋 I'm your AI assistant. Ask me anything about our services, or text me directly for a faster response.",
+      sender: 'agent',
       timestamp: new Date()
     }
   ])
@@ -60,8 +45,6 @@ export default function Chatbot() {
   const [isTyping, setIsTyping] = useState(false)
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`)
   const [conversationId, setConversationId] = useState<string | null>(null)
-  // const [extractedData, setExtractedData] = useState<ExtractedData>({})
-  // const [leadScore, setLeadScore] = useState(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -91,15 +74,13 @@ export default function Chatbot() {
     scrollToBottom()
   }, [messages])
 
-  // Auto-resize textarea based on content
   useEffect(() => {
     if (!inputRef.current) return
     const el = inputRef.current
     el.style.height = 'auto'
-    el.style.height = Math.min(el.scrollHeight, 160) + 'px' // cap at ~8 lines
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px'
   }, [inputValue])
 
-  // One-time subtle nudge to notify availability
   useEffect(() => {
     if (!enabled) return
     try {
@@ -107,19 +88,17 @@ export default function Chatbot() {
       if (!shown) {
         const t = setTimeout(() => {
           setShowNudge(true)
-          // Hide the nudge after a few seconds
-          const h = setTimeout(() => setShowNudge(false), 6000)
+          const h = setTimeout(() => setShowNudge(false), 5000)
           return () => clearTimeout(h)
-        }, 2500)
+        }, 3000)
         return () => clearTimeout(t)
       }
     } catch {
-      // no-op if sessionStorage unavailable
+      // no-op
     }
   }, [enabled])
 
   const handleQuickReply = (reply: QuickReply) => {
-    // Add user message
     const userMessage: Message = {
       id: Date.now().toString(),
       text: reply.text,
@@ -127,45 +106,44 @@ export default function Chatbot() {
       timestamp: new Date()
     }
     setMessages(prev => [...prev, userMessage])
-
-    // Handle action
-    if (reply.action === 'scroll') {
-      const element = document.getElementById(reply.value)
+    
+    if (reply.text.toLowerCase().includes('book')) {
+      const element = document.getElementById('booking')
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
-    } else if (reply.action === 'response') {
-      handleBotResponse(reply.value)
     }
+    
+    handleAgentResponse(reply.text)
   }
 
-  const handleBotResponse = (responseType: string) => {
+  const handleAgentResponse = (userText: string) => {
     setIsTyping(true)
     
     setTimeout(() => {
-      let responseText = "I'm here to help! You can ask me about our services, industries we serve, pricing, or booking a consultation."
+      let responseText = "I can help with that! Feel free to ask more questions or text me directly at " + AGENT_PHONE + " for an even faster response."
       
-      if (responseType === 'services') {
-        responseText = "We offer 4 main services:\n\n• AI Strategy & Implementation\n• Business Process Automation\n• Data Analytics & Insights\n• Industry-Grade Protection\n\nWould you like to learn more about any specific service?"
-      } else if (responseType === 'industries') {
-        responseText = "We serve 6 different industries:\n\n• Insurance Brokers\n• Real Estate Agents\n• Accounting Firms\n• Medical Offices\n• Law Firms\n• Retail Businesses\n\nWe build custom solutions for any industry that wants to go digital!"
-      } else if (responseType === 'pricing') {
-        responseText = "We offer custom pricing based on your specific needs and project scope. The best way to get an accurate quote is to schedule a free consultation where we can discuss your requirements in detail."
-      } else if (responseType === 'consultation') {
-        responseText = "Great! I'd be happy to help you schedule a consultation. You can either:\n\n• Book directly through our calendar\n• Fill out our contact form\n\nWhich would you prefer?"
-      } else if (responseType === 'contact') {
-        responseText = "You can reach us through:\n\n• 📧 Email: info@aitransformationllc.com\n• 📞 Phone: (860) 705-3417\n• 📅 Book a consultation\n• 📝 Contact form\n\nWhat's the best way to help you?"
+      const lowerText = userText.toLowerCase()
+      
+      if (lowerText.includes('service') || lowerText.includes('offer')) {
+        responseText = "We specialize in:\n\n→ AI Automation & Chatbots\n→ Custom Software Development\n→ Business Process Optimization\n→ Data Analytics Solutions\n\nWant details on any of these? Or text me a quick question anytime 📱"
+      } else if (lowerText.includes('automat') || lowerText.includes('ai') || lowerText.includes('how')) {
+        responseText = "Great question! We build AI agents that handle tasks like:\n\n→ Customer support 24/7\n→ Lead qualification\n→ Appointment scheduling\n→ Document processing\n\nThink of it as having a tireless team member. Want to see it in action?"
+      } else if (lowerText.includes('quote') || lowerText.includes('price') || lowerText.includes('cost')) {
+        responseText = "Pricing depends on your specific needs. Most projects range from $5K-50K.\n\nFor a quick estimate, text me what you're looking to automate and I'll give you a ballpark 📱"
+      } else if (lowerText.includes('book') || lowerText.includes('call') || lowerText.includes('meet')) {
+        responseText = "Perfect! You can:\n\n→ Book directly on our calendar below\n→ Text me at " + AGENT_PHONE + "\n→ Just reply here with your preferred time\n\nI'll get you scheduled with the right person 🗓️"
       }
 
-      const botMessage: Message = {
+      const agentMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: responseText,
-        sender: 'bot',
+        sender: 'agent',
         timestamp: new Date()
       }
-      setMessages(prev => [...prev, botMessage])
+      setMessages(prev => [...prev, agentMessage])
       setIsTyping(false)
-    }, 1000)
+    }, 800 + Math.random() * 400)
   }
 
   const sendMessageToAPI = async (userMessage: Message) => {
@@ -189,48 +167,38 @@ export default function Chatbot() {
 
       const data = await response.json()
       
-      const botMessage: Message = {
+      const agentMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: data.message,
-        sender: 'bot',
+        sender: 'agent',
         timestamp: new Date()
       }
 
-      setMessages(prev => [...prev, botMessage])
+      setMessages(prev => [...prev, agentMessage])
       setConversationId(data.conversationId)
-      
-      // if (data.extractedData) {
-      //   setExtractedData(prev => ({ ...prev, ...data.extractedData }))
-      // }
-      
-      // if (data.leadScore) {
-      //   setLeadScore(data.leadScore)
-      // }
 
-      // If we have enough information, suggest booking
       if (data.isQualified && data.extractedData?.email && !messages.some(m => m.text.includes('schedule') || m.text.includes('book'))) {
         setTimeout(() => {
           const followUpMessage: Message = {
             id: (Date.now() + 2).toString(),
-            text: "Based on our conversation, it sounds like you might be ready for a consultation! Would you like me to help you schedule a meeting with our team?",
-            sender: 'bot',
+            text: "Sounds like we should chat! Book a quick call or text me at " + AGENT_PHONE + " 📱",
+            sender: 'agent',
             timestamp: new Date()
           }
           setMessages(prev => [...prev, followUpMessage])
-        }, 2000)
+        }, 1500)
       }
 
     } catch (error) {
       console.error('Error sending message to API:', error)
       
-      // Fallback to simple response
-      const botMessage: Message = {
+      const agentMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I apologize, but I'm having trouble processing your request right now. Could you please try again or contact us directly at info@aitransformationllc.com?",
-        sender: 'bot',
+        text: "Having a bit of trouble here. Text me directly at " + AGENT_PHONE + " and I'll get right back to you! 📱",
+        sender: 'agent',
         timestamp: new Date()
       }
-      setMessages(prev => [...prev, botMessage])
+      setMessages(prev => [...prev, agentMessage])
     } finally {
       setIsTyping(false)
     }
@@ -250,7 +218,6 @@ export default function Chatbot() {
     setInputValue('')
     setIsTyping(true)
 
-    // Send to API for AI processing
     await sendMessageToAPI(userMessage)
   }
 
@@ -259,124 +226,146 @@ export default function Chatbot() {
       e.preventDefault()
       handleSendMessage()
     }
-    // Shift+Enter falls through to insert newline
   }
 
-  // Hide bubble until status confirms XAI_API_KEY is configured
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+  }
+
   if (!statusChecked || !enabled) {
     return null
   }
 
   return (
     <>
-      {/* Chat Toggle Button */}
+      {/* Text My Agent Toggle Button */}
       <motion.button
         onClick={() => {
           setIsOpen(!isOpen)
           if (showNudge) setShowNudge(false)
           try { sessionStorage.setItem('chat_nudge_shown', '1') } catch {}
         }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-ink hover:bg-signal text-paper rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-[#007AFF] hover:bg-[#0066DD] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
       >
         {showNudge && (
-          <span className="absolute inline-flex h-full w-full rounded-full bg-signal/40 animate-ping" />
+          <span className="absolute inline-flex h-full w-full rounded-full bg-[#007AFF]/40 animate-ping" />
         )}
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+        {isOpen ? (
+          <X size={20} />
+        ) : (
+          <>
+            <MessageSquare size={20} />
+            <span className="text-sm font-medium hidden sm:inline">Text My Agent</span>
+          </>
+        )}
       </motion.button>
 
-      {/* Subtle availability nudge bubble */}
+      {/* Nudge bubble */}
       <AnimatePresence>
         {!isOpen && showNudge && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            className="fixed bottom-24 right-6 z-40 max-w-xs bg-white/90 backdrop-blur-xl border border-[var(--line)] rounded-xl shadow-xl px-4 py-3"
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            className="fixed bottom-20 right-6 z-40 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 max-w-[280px]"
           >
-            <div className="text-sm text-ink">Need help? I&apos;m here to assist.</div>
-            <div className="mt-1 text-xs text-ink-soft">Ask about services, pricing, or booking.</div>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#007AFF] to-[#5856D6] flex items-center justify-center flex-shrink-0">
+                <Smartphone size={18} className="text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-900">Got questions?</p>
+                <p className="text-xs text-gray-500">Text or chat with our AI agent</p>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Chat Window */}
+      {/* SMS-Style Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-24 right-6 z-40 w-96 h-[500px] bg-white/95 backdrop-blur-xl border border-[var(--line)] rounded-2xl shadow-2xl flex flex-col"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="fixed bottom-20 right-6 z-40 w-[360px] h-[520px] bg-[#F2F2F7] rounded-[24px] shadow-2xl flex flex-col overflow-hidden border border-gray-200/50"
           >
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-[var(--line)]">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-signal rounded-lg flex items-center justify-center">
-                  <Bot size={16} className="text-paper" />
+            {/* iMessage-style Header */}
+            <div className="bg-[#F2F2F7] px-4 py-3 border-b border-gray-200/60">
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-[#007AFF] text-sm font-medium hover:opacity-70 transition-opacity"
+                >
+                  Close
+                </button>
+                <div className="text-center">
+                  <div className="w-10 h-10 mx-auto rounded-full bg-gradient-to-br from-[#007AFF] to-[#5856D6] flex items-center justify-center mb-1">
+                    <span className="text-white text-lg">🤖</span>
+                  </div>
+                  <p className="text-xs font-semibold text-gray-900">AI Agent</p>
+                  <p className="text-[10px] text-gray-500">Online now</p>
                 </div>
-                <div>
-                  <h3 className="text-ink font-semibold">AI Assistant</h3>
-                  <p className="text-xs text-ink-soft">Online</p>
-                </div>
+                <a
+                  href={`sms:${AGENT_PHONE_E164}`}
+                  className="text-[#007AFF] text-sm font-medium hover:opacity-70 transition-opacity flex items-center gap-1"
+                >
+                  <Smartphone size={14} />
+                  <span className="hidden sm:inline">SMS</span>
+                </a>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-ink-soft hover:text-ink transition-colors"
-              >
-                <X size={20} />
-              </button>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
-              {messages.map((message) => (
-                <motion.div
-                  key={message.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`flex items-start space-x-2 max-w-[80%] ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.sender === 'user' 
-                        ? 'bg-ink' 
-                        : 'bg-signal'
-                    }`}>
-                      {message.sender === 'user' ? (
-                        <User size={12} className="text-paper" />
-                      ) : (
-                        <Bot size={12} className="text-paper" />
-                      )}
-                    </div>
-                    <div className={`px-4 py-2 rounded-2xl ${
-                      message.sender === 'user'
-                        ? 'bg-ink text-paper'
-                        : 'bg-paper-2 text-ink border border-[var(--line)]'
-                    }`}>
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
-                    </div>
+            {/* Messages Container */}
+            <div className="flex-1 overflow-y-auto px-3 py-4 space-y-2">
+              {messages.map((message, index) => {
+                const isUser = message.sender === 'user'
+                const showTime = index === 0 || 
+                  new Date(messages[index - 1].timestamp).getMinutes() !== new Date(message.timestamp).getMinutes()
+                
+                return (
+                  <div key={message.id}>
+                    {showTime && (
+                      <p className="text-[10px] text-gray-400 text-center mb-2">
+                        {formatTime(message.timestamp)}
+                      </p>
+                    )}
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                      className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                        className={`max-w-[85%] px-4 py-2.5 ${
+                          isUser
+                            ? 'bg-[#007AFF] text-white rounded-[20px] rounded-br-[6px]'
+                            : 'bg-white text-gray-900 rounded-[20px] rounded-bl-[6px] shadow-sm'
+                        }`}
+                      >
+                        <p className="text-[15px] leading-[1.4] whitespace-pre-line">{message.text}</p>
+                      </div>
+                    </motion.div>
                   </div>
-                </motion.div>
-              ))}
+                )
+              })}
               
+              {/* Typing indicator */}
               {isTyping && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
                 >
-                  <div className="flex items-start space-x-2">
-                    <div className="w-6 h-6 bg-signal rounded-full flex items-center justify-center">
-                      <Bot size={12} className="text-paper" />
-                    </div>
-                    <div className="px-4 py-2 bg-paper-2 border border-[var(--line)] rounded-2xl">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-mist rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-mist rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-mist rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                      </div>
+                  <div className="bg-white rounded-[20px] rounded-bl-[6px] shadow-sm px-4 py-3">
+                    <div className="flex items-center gap-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </div>
                   </div>
                 </motion.div>
@@ -386,42 +375,59 @@ export default function Chatbot() {
             </div>
 
             {/* Quick Replies */}
-            {messages.length === 1 && (
-              <div className="p-4 border-t border-[var(--line)]">
-                <div className="grid grid-cols-2 gap-2">
+            {messages.length <= 2 && (
+              <div className="px-3 pb-2">
+                <div className="flex flex-wrap gap-2">
                   {quickReplies.map((reply, index) => (
                     <motion.button
                       key={index}
                       onClick={() => handleQuickReply(reply)}
-                      className="px-3 py-2 text-xs bg-paper-2 hover:bg-signal/10 border border-[var(--line)] hover:border-signal/40 text-ink-soft hover:text-ink rounded-lg transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full text-sm text-gray-700 shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {reply.text}
+                      {reply.emoji && <span>{reply.emoji}</span>}
+                      <span>{reply.text}</span>
                     </motion.button>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Input */}
-            <div className="p-4 border-t border-[var(--line)]">
-              <div className="flex space-x-2">
+            {/* Text directly CTA */}
+            <div className="px-3 pb-2">
+              <a
+                href={`sms:${AGENT_PHONE_E164}?body=Hi! I have a question about your AI services.`}
+                className="flex items-center justify-center gap-2 w-full py-2 bg-white/80 rounded-xl text-sm text-gray-600 hover:bg-white transition-colors border border-gray-100"
+              >
+                <Smartphone size={14} className="text-[#007AFF]" />
+                <span>Text me directly at {AGENT_PHONE}</span>
+                <ArrowRight size={14} className="text-gray-400" />
+              </a>
+            </div>
+
+            {/* Input Area - iMessage style */}
+            <div className="bg-[#F2F2F7] px-3 py-2 border-t border-gray-200/60">
+              <div className="flex items-end gap-2 bg-white rounded-[20px] border border-gray-200 px-3 py-1.5">
                 <textarea
                   ref={inputRef}
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Type your message..."
+                  placeholder="iMessage"
                   rows={1}
-                  className="flex-1 px-4 py-2 bg-paper border border-[var(--line)] rounded-lg text-ink placeholder:text-ink-soft/50 focus:outline-none focus:border-signal/50 transition-colors resize-none max-h-40"
+                  className="flex-1 bg-transparent text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none resize-none max-h-[100px] py-1"
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim()}
-                  className="px-4 py-2 bg-ink hover:bg-signal disabled:bg-mist text-paper rounded-lg transition-all duration-200 flex items-center justify-center"
+                  className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all ${
+                    inputValue.trim()
+                      ? 'bg-[#007AFF] text-white'
+                      : 'bg-gray-200 text-gray-400'
+                  }`}
                 >
-                  <Send size={16} />
+                  <Send size={14} className={inputValue.trim() ? '' : 'opacity-50'} />
                 </button>
               </div>
             </div>
