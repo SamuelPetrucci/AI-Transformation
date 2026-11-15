@@ -27,6 +27,7 @@ import {
   Layers,
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
+import ValueFlow from './ValueFlow'
 
 type DemoId =
   | 'agents'
@@ -54,11 +55,11 @@ const demos: {
   },
   {
     id: 'website',
-    label: 'Web + Agents',
+    label: 'Build & Implement',
     icon: Globe,
-    title: 'Web development + agent automation',
+    title: 'Custom software, agent implementation & staff training',
     blurb:
-      'From brief to live product: design and build the site, then create and wire agents so lead capture, booking, and follow-up run themselves.',
+      'Websites and ops software to organize the business—then AI agent implementation and staff AI training so lead capture, booking, and day-to-day workflows actually stick.',
   },
   {
     id: 'ads',
@@ -179,11 +180,27 @@ function AgentDemo() {
 
 function WebsiteDemo() {
   const stages = [
-    { icon: Search, title: 'Brief', desc: 'Goals, brand, pages, agent scopes' },
-    { icon: Workflow, title: 'Design', desc: 'Theme, UX, conversion paths' },
-    { icon: Globe, title: 'Build', desc: 'Next.js site + integrations' },
-    { icon: Bot, title: 'Agents', desc: 'Lead, booking, follow-up bots' },
-    { icon: Server, title: 'Host + handoff', desc: 'SSL, monitoring, docs' },
+    { icon: Search, title: 'Brief', desc: 'Goals, ops map, pages, and agent scopes' },
+    {
+      icon: Globe,
+      title: 'Custom software',
+      desc: 'Sites, CRMs, booking tools, and ops hubs you own',
+    },
+    {
+      icon: Bot,
+      title: 'Agent implementation',
+      desc: 'Lead, booking, and follow-up agents wired to your stack',
+    },
+    {
+      icon: Users,
+      title: 'Staff AI training',
+      desc: 'Live sessions and playbooks so your team can run it',
+    },
+    {
+      icon: Server,
+      title: 'Operate',
+      desc: 'Host, monitor, and iterate with your team',
+    },
   ]
   const [step, setStep] = useState(0)
   useEffect(() => {
@@ -199,29 +216,29 @@ function WebsiteDemo() {
             <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
             <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-            <span className="ml-2 text-xs text-ink-soft/70">preview.yourbrand.com</span>
+            <span className="ml-2 text-xs text-ink-soft/70">ops.yourbrand.com</span>
           </div>
           <span className="rounded-full bg-signal/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal">
             {stages[step].title}
           </span>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid gap-3 sm:grid-cols-3">
           <motion.div
-            key={`site-${step}`}
+            key={`soft-${step}`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-3 rounded-xl border border-[var(--line)] bg-white/50 p-4"
+            className={`space-y-3 rounded-xl border p-4 ${
+              step >= 1 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/50'
+            }`}
           >
-            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">Website</p>
+            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">Custom software</p>
             <div className="h-3 w-1/3 rounded bg-signal/40" />
             <div className="h-8 w-2/3 rounded bg-ink/10" />
             <div className="h-2 w-full rounded bg-ink/5" />
-            <div className="h-2 w-5/6 rounded bg-ink/5" />
-            <div className="mt-2 grid grid-cols-3 gap-2">
-              <div className="h-12 rounded-lg bg-signal/15" />
-              <div className="h-12 rounded-lg bg-signal/20" />
-              <div className="h-12 rounded-lg bg-ink/5" />
+            <div className="mt-2 grid grid-cols-2 gap-2">
+              <div className="h-10 rounded-lg bg-signal/15" />
+              <div className="h-10 rounded-lg bg-ink/5" />
             </div>
           </motion.div>
 
@@ -231,20 +248,47 @@ function WebsiteDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
             className={`space-y-2 rounded-xl border p-4 ${
-              step >= 3 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/40'
+              step >= 2 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/40'
             }`}
           >
-            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">AI agents</p>
+            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">
+              Agent implementation
+            </p>
             {['Lead triage', 'Book + SMS', 'CRM sync'].map((line, i) => (
               <div
                 key={line}
                 className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs ${
-                  step >= 3 + Math.min(i, 1)
+                  step >= 2 + Math.min(i, 1)
                     ? 'bg-signal/15 text-ink'
                     : 'bg-white/50 text-ink-soft/70'
                 }`}
               >
                 <Bot className="h-3.5 w-3.5 text-signal" />
+                {line}
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            key={`train-${step}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08 }}
+            className={`space-y-2 rounded-xl border p-4 ${
+              step >= 3 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/40'
+            }`}
+          >
+            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">Staff AI training</p>
+            {['Live walkthrough', 'Playbooks', 'Owner handoff'].map((line, i) => (
+              <div
+                key={line}
+                className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs ${
+                  step >= 3
+                    ? 'bg-signal/15 text-ink'
+                    : 'bg-white/50 text-ink-soft/70'
+                }`}
+              >
+                <Users className="h-3.5 w-3.5 text-signal" />
                 {line}
               </div>
             ))}
@@ -271,7 +315,7 @@ function WebsiteDemo() {
       </div>
       <p className="text-sm text-ink-soft">
         <span className="font-medium text-ink">{stages[step].title}:</span> {stages[step].desc}. We
-        design, build, host, and wire agents—so the site ships with automation, not as an afterthought.
+        build the software, implement the agents, and train your staff—so operations stay organized.
       </p>
     </div>
   )
@@ -739,6 +783,15 @@ export default function AutomationShowcase() {
   const [active, setActive] = useState<DemoId>('agents')
   const current = demos.find((d) => d.id === active)!
 
+  const selectDemo = (demoId: string) => {
+    if (demos.some((d) => d.id === demoId)) {
+      setActive(demoId as DemoId)
+      window.requestAnimationFrame(() => {
+        document.getElementById('demo-stage')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      })
+    }
+  }
+
   const scrollToBooking = () => {
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -746,7 +799,7 @@ export default function AutomationShowcase() {
   return (
     <ScrollSlide id="demos" glow="center" className="py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
+        <div className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -761,7 +814,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            See the work in action
+            See how the pieces connect
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -770,12 +823,21 @@ export default function AutomationShowcase() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Clear diagrams for web + agent creation, training & implementation, social automation,
-            ads, and ops rebuilds—how we help you save time, reduce costs, and grow.
+            Trace friction through our three pillars into outcomes—then open a live diagram of agents,
+            web builds, social automation, ads, and ops rebuilds.
           </motion.p>
         </div>
 
-        <div className="relative z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-8 md:mb-10"
+        >
+          <ValueFlow onSelectDemo={selectDemo} />
+        </motion.div>
+
+        <div id="demo-stage" className="relative z-20 scroll-mt-28">
           <div
             role="tablist"
             aria-label="Automation demos"

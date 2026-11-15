@@ -10,7 +10,6 @@ import {
   Check,
   Play,
   MessageSquare,
-  Globe,
   Bot,
   Workflow,
   GraduationCap,
@@ -38,49 +37,64 @@ const capabilities: {
 }[] = [
   {
     id: 'web-agents',
-    label: 'Web + Agents',
-    overline: 'Web development & agent creation',
-    headline: 'We build the site.',
-    highlight: 'Then we wire the agents.',
+    label: 'Build & Implement',
+    overline: 'Web, agents, ops software & staff training',
+    headline: 'We build the systems.',
+    highlight: 'Implement agents. Train your team.',
     blurb:
-      'Custom websites and apps with AI agents baked in—lead triage, booking, follow-up—so the product you launch also runs the busywork.',
+      'Custom websites and ops software to operate and organize the business—plus AI agent implementation and staff AI training so the stack ships, sticks, and your team can run it.',
     steps: [
-      { id: 'brief', label: 'Brief', detail: 'Goals, brand, pages, agent scopes', icon: Search },
-      { id: 'build', label: 'Build', detail: 'Next.js site / app delivery', icon: Code2 },
-      { id: 'agents', label: 'Create agents', detail: 'Intents, tools, guardrails', icon: Bot },
-      { id: 'automate', label: 'Automate', detail: 'CRM, calendar, SMS, email', icon: Workflow },
-      { id: 'live', label: 'Go live', detail: 'Host, monitor, hand off', icon: Rocket },
+      { id: 'brief', label: 'Brief', detail: 'Goals, ops map, agent scopes', icon: Search },
+      {
+        id: 'software',
+        label: 'Custom software',
+        detail: 'Sites, CRMs, booking, ops hubs',
+        icon: Code2,
+      },
+      {
+        id: 'agents',
+        label: 'Agent implementation',
+        detail: 'Intents, tools, guardrails, go-live',
+        icon: Bot,
+      },
+      {
+        id: 'train',
+        label: 'Staff AI training',
+        detail: 'Playbooks, live sessions, handoff',
+        icon: GraduationCap,
+      },
+      { id: 'live', label: 'Operate', detail: 'Host, monitor, iterate with you', icon: Rocket },
     ],
   },
   {
     id: 'training',
     label: 'Train & Implement',
-    overline: 'Training & implementation',
-    headline: 'We ship it.',
-    highlight: 'Then we train your team.',
+    overline: 'Staff AI training & rollout',
+    headline: 'We implement it.',
+    highlight: 'Then we train your staff.',
     blurb:
-      'Discovery → design → pilot → production, with training so the stack sticks. You own the workflows—not a black box you never open.',
+      'AI agent implementation with hands-on staff training—discovery → pilot → production—so your team owns the workflows, not a black box they never open.',
     steps: [
       { id: 'discover', label: 'Discover', detail: 'Process map + ROI score', icon: Search },
       { id: 'design', label: 'Design', detail: 'Scopes, integrations, metrics', icon: Plug },
       { id: 'pilot', label: 'Pilot', detail: '2–4 week sandbox build', icon: Sparkles },
-      { id: 'train', label: 'Train', detail: 'Team playbooks + live sessions', icon: GraduationCap },
+      { id: 'train', label: 'Train staff', detail: 'AI playbooks + live sessions', icon: GraduationCap },
       { id: 'scale', label: 'Scale', detail: 'Production + ongoing optimize', icon: ShieldCheck },
     ],
   },
   {
     id: 'social',
-    label: 'Social Automation',
-    overline: 'Social media automation',
-    headline: 'You run the business.',
-    highlight: 'We keep you posting.',
+    label: 'Content & Ads',
+    overline: 'Automated content engines & product advertising',
+    headline: 'We build content engines.',
+    highlight: 'Advertise your products. Rank organically.',
     blurb:
-      'A configured content + ads engine drafts, schedules, and keeps advertising warm—so your feed stays alive while you stay with customers.',
+      'We build automated content engines for your business and advertising for your products—SEO-optimized so you can earn organic traffic while paid campaigns keep demand warm.',
     steps: [
-      { id: 'brief', label: 'Brief', detail: 'Topics, offers, brand voice', icon: Sparkles },
-      { id: 'draft', label: 'Draft', detail: 'Captions + creative variants', icon: ImageIcon },
-      { id: 'schedule', label: 'Schedule', detail: 'IG + Facebook calendar', icon: CalendarClock },
-      { id: 'ads', label: 'Advertise', detail: 'Meta campaigns stay warm', icon: Megaphone },
+      { id: 'brief', label: 'Brief', detail: 'Offers, keywords, SEO targets', icon: Sparkles },
+      { id: 'draft', label: 'Draft', detail: 'SEO copy + creative variants', icon: ImageIcon },
+      { id: 'schedule', label: 'Publish', detail: 'Calendar + organic posts', icon: CalendarClock },
+      { id: 'ads', label: 'Advertise', detail: 'Product ads that convert', icon: Megaphone },
     ],
   },
 ]
@@ -114,10 +128,11 @@ const feedPosts = [
 
 function WebAgentsDiagram({ step }: { step: number }) {
   const nodes = [
-    { label: 'Website', icon: Globe, x: '8%', y: '22%' },
-    { label: 'AI Agent', icon: Bot, x: '38%', y: '58%' },
-    { label: 'CRM / Calendar', icon: Plug, x: '68%', y: '22%' },
-    { label: 'Customers', icon: Users, x: '78%', y: '68%' },
+    { label: 'Custom software', icon: Code2, x: '14%', y: '24%' },
+    { label: 'AI agents', icon: Bot, x: '50%', y: '22%' },
+    { label: 'Staff training', icon: GraduationCap, x: '86%', y: '28%' },
+    { label: 'Ops hub / CRM', icon: Plug, x: '28%', y: '72%' },
+    { label: 'Your team', icon: Users, x: '72%', y: '74%' },
   ]
   const active = Math.min(step, nodes.length - 1)
 
@@ -125,25 +140,24 @@ function WebAgentsDiagram({ step }: { step: number }) {
     <div className="relative min-h-[340px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] p-4">
       <div className="mb-3 flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-          Agent creation map
+          Build · implement · train
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
-          Building
+          Connecting
         </span>
       </div>
 
       <div className="relative h-[280px] rounded-2xl border border-white/10 bg-gradient-to-br from-signal/10 to-ember/5">
-        {/* Connection lines */}
         <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
           <motion.path
-            d="M 70 80 L 160 170 L 260 80 L 300 190"
+            d="M 55 70 L 180 65 L 310 80 L 100 200 L 260 210"
             fill="none"
             stroke="rgba(24,184,148,0.45)"
             strokeWidth="2"
             strokeDasharray="6 6"
             initial={{ pathLength: 0 }}
-            animate={{ pathLength: Math.min(1, (step + 1) / 4) }}
+            animate={{ pathLength: Math.min(1, (step + 1) / 5) }}
             transition={{ duration: 0.6 }}
           />
         </svg>
@@ -162,7 +176,7 @@ function WebAgentsDiagram({ step }: { step: number }) {
               }}
             >
               <div
-                className={`flex w-[7.5rem] flex-col items-center gap-2 rounded-2xl border px-3 py-3 text-center ${
+                className={`flex w-[7.75rem] flex-col items-center gap-2 rounded-2xl border px-3 py-3 text-center ${
                   i === active
                     ? 'border-signal/60 bg-signal/20 shadow-[0_0_24px_rgba(15,143,117,0.35)]'
                     : isOn
@@ -179,7 +193,7 @@ function WebAgentsDiagram({ step }: { step: number }) {
       </div>
 
       <p className="mt-3 text-xs text-paper/70">
-        Site + agents + tools connected—automation that ships with the product.
+        Ops software + agent implementation + staff AI training—systems your team can run.
       </p>
     </div>
   )
@@ -190,7 +204,7 @@ function TrainingDiagram({ step }: { step: number }) {
     { title: 'Discover', items: ['Process map', 'Tool audit'] },
     { title: 'Design', items: ['Agent scopes', 'Success metrics'] },
     { title: 'Pilot', items: ['Sandbox build', 'Go / no-go'] },
-    { title: 'Train', items: ['Team sessions', 'Playbooks'] },
+    { title: 'Train staff', items: ['AI sessions', 'Playbooks'] },
     { title: 'Scale', items: ['Production', 'Optimize'] },
   ]
 
@@ -487,7 +501,7 @@ export default function SocialContentEngine() {
             </a>
           </div>
           <p className="mt-3 text-xs text-ink-soft/70">
-            One-click tours web agents → training → social. Opens Messages to{' '}
+            One-click tours build & implement → staff training → content & ads. Opens Messages to{' '}
             {CONTACT_CONFIG.SMS_DISPLAY} for a consult by text.
           </p>
         </div>

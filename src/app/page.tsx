@@ -103,8 +103,8 @@ export default function Home() {
         <Header />
         <SlideNav />
         <Hero />
-        <Features />
         <AutomationShowcase />
+        <Features />
         <HowItWorks />
         <WhyChooseUs />
         <SocialAdsPackage />

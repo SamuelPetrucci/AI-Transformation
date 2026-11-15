@@ -9,24 +9,24 @@ const steps = [
     title: 'Discovery & Assessment',
     description:
       'We map where you lose time and money—then match the right mix of software, automation, and modern tech.',
-    image: '/images/discovery.webp',
+    image: '/images/discovery.jpg',
   },
   {
     title: 'Strategy & Planning',
     description:
       'Scope the right engagement: a growth package, an agent pilot, or a custom build—with clear ROI.',
-    image: '/images/strategy.avif',
+    image: '/images/strategy.jpg',
   },
   {
     title: 'Implementation & Training',
     description: 'Ship the software, agents, or packages—and train your team so it sticks.',
-    image: '/images/implementation.webp',
+    image: '/images/implementation.jpg',
   },
   {
     title: 'Optimization & Support',
     description:
       'Continuous monitoring, optimization, and ongoing support to ensure maximum ROI.',
-    image: '/images/optimization.webp',
+    image: '/images/optimization.jpg',
   },
 ]
 
