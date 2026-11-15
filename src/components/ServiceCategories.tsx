@@ -7,7 +7,6 @@ import {
   Bot,
   GraduationCap,
   Megaphone,
-  PiggyBank,
   ArrowRight,
 } from 'lucide-react'
 import { useState } from 'react'
@@ -18,7 +17,6 @@ const iconByLine: Record<string, typeof Code> = {
   'content-engine': Megaphone,
   'ai-agents': Bot,
   'custom-software': Code,
-  'save-on-tech': PiggyBank,
   enablement: GraduationCap,
 }
 
@@ -27,7 +25,6 @@ const imageByLine: Record<string, string> = {
   'content-engine': '/images/strategy.jpg',
   'ai-agents': '/images/ai-solutions.jpg',
   'custom-software': '/images/integration.jpg',
-  'save-on-tech': '/images/analytics.jpg',
   enablement: '/images/consulting.jpg',
 }
 
@@ -85,11 +82,12 @@ export default function ServiceCategories() {
         <div className="mb-12 text-center">
           <p className="overline mb-4">Product offers</p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Five product lines. Clear outcomes.
+            Four product offers. Clear outcomes.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
-            Five product lines—Content Engine, AI Agents, Custom Software, Save on Tech, and
-            Training & Knowledge—each with named products and clear outcomes.
+            Content Engine, AI Agents, Custom Software (own the stack—save on tech), and Training
+            & Knowledge—each with named products. Saving on tech is an outcome of software you own,
+            not a separate line.
           </p>
         </div>
 

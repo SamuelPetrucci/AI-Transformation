@@ -7,7 +7,7 @@ import {
   Check,
   ChevronDown,
   Clock,
-  PiggyBank,
+  GraduationCap,
   TrendingUp,
   Wrench,
 } from 'lucide-react'
@@ -20,8 +20,8 @@ const goalMeta: Record<
 > = {
   grow: { label: 'Grow', icon: TrendingUp },
   'save-time': { label: 'Save time', icon: Clock },
-  'save-money': { label: 'Save money', icon: PiggyBank },
-  'own-stack': { label: 'Own your stack', icon: Wrench },
+  'own-stack': { label: 'Own stack · save on tech', icon: Wrench },
+  enable: { label: 'Enable the team', icon: GraduationCap },
 }
 
 export default function ProductsCatalog() {
@@ -53,7 +53,7 @@ export default function ProductsCatalog() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            Four outcomes. Five product lines.
+            Four product offers. Clear outcomes.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

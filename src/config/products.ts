@@ -24,7 +24,7 @@ export type ProductLine = {
   name: string
   blurb: string
   /** Primary owner goal this line serves */
-  goal: 'grow' | 'save-time' | 'save-money' | 'own-stack'
+  goal: 'grow' | 'save-time' | 'own-stack' | 'enable'
   products: CatalogProduct[]
 }
 
@@ -147,7 +147,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     id: 'custom-software',
     name: 'Custom Software',
     blurb:
-      'Websites, booking tools, CRMs, and custom operation software built for how you work—and owned by you.',
+      'Websites, booking, CRMs, and ops software you own—including rebuilds that replace SaaS you rent, plus integrations and dashboards. Saving on tech is the outcome of owning the stack.',
     goal: 'own-stack',
     products: [
       {
@@ -189,20 +189,11 @@ export const PRODUCT_LINES: ProductLine[] = [
           'Training for your team',
         ],
       },
-    ],
-  },
-  {
-    id: 'save-on-tech',
-    name: 'Save on Tech',
-    blurb:
-      'Replace expensive SaaS you rent with software you own—or connect the tools you already have so nothing leaks.',
-    goal: 'save-money',
-    products: [
       {
         id: 'stack-rebuild',
         name: 'Stack Rebuild (Own vs Rent)',
         job: 'Rebuild a CRM, booking, or ops tool you already pay for',
-        outcome: 'Cut recurring SaaS spend; keep upgrades you actually need',
+        outcome: 'Cut recurring SaaS spend—save on tech by owning it',
         price: { kind: 'quote', amount: 'Project quote', note: 'Fixed build + low hosting vs per-seat rent' },
         includes: [
           'Audit of what you rent today',
@@ -244,7 +235,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     name: 'Training & Knowledge',
     blurb:
       'Get your people and your AI on the same playbook—so automation sticks.',
-    goal: 'save-time',
+    goal: 'enable',
     products: [
       {
         id: 'staff-ai-training',
