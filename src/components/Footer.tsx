@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, Linkedin, MessageSquare } from 'lucide-react'
 import BrandLogo from './BrandLogo'
-import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
+import { CONTACT_CONFIG, getCallHref, getSmsConsultHref } from '@/config/contact'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 
 const exploreLinks = [
@@ -39,13 +39,22 @@ export default function Footer() {
               AI Transformation LLC helps businesses save time, reduce costs, and grow through custom
               software, AI agents, and modern technology solutions.
             </p>
-            <a
-              href={getSmsConsultHref()}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/10 px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-signal/60 hover:bg-signal/15"
-            >
-              <MessageSquare className="h-4 w-4 text-signal" />
-              Text my number for contact
-            </a>
+            <div className="mb-6 flex flex-wrap gap-2">
+              <a
+                href={getSmsConsultHref()}
+                className="inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/10 px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-signal/60 hover:bg-signal/15"
+              >
+                <MessageSquare className="h-4 w-4 text-signal" />
+                Send a text
+              </a>
+              <a
+                href={getCallHref()}
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10"
+              >
+                <Phone className="h-4 w-4 text-signal" />
+                Call
+              </a>
+            </div>
             <div>
               <a
                 href="https://www.linkedin.com/company/ai-transformations/"
@@ -93,13 +102,13 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <MessageSquare className="h-5 w-5 text-signal" />
                 <a href={getSmsConsultHref()} className="transition hover:text-ink">
-                  Text {CONTACT_CONFIG.SMS_DISPLAY}
+                  Send a text
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-signal" />
-                <a href={`tel:${CONTACT_CONFIG.VOICE_E164}`} className="transition hover:text-ink">
-                  {CONTACT_CONFIG.VOICE_DISPLAY}
+                <a href={getCallHref()} className="transition hover:text-ink">
+                  Call
                 </a>
               </div>
               <div className="flex items-center gap-3">

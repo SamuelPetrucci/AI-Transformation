@@ -74,7 +74,7 @@ export default function Hero() {
             See products
           </a>
           <a href={getSmsConsultHref()} className="btn-ghost">
-            Text my number
+            Send a text
           </a>
         </motion.div>
       </div>
