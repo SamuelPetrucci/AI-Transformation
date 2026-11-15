@@ -98,8 +98,8 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Clear monthly plans from $149—content, scheduling, and optional Meta ads—so you stay
-            visible without living in the apps.
+            Start with social from $149—or layer on web builds, agents, and training from the
+            demo above. Content, scheduling, and optional Meta ads so you stay visible.
           </motion.p>
         </div>
 
