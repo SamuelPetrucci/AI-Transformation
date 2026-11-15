@@ -40,7 +40,7 @@ const demos: {
     icon: PiggyBank,
     title: 'Own your tech stack. Reduce costs. Take control of your business data.',
     blurb:
-      'We rebuild the CRM, booking tool, or platform you rent today into software you own—self-hosted, improved, integrated, at a fraction of SaaS cost, so you take control of your business data.',
+      'We rebuild the CRM, booking tool, or platform you rent today into software you own—self-hosted, improved, and integrated. It may not always cost a fraction of SaaS; we work to reduce software cost and assess ROI before we deliver.',
   },
   {
     id: 'agents',
@@ -304,8 +304,8 @@ function OpsSavingsDemo() {
   return (
     <div className="space-y-4">
       <p className="text-sm text-ink-soft">
-        Pick a platform they already pay for. We rebuild it, self-host it, make it better, and keep
-        shipping integrations—so they stop renting forever.
+        It may not always be a fraction of what you pay today—but we work to reduce software cost and
+        assess ROI on the rebuild before we deliver.
       </p>
 
       <div className="flex flex-wrap gap-2">
@@ -418,7 +418,7 @@ function OpsSavingsDemo() {
       <p className="text-xs leading-relaxed text-ink-soft/70">
         CRM, booking, inventory, POS, industry platforms—almost anything they can name can be
         replicated, self-hosted, and improved. Figures are planning examples, not guarantees. We
-        baseline their real stack in discovery, then bridge them off rent forever.
+        baseline the real stack in discovery and size ROI before we build.
       </p>
     </div>
   )
