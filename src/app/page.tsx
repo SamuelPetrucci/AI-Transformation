@@ -21,7 +21,7 @@ export default function Home() {
     url: 'https://aitransformationllc.com',
     logo: 'https://aitransformationllc.com/favicon.svg',
     description:
-      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.',
+      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI assistance, and modern technology solutions.',
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',

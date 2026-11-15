@@ -56,18 +56,19 @@ const demos: {
   },
   {
     id: 'agents',
-    label: 'AI Agents',
+    label: 'AI Assistance',
     icon: Bot,
-    title: 'How agents work',
-    blurb: 'Watch an agent triage a lead, pull context, and hand off a booked call—without a human in the loop.',
+    title: 'Cron jobs, triggers, and tasks',
+    blurb:
+      'Agents fire on schedules or application actions—watch one triage a lead, pull context, and hand off a booked call.',
   },
   {
     id: 'website',
     label: 'Build & Implement',
     icon: Globe,
-    title: 'Custom software, agent implementation & staff training',
+    title: 'Custom software, AI assistance & staff training',
     blurb:
-      'Websites and ops software to organize the business—then AI agent implementation and staff AI training so lead capture, booking, and day-to-day workflows actually stick.',
+      'Websites and operation software to organize the business—then AI Assistance (audit → cron/triggers) and staff training so workflows stick.',
   },
   {
     id: 'ads',
@@ -78,11 +79,11 @@ const demos: {
   },
   {
     id: 'agent-setup',
-    label: 'Agent setup',
+    label: 'Assistance setup',
     icon: Settings2,
-    title: 'Agent creation & training',
+    title: 'Audit → wire cron & triggers → train',
     blurb:
-      'Connect tools, define guardrails, test workflows, train your team, then go live with monitoring.',
+      'Audit efficiency opportunities, connect tools, set cron jobs and triggers, train your team, then go live with monitoring.',
   },
   {
     id: 'marketing',

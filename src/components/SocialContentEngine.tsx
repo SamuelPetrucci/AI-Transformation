@@ -36,13 +36,13 @@ const capabilities: {
   {
     id: 'web-agents',
     label: 'Build & Implement',
-    overline: 'Web, agents, ops software & staff training',
+    overline: 'Web, AI assistance, ops software & staff training',
     headline: 'We build the systems.',
-    highlight: 'Implement agents. Train your team.',
+    highlight: 'AI assistance. Train your team.',
     blurb:
-      'Custom websites and ops software to operate and organize the business—plus AI agent implementation and staff AI training so the stack ships, sticks, and your team can run it.',
+      'Custom websites and operation software—plus AI Assistance: we audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks, with staff training so your team stays in control.',
     steps: [
-      { id: 'brief', label: 'Brief', detail: 'Goals, ops map, agent scopes', icon: Search },
+      { id: 'brief', label: 'Brief', detail: 'Goals, ops map, assistance scopes', icon: Search },
       {
         id: 'software',
         label: 'Custom software',
@@ -51,8 +51,8 @@ const capabilities: {
       },
       {
         id: 'agents',
-        label: 'Agent implementation',
-        detail: 'Intents, tools, guardrails, go-live',
+        label: 'AI assistance',
+        detail: 'Cron jobs, triggers, app actions',
         icon: Bot,
       },
       {
@@ -67,14 +67,14 @@ const capabilities: {
   {
     id: 'training',
     label: 'Train & Implement',
-    overline: 'Staff AI training & rollout',
+    overline: 'Efficiency audit → assistance → staff training',
     headline: 'We implement it.',
     highlight: 'Then we train your staff.',
     blurb:
-      'AI agent implementation with hands-on staff training—discovery → pilot → production—so your team owns the workflows, not a black box they never open.',
+      'Start with an efficiency audit, wire AI Assistance to cron schedules or triggers, then train your staff—discovery → pilot → production so the team owns the workflows.',
     steps: [
-      { id: 'discover', label: 'Discover', detail: 'Process map + ROI score', icon: Search },
-      { id: 'design', label: 'Design', detail: 'Scopes, integrations, metrics', icon: Plug },
+      { id: 'discover', label: 'Audit', detail: 'Efficiency opportunities mapped', icon: Search },
+      { id: 'design', label: 'Design', detail: 'Cron + trigger scopes', icon: Plug },
       { id: 'pilot', label: 'Pilot', detail: '2–4 week sandbox build', icon: Sparkles },
       { id: 'train', label: 'Train staff', detail: 'AI playbooks + live sessions', icon: GraduationCap },
       { id: 'scale', label: 'Scale', detail: 'Production + ongoing optimize', icon: ShieldCheck },
@@ -147,7 +147,7 @@ const feedPosts = [
 function WebAgentsDiagram({ step }: { step: number }) {
   const nodes = [
     { label: 'Custom software', icon: Code2, x: '14%', y: '24%' },
-    { label: 'AI agents', icon: Bot, x: '50%', y: '22%' },
+    { label: 'AI assistance', icon: Bot, x: '50%', y: '22%' },
     { label: 'Staff training', icon: GraduationCap, x: '86%', y: '28%' },
     { label: 'Custom ops software', icon: Plug, x: '28%', y: '72%' },
     { label: 'Your team', icon: Users, x: '72%', y: '74%' },

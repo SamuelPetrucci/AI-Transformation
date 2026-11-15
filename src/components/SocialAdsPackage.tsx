@@ -109,9 +109,10 @@ const outcomes = [
 ]
 
 const relatedProducts = [
-  { product: 'AI Receptionist', line: 'AI Workforce', pricing: 'Setup quote' },
-  { product: 'Lead Follow-up Agent', line: 'AI Workforce', pricing: 'Setup quote' },
-  { product: 'Agent Care Plan', line: 'AI Workforce', pricing: '$99–$299/mo' },
+  { product: 'Efficiency Audit', line: 'AI Assistance', pricing: 'Audit quote' },
+  { product: 'Scheduled Assistance (Cron)', line: 'AI Assistance', pricing: 'Setup quote' },
+  { product: 'Triggered Assistance', line: 'AI Assistance', pricing: 'Setup quote' },
+  { product: 'Assistance Care Plan', line: 'AI Assistance', pricing: '$99–$299/mo' },
   { product: 'Business Website System', line: 'Custom Software', pricing: 'Project quote' },
   { product: 'CRM & Custom Operation Software', line: 'Custom Software', pricing: 'Project quote' },
   { product: 'Stack Rebuild (Own vs Rent)', line: 'Save on Tech', pricing: 'Project quote' },
@@ -160,7 +161,7 @@ export default function SocialAdsPackage() {
           >
             One product line in the catalog: we train the agent on your business, draft for any media
             platforms you use, and require human approval on every piece—then you can layer AI
-            Workforce, Custom Software, or Save on Tech when you’re ready.
+            AI Assistance, Custom Software, or Save on Tech when you’re ready.
           </motion.p>
         </div>
 
@@ -226,7 +227,7 @@ export default function SocialAdsPackage() {
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
             Monthly Content Engine products—from one channel to multi-platform posting plus ads.
-            See the full product catalog above for AI Workforce, Custom Software, and Save on Tech.
+            See the full product catalog above for AI Assistance, Custom Software, and Save on Tech.
           </motion.p>
         </div>
 
@@ -328,7 +329,7 @@ export default function SocialAdsPackage() {
             Other products that pair well
           </h3>
           <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-ink-soft">
-            Content Engine grows demand. AI Workforce, Custom Software, and Save on Tech help you
+            Content Engine grows demand. AI Assistance, Custom Software, and Save on Tech help you
             capture it—and cut what you rent. Full catalog is in Products above.
           </p>
           <div className="mt-6 overflow-hidden rounded-3xl border border-[var(--line)]">

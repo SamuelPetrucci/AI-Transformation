@@ -49,7 +49,7 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.12 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg"
         >
-          Content Engine, AI Workforce, Custom Software, Save on Tech, and Training & Knowledge—
+          Content Engine, AI Assistance, Custom Software, Save on Tech, and Training & Knowledge—
           clear products with outcomes, not a vague service menu.
         </motion.p>
 
