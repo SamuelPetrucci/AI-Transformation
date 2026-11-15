@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Sparkles,
@@ -21,378 +21,358 @@ import {
   Plug,
   ShieldCheck,
   Pause,
+  ArrowRight,
+  Building2,
+  Target,
+  Wrench,
 } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
 
-type CapabilityId = 'web-agents' | 'training' | 'social'
+type SolutionId = 'web-agents' | 'training' | 'social' | 'overview'
 
-const capabilities: {
-  id: CapabilityId
+const solutions: {
+  id: Exclude<SolutionId, 'overview'>
   label: string
-  overline: string
+  short: string
   headline: string
   highlight: string
   blurb: string
-  steps: { id: string; label: string; detail: string; icon: typeof Sparkles }[]
+  businessNeed: string
+  bridgeWork: string
+  techOutcome: string
+  layers: { id: string; label: string; detail: string; icon: typeof Sparkles }[]
 }[] = [
   {
     id: 'web-agents',
     label: 'Web + Agents',
-    overline: 'Web development & agent creation',
-    headline: 'We build the site.',
-    highlight: 'Then we wire the agents.',
+    short: 'Sites & automation',
+    headline: 'We build the product.',
+    highlight: 'You keep the customers.',
     blurb:
-      'Custom websites and apps with AI agents baked in—lead triage, booking, follow-up—so the product you launch also runs the busywork.',
-    steps: [
-      { id: 'brief', label: 'Brief', detail: 'Goals, brand, pages, agent scopes', icon: Search },
-      { id: 'build', label: 'Build', detail: 'Next.js site / app delivery', icon: Code2 },
-      { id: 'agents', label: 'Create agents', detail: 'Intents, tools, guardrails', icon: Bot },
-      { id: 'automate', label: 'Automate', detail: 'CRM, calendar, SMS, email', icon: Workflow },
-      { id: 'live', label: 'Go live', detail: 'Host, monitor, hand off', icon: Rocket },
+      'Custom sites and apps with agents wired in—lead triage, booking, follow-up—so tech handles the busywork and you stay on the work that pays.',
+    businessNeed: 'Leads, bookings, brand presence',
+    bridgeWork: 'Scope → build → wire agents → train',
+    techOutcome: 'Owned website + live agents',
+    layers: [
+      { id: 'brief', label: 'Brief', detail: 'Goals, brand, agent scopes', icon: Search },
+      { id: 'build', label: 'Build', detail: 'Next.js site / app', icon: Code2 },
+      { id: 'agents', label: 'Agents', detail: 'Intents, tools, guardrails', icon: Bot },
+      { id: 'automate', label: 'Automate', detail: 'CRM, calendar, SMS', icon: Workflow },
+      { id: 'live', label: 'Go live', detail: 'Host, monitor, handoff', icon: Rocket },
     ],
   },
   {
     id: 'training',
     label: 'Train & Implement',
-    overline: 'Training & implementation',
-    headline: 'We ship it.',
-    highlight: 'Then we train your team.',
+    short: 'Adoption that sticks',
+    headline: 'We ship the system.',
+    highlight: 'Your team owns it.',
     blurb:
-      'Discovery → design → pilot → production, with training so the stack sticks. You own the workflows—not a black box you never open.',
-    steps: [
-      { id: 'discover', label: 'Discover', detail: 'Process map + ROI score', icon: Search },
-      { id: 'design', label: 'Design', detail: 'Scopes, integrations, metrics', icon: Plug },
-      { id: 'pilot', label: 'Pilot', detail: '2–4 week sandbox build', icon: Sparkles },
-      { id: 'train', label: 'Train', detail: 'Team playbooks + live sessions', icon: GraduationCap },
-      { id: 'scale', label: 'Scale', detail: 'Production + ongoing optimize', icon: ShieldCheck },
+      'Discovery through production with training baked in—so the stack isn’t a black box. Your people know how it works and what to do next.',
+    businessNeed: 'Adoption, clarity, ROI',
+    bridgeWork: 'Discover → pilot → train → scale',
+    techOutcome: 'Running workflows + playbooks',
+    layers: [
+      { id: 'discover', label: 'Discover', detail: 'Process map + ROI', icon: Search },
+      { id: 'design', label: 'Design', detail: 'Scopes & metrics', icon: Plug },
+      { id: 'pilot', label: 'Pilot', detail: 'Sandbox go / no-go', icon: Sparkles },
+      { id: 'train', label: 'Train', detail: 'Sessions + playbooks', icon: GraduationCap },
+      { id: 'scale', label: 'Scale', detail: 'Production + optimize', icon: ShieldCheck },
     ],
   },
   {
     id: 'social',
     label: 'Social Automation',
-    overline: 'Social media automation',
+    short: 'Content & ads engine',
     headline: 'You run the business.',
     highlight: 'We keep you posting.',
     blurb:
       'A configured content + ads engine drafts, schedules, and keeps advertising warm—so your feed stays alive while you stay with customers.',
-    steps: [
-      { id: 'brief', label: 'Brief', detail: 'Topics, offers, brand voice', icon: Sparkles },
-      { id: 'draft', label: 'Draft', detail: 'Captions + creative variants', icon: ImageIcon },
-      { id: 'schedule', label: 'Schedule', detail: 'IG + Facebook calendar', icon: CalendarClock },
-      { id: 'ads', label: 'Advertise', detail: 'Meta campaigns stay warm', icon: Megaphone },
+    businessNeed: 'Visibility without the time sink',
+    bridgeWork: 'Brief → draft → approve → publish',
+    techOutcome: 'Calendar + Meta ads staying warm',
+    layers: [
+      { id: 'brief', label: 'Brief', detail: 'Topics, offers, voice', icon: Sparkles },
+      { id: 'draft', label: 'Draft', detail: 'Captions + creative', icon: ImageIcon },
+      { id: 'schedule', label: 'Schedule', detail: 'IG + Facebook', icon: CalendarClock },
+      { id: 'ads', label: 'Advertise', detail: 'Campaigns stay warm', icon: Megaphone },
     ],
   },
 ]
 
-const feedPosts = [
+const architectureColumns = [
   {
-    platform: 'Instagram',
-    tone: 'from-ember/40 to-ember/30',
-    title: 'Before vs after HVAC tune-up',
-    caption: 'Same truck. New booking flow. Posts went out while you were on jobs.',
+    id: 'business',
+    title: 'Your business',
+    subtitle: 'Focus here',
+    tone: 'ember' as const,
+    items: [
+      { icon: Users, label: 'Customers' },
+      { icon: Wrench, label: 'Operations' },
+      { icon: Target, label: 'Growth' },
+    ],
   },
   {
-    platform: 'Facebook',
-    tone: 'from-signal/40 to-signal-bright/25',
-    title: 'Spring service special',
-    caption: 'Caption + creative drafted, scheduled, and tracked—no late nights in Canva.',
+    id: 'bridge',
+    title: 'AIT bridge',
+    subtitle: 'We sit here',
+    tone: 'signal' as const,
+    items: [
+      { icon: Search, label: 'Discover' },
+      { icon: Code2, label: 'Build' },
+      { icon: GraduationCap, label: 'Train' },
+      { icon: Workflow, label: 'Run' },
+    ],
   },
   {
-    platform: 'Meta Ads',
-    tone: 'from-signal/45 to-signal-bright/30',
-    title: 'Lead form campaign live',
-    caption: 'Constant presence. Your ad budget works while you run the business.',
-  },
-  {
-    platform: 'Instagram',
-    tone: 'from-ember/35 to-signal/30',
-    title: 'Team tip Tuesday',
-    caption: 'Calendar fills itself. You approve. We publish and keep the feed warm.',
+    id: 'tech',
+    title: 'Solutions',
+    subtitle: 'We deliver these',
+    tone: 'mist' as const,
+    items: [
+      { icon: Globe, label: 'Web / Apps' },
+      { icon: Bot, label: 'AI Agents' },
+      { icon: Megaphone, label: 'Social / Ads' },
+      { icon: Plug, label: 'Integrations' },
+    ],
   },
 ]
 
-function WebAgentsDiagram({ step }: { step: number }) {
-  const nodes = [
-    { label: 'Website', icon: Globe, x: '8%', y: '22%' },
-    { label: 'AI Agent', icon: Bot, x: '38%', y: '58%' },
-    { label: 'CRM / Calendar', icon: Plug, x: '68%', y: '22%' },
-    { label: 'Customers', icon: Users, x: '78%', y: '68%' },
-  ]
-  const active = Math.min(step, nodes.length - 1)
+function ArchitectureMap({
+  activeSolution,
+  step,
+}: {
+  activeSolution: SolutionId
+  step: number
+}) {
+  const solution = solutions.find((s) => s.id === activeSolution)
+  const pulseIndex = solution ? step % solution.layers.length : step % 4
+
+  const highlightTech = useMemo(() => {
+    if (activeSolution === 'web-agents') return ['Web / Apps', 'AI Agents', 'Integrations']
+    if (activeSolution === 'training') return ['AI Agents', 'Integrations', 'Web / Apps']
+    if (activeSolution === 'social') return ['Social / Ads', 'Integrations']
+    return ['Web / Apps', 'AI Agents', 'Social / Ads', 'Integrations']
+  }, [activeSolution])
+
+  const highlightBridge = useMemo(() => {
+    if (activeSolution === 'web-agents') return ['Build', 'Run', 'Train']
+    if (activeSolution === 'training') return ['Discover', 'Train', 'Run']
+    if (activeSolution === 'social') return ['Build', 'Run']
+    return ['Discover', 'Build', 'Train', 'Run']
+  }, [activeSolution])
 
   return (
-    <div className="relative min-h-[340px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] p-4">
-      <div className="mb-3 flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-          Agent creation map
-        </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
+    <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] p-4 sm:p-5">
+      <div className="mb-4 flex items-center justify-between gap-2">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-paper/70">
+            Solution architecture
+          </p>
+          <p className="mt-1 text-[11px] text-paper/55">
+            Tech on one side. Your business on the other. We bridge the gap.
+          </p>
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
-          Building
+          {solution ? solution.short : 'Full stack'}
         </span>
       </div>
 
-      <div className="relative h-[280px] rounded-2xl border border-white/10 bg-gradient-to-br from-signal/10 to-ember/5">
-        {/* Connection lines */}
-        <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-          <motion.path
-            d="M 70 80 L 160 170 L 260 80 L 300 190"
-            fill="none"
-            stroke="rgba(24,184,148,0.45)"
-            strokeWidth="2"
-            strokeDasharray="6 6"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: Math.min(1, (step + 1) / 4) }}
-            transition={{ duration: 0.6 }}
-          />
-        </svg>
-
-        {nodes.map((n, i) => {
-          const Icon = n.icon
-          const isOn = i <= active
-          return (
-            <motion.div
-              key={n.label}
-              className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: n.x, top: n.y }}
-              animate={{
-                scale: i === active ? 1.06 : 1,
-                opacity: isOn ? 1 : 0.4,
-              }}
-            >
-              <div
-                className={`flex w-[7.5rem] flex-col items-center gap-2 rounded-2xl border px-3 py-3 text-center ${
-                  i === active
-                    ? 'border-signal/60 bg-signal/20 shadow-[0_0_24px_rgba(15,143,117,0.35)]'
-                    : isOn
-                      ? 'border-white/20 bg-white/10'
-                      : 'border-white/10 bg-black/20'
-                }`}
-              >
-                <Icon className={`h-5 w-5 ${i === active ? 'text-signal-bright' : 'text-paper/80'}`} />
-                <p className="text-xs font-semibold text-paper">{n.label}</p>
-              </div>
-            </motion.div>
-          )
-        })}
-      </div>
-
-      <p className="mt-3 text-xs text-paper/70">
-        Site + agents + tools connected—automation that ships with the product.
-      </p>
-    </div>
-  )
-}
-
-function TrainingDiagram({ step }: { step: number }) {
-  const phases = [
-    { title: 'Discover', items: ['Process map', 'Tool audit'] },
-    { title: 'Design', items: ['Agent scopes', 'Success metrics'] },
-    { title: 'Pilot', items: ['Sandbox build', 'Go / no-go'] },
-    { title: 'Train', items: ['Team sessions', 'Playbooks'] },
-    { title: 'Scale', items: ['Production', 'Optimize'] },
-  ]
-
-  return (
-    <div className="relative min-h-[340px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] p-4">
-      <div className="mb-3 flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-          Implementation runway
-        </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
-          <GraduationCap className="h-3 w-3" />
-          Training included
-        </span>
-      </div>
-
-      <div className="space-y-2">
-        {phases.map((p, i) => {
-          const activeIndex = step % phases.length
-          const isActive = i === activeIndex
-          const isDone = i < activeIndex
-          return (
-            <motion.div
-              key={p.title}
-              animate={{
-                opacity: i <= activeIndex ? 1 : 0.4,
-                x: isActive ? 4 : 0,
-              }}
-              className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 ${
-                isActive
-                  ? 'border-signal/50 bg-signal/20'
-                  : isDone
-                    ? 'border-white/15 bg-white/5'
-                    : 'border-white/10 bg-transparent'
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-stretch">
+        {architectureColumns.map((col, colIndex) => (
+          <div key={col.id} className="contents">
+            <div
+              className={`rounded-2xl border p-3 ${
+                col.id === 'bridge'
+                  ? 'border-signal/50 bg-signal/15 shadow-[0_0_28px_rgba(15,143,117,0.22)]'
+                  : 'border-white/10 bg-white/5'
               }`}
             >
-              <span
-                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${
-                  isDone
-                    ? 'bg-signal text-paper'
-                    : isActive
-                      ? 'bg-signal-bright text-ink'
-                      : 'bg-white/10 text-paper/60'
-                }`}
-              >
-                {isDone ? <Check className="h-3.5 w-3.5" /> : `0${i + 1}`}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-paper">{p.title}</p>
-                <p className="truncate text-xs text-paper/65">{p.items.join(' · ')}</p>
+              <div className="mb-2 flex items-center gap-2">
+                {col.id === 'business' && <Building2 className="h-3.5 w-3.5 text-ember" />}
+                {col.id === 'bridge' && <Workflow className="h-3.5 w-3.5 text-signal-bright" />}
+                {col.id === 'tech' && <Code2 className="h-3.5 w-3.5 text-paper/70" />}
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-paper">
+                    {col.title}
+                  </p>
+                  <p className="text-[10px] text-paper/55">{col.subtitle}</p>
+                </div>
               </div>
-              {p.title === 'Train' && (isActive || isDone) && (
-                <Users className="h-4 w-4 shrink-0 text-signal-bright" />
-              )}
-            </motion.div>
-          )
-        })}
+              <ul className="space-y-1.5">
+                {col.items.map((item, i) => {
+                  const Icon = item.icon
+                  const lit =
+                    col.id === 'tech'
+                      ? highlightTech.includes(item.label)
+                      : col.id === 'bridge'
+                        ? highlightBridge.includes(item.label)
+                        : true
+                  const activePulse =
+                    col.id === 'bridge'
+                      ? highlightBridge[pulseIndex % highlightBridge.length] === item.label
+                      : col.id === 'tech'
+                        ? highlightTech[pulseIndex % highlightTech.length] === item.label
+                        : i === pulseIndex % col.items.length
+
+                  return (
+                    <li
+                      key={item.label}
+                      className={`flex items-center gap-2 rounded-lg border px-2 py-1.5 text-xs transition ${
+                        activePulse
+                          ? 'border-signal/50 bg-signal/20 text-paper'
+                          : lit
+                            ? 'border-white/15 bg-white/5 text-paper/85'
+                            : 'border-transparent text-paper/35'
+                      }`}
+                    >
+                      <Icon className="h-3.5 w-3.5 shrink-0" />
+                      {item.label}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+
+            {colIndex < architectureColumns.length - 1 && (
+              <div className="hidden items-center justify-center sm:flex">
+                <motion.div
+                  animate={{ opacity: [0.35, 1, 0.35], x: [0, 3, 0] }}
+                  transition={{ duration: 1.8, repeat: Infinity, delay: colIndex * 0.2 }}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-signal/40 bg-signal/15 text-signal-bright"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </motion.div>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
+
+      {solution && (
+        <motion.div
+          key={solution.id}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-4 grid gap-2 rounded-xl border border-white/10 bg-white/5 p-3 text-xs text-paper/75 sm:grid-cols-3"
+        >
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-ember/90">Business need</p>
+            <p className="mt-1 text-paper/90">{solution.businessNeed}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-signal-bright">Bridge work</p>
+            <p className="mt-1 text-paper/90">{solution.bridgeWork}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-paper/55">What you get</p>
+            <p className="mt-1 text-paper/90">{solution.techOutcome}</p>
+          </div>
+        </motion.div>
+      )}
+
+      {!solution && (
+        <p className="mt-4 text-xs leading-relaxed text-paper/65">
+          Pick a solution below—or hit one-click demo—to see how each offering flows through the
+          bridge from business need to working tech.
+        </p>
+      )}
     </div>
   )
 }
 
-function SocialDiagram({
+function PipelineStrip({
+  layers,
   step,
-  post,
-  stepLabel,
 }: {
+  layers: { id: string; label: string; detail: string; icon: typeof Sparkles }[]
   step: number
-  post: number
-  stepLabel: string
 }) {
-  const current = feedPosts[post % feedPosts.length]
-  const icons = [Sparkles, ImageIcon, CalendarClock, Megaphone]
-  const StepIcon = icons[step % icons.length]
-
   return (
-    <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] shadow-[0_0_60px_rgba(15,143,117,0.18)]">
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-        <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
-          Live content engine
-        </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
-          {stepLabel}
-        </span>
-      </div>
-
-      <div className="relative min-h-[340px] p-4">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${current.platform}-${post}-${step}`}
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -18, scale: 0.98 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className={`overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${current.tone}`}
-          >
-            <div className="flex items-center justify-between px-4 pt-4">
-              <p className="text-xs font-semibold text-paper/90">{current.platform}</p>
-              <p className="text-[10px] uppercase tracking-wider text-paper/60">Scheduled</p>
-            </div>
-            <div className="mx-4 mt-4 aspect-square rounded-xl border border-white/10 bg-black/25">
-              <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-                <motion.div
-                  animate={{ rotate: [0, 6, -4, 0], scale: [1, 1.04, 1] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                  className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-paper"
-                >
-                  <StepIcon className="h-7 w-7" />
-                </motion.div>
-                <p className="font-display text-lg text-paper">{current.title}</p>
-              </div>
-            </div>
-            <p className="px-4 py-4 text-sm leading-relaxed text-paper/85">{current.caption}</p>
-          </motion.div>
-        </AnimatePresence>
-
-        <motion.div
-          className="mt-4 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs text-paper/75"
-          animate={{ opacity: [0.55, 1, 0.55] }}
-          transition={{ duration: 2.2, repeat: Infinity }}
+    <div className="mt-4 flex flex-wrap gap-2">
+      {layers.map((s, i) => (
+        <div
+          key={s.id}
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+            i === step
+              ? 'border-signal/60 bg-signal/15 text-ink'
+              : i < step
+                ? 'border-signal/30 text-signal'
+                : 'border-[var(--line)] text-ink-soft/70'
+          }`}
         >
-          Engine: {stepLabel.toLowerCase()} → next post queued → ads stay warm
-        </motion.div>
-      </div>
+          {i < step ? <Check className="h-3.5 w-3.5" /> : <s.icon className="h-3.5 w-3.5" />}
+          {s.label}
+        </div>
+      ))}
     </div>
   )
 }
 
 export default function SocialContentEngine() {
-  const [capability, setCapability] = useState<CapabilityId>('web-agents')
+  const [solution, setSolution] = useState<SolutionId>('overview')
   const [step, setStep] = useState(0)
-  const [post, setPost] = useState(0)
   const [running, setRunning] = useState(true)
   const [touring, setTouring] = useState(false)
 
-  const current = capabilities.find((c) => c.id === capability)!
-  const stepCount = current.steps.length
+  const current = solutions.find((s) => s.id === solution)
+  const stepCount = current?.layers.length ?? 4
 
   useEffect(() => {
     setStep(0)
-  }, [capability])
+  }, [solution])
 
   useEffect(() => {
     if (!running || touring) return
     const t = setInterval(() => {
       setStep((s) => (s + 1) % stepCount)
-    }, 2800)
+    }, 2600)
     return () => clearInterval(t)
   }, [running, touring, stepCount])
-
-  useEffect(() => {
-    if (!running || touring || capability !== 'social') return
-    const t = setInterval(() => {
-      setPost((p) => (p + 1) % feedPosts.length)
-    }, 4200)
-    return () => clearInterval(t)
-  }, [running, touring, capability])
 
   const runOneClickDemo = () => {
     setRunning(false)
     setTouring(true)
-    setCapability('web-agents')
+    setSolution('overview')
     setStep(0)
-    setPost(0)
 
-    const sequence: { cap: CapabilityId; steps: number }[] = [
-      { cap: 'web-agents', steps: 5 },
-      { cap: 'training', steps: 5 },
-      { cap: 'social', steps: 4 },
+    const sequence: { id: SolutionId; steps: number }[] = [
+      { id: 'overview', steps: 3 },
+      { id: 'web-agents', steps: 5 },
+      { id: 'training', steps: 5 },
+      { id: 'social', steps: 4 },
     ]
 
-    let capIndex = 0
+    let seqIndex = 0
     let localStep = 0
 
     const tick = () => {
-      const currentSeq = sequence[capIndex]
-      setCapability(currentSeq.cap)
+      const currentSeq = sequence[seqIndex]
+      setSolution(currentSeq.id)
       setStep(localStep)
-      if (currentSeq.cap === 'social' && localStep % 2 === 0) {
-        setPost((p) => (p + 1) % feedPosts.length)
-      }
 
       localStep += 1
       if (localStep >= currentSeq.steps) {
         localStep = 0
-        capIndex += 1
+        seqIndex += 1
       }
 
-      if (capIndex < sequence.length) {
-        window.setTimeout(tick, 1100)
+      if (seqIndex < sequence.length) {
+        window.setTimeout(tick, 1000)
       } else {
         setTouring(false)
         setRunning(true)
-        setCapability('social')
+        setSolution('overview')
         setStep(0)
       }
     }
 
-    window.setTimeout(tick, 600)
+    window.setTimeout(tick, 500)
   }
 
-  const activeStep = current.steps[Math.min(step, current.steps.length - 1)]
+  const activeLayer = current?.layers[Math.min(step, current.layers.length - 1)]
 
   return (
     <div className="relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-white/55">
@@ -400,32 +380,57 @@ export default function SocialContentEngine() {
       <div className="pointer-events-none absolute -left-20 top-1/3 h-64 w-64 rounded-full bg-ember/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-signal/15 blur-3xl" />
 
-      <div className="relative z-10 grid gap-8 p-6 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="relative z-10 grid gap-8 p-6 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div>
-          <p className="overline mb-4 text-signal">{current.overline}</p>
+          <p className="overline mb-4 text-signal">Architecture · how we help</p>
           <h3 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
-            {current.headline}
-            <span className="block text-signal-bright">{current.highlight}</span>
+            {current ? (
+              <>
+                {current.headline}
+                <span className="block text-signal-bright">{current.highlight}</span>
+              </>
+            ) : (
+              <>
+                We bridge tech and business.
+                <span className="block text-signal-bright">You focus on what matters.</span>
+              </>
+            )}
           </h3>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            {current.blurb}
+            {current
+              ? current.blurb
+              : 'Visualize the stack: your business on one side, software and automation on the other—and AI Transformation in the middle translating needs into working systems.'}
           </p>
 
-          <div
-            role="tablist"
-            aria-label="Capability demos"
-            className="mt-7 flex flex-wrap gap-2"
-          >
-            {capabilities.map((cap) => {
-              const isActive = cap.id === capability
+          <div role="tablist" aria-label="Solution architecture" className="mt-7 flex flex-wrap gap-2">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={solution === 'overview'}
+              onClick={() => {
+                setSolution('overview')
+                setStep(0)
+                setTouring(false)
+                setRunning(true)
+              }}
+              className={`rounded-full border px-3.5 py-2 text-xs font-semibold transition sm:text-sm ${
+                solution === 'overview'
+                  ? 'border-signal/60 bg-signal/15 text-ink shadow-[0_0_20px_rgba(15,143,117,0.2)]'
+                  : 'border-[var(--line)] text-ink-soft hover:border-signal/40 hover:text-ink'
+              }`}
+            >
+              Full architecture
+            </button>
+            {solutions.map((s) => {
+              const isActive = s.id === solution
               return (
                 <button
-                  key={cap.id}
+                  key={s.id}
                   type="button"
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => {
-                    setCapability(cap.id)
+                    setSolution(s.id)
                     setStep(0)
                     setTouring(false)
                     setRunning(true)
@@ -436,33 +441,30 @@ export default function SocialContentEngine() {
                       : 'border-[var(--line)] text-ink-soft hover:border-signal/40 hover:text-ink'
                   }`}
                 >
-                  {cap.label}
+                  {s.label}
                 </button>
               )
             })}
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {current.steps.map((s, i) => (
-              <div
-                key={s.id}
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
-                  i === step
-                    ? 'border-signal/60 bg-signal/15 text-ink'
-                    : i < step
-                      ? 'border-signal/30 text-signal'
-                      : 'border-[var(--line)] text-ink-soft/70'
-                }`}
-              >
-                {i < step ? <Check className="h-3.5 w-3.5" /> : <s.icon className="h-3.5 w-3.5" />}
-                {s.label}
-              </div>
-            ))}
-          </div>
+          {current && (
+            <>
+              <PipelineStrip layers={current.layers} step={step} />
+              {activeLayer && (
+                <p className="mt-3 text-sm text-ink-soft">
+                  <span className="font-medium text-ink">{activeLayer.label}:</span>{' '}
+                  {activeLayer.detail}
+                </p>
+              )}
+            </>
+          )}
 
-          <p className="mt-3 text-sm text-ink-soft">
-            <span className="font-medium text-ink">{activeStep.label}:</span> {activeStep.detail}
-          </p>
+          {!current && (
+            <p className="mt-5 text-sm text-ink-soft">
+              Select a solution to trace its path through the bridge—or run the one-click tour of the
+              full architecture.
+            </p>
+          )}
 
           <div className="mt-8 flex flex-wrap gap-3">
             <button type="button" onClick={runOneClickDemo} className="cta-pill" disabled={touring}>
@@ -483,31 +485,27 @@ export default function SocialContentEngine() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10"
             >
-              Book a capability walkthrough
+              Walk the architecture with us
             </a>
           </div>
           <p className="mt-3 text-xs text-ink-soft/70">
-            One-click tours web agents → training → social. Opens Messages to{' '}
+            One-click tours the bridge and each solution. Opens Messages to{' '}
             {CONTACT_CONFIG.SMS_DISPLAY} for a consult by text.
           </p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
+        <div className="relative w-full">
           <div className="absolute -inset-6 rounded-[2rem] bg-signal/10 blur-2xl" />
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
-                key={capability}
-                initial={{ opacity: 0, y: 16 }}
+                key={solution}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
               >
-                {capability === 'web-agents' && <WebAgentsDiagram step={step} />}
-                {capability === 'training' && <TrainingDiagram step={step} />}
-                {capability === 'social' && (
-                  <SocialDiagram step={step} post={post} stepLabel={activeStep.label} />
-                )}
+                <ArchitectureMap activeSolution={solution} step={step} />
               </motion.div>
             </AnimatePresence>
           </div>

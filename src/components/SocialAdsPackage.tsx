@@ -81,7 +81,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Growth packages
+            Start with social
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -89,7 +89,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            Pick the plan. We run the engine.
+            One easy entry. Same bridge.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -98,8 +98,8 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Start with social from $149—or layer on web builds, agents, and training from the
-            demo above. Content, scheduling, and optional Meta ads so you stay visible.
+            Social packages from $149 keep you visible while we bridge the rest—web, agents, and
+            training—so you stay focused on the business.
           </motion.p>
         </div>
 

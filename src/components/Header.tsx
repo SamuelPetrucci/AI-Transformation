@@ -11,7 +11,7 @@ const navItems = [
   { id: 'industries', name: 'Industries', sectionId: null, href: '/industries' },
   { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
-  { id: 'social-ads', name: 'Social Engine', sectionId: 'social-ads', href: null },
+  { id: 'social-ads', name: 'Architecture', sectionId: 'social-ads', href: null },
   {
     id: 'booking',
     name: 'Book Consultation',

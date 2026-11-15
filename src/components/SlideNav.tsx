@@ -8,7 +8,7 @@ const slides = [
   { id: 'demos', label: 'Demos' },
   { id: 'how-it-works', label: 'Process' },
   { id: 'why-us', label: 'Why us' },
-  { id: 'social-ads', label: 'Social' },
+  { id: 'social-ads', label: 'Architecture' },
   { id: 'booking', label: 'Book' },
 ]
 
