@@ -55,7 +55,7 @@ export default function SocialContentEngine() {
     if (!running) return
     const t = setInterval(() => {
       setStep((s) => (s + 1) % pipeline.length)
-    }, 1600)
+    }, 3000)
     return () => clearInterval(t)
   }, [running])
 
@@ -63,7 +63,7 @@ export default function SocialContentEngine() {
     if (!running) return
     const t = setInterval(() => {
       setPost((p) => (p + 1) % feedPosts.length)
-    }, 2400)
+    }, 4500)
     return () => clearInterval(t)
   }, [running])
 
@@ -80,12 +80,12 @@ export default function SocialContentEngine() {
       setStep(i % pipeline.length)
       if (i % 2 === 0) setPost((p) => (p + 1) % feedPosts.length)
       if (i < pipeline.length * 2) {
-        window.setTimeout(tick, 700)
+        window.setTimeout(tick, 1200)
       } else {
         setRunning(true)
       }
     }
-    window.setTimeout(tick, 500)
+    window.setTimeout(tick, 800)
   }
 
   return (
