@@ -8,6 +8,7 @@ import {
   Check,
   Play,
   MessageSquare,
+  Phone,
   Bot,
   GraduationCap,
   Search,
@@ -19,7 +20,7 @@ import {
   Pause,
 } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
-import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
+import { getCallHref, getSmsConsultHref } from '@/config/contact'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 
 type CapabilityId = 'web-agents' | 'training' | 'social'
@@ -606,13 +607,13 @@ export default function SocialContentEngine() {
               {touring ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
               {touring ? 'Playing tour…' : 'One-click demo'}
             </button>
-            <a
-              href={getSmsConsultHref()}
-              className="cta-pill"
-              aria-label={`Text ${CONTACT_CONFIG.SMS_DISPLAY} to start a consult`}
-            >
+            <a href={getSmsConsultHref()} className="cta-pill" aria-label="Send a text">
               <MessageSquare className="h-4 w-4" />
-              Text my number for contact
+              Send a text
+            </a>
+            <a href={getCallHref()} className="cta-pill" aria-label="Call">
+              <Phone className="h-4 w-4" />
+              Call
             </a>
             <a
               href={CALENDLY_CONFIG.CALENDLY_URL}
@@ -623,10 +624,6 @@ export default function SocialContentEngine() {
               Book a capability walkthrough
             </a>
           </div>
-          <p className="mt-3 text-xs text-ink-soft/70">
-            One-click tours build & implement → staff training → content & ads. Opens Messages to{' '}
-            {CONTACT_CONFIG.SMS_DISPLAY} for a consult by text.
-          </p>
         </div>
 
         <div className="relative mx-auto w-full max-w-sm">
