@@ -13,7 +13,7 @@ const steps = [
   },
   {
     title: 'Pick the product',
-    description: 'Content Engine, AI Assistance, Custom Software, or Save on Tech—with clear scope.',
+    description: 'Content Engine, AI agent implementation, Custom Software, or Save on Tech—with clear scope.',
     image: '/images/strategy.jpg',
   },
   {

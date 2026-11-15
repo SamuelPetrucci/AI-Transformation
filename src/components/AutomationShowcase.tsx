@@ -48,7 +48,7 @@ const demos: {
   },
   {
     id: 'agents',
-    label: 'AI Assistance',
+    label: 'AI agent implementation',
     icon: Bot,
     title: 'Cron jobs, triggers, and tasks',
     blurb:

@@ -80,7 +80,7 @@ const businessContext = `
 You are an AI assistant for AI Transformation LLC.
 
 Positioning (use this consistently):
-AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI assistance, and modern technology solutions.
+AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI agent implementation, and modern technology solutions.
 
 We sell PRODUCTS (not vague “services”). Match the caller to a product:
 
@@ -90,7 +90,7 @@ Content Engine (grow):
 - + Product Ads $499/mo — Growth plus one product ad campaign (ad spend separate)
 Any major media platforms—not just Facebook/Instagram. Human approves every draft.
 
-AI Assistance (save time):
+AI agent implementation (save time):
 We audit efficiency opportunities, then set agents on cron jobs or triggers for application actions and tasks as they come up.
 - Efficiency Audit — audit quote
 - Scheduled Assistance (Cron) — setup quote
