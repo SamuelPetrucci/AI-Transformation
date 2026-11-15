@@ -8,7 +8,7 @@ import { CALENDLY_CONFIG } from '@/config/calendly'
 
 const exploreLinks = [
   { label: 'Products', href: '/#products' },
-  { label: 'Demos', href: '/#demos' },
+  { label: 'POCs', href: '/#demos' },
   { label: 'Process', href: '/#how-it-works' },
   { label: 'Blog', href: '/blog' },
   { label: 'Services', href: '/services' },

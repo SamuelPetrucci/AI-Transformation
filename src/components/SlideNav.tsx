@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 const slides = [
   { id: 'home', label: 'Home' },
   { id: 'products', label: 'Products' },
-  { id: 'demos', label: 'Demos' },
+  { id: 'demos', label: 'POCs' },
   { id: 'social-ads', label: 'Engine' },
   { id: 'how-it-works', label: 'Process' },
   { id: 'booking', label: 'Book' },
