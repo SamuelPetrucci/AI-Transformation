@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Sparkles,
-  Image as ImageIcon,
   CalendarClock,
   Megaphone,
   Check,
