@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageSquare, X, Send, Smartphone, ArrowRight } from 'lucide-react'
+import { MessageSquare, X, Send, Smartphone } from 'lucide-react'
 
 interface Message {
   id: string
@@ -20,12 +20,13 @@ interface QuickReply {
 
 const AGENT_PHONE = '(860) 705-3417'
 const AGENT_PHONE_E164 = '+18607053417'
+const AGENT_NAME = 'My Agent'
 
 const quickReplies: QuickReply[] = [
-  { text: "What services do you offer?", emoji: "💡" },
-  { text: "How does AI automation work?", emoji: "🤖" },
-  { text: "I'd like a quote", emoji: "💰" },
-  { text: "Book a call", emoji: "📅" },
+  { text: "What can you help with?", emoji: "💬" },
+  { text: "Tell me about AI automation", emoji: "🤖" },
+  { text: "Get a quote", emoji: "💰" },
+  { text: "Schedule a call", emoji: "📅" },
 ]
 
 export default function Chatbot() {
@@ -36,7 +37,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hey! 👋 I'm your AI assistant. Ask me anything about our services, or text me directly for a faster response.",
+      text: "Hey! 👋 I'm Sam's AI agent. Text me anytime - I can answer questions, send you info, or get you on the calendar.",
       sender: 'agent',
       timestamp: new Date()
     }
@@ -121,18 +122,18 @@ export default function Chatbot() {
     setIsTyping(true)
     
     setTimeout(() => {
-      let responseText = "I can help with that! Feel free to ask more questions or text me directly at " + AGENT_PHONE + " for an even faster response."
+      let responseText = "I got you! Text me anytime at " + AGENT_PHONE + " - I'm always here."
       
       const lowerText = userText.toLowerCase()
       
-      if (lowerText.includes('service') || lowerText.includes('offer')) {
-        responseText = "We specialize in:\n\n→ AI Automation & Chatbots\n→ Custom Software Development\n→ Business Process Optimization\n→ Data Analytics Solutions\n\nWant details on any of these? Or text me a quick question anytime 📱"
-      } else if (lowerText.includes('automat') || lowerText.includes('ai') || lowerText.includes('how')) {
-        responseText = "Great question! We build AI agents that handle tasks like:\n\n→ Customer support 24/7\n→ Lead qualification\n→ Appointment scheduling\n→ Document processing\n\nThink of it as having a tireless team member. Want to see it in action?"
+      if (lowerText.includes('help') || lowerText.includes('can you') || lowerText.includes('what')) {
+        responseText = "I can help you with:\n\n→ Answer questions about our AI services\n→ Send you case studies or info\n→ Get you on Sam's calendar\n→ Give you a quick quote\n\nJust text me what you need 📱"
+      } else if (lowerText.includes('automat') || lowerText.includes('ai') || lowerText.includes('tell')) {
+        responseText = "We build AI agents (like me!) that can:\n\n→ Handle customer questions 24/7\n→ Qualify and follow up with leads\n→ Book appointments automatically\n→ Process documents & data\n\nWant me to send you some examples? Just text me 📱"
       } else if (lowerText.includes('quote') || lowerText.includes('price') || lowerText.includes('cost')) {
-        responseText = "Pricing depends on your specific needs. Most projects range from $5K-50K.\n\nFor a quick estimate, text me what you're looking to automate and I'll give you a ballpark 📱"
-      } else if (lowerText.includes('book') || lowerText.includes('call') || lowerText.includes('meet')) {
-        responseText = "Perfect! You can:\n\n→ Book directly on our calendar below\n→ Text me at " + AGENT_PHONE + "\n→ Just reply here with your preferred time\n\nI'll get you scheduled with the right person 🗓️"
+        responseText = "Projects usually run $5K-50K depending on scope.\n\nText me what you're looking to build and I'll get you a ballpark within a few hours 📱"
+      } else if (lowerText.includes('book') || lowerText.includes('call') || lowerText.includes('schedule') || lowerText.includes('meet')) {
+        responseText = "I'll get you scheduled! You can:\n\n→ Text me your availability\n→ Book directly on the calendar below\n\nWhat works better for you?"
       }
 
       const agentMessage: Message = {
@@ -143,7 +144,7 @@ export default function Chatbot() {
       }
       setMessages(prev => [...prev, agentMessage])
       setIsTyping(false)
-    }, 800 + Math.random() * 400)
+    }, 600 + Math.random() * 300)
   }
 
   const sendMessageToAPI = async (userMessage: Message) => {
@@ -181,7 +182,7 @@ export default function Chatbot() {
         setTimeout(() => {
           const followUpMessage: Message = {
             id: (Date.now() + 2).toString(),
-            text: "Sounds like we should chat! Book a quick call or text me at " + AGENT_PHONE + " 📱",
+            text: "Sounds like we should connect! Text me and I'll get you on the calendar 📱",
             sender: 'agent',
             timestamp: new Date()
           }
@@ -194,7 +195,7 @@ export default function Chatbot() {
       
       const agentMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Having a bit of trouble here. Text me directly at " + AGENT_PHONE + " and I'll get right back to you! 📱",
+        text: "Hmm, having a moment here. Text me at " + AGENT_PHONE + " - I'll respond faster there! 📱",
         sender: 'agent',
         timestamp: new Date()
       }
@@ -257,7 +258,7 @@ export default function Chatbot() {
         ) : (
           <>
             <MessageSquare size={20} />
-            <span className="text-sm font-medium hidden sm:inline">Text My Agent</span>
+            <span className="text-sm font-medium hidden sm:inline">Text {AGENT_NAME}</span>
           </>
         )}
       </motion.button>
@@ -269,15 +270,15 @@ export default function Chatbot() {
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="fixed bottom-20 right-6 z-40 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 max-w-[280px]"
+            className="fixed bottom-20 right-6 z-40 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 max-w-[260px]"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#007AFF] to-[#5856D6] flex items-center justify-center flex-shrink-0">
-                <Smartphone size={18} className="text-white" />
+                <span className="text-lg">🤖</span>
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-900">Got questions?</p>
-                <p className="text-xs text-gray-500">Text or chat with our AI agent</p>
+                <p className="text-sm font-medium text-gray-900">Text {AGENT_NAME}</p>
+                <p className="text-xs text-gray-500">Get answers instantly</p>
               </div>
             </div>
           </motion.div>
@@ -294,7 +295,7 @@ export default function Chatbot() {
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed bottom-20 right-6 z-40 w-[360px] h-[520px] bg-[#F2F2F7] rounded-[24px] shadow-2xl flex flex-col overflow-hidden border border-gray-200/50"
           >
-            {/* iMessage-style Header */}
+            {/* Header */}
             <div className="bg-[#F2F2F7] px-4 py-3 border-b border-gray-200/60">
               <div className="flex items-center justify-between">
                 <button
@@ -304,18 +305,18 @@ export default function Chatbot() {
                   Close
                 </button>
                 <div className="text-center">
-                  <div className="w-10 h-10 mx-auto rounded-full bg-gradient-to-br from-[#007AFF] to-[#5856D6] flex items-center justify-center mb-1">
-                    <span className="text-white text-lg">🤖</span>
+                  <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-br from-[#007AFF] to-[#5856D6] flex items-center justify-center mb-1 shadow-lg">
+                    <span className="text-2xl">🤖</span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-900">AI Agent</p>
-                  <p className="text-[10px] text-gray-500">Online now</p>
+                  <p className="text-sm font-semibold text-gray-900">{AGENT_NAME}</p>
+                  <p className="text-[10px] text-green-600 font-medium">● Online</p>
                 </div>
                 <a
                   href={`sms:${AGENT_PHONE_E164}`}
                   className="text-[#007AFF] text-sm font-medium hover:opacity-70 transition-opacity flex items-center gap-1"
                 >
                   <Smartphone size={14} />
-                  <span className="hidden sm:inline">SMS</span>
+                  <span>Text</span>
                 </a>
               </div>
             </div>
@@ -397,12 +398,11 @@ export default function Chatbot() {
             {/* Text directly CTA */}
             <div className="px-3 pb-2">
               <a
-                href={`sms:${AGENT_PHONE_E164}?body=Hi! I have a question about your AI services.`}
-                className="flex items-center justify-center gap-2 w-full py-2 bg-white/80 rounded-xl text-sm text-gray-600 hover:bg-white transition-colors border border-gray-100"
+                href={`sms:${AGENT_PHONE_E164}?body=Hey! I have a quick question.`}
+                className="flex items-center justify-center gap-2 w-full py-2.5 bg-gradient-to-r from-[#007AFF] to-[#5856D6] rounded-xl text-sm text-white font-medium hover:opacity-90 transition-opacity shadow-sm"
               >
-                <Smartphone size={14} className="text-[#007AFF]" />
-                <span>Text me directly at {AGENT_PHONE}</span>
-                <ArrowRight size={14} className="text-gray-400" />
+                <Smartphone size={16} />
+                <span>Text {AGENT_NAME} → {AGENT_PHONE}</span>
               </a>
             </div>
 
@@ -414,7 +414,7 @@ export default function Chatbot() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="iMessage"
+                  placeholder="Text message"
                   rows={1}
                   className="flex-1 bg-transparent text-[15px] text-gray-900 placeholder:text-gray-400 focus:outline-none resize-none max-h-[100px] py-1"
                 />
