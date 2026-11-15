@@ -70,7 +70,7 @@ export default function Hero() {
             Book Free Consultation
             <ArrowUpRight className="h-4 w-4" />
           </a>
-          <a href="#products" className="btn-ghost">
+          <a href="/products" className="btn-ghost">
             See products
           </a>
           <a href={getSmsConsultHref()} className="btn-ghost">

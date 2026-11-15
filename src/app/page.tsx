@@ -9,8 +9,6 @@ import Footer from '@/components/Footer'
 import HashNavigation from '@/components/HashNavigation'
 import BookCallButton from '@/components/BookCallButton'
 import SlideNav from '@/components/SlideNav'
-import { ALL_PRODUCTS } from '@/config/products'
-
 export default function Home() {
   const structuredData = {
     '@context': 'https://schema.org',
@@ -38,20 +36,6 @@ export default function Home() {
     serviceArea: {
       '@type': 'Country',
       name: 'United States',
-    },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'AI Transformation Products',
-      itemListElement: ALL_PRODUCTS.map((product) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: product.name,
-          description: `${product.job}. ${product.outcome}. ${product.price.amount}${
-            product.price.note ? ` (${product.price.note})` : ''
-          }.`,
-        },
-      })),
     },
   }
 

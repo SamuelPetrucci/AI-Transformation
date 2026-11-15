@@ -27,7 +27,7 @@ export default function ServiceCTA() {
               Book free consultation
               <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <Link href="/#social-ads" className="btn-ghost">
+            <Link href="/content-engine" className="btn-ghost">
               See the social engine
             </Link>
           </div>

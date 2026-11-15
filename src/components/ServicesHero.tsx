@@ -60,7 +60,7 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
-          <Link href="/#products" className="cta-pill">
+          <Link href="/products" className="cta-pill">
             See products
             <ArrowUpRight className="h-4 w-4" />
           </Link>

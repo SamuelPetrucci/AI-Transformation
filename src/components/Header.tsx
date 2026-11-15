@@ -5,9 +5,9 @@ import { Menu, X } from 'lucide-react'
 import BrandLogo from './BrandLogo'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 
-/** Top bar: homepage story first, then secondary pages, then Book CTA. Logo = Home. */
+/** Top bar: Products page first, then homepage sections / secondary pages, then Book CTA. */
 const navItems = [
-  { id: 'products', name: 'Products', sectionId: 'products' as string | null, href: null as string | null },
+  { id: 'products', name: 'Products', sectionId: null as string | null, href: '/products' as string | null },
   { id: 'demos', name: 'Demos', sectionId: 'demos', href: null },
   { id: 'process', name: 'Process', sectionId: 'how-it-works', href: null },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
@@ -29,9 +29,16 @@ export default function Header() {
   const isIndustriesPage = path === '/industries'
   const isServicesPage = path === '/services'
   const isBlogPage = path === '/blog' || path.startsWith('/blog/')
+  const isProductsPage = path === '/products' || path.startsWith('/products/')
+  const isContentEnginePage = path === '/content-engine'
+  const onSubpage =
+    isIndustriesPage ||
+    isServicesPage ||
+    isBlogPage ||
+    isProductsPage ||
+    isContentEnginePage
 
   const scrollToSection = (sectionId: string | null, href: string | null) => {
-    const onSubpage = isIndustriesPage || isServicesPage || isBlogPage
     if (href) {
       if (href.startsWith('http')) {
         window.open(href, '_blank', 'noopener,noreferrer')
@@ -65,13 +72,25 @@ export default function Header() {
       setActiveSection('blog')
       return
     }
+    if (isProductsPage || isContentEnginePage) {
+      setActiveSection('products')
+      return
+    }
 
     const onScrollChrome = () => setScrolled(window.scrollY > 24)
     onScrollChrome()
     window.addEventListener('scroll', onScrollChrome, { passive: true })
 
     // Real homepage section IDs only (matches page.tsx order)
-    const sectionIds = ['home', 'products', 'demos', 'social-ads', 'how-it-works', 'booking', 'contact']
+    const sectionIds = [
+      'home',
+      'products',
+      'demos',
+      'content-engine-teaser',
+      'how-it-works',
+      'booking',
+      'contact',
+    ]
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
@@ -88,9 +107,8 @@ export default function Header() {
           setActiveSection('home')
           return
         }
-        // Content Engine walkthrough sits between demos and process — keep Process nearby highlight
-        if (id === 'social-ads') {
-          setActiveSection('demos')
+        if (id === 'content-engine-teaser') {
+          setActiveSection('products')
           return
         }
         const match = navItems.find((item) => item.id === id || item.sectionId === id)
@@ -104,7 +122,13 @@ export default function Header() {
       window.removeEventListener('scroll', onScrollChrome)
       observer.disconnect()
     }
-  }, [isIndustriesPage, isServicesPage, isBlogPage])
+  }, [
+    isIndustriesPage,
+    isServicesPage,
+    isBlogPage,
+    isProductsPage,
+    isContentEnginePage,
+  ])
 
   return (
     <header

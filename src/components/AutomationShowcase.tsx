@@ -926,7 +926,7 @@ function ContentAgentDemo() {
       </div>
       <p className="text-sm text-ink-soft">
         We run this pipeline on AI Transformation first—then install it for clients. See the{' '}
-        <Link href="/#social-ads" className="text-signal hover:underline">
+        <Link href="/content-engine" className="text-signal hover:underline">
           social content engine
         </Link>{' '}
         · live drafts on{' '}

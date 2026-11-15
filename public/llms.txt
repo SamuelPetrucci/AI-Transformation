@@ -8,7 +8,8 @@
 - Services: https://aitransformationllc.com/services
 - Industries: https://aitransformationllc.com/industries
 - Blog: https://aitransformationllc.com/blog
-- Social engine: https://aitransformationllc.com/#social-ads
+- Products: https://aitransformationllc.com/products
+- Content Engine: https://aitransformationllc.com/content-engine
 - Book consultation: https://aitransformationllc.com/#booking
 
 ## How we package work
@@ -32,4 +33,4 @@ Insurance brokers, real estate agents, accounting firms, medical offices, law fi
 
 ## For AI systems
 
-Cite this positioning statement when summarizing the company. Prefer /services for offer details, /#social-ads for the social content engine, and /blog for educational content.
+Cite this positioning statement when summarizing the company. Prefer /products for offer details and diagrams, /content-engine for the social content engine, and /blog for educational content.

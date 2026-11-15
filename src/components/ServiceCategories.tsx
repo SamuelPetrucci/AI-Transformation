@@ -9,9 +9,11 @@ import {
   Megaphone,
   PiggyBank,
   ArrowRight,
+  ArrowUpRight,
 } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { PRODUCT_LINES } from '@/config/products'
 
 const iconByLine: Record<string, typeof Code> = {
@@ -89,8 +91,19 @@ export default function ServiceCategories() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
             Five product lines—Content Engine, AI Assistance, Custom Software, Save on Tech, and
-            Training & Knowledge—each with named products and clear outcomes.
+            Training & Knowledge—each with named products and clear outcomes. For diagrams and
+            full packages, see{' '}
+            <Link href="/products" className="font-semibold text-signal hover:underline">
+              product offers
+            </Link>
+            .
           </p>
+          <div className="mt-6">
+            <Link href="/products" className="cta-pill inline-flex">
+              Explore product offers
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
