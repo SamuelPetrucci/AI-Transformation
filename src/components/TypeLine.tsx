@@ -7,7 +7,7 @@ const phrases = [
   'content engines',
   'AI agents',
   'custom software',
-  'Save on Tech rebuilds',
+  'software you own',
 ]
 
 type TypeLineProps = {

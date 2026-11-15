@@ -47,7 +47,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Content Engine
+            Content Engines
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -55,7 +55,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
           >
-            How one product line works
+            Tailored engines for how you operate
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -64,8 +64,8 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.05 }}
             className="mt-3 text-base text-ink-soft"
           >
-            Train → script → human-approve → post anywhere. Pricing lives in Products above—this is
-            the walkthrough.
+            We build content engines and frameworks around your business—train → script →
+            human-approve → post anywhere. Pricing lives in Products above—this is the walkthrough.
           </motion.p>
         </div>
 
@@ -105,7 +105,7 @@ export default function SocialAdsPackage() {
             Back to products
           </button>
           <button type="button" onClick={scrollToBooking} className="cta-pill">
-            Get Content Engine
+            Get Content Engines
             <ArrowUpRight className="h-4 w-4" />
           </button>
         </div>

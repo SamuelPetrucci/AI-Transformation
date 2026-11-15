@@ -88,7 +88,7 @@ export default function Header() {
           setActiveSection('home')
           return
         }
-        // Content Engine walkthrough sits between demos and process — keep Process nearby highlight
+        // Content Engines walkthrough sits between demos and process — keep Process nearby highlight
         if (id === 'social-ads') {
           setActiveSection('demos')
           return

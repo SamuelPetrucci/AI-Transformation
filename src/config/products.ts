@@ -30,20 +30,20 @@ export type ProductLine = {
 
 export const PRODUCT_LINES: ProductLine[] = [
   {
-    id: 'content-engine',
-    name: 'Content Engine',
+    id: 'content-engines',
+    name: 'Content Engines',
     blurb:
-      'Trained marketing agent, human approval on every draft, automated posting on any platforms you use—plus optional product ads.',
+      'Tailored content engines and frameworks for how your business operates—trained on your brand, human-approved drafts, posting on the platforms you use, plus optional product ads.',
     goal: 'grow',
     products: [
       {
         id: 'content-starter',
-        name: 'Content Engine Starter',
+        name: 'Content Engines Starter',
         job: 'Stay visible on one channel without hiring a marketer',
         outcome: 'Save hours every week; keep a steady presence',
         price: { kind: 'monthly', amount: '$149/mo' },
         includes: [
-          'Agent trained on your business, brand, and logos',
+          'Engine tailored to your business, brand, and logos',
           '8 SEO-minded posts / month',
           'Human approval before every publish',
           'One platform you choose',
@@ -51,7 +51,7 @@ export const PRODUCT_LINES: ProductLine[] = [
       },
       {
         id: 'content-growth',
-        name: 'Content Engine Growth',
+        name: 'Content Engines Growth',
         job: 'Compound organic reach across the channels that matter',
         outcome: 'Grow traffic and leads with a calendar that runs itself',
         price: { kind: 'monthly', amount: '$299/mo' },
@@ -65,7 +65,7 @@ export const PRODUCT_LINES: ProductLine[] = [
       },
       {
         id: 'content-ads',
-        name: 'Content Engine + Product Ads',
+        name: 'Content Engines + Product Ads',
         job: 'Pair organic posting with managed product advertising',
         outcome: 'Grow demand with paid + organic working together',
         price: {
