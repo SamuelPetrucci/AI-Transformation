@@ -6,10 +6,10 @@ import { useReducedMotion } from 'framer-motion'
 const phrases = [
   'Custom software',
   'AI automation',
+  'Modern tech upgrades',
+  'Application integrations',
   'Automated content engines',
   'Product advertising',
-  'Application integrations',
-  'Modern tech upgrades',
   'Staff AI training',
   'CRM & ops hubs',
 ]
