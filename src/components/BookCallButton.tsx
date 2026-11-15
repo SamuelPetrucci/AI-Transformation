@@ -11,10 +11,10 @@ export default function BookCallButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Book a discovery call on Calendly"
-      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3.5 text-sm font-semibold text-paper shadow-[0_12px_40px_rgba(12,26,23,0.18)] transition hover:-translate-y-px hover:bg-signal"
+      className="btn-primary fixed bottom-6 right-6 z-50 !px-5 !py-3.5 text-sm shadow-[0_12px_40px_rgba(12,26,23,0.18)]"
     >
-      <Calendar className="h-4 w-4" />
-      Book
+      <Calendar className="h-4 w-4 shrink-0" aria-hidden />
+      <span>Book</span>
     </a>
   )
 }

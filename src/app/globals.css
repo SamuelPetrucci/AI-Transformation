@@ -87,8 +87,9 @@ body {
   background: rgba(15, 143, 117, 0.25);
 }
 
+/* Do not set color here — unlayered `color: inherit` beats Tailwind text-* utilities
+   on <a> (e.g. floating Book button: dark text on dark bg). */
 a {
-  color: inherit;
   text-decoration: none;
 }
 

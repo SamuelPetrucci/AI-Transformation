@@ -8,24 +8,22 @@ const steps = [
   {
     title: 'Discovery & Assessment',
     description:
-      'We map where you lose time and money—then match the right mix of software, automation, and modern tech.',
+      'We map where you lose time and money—then point at the product line that fits.',
     image: '/images/discovery.jpg',
   },
   {
-    title: 'Strategy & Planning',
-    description:
-      'Match you to a product—Content Engine, AI Assistance, Custom Software, or Save on Tech—with clear ROI.',
+    title: 'Pick the product',
+    description: 'Content Engine, AI Assistance, Custom Software, or Save on Tech—with clear scope.',
     image: '/images/strategy.jpg',
   },
   {
-    title: 'Implementation & Training',
-    description: 'Ship the software, agents, or packages—and train your team so it sticks.',
+    title: 'Build & train',
+    description: 'Ship it, then train your team so they can run it without us in the room.',
     image: '/images/implementation.jpg',
   },
   {
-    title: 'Optimization & Support',
-    description:
-      'Continuous monitoring, optimization, and ongoing support to ensure maximum ROI.',
+    title: 'Keep it sharp',
+    description: 'Optional care plans for monitoring and tweaks as the business changes.',
     image: '/images/optimization.jpg',
   },
 ]
@@ -58,8 +56,7 @@ export default function HowItWorks() {
             transition={{ delay: 0.06 }}
             className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg"
           >
-            Same process whether you buy Content Engine Starter, AI Assistance, a Stack Rebuild, or
-            CRM & custom operation software.
+            Same four steps for every product—so the path stays simple.
           </motion.p>
         </div>
 

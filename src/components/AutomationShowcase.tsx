@@ -29,15 +29,7 @@ import {
 import ScrollSlide from './ScrollSlide'
 import ValueFlow from './ValueFlow'
 
-type DemoId =
-  | 'agents'
-  | 'website'
-  | 'ads'
-  | 'agent-setup'
-  | 'marketing'
-  | 'ops'
-  | 'discovery'
-  | 'content'
+type DemoId = 'ops' | 'agents' | 'marketing' | 'website'
 
 const demos: {
   id: DemoId
@@ -52,7 +44,7 @@ const demos: {
     icon: PiggyBank,
     title: 'Rebuild their stack. Own it. Pay less.',
     blurb:
-      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost. We’re the bridge.',
+      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost.',
   },
   {
     id: 'agents',
@@ -63,51 +55,20 @@ const demos: {
       'Agents fire on schedules or application actions—watch one triage a lead, pull context, and hand off a booked call.',
   },
   {
-    id: 'website',
-    label: 'Build & Implement',
-    icon: Globe,
-    title: 'Custom software, AI assistance & staff training',
-    blurb:
-      'Websites and operation software to organize the business—then AI Assistance (audit → cron/triggers) and staff training so workflows stick.',
-  },
-  {
-    id: 'ads',
-    label: 'Advertising',
-    icon: Megaphone,
-    title: 'Paid ads that feed pipeline',
-    blurb: 'Campaign setup, creative variants, and lead tracking—paired with your social packages.',
-  },
-  {
-    id: 'agent-setup',
-    label: 'Assistance setup',
-    icon: Settings2,
-    title: 'Audit → wire cron & triggers → train',
-    blurb:
-      'Audit efficiency opportunities, connect tools, set cron jobs and triggers, train your team, then go live with monitoring.',
-  },
-  {
     id: 'marketing',
-    label: 'Social automation',
-    icon: Mail,
-    title: 'Social media automation',
+    label: 'Content & marketing',
+    icon: Megaphone,
+    title: 'Content engine with human approval',
     blurb:
-      'Train the agent, draft for any platforms you use, human-approve every piece, then schedule and advertise—checks and balances built in.',
+      'Train the agent, draft for the platforms you use, approve every piece, then schedule and optionally advertise.',
   },
   {
-    id: 'discovery',
-    label: 'Train & implement',
-    icon: Search,
-    title: 'Training & implementation',
+    id: 'website',
+    label: 'Custom software',
+    icon: Globe,
+    title: 'Sites and ops software you own',
     blurb:
-      'Map processes, score ROI, pilot fast, train the team, then scale what works—so the system sticks.',
-  },
-  {
-    id: 'content',
-    label: 'Content agent',
-    icon: Sparkles,
-    title: 'Daily Grok blog + social agent',
-    blurb:
-      'We orchestrate a Grok content agent on ourselves—draft blog, social hooks, human approve, publish. Lead by example.',
+      'Websites, booking, and custom operation software—built to organize the business and cut SaaS rent.',
   },
 ]
 
@@ -764,22 +725,14 @@ function ContentAgentDemo() {
 
 function DemoPanel({ id }: { id: DemoId }) {
   switch (id) {
-    case 'agents':
-      return <AgentDemo />
-    case 'website':
-      return <WebsiteDemo />
-    case 'ads':
-      return <AdsDemo />
-    case 'agent-setup':
-      return <AgentSetupDemo />
-    case 'marketing':
-      return <MarketingDemo />
     case 'ops':
       return <OpsSavingsDemo />
-    case 'discovery':
-      return <DiscoveryDemo />
-    case 'content':
-      return <ContentAgentDemo />
+    case 'agents':
+      return <AgentDemo />
+    case 'marketing':
+      return <MarketingDemo />
+    case 'website':
+      return <WebsiteDemo />
   }
 }
 
@@ -827,8 +780,7 @@ export default function AutomationShowcase() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Trace friction through our three pillars into outcomes—then open a live diagram of agents,
-            web builds, social automation, ads, and ops rebuilds.
+            Four live walkthroughs—one per product line. Pick a tab to see how it works.
           </motion.p>
         </div>
 

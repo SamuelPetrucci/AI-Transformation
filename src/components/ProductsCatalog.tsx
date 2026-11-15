@@ -1,7 +1,16 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ArrowUpRight, Check, Clock, PiggyBank, TrendingUp, Wrench } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  Clock,
+  PiggyBank,
+  TrendingUp,
+  Wrench,
+} from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { PRODUCT_LINES, type ProductLine } from '@/config/products'
 
@@ -16,25 +25,27 @@ const goalMeta: Record<
 }
 
 export default function ProductsCatalog() {
+  const [openId, setOpenId] = useState<string | null>(null)
+
   const scrollToBooking = () => {
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const scrollToContent = () => {
+  const scrollToEngine = () => {
     document.getElementById('social-ads')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
     <ScrollSlide id="products" glow="right" className="py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+        <div className="mx-auto mb-10 max-w-2xl text-center md:mb-12">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Products
+            What we sell
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -42,7 +53,7 @@ export default function ProductsCatalog() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            Clear products. Real outcomes.
+            Four outcomes. Five product lines.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -51,107 +62,148 @@ export default function ProductsCatalog() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Everything we sell is a product a business owner can buy—to grow, save time, cut tech
-            spend, or own more of the stack. Pick a line, then book a consult to configure it.
+            Pick a line to see the products inside. Nothing else loads until you ask—so it stays
+            clear, not overwhelming.
           </motion.p>
         </div>
 
-        <div className="space-y-14">
-          {PRODUCT_LINES.map((line, lineIndex) => {
+        <div className="mx-auto max-w-3xl space-y-2">
+          {PRODUCT_LINES.map((line) => {
             const meta = goalMeta[line.goal]
             const GoalIcon = meta.icon
-            return (
-              <motion.section
-                key={line.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ delay: lineIndex * 0.04 }}
-              >
-                <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-                  <div className="max-w-2xl">
-                    <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-signal uppercase">
-                      <GoalIcon className="h-3.5 w-3.5" />
-                      {meta.label}
-                    </p>
-                    <h3 className="font-display mt-2 text-2xl font-semibold text-ink sm:text-3xl">
-                      {line.name}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft sm:text-base">
-                      {line.blurb}
-                    </p>
-                  </div>
-                  {line.id === 'content-engine' && (
-                    <button
-                      type="button"
-                      onClick={scrollToContent}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-signal hover:underline"
-                    >
-                      How the engine works
-                      <ArrowUpRight className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
+            const isOpen = openId === line.id
 
-                <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-                  {line.products.map((product) => (
-                    <article
-                      key={product.id}
-                      className={`flex flex-col rounded-2xl border px-5 py-5 backdrop-blur-sm ${
-                        product.recommended
-                          ? 'border-signal/40 bg-gradient-to-b from-signal/15 to-white/55'
-                          : 'border-[var(--line)] bg-white/55'
-                      }`}
+            return (
+              <div
+                key={line.id}
+                className={`overflow-hidden rounded-2xl border transition-colors ${
+                  isOpen
+                    ? 'border-signal/40 bg-white/70'
+                    : 'border-[var(--line)] bg-white/45 hover:border-signal/25'
+                }`}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenId(isOpen ? null : line.id)}
+                  className="flex w-full items-start gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
+                >
+                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-signal/15 text-signal">
+                    <GoalIcon className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-center gap-2">
+                      <span className="font-display text-lg font-semibold text-ink sm:text-xl">
+                        {line.name}
+                      </span>
+                      <span className="font-mono text-[10px] tracking-[0.14em] text-signal uppercase">
+                        {meta.label}
+                      </span>
+                    </span>
+                    <span className="mt-1 block text-sm leading-relaxed text-ink-soft">
+                      {line.blurb}
+                    </span>
+                    {!isOpen && (
+                      <span className="mt-2 block font-mono text-[10px] tracking-wider text-ink-soft/60 uppercase">
+                        {line.products.length} products · tap to open
+                      </span>
+                    )}
+                  </span>
+                  <ChevronDown
+                    className={`mt-2 h-5 w-5 shrink-0 text-ink-soft transition-transform ${
+                      isOpen ? 'rotate-180 text-signal' : ''
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
                     >
-                      <div className="flex items-start justify-between gap-2">
-                        <h4 className="font-display text-lg font-semibold text-ink">
-                          {product.name}
-                        </h4>
-                        {product.recommended && (
-                          <span className="shrink-0 rounded-full bg-signal px-2 py-0.5 text-[9px] font-semibold tracking-wider text-paper uppercase">
-                            Popular
-                          </span>
+                      <div className="space-y-3 border-t border-[var(--line)] px-5 py-5 sm:px-6">
+                        {line.products.map((product) => (
+                          <article
+                            key={product.id}
+                            className={`rounded-xl border px-4 py-4 sm:px-5 ${
+                              product.recommended
+                                ? 'border-signal/35 bg-signal/10'
+                                : 'border-[var(--line)] bg-white/50'
+                            }`}
+                          >
+                            <div className="flex flex-wrap items-baseline justify-between gap-2">
+                              <h4 className="font-display text-base font-semibold text-ink sm:text-lg">
+                                {product.name}
+                                {product.recommended && (
+                                  <span className="ml-2 align-middle font-mono text-[9px] tracking-wider text-signal uppercase">
+                                    Popular
+                                  </span>
+                                )}
+                              </h4>
+                              <p className="font-display text-lg font-semibold text-signal">
+                                {product.price.amount}
+                              </p>
+                            </div>
+                            <p className="mt-1.5 text-sm text-ink">{product.job}</p>
+                            <p className="mt-0.5 text-sm text-ink-soft">{product.outcome}</p>
+                            {product.price.note && (
+                              <p className="mt-1 text-xs text-ink-soft/70">{product.price.note}</p>
+                            )}
+                            <ul className="mt-3 space-y-1.5">
+                              {product.includes.map((item) => (
+                                <li
+                                  key={item}
+                                  className="flex items-start gap-2 text-sm text-ink-soft"
+                                >
+                                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-signal" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                            <button
+                              type="button"
+                              onClick={scrollToBooking}
+                              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-signal hover:underline"
+                            >
+                              Get this product
+                              <ArrowUpRight className="h-4 w-4" />
+                            </button>
+                          </article>
+                        ))}
+
+                        {line.id === 'content-engine' && (
+                          <button
+                            type="button"
+                            onClick={scrollToEngine}
+                            className="inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-ink hover:text-signal"
+                          >
+                            See the Content Engine in action
+                            <ArrowUpRight className="h-4 w-4" />
+                          </button>
                         )}
                       </div>
-                      <p className="mt-2 text-sm font-medium text-ink">{product.job}</p>
-                      <p className="mt-1 text-sm text-ink-soft">{product.outcome}</p>
-                      <p className="mt-4 font-display text-xl font-semibold text-signal">
-                        {product.price.amount}
-                      </p>
-                      {product.price.note && (
-                        <p className="mt-0.5 text-xs text-ink-soft/70">{product.price.note}</p>
-                      )}
-                      <ul className="mt-4 flex-1 space-y-2">
-                        {product.includes.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-ink-soft">
-                            <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-signal" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                      <button
-                        type="button"
-                        onClick={scrollToBooking}
-                        className={`mt-5 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
-                          product.recommended
-                            ? 'cta-pill w-full justify-center'
-                            : 'w-full border border-[var(--line)] text-ink hover:border-signal/50 hover:bg-signal/10'
-                        }`}
-                      >
-                        Get this product
-                        <ArrowUpRight className="h-4 w-4" />
-                      </button>
-                    </article>
-                  ))}
-                </div>
-              </motion.section>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             )
           })}
         </div>
 
-        <p className="mt-12 text-center text-sm text-ink-soft">
-          Not sure where to start? Book a consult—we match the product to the outcome you need:{' '}
-          {PRODUCT_LINES.map((l) => l.name).join(' · ')}.
+        <p className="mt-10 text-center text-sm text-ink-soft">
+          Not sure which line fits?{' '}
+          <button
+            type="button"
+            onClick={scrollToBooking}
+            className="font-semibold text-signal hover:underline"
+          >
+            Book a consult
+          </button>
+          —we’ll match the product to the outcome you need.
         </p>
       </div>
     </ScrollSlide>

@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react'
 
 const slides = [
   { id: 'home', label: 'Home' },
-  { id: 'demos', label: 'Demos' },
-  { id: 'features', label: 'Capabilities' },
-  { id: 'how-it-works', label: 'Process' },
-  { id: 'why-us', label: 'Why us' },
   { id: 'products', label: 'Products' },
+  { id: 'demos', label: 'Demos' },
   { id: 'social-ads', label: 'Engine' },
+  { id: 'how-it-works', label: 'Process' },
   { id: 'booking', label: 'Book' },
 ]
 

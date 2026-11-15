@@ -70,11 +70,11 @@ export default function Hero() {
             Book Free Consultation
             <ArrowUpRight className="h-4 w-4" />
           </a>
-          <a href="/services" className="btn-ghost">
-            Explore Services
+          <a href="#products" className="btn-ghost">
+            See products
           </a>
           <a href={getSmsConsultHref()} className="btn-ghost">
-            Text my number for contact
+            Text my number
           </a>
         </motion.div>
       </div>

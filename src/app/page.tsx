@@ -1,9 +1,7 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import Features from '@/components/Features'
 import AutomationShowcase from '@/components/AutomationShowcase'
 import HowItWorks from '@/components/HowItWorks'
-import WhyChooseUs from '@/components/WhyChooseUs'
 import ProductsCatalog from '@/components/ProductsCatalog'
 import SocialAdsPackage from '@/components/SocialAdsPackage'
 import SmartBooking from '@/components/SmartBooking'
@@ -68,12 +66,10 @@ export default function Home() {
         <Header />
         <SlideNav />
         <Hero />
-        <AutomationShowcase />
-        <Features />
-        <HowItWorks />
-        <WhyChooseUs />
         <ProductsCatalog />
+        <AutomationShowcase />
         <SocialAdsPackage />
+        <HowItWorks />
         <SmartBooking />
         <Footer />
       </main>
