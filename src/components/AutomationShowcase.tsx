@@ -54,10 +54,11 @@ const demos: {
   },
   {
     id: 'website',
-    label: 'Websites',
+    label: 'Web + Agents',
     icon: Globe,
-    title: 'Design · Host · Deliver',
-    blurb: 'From brief to live site: design, build, host, and hand off with monitoring included.',
+    title: 'Web development + agent automation',
+    blurb:
+      'From brief to live product: design and build the site, then create and wire agents so lead capture, booking, and follow-up run themselves.',
   },
   {
     id: 'ads',
@@ -70,15 +71,17 @@ const demos: {
     id: 'agent-setup',
     label: 'Agent setup',
     icon: Settings2,
-    title: 'Standing up your first agent',
-    blurb: 'Connect tools, define guardrails, test workflows, then go live with monitoring.',
+    title: 'Agent creation & training',
+    blurb:
+      'Connect tools, define guardrails, test workflows, train your team, then go live with monitoring.',
   },
   {
     id: 'marketing',
-    label: 'Auto marketing',
+    label: 'Social automation',
     icon: Mail,
-    title: 'Automated marketing',
-    blurb: 'Content calendar, captions, scheduling, and nurture sequences—run by AI with your approval gates.',
+    title: 'Social media automation',
+    blurb:
+      'Content calendar, captions, scheduling, and nurture sequences—AI drafts, you approve, we keep the feed warm.',
   },
   {
     id: 'ops',
@@ -90,10 +93,11 @@ const demos: {
   },
   {
     id: 'discovery',
-    label: 'Discovery',
+    label: 'Train & implement',
     icon: Search,
-    title: 'Discovery → Implementation',
-    blurb: 'Map processes, score ROI, pilot fast, then scale what works.',
+    title: 'Training & implementation',
+    blurb:
+      'Map processes, score ROI, pilot fast, train the team, then scale what works—so the system sticks.',
   },
   {
     id: 'content',
@@ -175,44 +179,79 @@ function AgentDemo() {
 
 function WebsiteDemo() {
   const stages = [
-    { icon: Search, title: 'Brief', desc: 'Goals, brand, pages' },
-    { icon: Workflow, title: 'Design', desc: 'Theme + UX' },
-    { icon: Globe, title: 'Build', desc: 'Next.js delivery' },
-    { icon: Server, title: 'Host', desc: 'Vercel + SSL' },
-    { icon: Check, title: 'Deliver', desc: 'Handoff + docs' },
+    { icon: Search, title: 'Brief', desc: 'Goals, brand, pages, agent scopes' },
+    { icon: Workflow, title: 'Design', desc: 'Theme, UX, conversion paths' },
+    { icon: Globe, title: 'Build', desc: 'Next.js site + integrations' },
+    { icon: Bot, title: 'Agents', desc: 'Lead, booking, follow-up bots' },
+    { icon: Server, title: 'Host + handoff', desc: 'SSL, monitoring, docs' },
   ]
   const [step, setStep] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setStep((s) => (s + 1) % stages.length), 1600)
+    const t = setInterval(() => setStep((s) => (s + 1) % stages.length), 1800)
     return () => clearInterval(t)
   }, [stages.length])
 
   return (
     <div className="space-y-5">
       <div className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-gradient-to-br from-paper-2 to-white p-5">
-        <div className="mb-4 flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-          <span className="ml-2 text-xs text-ink-soft/70">preview.yourbrand.com</span>
-        </div>
-        <motion.div
-          key={step}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-3"
-        >
-          <div className="h-3 w-1/3 rounded bg-signal/40" />
-          <div className="h-8 w-2/3 rounded bg-white/15" />
-          <div className="h-2 w-full rounded bg-white/8" />
-          <div className="h-2 w-5/6 rounded bg-white/8" />
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <div className="h-14 rounded-lg bg-signal/15" />
-            <div className="h-14 rounded-lg bg-signal/20" />
-            <div className="h-14 rounded-lg bg-white/8" />
+        <div className="mb-4 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+            <span className="ml-2 text-xs text-ink-soft/70">preview.yourbrand.com</span>
           </div>
-        </motion.div>
+          <span className="rounded-full bg-signal/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal">
+            {stages[step].title}
+          </span>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-[1.2fr_0.8fr]">
+          <motion.div
+            key={`site-${step}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-3 rounded-xl border border-[var(--line)] bg-white/50 p-4"
+          >
+            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">Website</p>
+            <div className="h-3 w-1/3 rounded bg-signal/40" />
+            <div className="h-8 w-2/3 rounded bg-ink/10" />
+            <div className="h-2 w-full rounded bg-ink/5" />
+            <div className="h-2 w-5/6 rounded bg-ink/5" />
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              <div className="h-12 rounded-lg bg-signal/15" />
+              <div className="h-12 rounded-lg bg-signal/20" />
+              <div className="h-12 rounded-lg bg-ink/5" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            key={`agent-${step}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className={`space-y-2 rounded-xl border p-4 ${
+              step >= 3 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/40'
+            }`}
+          >
+            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">AI agents</p>
+            {['Lead triage', 'Book + SMS', 'CRM sync'].map((line, i) => (
+              <div
+                key={line}
+                className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs ${
+                  step >= 3 + Math.min(i, 1)
+                    ? 'bg-signal/15 text-ink'
+                    : 'bg-white/50 text-ink-soft/70'
+                }`}
+              >
+                <Bot className="h-3.5 w-3.5 text-signal" />
+                {line}
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
+
       <div className="flex flex-wrap gap-2">
         {stages.map((s, i) => (
           <div
@@ -231,8 +270,8 @@ function WebsiteDemo() {
         ))}
       </div>
       <p className="text-sm text-ink-soft">
-        Simple services, done right: design, hosting, and delivery with clear milestones—so you go live
-        without the agency bloat.
+        <span className="font-medium text-ink">{stages[step].title}:</span> {stages[step].desc}. We
+        design, build, host, and wire agents—so the site ships with automation, not as an afterthought.
       </p>
     </div>
   )
@@ -279,25 +318,25 @@ function AdsDemo() {
 }
 
 function AgentSetupDemo() {
-  const checklist = [
-    { label: 'Connect CRM + calendar', done: true },
-    { label: 'Define intents & guardrails', done: true },
-    { label: 'Knowledge base ingest', done: true },
-    { label: 'Sandbox test (12 scenarios)', done: false },
-    { label: 'Go-live + monitoring', done: false },
+  const stages = [
+    { label: 'Connect tools', detail: 'CRM, calendar, SMS, email', icon: Database },
+    { label: 'Define intents', detail: 'What the agent can / cannot do', icon: Shield },
+    { label: 'Ingest knowledge', detail: 'FAQs, pricing, playbooks', icon: Layers },
+    { label: 'Sandbox tests', detail: '12 scenarios before go-live', icon: Settings2 },
+    { label: 'Train + launch', detail: 'Team walkthrough + monitoring', icon: Users },
   ]
-  const [tick, setTick] = useState(0)
+  const [step, setStep] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setTick((n) => n + 1), 1400)
+    const t = setInterval(() => setStep((s) => (s + 1) % stages.length), 1600)
     return () => clearInterval(t)
-  }, [])
-  const progress = Math.min(100, 55 + (tick % 5) * 9)
+  }, [stages.length])
+  const progress = Math.round(((step + 1) / stages.length) * 100)
 
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border border-[var(--line)] bg-white/40 p-4">
         <div className="mb-2 flex justify-between text-xs text-ink-soft">
-          <span>Setup progress</span>
+          <span>Agent creation progress</span>
           <span className="text-signal">{progress}%</span>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-white/10">
@@ -309,25 +348,40 @@ function AgentSetupDemo() {
         </div>
       </div>
       <ul className="space-y-2">
-        {checklist.map((item, i) => {
-          const done = item.done || i < Math.floor(progress / 25)
+        {stages.map((item, i) => {
+          const done = i < step
+          const active = i === step
           return (
             <li
               key={item.label}
-              className="flex items-center gap-3 rounded-xl border border-[var(--line)] px-3 py-2.5 text-sm"
+              className={`flex items-start gap-3 rounded-xl border px-3 py-2.5 text-sm ${
+                active
+                  ? 'border-signal/40 bg-signal/15'
+                  : done
+                    ? 'border-[var(--line)] bg-white/40'
+                    : 'border-[var(--line)]'
+              }`}
             >
               <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full ${
-                  done ? 'bg-signal/20 text-signal' : 'bg-white/70 text-ink-soft/70'
+                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+                  done || active ? 'bg-signal/20 text-signal' : 'bg-white/70 text-ink-soft/70'
                 }`}
               >
-                {done ? <Check className="h-3 w-3" /> : <Settings2 className="h-3 w-3" />}
+                {done ? <Check className="h-3 w-3" /> : <item.icon className="h-3 w-3" />}
               </span>
-              <span className={done ? 'text-ink' : 'text-ink-soft/70'}>{item.label}</span>
+              <div>
+                <p className={active || done ? 'font-medium text-ink' : 'text-ink-soft/70'}>
+                  {item.label}
+                </p>
+                <p className="text-xs text-ink-soft">{item.detail}</p>
+              </div>
             </li>
           )
         })}
       </ul>
+      <p className="text-sm text-ink-soft">
+        Creation → guardrails → tests → training. Agents go live with your team ready to supervise.
+      </p>
     </div>
   )
 }
@@ -560,30 +614,52 @@ function DiscoveryDemo() {
     { title: 'Discover', items: ['Process map', 'Tool audit', 'Pain + ROI score'] },
     { title: 'Design', items: ['Agent scopes', 'Integrations', 'Success metrics'] },
     { title: 'Pilot', items: ['2–4 week build', 'Sandbox tests', 'Go / no-go'] },
-    { title: 'Scale', items: ['Production', 'Training', 'Ongoing optimize'] },
+    { title: 'Train & scale', items: ['Team training', 'Production', 'Ongoing optimize'] },
   ]
+  const [active, setActive] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setActive((a) => (a + 1) % phases.length), 1800)
+    return () => clearInterval(t)
+  }, [phases.length])
+
   return (
-    <div className="grid grid-cols-2 gap-3">
-      {phases.map((p, i) => (
-        <motion.div
-          key={p.title}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.08 }}
-          className="rounded-2xl border border-[var(--line)] bg-white/40 p-4"
-        >
-          <p className="font-display text-sm text-signal">
-            0{i + 1} · {p.title}
-          </p>
-          <ul className="mt-2 space-y-1">
-            {p.items.map((item) => (
-              <li key={item} className="text-xs text-ink-soft">
-                · {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      ))}
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-3">
+        {phases.map((p, i) => (
+          <motion.div
+            key={p.title}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: i === active ? 1.02 : 1,
+            }}
+            transition={{ delay: i * 0.05 }}
+            className={`rounded-2xl border p-4 ${
+              i === active
+                ? 'border-signal/45 bg-signal/15 shadow-[0_0_20px_rgba(15,143,117,0.15)]'
+                : i < active
+                  ? 'border-signal/25 bg-white/50'
+                  : 'border-[var(--line)] bg-white/40'
+            }`}
+          >
+            <p className="font-display text-sm text-signal">
+              0{i + 1} · {p.title}
+            </p>
+            <ul className="mt-2 space-y-1">
+              {p.items.map((item) => (
+                <li key={item} className="text-xs text-ink-soft">
+                  · {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+      <p className="text-sm text-ink-soft">
+        Implementation is not a dump-and-run: discovery → pilot → <strong className="text-ink">train your team</strong> →
+        scale what works.
+      </p>
     </div>
   )
 }
@@ -694,8 +770,8 @@ export default function AutomationShowcase() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Agents, websites, ads, marketing, ops rebuilds, and discovery—demos of how we help you
-            save time, reduce costs, and grow.
+            Clear diagrams for web + agent creation, training & implementation, social automation,
+            ads, and ops rebuilds—how we help you save time, reduce costs, and grow.
           </motion.p>
         </div>
 
