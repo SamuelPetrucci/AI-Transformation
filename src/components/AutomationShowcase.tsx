@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import ValueFlow from './ValueFlow'
+import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 
 type DemoId = 'ops' | 'agents' | 'marketing' | 'website'
 
@@ -81,7 +82,10 @@ function AgentDemo() {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % steps.length), 1800)
+    const t = setInterval(
+      () => setActive((a) => (a + 1) % steps.length),
+      PRODUCT_MOTION.stepMs,
+    )
     return () => clearInterval(t)
   }, [steps.length])
 
@@ -100,6 +104,7 @@ function AgentDemo() {
                 opacity: i <= active ? 1 : 0.35,
                 scale: i === active ? 1.01 : 1,
               }}
+              transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
               className={`flex items-start gap-3 rounded-xl border px-3 py-2.5 ${
                 i === active
                   ? 'border-signal/40 bg-signal/15'
@@ -210,7 +215,7 @@ function CrmAppSketch({ beat }: { beat: number }) {
                     borderColor: active ? 'rgba(15,143,117,0.45)' : 'rgba(12,26,23,0.08)',
                     backgroundColor: active ? 'rgba(15,143,117,0.12)' : 'rgba(255,255,255,0.7)',
                   }}
-                  transition={{ duration: 0.35 }}
+                  transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
                   className="rounded-lg border px-2 py-1.5"
                 >
                   <p className="truncate text-[11px] font-medium text-ink">{deal.name}</p>
@@ -384,7 +389,7 @@ function AiAppSketch({ beat }: { beat: number }) {
             initial={{ opacity: 0, x: 8 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -6 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
           >
             <p className="text-[10px] font-semibold uppercase tracking-wider text-signal">
               {insights[active].title}
@@ -413,12 +418,12 @@ function CustomSoftwareDemo() {
     const t = setInterval(() => {
       setAppIndex((i) => (i + 1) % customApps.length)
       setBeat(0)
-    }, 4200)
+    }, PRODUCT_MOTION.rotateMs)
     return () => clearInterval(t)
   }, [])
 
   useEffect(() => {
-    const t = setInterval(() => setBeat((b) => b + 1), 1100)
+    const t = setInterval(() => setBeat((b) => b + 1), PRODUCT_MOTION.beatMs)
     return () => clearInterval(t)
   }, [appIndex])
 
@@ -469,7 +474,7 @@ function CustomSoftwareDemo() {
               initial={{ opacity: 0, y: 14, scale: 0.985 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.99 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
             >
               <div className="mb-3 flex items-center gap-2 border-b border-[var(--line)] pb-2">
                 <span className="flex h-6 w-6 items-center justify-center rounded-md bg-signal/15 text-signal">
@@ -549,7 +554,7 @@ function AgentSetupDemo() {
   ]
   const [step, setStep] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setStep((s) => (s + 1) % stages.length), 1600)
+    const t = setInterval(() => setStep((s) => (s + 1) % stages.length), PRODUCT_MOTION.stepMs)
     return () => clearInterval(t)
   }, [stages.length])
   const progress = Math.round(((step + 1) / stages.length) * 100)
@@ -565,7 +570,7 @@ function AgentSetupDemo() {
           <motion.div
             className="h-full rounded-full bg-gradient-to-r from-signal-bright to-signal"
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: PRODUCT_MOTION.expand, ease: PRODUCT_EASE }}
           />
         </div>
       </div>
@@ -702,7 +707,7 @@ function OpsSavingsDemo() {
   const platform = platforms[active]
 
   useEffect(() => {
-    const t = setInterval(() => setPhase((p) => (p + 1) % bridge.length), 1600)
+    const t = setInterval(() => setPhase((p) => (p + 1) % bridge.length), PRODUCT_MOTION.stepMs)
     return () => clearInterval(t)
   }, [bridge.length])
 
@@ -742,7 +747,7 @@ function OpsSavingsDemo() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
           className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-stretch"
         >
           <div className="rounded-2xl border border-red-400/20 bg-red-500/5 p-4">
@@ -846,7 +851,7 @@ function DiscoveryDemo() {
   ]
   const [active, setActive] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % phases.length), 1800)
+    const t = setInterval(() => setActive((a) => (a + 1) % phases.length), PRODUCT_MOTION.stepMs)
     return () => clearInterval(t)
   }, [phases.length])
 
@@ -903,7 +908,7 @@ function ContentAgentDemo() {
   ]
   const [step, setStep] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setStep((s) => (s + 1) % flow.length), 1500)
+    const t = setInterval(() => setStep((s) => (s + 1) % flow.length), PRODUCT_MOTION.stepMs)
     return () => clearInterval(t)
   }, [flow.length])
 
@@ -911,8 +916,13 @@ function ContentAgentDemo() {
     <div className="space-y-4">
       <div className="space-y-2">
         {flow.map((label, i) => (
-          <div
+          <motion.div
             key={label}
+            animate={{
+              opacity: i <= step ? 1 : 0.45,
+              scale: i === step ? 1.01 : 1,
+            }}
+            transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
             className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm ${
               i === step
                 ? 'border-signal/40 bg-signal/15 text-ink'
@@ -925,7 +935,7 @@ function ContentAgentDemo() {
               {i + 1}
             </span>
             {label}
-          </div>
+          </motion.div>
         ))}
       </div>
       <p className="text-sm text-ink-soft">
@@ -1058,7 +1068,7 @@ export default function AutomationShowcase() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
               >
                 <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
