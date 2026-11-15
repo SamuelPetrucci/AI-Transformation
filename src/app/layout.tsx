@@ -3,8 +3,8 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend",
-  description: "Clear products for business owners: Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Support—including maintenance and support retainers. Book a free consultation.",
+  title: "AI Transformation LLC — Products to Grow, Save Time & Own Your Tech Stack",
+  description: "Clear products for business owners: Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support. Own your stack, reduce costs, own your data.",
   keywords: [
     "custom software",
     "AI agents",
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     "business automation",
     "efficiency audit",
     "content engine",
-    "save on tech",
+    "own your tech stack",
+    "own your data",
     "product advertising",
     "cron agents",
     "stack rebuild",
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend",
-    description: "Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Support—including maintenance and support retainers.",
+    title: "AI Transformation LLC — Products to Grow, Save Time & Own Your Tech Stack",
+    description: "Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.",
     url: 'https://aitransformationllc.com',
     siteName: 'AI Transformation LLC',
     images: [
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend",
-    description: "Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Support—including maintenance and support retainers.",
+    title: "AI Transformation LLC — Products to Grow, Save Time & Own Your Stack",
+    description: "Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.",
     images: ['/og-image.jpg'],
     creator: '@aitransformation',
   },

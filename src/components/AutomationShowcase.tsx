@@ -39,11 +39,11 @@ const demos: {
 }[] = [
   {
     id: 'ops',
-    label: 'Save on tech',
+    label: 'Own your tech',
     icon: PiggyBank,
-    title: 'Rebuild their stack. Own it. Pay less.',
+    title: 'Own your tech stack. Reduce costs. Own your data.',
     blurb:
-      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost.',
+      'We rebuild the CRM, booking tool, or platform you rent today into software you own—self-hosted, improved, integrated, at a fraction of SaaS cost, with your data under your control.',
   },
   {
     id: 'agents',

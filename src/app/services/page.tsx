@@ -7,14 +7,15 @@ import ServiceCTA from '@/components/ServiceCTA'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Products — Content Engine, AI Agents, Software & Save on Tech | AI Transformation LLC',
+  title: 'Products — Content Engine, AI Agents, Software & Own Your Tech Stack | AI Transformation LLC',
   description:
-    'Buy clear products: Content Engine, AI Agents, CRM & custom software, Stack Rebuild, Staff Tech Training, Maintenance & Support retainers, and more.',
+    'Buy clear products: Content Engine, AI Agents, CRM & custom software, Own Your Tech Stack, Staff Tech Training, Maintenance & Support retainers, and more.',
   keywords: [
     'content engine',
     'AI receptionist',
     'custom software',
-    'save on tech',
+    'own your tech stack',
+    'own your data',
     'AI agents',
     'business automation',
     'stack rebuild',
@@ -23,9 +24,9 @@ export const metadata: Metadata = {
     'support retainer',
   ],
   openGraph: {
-    title: 'Products — Grow, Save Time & Cut Tech Spend',
+    title: 'Products — Grow, Save Time & Own Your Tech Stack',
     description:
-      'Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Support—including maintenance and support retainers.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -39,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Products — Grow, Save Time & Cut Tech Spend',
+    title: 'Products — Grow, Save Time & Own Your Tech Stack',
     description:
-      'Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Support—including maintenance and support retainers.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.',
     images: ['/og-image.jpg'],
   },
 }

@@ -12,10 +12,10 @@ export const POSITIONING = {
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
   support:
-    'Clear products to grow, save time, and cut what you spend on tech—open one line at a time.',
-  metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend',
+    'Clear products to grow, save time, and own your tech stack—reduce costs and own your data.',
+  metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Own Your Tech Stack',
   metaDescription:
-    'AI Transformation LLC: Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Support—including maintenance and support retainers.',
+    'AI Transformation LLC: Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.',
   pillars: [
     {
       id: 'custom-software',
@@ -31,7 +31,8 @@ export const POSITIONING = {
     {
       id: 'modern-tech',
       title: 'Modern Technology Solutions',
-      description: 'Content Engine, Save on Tech rebuilds, and the integrations that tie it together.',
+      description:
+        'Content Engines, Own Your Tech Stack rebuilds, and the integrations that tie it together—own the stack, reduce costs, own your data.',
     },
   ],
 } as const
