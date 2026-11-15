@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Sparkles,
-  Image as ImageIcon,
   CalendarClock,
   Megaphone,
   Check,
@@ -87,14 +86,34 @@ const capabilities: {
     label: 'Content & Ads',
     overline: 'Automated content engines & product advertising',
     headline: 'We build content engines.',
-    highlight: 'Advertise your products. Rank organically.',
+    highlight: 'Research. Scripts. Post. Advertise.',
     blurb:
-      'We build automated content engines for your business and advertising for your products—SEO-optimized so you can earn organic traffic while paid campaigns keep demand warm.',
+      'An agent researches your market from your business data and brand assets (including logos), plans scripts, then runs automated posting—and product ads—from past content when you have it, or a new plan when you don’t. SEO-optimized for organic traffic so you grow without living in the apps.',
     steps: [
-      { id: 'brief', label: 'Brief', detail: 'Offers, keywords, SEO targets', icon: Sparkles },
-      { id: 'draft', label: 'Draft', detail: 'SEO copy + creative variants', icon: ImageIcon },
-      { id: 'schedule', label: 'Publish', detail: 'Calendar + organic posts', icon: CalendarClock },
-      { id: 'ads', label: 'Advertise', detail: 'Product ads that convert', icon: Megaphone },
+      {
+        id: 'research',
+        label: 'Market research',
+        detail: 'Business data, brand, logos, competitors',
+        icon: Search,
+      },
+      {
+        id: 'scripts',
+        label: 'Plan scripts',
+        detail: 'Hooks, offers, SEO-minded outlines',
+        icon: Sparkles,
+      },
+      {
+        id: 'post',
+        label: 'Auto-posting',
+        detail: 'Configured calendar + approvals',
+        icon: CalendarClock,
+      },
+      {
+        id: 'ads',
+        label: 'Product ads',
+        detail: 'From past content—or a new approach',
+        icon: Megaphone,
+      },
     ],
   },
 ]
@@ -276,7 +295,7 @@ function SocialDiagram({
   stepLabel: string
 }) {
   const current = feedPosts[post % feedPosts.length]
-  const icons = [Sparkles, ImageIcon, CalendarClock, Megaphone]
+  const icons = [Search, Sparkles, CalendarClock, Megaphone]
   const StepIcon = icons[step % icons.length]
 
   return (
@@ -326,7 +345,7 @@ function SocialDiagram({
           animate={{ opacity: [0.55, 1, 0.55] }}
           transition={{ duration: 2.2, repeat: Infinity }}
         >
-          Engine: {stepLabel.toLowerCase()} → next post queued → ads stay warm
+          Engine: research → scripts → auto-post → product ads · {stepLabel.toLowerCase()}
         </motion.div>
       </div>
     </div>
