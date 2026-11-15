@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Bot,
-  Globe,
   Megaphone,
   Settings2,
   Mail,
@@ -65,10 +64,10 @@ const demos: {
   {
     id: 'website',
     label: 'Custom software',
-    icon: Globe,
-    title: 'Sites and ops software you own',
+    icon: Layers,
+    title: 'Apps within apps—built for how you work',
     blurb:
-      'Websites, booking, and custom operation software—built to organize the business and cut SaaS rent.',
+      'CRMs, automated messaging, applicant tracking, AI-powered tools—purpose-built software nested into your operations, not another SaaS rent payment.',
   },
 ]
 
@@ -140,144 +139,361 @@ function AgentDemo() {
   )
 }
 
-function WebsiteDemo() {
+const customApps = [
+  {
+    id: 'crm',
+    label: 'CRM',
+    icon: Users,
+    idea: 'Own your pipeline—deals, stages, and follow-ups without per-seat tax.',
+  },
+  {
+    id: 'messaging',
+    label: 'Messaging',
+    icon: MessageSquare,
+    idea: 'Automated SMS & email that replies, qualifies, and books while you work.',
+  },
+  {
+    id: 'ats',
+    label: 'ATS',
+    icon: Layers,
+    idea: 'Applicant tracking built for your hiring flow—not a generic HR suite.',
+  },
+  {
+    id: 'ai',
+    label: 'AI apps',
+    icon: Sparkles,
+    idea: 'Custom AI panels that surface answers, drafts, and next actions from your data.',
+  },
+] as const
+
+function CrmAppSketch({ beat }: { beat: number }) {
   const stages = [
-    { icon: Search, title: 'Brief', desc: 'Goals, ops map, pages, and agent scopes' },
     {
-      icon: Globe,
-      title: 'Custom software',
-      desc: 'Sites, CRMs, booking tools, and custom operation software you own',
+      name: 'New',
+      deals: [
+        { name: 'HVAC quote', value: '$4.2k' },
+        { name: 'Roof consult', value: '$1.8k' },
+      ],
     },
     {
-      icon: Bot,
-      title: 'Agent implementation',
-      desc: 'Lead, booking, and follow-up agents wired to your stack',
+      name: 'Qualified',
+      deals: [{ name: 'Fleet install', value: '$12k' }],
     },
     {
-      icon: Users,
-      title: 'Staff AI training',
-      desc: 'Live sessions and playbooks so your team can run it',
-    },
-    {
-      icon: Server,
-      title: 'Operate',
-      desc: 'Host, monitor, and iterate with your team',
+      name: 'Won',
+      deals: [{ name: 'Office retrofit', value: '$28k' }],
     },
   ]
-  const [step, setStep] = useState(0)
-  useEffect(() => {
-    const t = setInterval(() => setStep((s) => (s + 1) % stages.length), 1800)
-    return () => clearInterval(t)
-  }, [stages.length])
+  const highlight = beat % 3
 
   return (
-    <div className="space-y-5">
-      <div className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-gradient-to-br from-paper-2 to-white p-5">
-        <div className="mb-4 flex items-center justify-between gap-2">
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-soft/70">
+          Pipeline · This week
+        </p>
+        <span className="rounded-md bg-signal/15 px-2 py-0.5 text-[10px] font-semibold text-signal">
+          3 stages live
+        </span>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {stages.map((col, i) => (
+          <div key={col.name} className="space-y-1.5">
+            <p className="text-[10px] font-medium text-ink-soft">{col.name}</p>
+            {col.deals.map((deal, di) => {
+              const active = i === highlight && di === 0
+              return (
+                <motion.div
+                  key={deal.name}
+                  animate={{
+                    y: active ? -2 : 0,
+                    borderColor: active ? 'rgba(15,143,117,0.45)' : 'rgba(12,26,23,0.08)',
+                    backgroundColor: active ? 'rgba(15,143,117,0.12)' : 'rgba(255,255,255,0.7)',
+                  }}
+                  transition={{ duration: 0.35 }}
+                  className="rounded-lg border px-2 py-1.5"
+                >
+                  <p className="truncate text-[11px] font-medium text-ink">{deal.name}</p>
+                  <p className="text-[10px] text-signal">{deal.value}</p>
+                </motion.div>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function MessagingAppSketch({ beat }: { beat: number }) {
+  const threads = [
+    { from: 'Maya R.', preview: 'Can you send Saturday slots?', tag: 'SMS' },
+    { from: 'Jordan K.', preview: 'Quote looks good—book it.', tag: 'Email' },
+    { from: 'Front desk', preview: 'Auto-reply sent · 2m ago', tag: 'Bot' },
+  ]
+  const active = beat % threads.length
+  const replies = [
+    'Hi Maya—Saturday 9am or 1pm both open. Reply 1 or 2 to lock it in.',
+    'Great—calendar hold placed. Confirmation text on the way.',
+    'Lead scored warm · CRM updated · owner pinged.',
+  ]
+
+  return (
+    <div className="grid gap-2 sm:grid-cols-[0.9fr_1.1fr]">
+      <div className="space-y-1.5">
+        {threads.map((t, i) => (
+          <motion.div
+            key={t.from}
+            animate={{
+              opacity: i === active ? 1 : 0.55,
+              x: i === active ? 2 : 0,
+            }}
+            className={`rounded-lg border px-2.5 py-2 ${
+              i === active ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/60'
+            }`}
+          >
+            <div className="flex items-center justify-between gap-1">
+              <p className="text-[11px] font-medium text-ink">{t.from}</p>
+              <span className="text-[9px] uppercase tracking-wider text-ink-soft/70">{t.tag}</span>
+            </div>
+            <p className="mt-0.5 truncate text-[10px] text-ink-soft">{t.preview}</p>
+          </motion.div>
+        ))}
+      </div>
+      <div className="flex flex-col justify-between rounded-xl border border-[var(--line)] bg-gradient-to-b from-white/80 to-paper-2/80 p-3">
+        <div>
+          <p className="mb-2 text-[10px] uppercase tracking-wider text-ink-soft/70">Auto reply</p>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={active}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              className="text-xs leading-relaxed text-ink"
+            >
+              {replies[active]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
+        <motion.div
+          key={`send-${active}`}
+          initial={{ scale: 0.96, opacity: 0.6 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="mt-3 inline-flex items-center gap-1.5 self-end rounded-full bg-signal px-2.5 py-1 text-[10px] font-semibold text-paper"
+        >
+          <Mail className="h-3 w-3" />
+          Sent · logged to CRM
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
+function AtsAppSketch({ beat }: { beat: number }) {
+  const columns = [
+    {
+      name: 'Applied',
+      people: ['Alex Chen', 'Sam Ortiz'],
+    },
+    {
+      name: 'Interview',
+      people: ['Riley Park'],
+    },
+    {
+      name: 'Offer',
+      people: ['Jordan Lee'],
+    },
+  ]
+  const moving = beat % 3
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-soft/70">
+          Hiring board · Ops roles
+        </p>
+        <span className="text-[10px] text-signal">4 candidates</span>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {columns.map((col, ci) => (
+          <div
+            key={col.name}
+            className="min-h-[7.5rem] rounded-xl border border-[var(--line)] bg-white/50 p-2"
+          >
+            <p className="mb-2 text-[10px] font-medium text-ink-soft">{col.name}</p>
+            <div className="space-y-1.5">
+              {col.people.map((person, pi) => {
+                const pulse = ci === moving && pi === 0
+                return (
+                  <motion.div
+                    key={person}
+                    layout
+                    animate={{
+                      scale: pulse ? 1.03 : 1,
+                      boxShadow: pulse
+                        ? '0 0 0 1px rgba(15,143,117,0.35)'
+                        : '0 0 0 0 rgba(0,0,0,0)',
+                    }}
+                    className="rounded-md bg-paper-2/90 px-2 py-1.5 text-[11px] font-medium text-ink"
+                  >
+                    {person}
+                  </motion.div>
+                )
+              })}
+              {ci === 1 && moving === 1 ? (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  className="rounded-md border border-dashed border-signal/40 bg-signal/10 px-2 py-1.5 text-[10px] text-signal"
+                >
+                  Scorecard ready
+                </motion.div>
+              ) : null}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function AiAppSketch({ beat }: { beat: number }) {
+  const insights = [
+    { title: 'Next best action', body: 'Call Fleet install—quote expires Friday.' },
+    { title: 'Draft ready', body: 'Follow-up email for Maya R. awaiting send.' },
+    { title: 'Ops alert', body: '2 bookings unconfirmed · suggest SMS nudge.' },
+  ]
+  const active = beat % insights.length
+
+  return (
+    <div className="grid gap-2 sm:grid-cols-[1fr_1.15fr]">
+      <div className="space-y-2 rounded-xl border border-[var(--line)] bg-white/60 p-3">
+        <div className="flex items-center gap-2 text-signal">
+          <Bot className="h-3.5 w-3.5" />
+          <p className="text-[10px] font-semibold uppercase tracking-wider">Business AI</p>
+        </div>
+        <p className="text-xs text-ink-soft">Ask anything about leads, staff, or inventory.</p>
+        <div className="rounded-lg border border-[var(--line)] bg-paper-2/80 px-2.5 py-2 text-[11px] text-ink-soft">
+          “Which deals stall this week?”
+        </div>
+      </div>
+      <div className="rounded-xl border border-signal/30 bg-signal/10 p-3">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -6 }}
+            transition={{ duration: 0.3 }}
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-signal">
+              {insights[active].title}
+            </p>
+            <p className="mt-2 text-sm font-medium text-ink">{insights[active].body}</p>
+            <div className="mt-3 flex gap-1.5">
+              <span className="rounded-md bg-white/70 px-2 py-1 text-[10px] text-ink">Open CRM</span>
+              <span className="rounded-md bg-signal px-2 py-1 text-[10px] font-semibold text-paper">
+                Act now
+              </span>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
+function CustomSoftwareDemo() {
+  const [appIndex, setAppIndex] = useState(0)
+  const [beat, setBeat] = useState(0)
+  const app = customApps[appIndex]
+  const AppIcon = app.icon
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setAppIndex((i) => (i + 1) % customApps.length)
+      setBeat(0)
+    }, 4200)
+    return () => clearInterval(t)
+  }, [])
+
+  useEffect(() => {
+    const t = setInterval(() => setBeat((b) => b + 1), 1100)
+    return () => clearInterval(t)
+  }, [appIndex])
+
+  return (
+    <div className="space-y-4">
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-gradient-to-br from-paper-2 via-white to-paper p-4 sm:p-5">
+        <div className="mb-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
             <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
             <span className="ml-2 text-xs text-ink-soft/70">ops.yourbrand.com</span>
           </div>
-          <span className="rounded-full bg-signal/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal">
-            {stages[step].title}
+          <span className="hidden text-[10px] uppercase tracking-wider text-ink-soft/60 sm:inline">
+            Suite · apps inside your stack
           </span>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
-          <motion.div
-            key={`soft-${step}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`space-y-3 rounded-xl border p-4 ${
-              step >= 1 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/50'
-            }`}
-          >
-            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">Custom software</p>
-            <div className="h-3 w-1/3 rounded bg-signal/40" />
-            <div className="h-8 w-2/3 rounded bg-ink/10" />
-            <div className="h-2 w-full rounded bg-ink/5" />
-            <div className="mt-2 grid grid-cols-2 gap-2">
-              <div className="h-10 rounded-lg bg-signal/15" />
-              <div className="h-10 rounded-lg bg-ink/5" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            key={`agent-${step}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 }}
-            className={`space-y-2 rounded-xl border p-4 ${
-              step >= 2 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/40'
-            }`}
-          >
-            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">
-              Agent implementation
-            </p>
-            {['Lead triage', 'Book + SMS', 'CRM sync'].map((line, i) => (
-              <div
-                key={line}
-                className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs ${
-                  step >= 2 + Math.min(i, 1)
-                    ? 'bg-signal/15 text-ink'
-                    : 'bg-white/50 text-ink-soft/70'
+        <div className="mb-3 flex flex-wrap gap-1.5">
+          {customApps.map((a, i) => {
+            const Icon = a.icon
+            const on = i === appIndex
+            return (
+              <button
+                key={a.id}
+                type="button"
+                onClick={() => {
+                  setAppIndex(i)
+                  setBeat(0)
+                }}
+                className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-[11px] font-medium transition ${
+                  on
+                    ? 'border-signal/50 bg-signal/15 text-ink'
+                    : 'border-[var(--line)] bg-white/50 text-ink-soft hover:border-signal/35 hover:text-ink'
                 }`}
               >
-                <Bot className="h-3.5 w-3.5 text-signal" />
-                {line}
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            key={`train-${step}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 }}
-            className={`space-y-2 rounded-xl border p-4 ${
-              step >= 3 ? 'border-signal/40 bg-signal/10' : 'border-[var(--line)] bg-white/40'
-            }`}
-          >
-            <p className="text-[10px] uppercase tracking-wider text-ink-soft/70">Staff AI training</p>
-            {['Live walkthrough', 'Playbooks', 'Owner handoff'].map((line, i) => (
-              <div
-                key={line}
-                className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs ${
-                  step >= 3
-                    ? 'bg-signal/15 text-ink'
-                    : 'bg-white/50 text-ink-soft/70'
-                }`}
-              >
-                <Users className="h-3.5 w-3.5 text-signal" />
-                {line}
-              </div>
-            ))}
-          </motion.div>
+                <Icon className="h-3 w-3" />
+                {a.label}
+              </button>
+            )
+          })}
         </div>
+
+        <div className="overflow-hidden rounded-xl border border-[var(--line)] bg-white/70 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] sm:p-4">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={app.id}
+              initial={{ opacity: 0, y: 14, scale: 0.985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.99 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="mb-3 flex items-center gap-2 border-b border-[var(--line)] pb-2">
+                <span className="flex h-6 w-6 items-center justify-center rounded-md bg-signal/15 text-signal">
+                  <AppIcon className="h-3.5 w-3.5" />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold text-ink">{app.label}</p>
+                  <p className="text-[10px] text-ink-soft/70">Custom module · you own the code</p>
+                </div>
+              </div>
+              {app.id === 'crm' ? <CrmAppSketch beat={beat} /> : null}
+              {app.id === 'messaging' ? <MessagingAppSketch beat={beat} /> : null}
+              {app.id === 'ats' ? <AtsAppSketch beat={beat} /> : null}
+              {app.id === 'ai' ? <AiAppSketch beat={beat} /> : null}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="pointer-events-none absolute -bottom-1 right-6 hidden h-8 w-28 rounded-t-lg border border-[var(--line)] bg-paper-2/80 sm:block" />
+        <div className="pointer-events-none absolute bottom-0 right-10 hidden h-5 w-20 rounded-t-md border border-[var(--line)] bg-white/70 sm:block" />
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {stages.map((s, i) => (
-          <div
-            key={s.title}
-            className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs ${
-              i === step
-                ? 'border-signal/50 bg-signal/15 text-ink'
-                : i < step
-                  ? 'border-signal/30 text-signal'
-                  : 'border-[var(--line)] text-ink-soft/70'
-            }`}
-          >
-            <s.icon className="h-3.5 w-3.5" />
-            {s.title}
-          </div>
-        ))}
-      </div>
       <p className="text-sm text-ink-soft">
-        <span className="font-medium text-ink">{stages[step].title}:</span> {stages[step].desc}. We
-        build the software, implement the agents, and train your staff—so operations stay organized.
+        <span className="font-medium text-ink">{app.label}:</span> {app.idea}
       </p>
     </div>
   )
@@ -732,7 +948,7 @@ function DemoPanel({ id }: { id: DemoId }) {
     case 'marketing':
       return <MarketingDemo />
     case 'website':
-      return <WebsiteDemo />
+      return <CustomSoftwareDemo />
   }
 }
 
