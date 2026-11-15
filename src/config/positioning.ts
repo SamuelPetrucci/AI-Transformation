@@ -12,28 +12,28 @@ export const POSITIONING = {
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
   support:
-    'Custom software, AI automation, and modern technology solutions—so you can scale without the tech overwhelm.',
+    'Custom software to organize operations, AI agent implementation with staff training, and modern tech upgrades—including automated content engines and product advertising.',
   metaTitle: 'AI Transformation LLC — Custom Software, AI Automation & Modern Tech',
   metaDescription:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions. From $149/mo social packages to AI receptionists and custom builds.',
+    'AI Transformation LLC helps businesses save time, reduce costs, and grow with custom ops software, AI agent implementation, staff AI training, application integrations, and SEO-minded content engines plus product advertising.',
   pillars: [
     {
       id: 'custom-software',
       title: 'Custom Software',
       description:
-        'Websites, apps, CRMs, booking tools, and full project builds—owned by you, built for how you actually work.',
+        'Websites, apps, CRMs, booking tools, and ops hubs that organize the business—owned by you, built for how you actually work.',
     },
     {
       id: 'ai-automation',
       title: 'AI Automation',
       description:
-        'AI receptionists, lead follow-up, content agents, and workflow automation that cut busywork and response time.',
+        'AI agent implementation plus staff AI training—receptionists, lead follow-up, content agents, and workflows your team can run.',
     },
     {
       id: 'modern-tech',
       title: 'Modern Technology Solutions',
       description:
-        'Integrations, analytics, SaaS rebuilds, and growth packages like Social Starter ($149/mo)—practical tech that compounds.',
+        'Application integrations, modern tech upgrades, analytics, SaaS rebuilds, and growth packages—SEO content engines and product ads included.',
     },
   ],
 } as const

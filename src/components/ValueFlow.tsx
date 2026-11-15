@@ -51,26 +51,26 @@ const pillars: {
   {
     id: 'custom-software',
     title: 'Custom Software',
-    short: 'Sites, CRMs, booking—owned by you',
+    short: 'Sites, ops hubs, booking—owned by you',
     icon: Code2,
     demoId: 'website',
-    delivers: ['Owned systems', 'Lead capture that fits', 'Less SaaS rent'],
+    delivers: ['Ops software', 'Agent-ready sites', 'Staff can run it'],
   },
   {
     id: 'ai-automation',
     title: 'AI Automation',
-    short: 'Agents that cut busywork',
+    short: 'Agent implementation + staff training',
     icon: Bot,
     demoId: 'agents',
-    delivers: ['Faster response', 'Booked calls', 'Always-on follow-up'],
+    delivers: ['Faster response', 'Booked calls', 'Team playbooks'],
   },
   {
     id: 'modern-tech',
     title: 'Modern Tech',
-    short: 'Integrations & growth packages',
+    short: 'Integrations, upgrades & content engines',
     icon: Cpu,
     demoId: 'marketing',
-    delivers: ['Steady presence', 'Cleaner stack', 'Compounding upgrades'],
+    delivers: ['App integrations', 'SEO content', 'Product ads'],
   },
 ]
 
