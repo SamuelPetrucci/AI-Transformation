@@ -42,22 +42,25 @@ export default function ProductsExplorer({ initialLineId }: ProductsExplorerProp
   const meta = goalMeta[active.goal]
   const GoalIcon = meta.icon
 
+  const [hashReady, setHashReady] = useState(false)
+
   useEffect(() => {
     if (typeof window === 'undefined') return
     const fromHash = window.location.hash.replace(/^#/, '')
     const candidate = initialLineId || fromHash
     const match = PRODUCT_LINES.find((l) => l.id === candidate)
     if (match) setActiveId(match.id)
+    setHashReady(true)
   }, [initialLineId])
 
   useEffect(() => {
-    // Keep URL hash in sync for shareable deep links without full navigation
-    if (typeof window === 'undefined') return
+    // Keep URL hash in sync after initial deep-link resolve (avoid wiping #line on mount)
+    if (!hashReady || typeof window === 'undefined') return
     const next = `#${activeId}`
     if (window.location.hash !== next) {
       window.history.replaceState(null, '', `/products${next}`)
     }
-  }, [activeId])
+  }, [activeId, hashReady])
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
