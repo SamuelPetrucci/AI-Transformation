@@ -24,7 +24,7 @@ const AGENT_NAME = 'My Agent'
 
 const quickReplies: QuickReply[] = [
   { text: "What can you help with?", emoji: "💬" },
-  { text: "Tell me about AI assistance", emoji: "🤖" },
+  { text: "Tell me about AI agents", emoji: "🤖" },
   { text: "Get a quote", emoji: "💰" },
   { text: "Schedule a call", emoji: "📅" },
 ]
@@ -129,7 +129,7 @@ export default function Chatbot() {
       if (lowerText.includes('help') || lowerText.includes('can you') || lowerText.includes('what')) {
         responseText = "I can help you with:\n\n→ Answer questions about our AI services\n→ Send you case studies or info\n→ Get you on Sam's calendar\n→ Give you a quick quote\n\nJust text me what you need 📱"
       } else if (lowerText.includes('automat') || lowerText.includes('ai') || lowerText.includes('tell')) {
-        responseText = "AI Assistance means we audit where you're losing time, then set agents on cron jobs or triggers for app actions and tasks:\n\n→ Scheduled jobs (reports, reminders, cleanups)\n→ Triggers on leads, tickets, bookings\n→ Human handoff when it matters\n\nWant me to walk you through an Efficiency Audit? Just text me 📱"
+        responseText = "AI Agents means we fine-tune and train agents to carry out repetitive, error-prone tasks—then queue the work for your review:\n\n→ Scheduled jobs (reports, reminders, cleanups)\n→ Triggers on leads, tickets, bookings\n→ Human review before anything that matters goes out\n\nWant me to walk you through an Efficiency Audit? Just text me 📱"
       } else if (lowerText.includes('quote') || lowerText.includes('price') || lowerText.includes('cost')) {
         responseText = "Projects usually run $5K-50K depending on scope.\n\nText me what you're looking to build and I'll get you a ballpark within a few hours 📱"
       } else if (lowerText.includes('book') || lowerText.includes('call') || lowerText.includes('schedule') || lowerText.includes('meet')) {

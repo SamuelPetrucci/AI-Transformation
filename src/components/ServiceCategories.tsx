@@ -16,7 +16,7 @@ import { PRODUCT_LINES } from '@/config/products'
 
 const iconByLine: Record<string, typeof Code> = {
   'content-engine': Megaphone,
-  'ai-assistance': Bot,
+  'ai-agents': Bot,
   'custom-software': Code,
   'save-on-tech': PiggyBank,
   enablement: GraduationCap,
@@ -25,7 +25,7 @@ const iconByLine: Record<string, typeof Code> = {
 /** Unique generated photos from public/images — one per product line */
 const imageByLine: Record<string, string> = {
   'content-engine': '/images/strategy.jpg',
-  'ai-assistance': '/images/ai-solutions.jpg',
+  'ai-agents': '/images/ai-solutions.jpg',
   'custom-software': '/images/integration.jpg',
   'save-on-tech': '/images/analytics.jpg',
   enablement: '/images/consulting.jpg',
@@ -88,7 +88,7 @@ export default function ServiceCategories() {
             Five product lines. Clear outcomes.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
-            Five product lines—Content Engine, AI Assistance, Custom Software, Save on Tech, and
+            Five product lines—Content Engine, AI Agents, Custom Software, Save on Tech, and
             Training & Knowledge—each with named products and clear outcomes.
           </p>
         </div>

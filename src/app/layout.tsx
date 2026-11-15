@@ -4,10 +4,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend",
-  description: "Clear products for business owners: Content Engine, AI Assistance, Custom Software, Save on Tech, and Training & Knowledge. Book a free consultation.",
+  description: "Clear products for business owners: Content Engine, AI Agents, Custom Software, Save on Tech, and Training & Knowledge. Book a free consultation.",
   keywords: [
     "custom software",
-    "AI assistance",
+    "AI agents",
     "AI transformation",
     "business automation",
     "efficiency audit",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend",
-    description: "Content Engine, AI Assistance, Custom Software, Save on Tech, and Training—products with clear outcomes for business owners.",
+    description: "Content Engine, AI Agents, Custom Software, Save on Tech, and Training—products with clear outcomes for business owners.",
     url: 'https://aitransformationllc.com',
     siteName: 'AI Transformation LLC',
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "AI Transformation LLC — Products to Grow, Save Time & Cut Tech Spend",
-    description: "Content Engine, AI Assistance, Custom Software, Save on Tech, and Training—products with clear outcomes for business owners.",
+    description: "Content Engine, AI Agents, Custom Software, Save on Tech, and Training—products with clear outcomes for business owners.",
     images: ['/og-image.jpg'],
     creator: '@aitransformation',
   },
