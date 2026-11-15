@@ -12,13 +12,10 @@ import {
   Wrench,
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
-import { PRODUCT_LINES, type ProductLine } from '@/config/products'
+import { PRODUCT_LINES, type ProductGoal } from '@/config/products'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
 
-const goalMeta: Record<
-  ProductLine['goal'],
-  { label: string; icon: typeof TrendingUp }
-> = {
+const goalMeta: Record<ProductGoal, { label: string; icon: typeof TrendingUp }> = {
   grow: { label: 'Grow', icon: TrendingUp },
   'save-time': { label: 'Save time', icon: Clock },
   'save-money': { label: 'Save money', icon: PiggyBank },
@@ -70,8 +67,8 @@ export default function ProductsCatalog() {
 
         <div className="mx-auto max-w-3xl space-y-2">
           {PRODUCT_LINES.map((line) => {
-            const meta = goalMeta[line.goal]
-            const GoalIcon = meta.icon
+            const primary = goalMeta[line.goals[0]]
+            const GoalIcon = primary.icon
             const isOpen = openId === line.id
 
             return (
@@ -97,9 +94,14 @@ export default function ProductsCatalog() {
                       <span className="font-display text-lg font-semibold text-ink sm:text-xl">
                         {line.name}
                       </span>
-                      <span className="font-mono text-[10px] tracking-[0.14em] text-signal uppercase">
-                        {meta.label}
-                      </span>
+                      {line.goals.map((goal) => (
+                        <span
+                          key={goal}
+                          className="font-mono text-[10px] tracking-[0.14em] text-signal uppercase"
+                        >
+                          {goalMeta[goal].label}
+                        </span>
+                      ))}
                     </span>
                     <span className="mt-1 block text-sm leading-relaxed text-ink-soft">
                       {line.blurb}

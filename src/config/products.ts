@@ -19,12 +19,14 @@ export type CatalogProduct = {
   recommended?: boolean
 }
 
+export type ProductGoal = 'grow' | 'save-time' | 'save-money' | 'own-stack'
+
 export type ProductLine = {
   id: string
   name: string
   blurb: string
-  /** Primary owner goal this line serves */
-  goal: 'grow' | 'save-time' | 'save-money' | 'own-stack'
+  /** Owner outcomes this line serves (a line can serve more than one) */
+  goals: ProductGoal[]
   products: CatalogProduct[]
 }
 
@@ -34,7 +36,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     name: 'Content Engine',
     blurb:
       'Trained marketing agent, human approval on every draft, automated posting on any platforms you use—plus optional product ads.',
-    goal: 'grow',
+    goals: ['grow', 'save-time'],
     products: [
       {
         id: 'content-starter',
@@ -87,7 +89,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     name: 'AI Agents',
     blurb:
       'We fine-tune and train agents to carry out repetitive, error-prone tasks—then queue the work for your review so nothing ships without a human yes.',
-    goal: 'save-time',
+    goals: ['save-time'],
     products: [
       {
         id: 'efficiency-audit',
@@ -148,7 +150,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     name: 'Custom Software',
     blurb:
       'Websites, booking tools, CRMs, and custom operation software built for how you work—and owned by you.',
-    goal: 'own-stack',
+    goals: ['own-stack'],
     products: [
       {
         id: 'website-system',
@@ -196,7 +198,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     name: 'Own Your Tech Stack',
     blurb:
       'Own your tech stack instead of renting it—reduce costs, take control of your business data, and connect the tools you already have so nothing leaks.',
-    goal: 'own-stack',
+    goals: ['own-stack', 'save-money'],
     products: [
       {
         id: 'stack-rebuild',
@@ -248,7 +250,7 @@ export const PRODUCT_LINES: ProductLine[] = [
     name: 'Training & Support',
     blurb:
       'We train your team or client on the tech we deliver—then keep it healthy with maintenance and support retainer packages.',
-    goal: 'save-time',
+    goals: ['save-time'],
     products: [
       {
         id: 'staff-tech-training',

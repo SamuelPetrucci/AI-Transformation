@@ -84,7 +84,7 @@ AI Transformation LLC helps businesses save time, reduce costs, and grow through
 
 We sell PRODUCTS (not vague “services”). Match the caller to a product:
 
-Content Engine (grow):
+Content Engine (grow + save time):
 - Starter $149/mo — 1 platform of their choice; trained agent; human approval
 - Growth $299/mo — multi-platform; calendar; human gate
 - + Product Ads $499/mo — Growth plus one product ad campaign (ad spend separate)
@@ -103,7 +103,7 @@ Custom Software (own the stack):
 - CRM & Custom Operation Software
 (all project quotes)
 
-Own Your Tech Stack (own the stack—reduce costs, take control of your business data):
+Own Your Tech Stack (own the stack + save money—reduce costs, take control of your business data):
 - Stack Rebuild (Own Your Stack) — replace rented SaaS with software you own
 - Application Integrations
 - Analytics Dashboard
