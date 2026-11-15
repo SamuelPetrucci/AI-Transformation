@@ -251,6 +251,81 @@ After your response, provide a JSON object with any extracted data in this forma
   }
 }
 
+/** Short SMS replies for the Quo inbound line — keep under ~320 chars when possible. */
+export async function generateSmsResponse(inboundText: string): Promise<ChatResponse> {
+  if (!isChatEnabled()) {
+    return {
+      message:
+        'Thanks for texting AI Transformation. We got your message — reply here or call (860) 705-3417. Book: https://calendly.com/aitransformationllc-info/discovery-call',
+      extractedData: {},
+      shouldCollectInfo: false,
+      leadScore: 0,
+      errorCode: 'missing_key',
+    }
+  }
+
+  const systemPrompt = `${businessContext}
+
+You are texting on the AI Transformation Quo SMS line (+1 725 338 1895).
+Channel rules:
+1. Reply like a helpful human over SMS — short paragraphs, no markdown, no JSON
+2. Stay under 320 characters when you can; never exceed 900
+3. Qualify lightly (what they need) and offer to book a consult or keep texting
+4. Mention social packages only if relevant; otherwise stay umbrella-positioned
+5. If they ask for a human, say Sam or the team will follow up on this thread
+6. Do not invent prices beyond the published social packages
+
+Inbound message:
+${inboundText}`
+
+  const xai = getXaiClient()
+  const models = preferredModels()
+  let lastError: unknown
+
+  for (const model of models) {
+    try {
+      const response = await xai.chat.completions.create({
+        model,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: inboundText },
+        ],
+        temperature: 0.6,
+        max_tokens: 220,
+      })
+
+      const content = (response.choices[0]?.message?.content || '')
+        .replace(/\{[\s\S]*\}/, '')
+        .replace(/\*\*/g, '')
+        .trim()
+
+      return {
+        message:
+          content ||
+          "Thanks for texting AI Transformation — tell me what you're trying to automate or build and I'll help from here.",
+        extractedData: {},
+        shouldCollectInfo: false,
+        leadScore: 0,
+      }
+    } catch (error) {
+      lastError = error
+      const status = (error as { status?: number })?.status
+      if (status === 401 || status === 403 || status === 402 || status === 429) break
+      continue
+    }
+  }
+
+  console.error('xAI SMS reply failed:', lastError)
+  return {
+    message:
+      'Thanks for texting AI Transformation. We received your note — someone will follow up on this thread shortly, or call (860) 705-3417.',
+    extractedData: {},
+    shouldCollectInfo: false,
+    leadScore: 0,
+    errorCode: 'unknown',
+  }
+}
+
 // Function to analyze conversation and extract lead information
 export function analyzeConversation(messages: Array<{ text: string; sender: string }>): {
   leadScore: number

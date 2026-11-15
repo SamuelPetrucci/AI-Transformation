@@ -7,6 +7,9 @@ Keys in **one place do not automatically appear in the other.**
 | `XAI_API_KEY` | **Vercel** → Project → Settings → Environment Variables (Production **and** Preview) | Site chat / Grok (if enabled) |
 | `XAI_API_KEY` | **GitHub** → Settings → Secrets and variables → Actions | Daily blog content agent workflow |
 | `XAI_MODEL` | Optional in both | Default now `grok-3-latest` |
+| `QUO_API_KEY` | **Vercel** | Send SMS replies via Quo API |
+| `QUO_PHONE_NUMBER_ID` | **Vercel** | Quo `PN…` id for `(725) 338-1895` |
+| `QUO_WEBHOOK_KEY` | **Vercel** | `whsec_…` signing secret for `/api/quo/webhook` |
 | `NEXT_PUBLIC_SUPABASE_*` | Vercel | Contact / lead storage |
 | SMTP / `TO_EMAIL` | Vercel | Contact form email |
 
