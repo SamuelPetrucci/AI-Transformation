@@ -1,21 +1,28 @@
-/** Public contact — Quo SMS line for agent consultation. */
+/** Public contact — Samuel's direct line for text or call. */
 export const CONTACT_CONFIG = {
-  /** E.164 number visitors text to opt in for a consult */
-  SMS_E164: '+17253381895',
-  SMS_DISPLAY: '(725) 338-1895',
-  /** Legacy / voice line shown elsewhere on the site */
+  /** E.164 — one number for SMS and voice */
+  PHONE_E164: '+18607053417',
+  PHONE_DISPLAY: '(860) 705-3417',
+  /** Aliases kept so existing imports keep working */
+  SMS_E164: '+18607053417',
+  SMS_DISPLAY: '(860) 705-3417',
   VOICE_E164: '+18607053417',
   VOICE_DISPLAY: '(860) 705-3417',
   EMAIL: 'info@aitransformationllc.com',
-  /** Prefill when the visitor opens Messages — sending this opts them into a consult thread */
+  /** Prefill when the visitor opens Messages */
   SMS_OPT_IN_BODY:
-    "Hi — I'd like to talk about AI Transformation for my business. Please text me to start a consult.",
+    "Hi — I'd like to talk about AI Transformation for my business.",
 } as const
 
-/** Opens the native SMS app with number + opt-in draft prefilled. */
+/** Opens the native SMS app with number + draft prefilled. */
 export function getSmsConsultHref(
   body: string = CONTACT_CONFIG.SMS_OPT_IN_BODY,
 ): string {
   const encoded = encodeURIComponent(body)
-  return `sms:${CONTACT_CONFIG.SMS_E164}?body=${encoded}`
+  return `sms:${CONTACT_CONFIG.PHONE_E164}?body=${encoded}`
+}
+
+/** Opens the native phone dialer. */
+export function getCallHref(): string {
+  return `tel:${CONTACT_CONFIG.PHONE_E164}`
 }

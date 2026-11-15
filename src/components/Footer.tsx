@@ -93,13 +93,13 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <MessageSquare className="h-5 w-5 text-signal" />
                 <a href={getSmsConsultHref()} className="transition hover:text-ink">
-                  Text {CONTACT_CONFIG.SMS_DISPLAY}
+                  Text {CONTACT_CONFIG.PHONE_DISPLAY}
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-signal" />
-                <a href={`tel:${CONTACT_CONFIG.VOICE_E164}`} className="transition hover:text-ink">
-                  {CONTACT_CONFIG.VOICE_DISPLAY}
+                <a href={`tel:${CONTACT_CONFIG.PHONE_E164}`} className="transition hover:text-ink">
+                  Call {CONTACT_CONFIG.PHONE_DISPLAY}
                 </a>
               </div>
               <div className="flex items-center gap-3">
