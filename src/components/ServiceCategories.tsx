@@ -74,9 +74,9 @@ export default function ServiceCategories() {
     <section id="service-categories" className="py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <p className="overline mb-4">Product lines</p>
+          <p className="overline mb-4">Product offers</p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            What you can buy
+            Five product lines. Clear outcomes.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
             Five product lines—Content Engine, AI Assistance, Custom Software, Save on Tech, and
