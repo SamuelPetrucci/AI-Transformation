@@ -12,10 +12,10 @@ export const POSITIONING = {
   headline: 'Save time. Reduce costs. Grow.',
   /** Short support under headline (no need to repeat company name) */
   support:
-    'Custom software to organize operations, AI agent implementation with staff training, and modern tech upgrades—including automated content engines and product advertising.',
+    'We build automated content engines for your business and advertising for your products—SEO-optimized so you can earn organic traffic—plus custom software, AI agents, and modern tech upgrades.',
   metaTitle: 'AI Transformation LLC — Custom Software, AI Automation & Modern Tech',
   metaDescription:
-    'AI Transformation LLC helps businesses save time, reduce costs, and grow with custom ops software, AI agent implementation, staff AI training, application integrations, and SEO-minded content engines plus product advertising.',
+    'AI Transformation LLC helps businesses save time, reduce costs, and grow. We build automated content engines and product advertising (SEO-optimized for organic traffic), custom ops software, AI agent implementation, staff training, and application integrations.',
   pillars: [
     {
       id: 'custom-software',

@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AI Transformation LLC — Custom Software, AI Automation & Modern Tech",
-  description: "AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions. Book a free consultation.",
+  description: "AI Transformation LLC builds automated content engines and product advertising—SEO-optimized for organic traffic—plus custom software, AI automation, and modern tech upgrades. Book a free consultation.",
   keywords: [
     "custom software",
     "AI automation",
@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     "business automation",
     "AI receptionist",
     "modern technology solutions",
+    "automated content engines",
+    "product advertising",
+    "SEO optimization",
+    "organic traffic",
     "social media packages",
     "AI consulting",
     "digital transformation",
@@ -19,6 +23,7 @@ export const metadata: Metadata = {
     "process automation",
     "custom development",
     "AI agents",
+    "application integrations",
   ],
   authors: [{ name: "AI Transformation LLC" }],
   creator: "AI Transformation LLC",
@@ -34,7 +39,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "AI Transformation LLC — Custom Software, AI Automation & Modern Tech",
-    description: "AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.",
+    description: "We build automated content engines and product advertising—SEO-optimized for organic traffic—plus custom software, AI agents, and modern tech upgrades.",
     url: 'https://aitransformationllc.com',
     siteName: 'AI Transformation LLC',
     images: [
@@ -51,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "AI Transformation LLC — Custom Software, AI Automation & Modern Tech",
-    description: "AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI automation, and modern technology solutions.",
+    description: "We build automated content engines and product advertising—SEO-optimized for organic traffic—plus custom software, AI agents, and modern tech upgrades.",
     images: ['/og-image.jpg'],
     creator: '@aitransformation',
   },

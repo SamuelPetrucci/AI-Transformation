@@ -98,9 +98,9 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            We build automated content engines and product advertising—SEO-minded for organic
-            traffic—starting at $149/mo. Layer on custom software, agents, and staff training from
-            the demo above.
+            We build automated content engines for your business and advertising for your
+            products—SEO-optimized for organic traffic—starting at $149/mo. Layer on custom software,
+            agents, and staff training from the demo above.
           </motion.p>
         </div>
 

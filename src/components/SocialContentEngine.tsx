@@ -85,16 +85,16 @@ const capabilities: {
   {
     id: 'social',
     label: 'Content & Ads',
-    overline: 'Automated content engines & advertising',
+    overline: 'Automated content engines & product advertising',
     headline: 'We build content engines.',
-    highlight: 'And advertise your products.',
+    highlight: 'Advertise your products. Rank organically.',
     blurb:
-      'Automated content engines and product advertising for your business—SEO-minded so you can earn organic traffic while paid campaigns stay warm.',
+      'We build automated content engines for your business and advertising for your products—SEO-optimized so you can earn organic traffic while paid campaigns keep demand warm.',
     steps: [
-      { id: 'brief', label: 'Brief', detail: 'Topics, offers, SEO keywords', icon: Sparkles },
-      { id: 'draft', label: 'Draft', detail: 'Captions + creative variants', icon: ImageIcon },
-      { id: 'schedule', label: 'Publish', detail: 'Calendar + SEO-ready posts', icon: CalendarClock },
-      { id: 'ads', label: 'Advertise', detail: 'Product ads stay warm', icon: Megaphone },
+      { id: 'brief', label: 'Brief', detail: 'Offers, keywords, SEO targets', icon: Sparkles },
+      { id: 'draft', label: 'Draft', detail: 'SEO copy + creative variants', icon: ImageIcon },
+      { id: 'schedule', label: 'Publish', detail: 'Calendar + organic posts', icon: CalendarClock },
+      { id: 'ads', label: 'Advertise', detail: 'Product ads that convert', icon: Megaphone },
     ],
   },
 ]

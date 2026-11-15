@@ -10,6 +10,7 @@ const phrases = [
   'Application integrations',
   'Automated content engines',
   'Product advertising',
+  'SEO for organic traffic',
   'Staff AI training',
   'CRM & ops hubs',
 ]
