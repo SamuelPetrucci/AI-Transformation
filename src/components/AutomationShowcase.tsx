@@ -58,9 +58,9 @@ const demos: {
     id: 'marketing',
     label: 'Content & marketing',
     icon: Megaphone,
-    title: 'Content engine with human approval',
+    title: 'Content engines across every platform',
     blurb:
-      'Train the agent, draft for the platforms you use, approve every piece, then schedule and optionally advertise.',
+      'Your product data → AI script → create → you approve → schedule. Consistent branding on Instagram, Facebook, LinkedIn, X, TikTok, YouTube.',
   },
   {
     id: 'website',
