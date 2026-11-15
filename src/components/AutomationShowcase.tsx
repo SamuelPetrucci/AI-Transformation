@@ -27,6 +27,7 @@ import {
   Layers,
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
+import ValueFlow from './ValueFlow'
 
 type DemoId =
   | 'agents'
@@ -739,6 +740,15 @@ export default function AutomationShowcase() {
   const [active, setActive] = useState<DemoId>('agents')
   const current = demos.find((d) => d.id === active)!
 
+  const selectDemo = (demoId: string) => {
+    if (demos.some((d) => d.id === demoId)) {
+      setActive(demoId as DemoId)
+      window.requestAnimationFrame(() => {
+        document.getElementById('demo-stage')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      })
+    }
+  }
+
   const scrollToBooking = () => {
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
@@ -746,7 +756,7 @@ export default function AutomationShowcase() {
   return (
     <ScrollSlide id="demos" glow="center" className="py-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
+        <div className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -761,7 +771,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            See the work in action
+            See how the pieces connect
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -770,12 +780,21 @@ export default function AutomationShowcase() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Clear diagrams for web + agent creation, training & implementation, social automation,
-            ads, and ops rebuilds—how we help you save time, reduce costs, and grow.
+            Trace friction through our three pillars into outcomes—then open a live diagram of agents,
+            web builds, social automation, ads, and ops rebuilds.
           </motion.p>
         </div>
 
-        <div className="relative z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-8 md:mb-10"
+        >
+          <ValueFlow onSelectDemo={selectDemo} />
+        </motion.div>
+
+        <div id="demo-stage" className="relative z-20 scroll-mt-28">
           <div
             role="tablist"
             aria-label="Automation demos"

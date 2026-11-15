@@ -14,7 +14,7 @@ export default function ServicesHero() {
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0">
         <Image
-          src="/images/services-hero-bg.webp"
+          src="/images/services-hero-bg.jpg"
           alt="Services background"
           fill
           className="object-cover opacity-30"

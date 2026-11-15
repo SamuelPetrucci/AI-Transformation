@@ -19,7 +19,7 @@ const serviceCategories = [
     ],
     color: 'from-blue-500 to-blue-600',
     bgColor: 'from-blue-500/10 to-blue-600/10',
-    imagePlaceholder: '/images/integration.avif',
+    imagePlaceholder: '/images/integration.jpg',
     details: (
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">What we deliver</h4>
@@ -48,7 +48,7 @@ const serviceCategories = [
     ],
     color: 'from-signal to-ink',
     bgColor: 'from-signal/10 to-ink/10',
-    imagePlaceholder: '/images/ai-solutions.webp',
+    imagePlaceholder: '/images/ai-solutions.jpg',
     details: (
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">Use cases</h4>
@@ -77,7 +77,7 @@ const serviceCategories = [
     ],
     color: 'from-green-500 to-green-600',
     bgColor: 'from-green-500/10 to-green-600/10',
-    imagePlaceholder: '/images/analytics.avif',
+    imagePlaceholder: '/images/analytics.jpg',
     details: (
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">From data to decisions</h4>
@@ -104,7 +104,7 @@ const serviceCategories = [
     ],
     color: 'from-red-500 to-red-600',
     bgColor: 'from-red-500/10 to-red-600/10',
-    imagePlaceholder: '/images/consulting.avif',
+    imagePlaceholder: '/images/consulting.jpg',
     details: (
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">What is an AI Knowledge Base?</h4>
@@ -140,7 +140,7 @@ const serviceCategories = [
     ],
     color: 'from-signal to-signal',
     bgColor: 'from-signal/10 to-signal/10',
-    imagePlaceholder: '/images/services-hero-bg.webp',
+    imagePlaceholder: '/images/services-hero-bg.jpg',
     details: (
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">Packages</h4>
