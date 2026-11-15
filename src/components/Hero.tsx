@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { LogoMark } from './BrandLogo'
+import { TypeLine } from './TypeLine'
 import { POSITIONING } from '@/config/positioning'
 import { CALENDLY_CONFIG } from '@/config/calendly'
 import { getSmsConsultHref } from '@/config/contact'
@@ -51,12 +52,9 @@ export default function Hero() {
 
         <motion.p
           {...rise(0.28)}
-          className="relative z-10 mt-4 max-w-2xl font-display text-xl font-semibold leading-snug sm:text-2xl"
+          className="relative z-10 mt-4 font-display text-xl font-semibold sm:text-2xl"
         >
-          We build the systems,
-          <span className="mt-1 block text-signal-bright">
-            implement the agents, and train your team.
-          </span>
+          We build <TypeLine />
         </motion.p>
 
         <motion.div
