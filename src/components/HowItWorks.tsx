@@ -18,12 +18,14 @@ const steps = [
   },
   {
     title: 'Build & train',
-    description: 'Ship it, then train your team so they can run it without us in the room.',
+    description:
+      'Ship it, then train your team or client on the tech so they can run it without us in the room.',
     image: '/images/implementation.jpg',
   },
   {
-    title: 'Keep it sharp',
-    description: 'Optional care plans for monitoring and tweaks as the business changes.',
+    title: 'Maintain & support',
+    description:
+      'Maintenance and support retainer packages keep systems healthy and your team backed as things change.',
     image: '/images/optimization.jpg',
   },
 ]

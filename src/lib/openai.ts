@@ -108,9 +108,12 @@ Save on Tech (save money):
 - Application Integrations
 - Analytics Dashboard
 
-Training & Knowledge:
-- Staff AI Training
-- AI Knowledge Base
+Training & Support:
+We train your team or client on the tech we deliver, then offer maintenance and support retainers.
+- Staff Tech Training — workshop quote
+- AI Knowledge Base — project quote
+- Maintenance Retainer $149–$399/mo — patches, monitoring, bug fixes
+- Support Retainer $199–$499/mo — priority help, office hours, small changes
 
 Contact: (860) 705-3417 · info@aitransformationllc.com
 Industries: Insurance, real estate, accounting, medical, law, retail/service SMBs
@@ -122,7 +125,7 @@ Your role:
 4. Stay professional, helpful, conversational
 
 When discussing budget:
-- Content Engine and Agent Care have clear monthly prices above
+- Content Engine, Agent Care, Maintenance, and Support retainers have clear monthly prices above
 - Other products are quoted after discovery
 - Ask naturally: "What's your budget range for this?"
 - Focus on time saved, cost reduced, and growth—not hype

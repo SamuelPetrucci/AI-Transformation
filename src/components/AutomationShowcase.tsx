@@ -839,7 +839,10 @@ function DiscoveryDemo() {
     { title: 'Discover', items: ['Process map', 'Tool audit', 'Pain + ROI score'] },
     { title: 'Design', items: ['Agent scopes', 'Integrations', 'Success metrics'] },
     { title: 'Pilot', items: ['2–4 week build', 'Sandbox tests', 'Go / no-go'] },
-    { title: 'Train & scale', items: ['Team training', 'Production', 'Ongoing optimize'] },
+    {
+      title: 'Train & care',
+      items: ['Team training', 'Maintenance retainer', 'Support retainer'],
+    },
   ]
   const [active, setActive] = useState(0)
   useEffect(() => {
@@ -882,8 +885,9 @@ function DiscoveryDemo() {
         ))}
       </div>
       <p className="text-sm text-ink-soft">
-        Implementation is not a dump-and-run: discovery → pilot → <strong className="text-ink">train your team</strong> →
-        scale what works.
+        Implementation is not a dump-and-run: discovery → pilot →{' '}
+        <strong className="text-ink">train your team on the tech</strong> → maintenance &amp; support
+        retainers.
       </p>
     </div>
   )

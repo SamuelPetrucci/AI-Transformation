@@ -21,7 +21,7 @@ const reasons = [
     icon: Clock,
     title: 'Continuous Support',
     description:
-      'Ongoing improvement and support to ensure your tech operations run smoothly and efficiently.',
+      'After we train your team on the tech, maintenance and support retainer packages keep operations smooth as you grow.',
   },
   {
     icon: Zap,

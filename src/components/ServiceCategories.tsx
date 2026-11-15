@@ -58,7 +58,7 @@ const serviceCategories = PRODUCT_LINES.map((line) => {
         </ul>
         <p className="text-ink-soft">
           Every product is scoped to save time, cut cost, grow demand, or help you own more of the
-          stack—not a vague retainer.
+          stack—including named maintenance and support retainers when you want ongoing care.
         </p>
       </div>
     ),
@@ -89,7 +89,7 @@ export default function ServiceCategories() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
             Five product lines—Content Engine, AI Agents, Custom Software, Save on Tech, and
-            Training & Knowledge—each with named products and clear outcomes.
+            Training & Support—each with named products and clear outcomes.
           </p>
         </div>
 
