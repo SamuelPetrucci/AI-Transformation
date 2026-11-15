@@ -9,7 +9,6 @@ import {
   Play,
   MessageSquare,
   Bot,
-  Workflow,
   GraduationCap,
   Search,
   Rocket,
@@ -285,18 +284,43 @@ function TrainingDiagram({ step }: { step: number }) {
   )
 }
 
+const engineStages = [
+  {
+    id: 'train',
+    label: 'Train',
+    detail: 'Business data, brand voice, logos',
+    icon: Search,
+  },
+  {
+    id: 'scripts',
+    label: 'Scripts',
+    detail: 'Hooks & outlines for every channel',
+    icon: Sparkles,
+  },
+  {
+    id: 'approve',
+    label: 'Approve',
+    detail: 'You sign off before anything posts',
+    icon: ShieldCheck,
+  },
+  {
+    id: 'post',
+    label: 'Post + ads',
+    detail: 'Publish natively, then amplify',
+    icon: Megaphone,
+  },
+] as const
+
 function SocialDiagram({
   step,
   post,
-  stepLabel,
 }: {
   step: number
   post: number
-  stepLabel: string
 }) {
+  const active = step % engineStages.length
   const current = feedPosts[post % feedPosts.length]
-  const icons = [Search, Sparkles, ShieldCheck, Megaphone]
-  const StepIcon = icons[step % icons.length]
+  const progress = (active + 1) / engineStages.length
 
   return (
     <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] shadow-[0_0_60px_rgba(15,143,117,0.18)]">
@@ -306,47 +330,126 @@ function SocialDiagram({
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
-          {stepLabel}
+          {engineStages[active].label}
         </span>
       </div>
 
-      <div className="relative min-h-[340px] p-4">
-        <AnimatePresence mode="wait">
+      <div className="relative min-h-[360px] p-4">
+        {/* Pipeline progress rail */}
+        <div className="relative mb-5 h-1.5 overflow-hidden rounded-full bg-white/10">
           <motion.div
-            key={`${current.platform}-${post}-${step}`}
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -18, scale: 0.98 }}
+            className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-signal to-signal-bright"
+            animate={{ width: `${progress * 100}%` }}
             transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
-            className={`overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${current.tone}`}
-          >
-            <div className="flex items-center justify-between px-4 pt-4">
-              <p className="text-xs font-semibold text-paper/90">{current.platform}</p>
-              <p className="text-[10px] uppercase tracking-wider text-paper/60">Scheduled</p>
-            </div>
-            <div className="mx-4 mt-4 aspect-square rounded-xl border border-white/10 bg-black/25">
-              <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-                <motion.div
-                  animate={{ rotate: [0, 6, -4, 0], scale: [1, 1.04, 1] }}
-                  transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
-                  className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-paper"
-                >
-                  <StepIcon className="h-7 w-7" />
-                </motion.div>
-                <p className="font-display text-lg text-paper">{current.title}</p>
-              </div>
-            </div>
-            <p className="px-4 py-4 text-sm leading-relaxed text-paper/85">{current.caption}</p>
-          </motion.div>
-        </AnimatePresence>
+          />
+        </div>
 
-        <motion.div
-          className="mt-4 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs text-paper/75"
-          animate={{ opacity: [0.55, 1, 0.55] }}
-          transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          Engine: research → scripts → auto-post → product ads · {stepLabel.toLowerCase()}
-        </motion.div>
+        {/* Flow diagram nodes */}
+        <div className="relative space-y-0">
+          {engineStages.map((stage, i) => {
+            const Icon = stage.icon
+            const isActive = i === active
+            const isDone = i < active
+            const isUpcoming = i > active
+
+            return (
+              <div key={stage.id} className="relative">
+                {i < engineStages.length - 1 ? (
+                  <motion.div
+                    className="absolute left-[1.15rem] top-12 h-[calc(100%-0.5rem)] w-px origin-top bg-white/15"
+                    aria-hidden
+                  >
+                    <motion.div
+                      className="w-full bg-signal-bright"
+                      initial={{ height: '0%' }}
+                      animate={{ height: isDone || isActive ? '100%' : '0%' }}
+                      transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+                    />
+                  </motion.div>
+                ) : null}
+
+                <motion.div
+                  animate={{
+                    opacity: isUpcoming ? 0.45 : 1,
+                    x: isActive ? 2 : 0,
+                  }}
+                  transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+                  className={`relative z-10 flex items-start gap-3 rounded-2xl border px-3 py-3 ${
+                    isActive
+                      ? 'border-signal/55 bg-signal/20 shadow-[0_0_28px_rgba(15,143,117,0.28)]'
+                      : isDone
+                        ? 'border-white/15 bg-white/[0.06]'
+                        : 'border-white/10 bg-black/15'
+                  }`}
+                >
+                  <span
+                    className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+                      isDone
+                        ? 'bg-signal text-paper'
+                        : isActive
+                          ? 'bg-signal-bright text-ink'
+                          : 'bg-white/10 text-paper/65'
+                    }`}
+                  >
+                    {isDone ? <Check className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-semibold text-paper">{stage.label}</p>
+                      {isActive ? (
+                        <motion.span
+                          className="rounded-full bg-signal-bright/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-signal-bright"
+                          animate={{ opacity: [0.65, 1, 0.65] }}
+                          transition={{ duration: PRODUCT_MOTION.pulse, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          Now
+                        </motion.span>
+                      ) : null}
+                    </div>
+                    <p className="mt-0.5 text-xs leading-relaxed text-paper/65">{stage.detail}</p>
+                  </div>
+                </motion.div>
+
+                {i < engineStages.length - 1 ? <div className="h-2" /> : null}
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Output preview — only emphasizes once we reach approve/post */}
+        <AnimatePresence mode="wait">
+          {active >= 2 ? (
+            <motion.div
+              key={`${current.platform}-${post}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+              className={`mt-4 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${current.tone} px-3 py-3`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-paper/80">
+                  {current.platform}
+                </p>
+                <p className="text-[10px] uppercase tracking-wider text-paper/55">
+                  {active === 2 ? 'Awaiting approval' : 'Ready to publish'}
+                </p>
+              </div>
+              <p className="mt-1.5 text-sm font-medium text-paper">{current.title}</p>
+              <p className="mt-1 text-xs leading-relaxed text-paper/75">{current.caption}</p>
+            </motion.div>
+          ) : (
+            <motion.p
+              key="pipeline-hint"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="mt-4 text-xs leading-relaxed text-paper/60"
+            >
+              Train → scripts → human approval → post &amp; product ads. Nothing goes live without your yes.
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
@@ -368,19 +471,20 @@ export default function SocialContentEngine() {
 
   useEffect(() => {
     if (!running || touring) return
+    const interval =
+      capability === 'social' ? PRODUCT_MOTION.contentStepMs : PRODUCT_MOTION.stepMs
     const t = setInterval(() => {
-      setStep((s) => (s + 1) % stepCount)
-    }, PRODUCT_MOTION.stepMs)
+      setStep((s) => {
+        const next = (s + 1) % stepCount
+        // Advance sample posts only when the pipeline lands on approve/post
+        if (capability === 'social' && next >= 2) {
+          setPost((p) => (p + 1) % feedPosts.length)
+        }
+        return next
+      })
+    }, interval)
     return () => clearInterval(t)
-  }, [running, touring, stepCount])
-
-  useEffect(() => {
-    if (!running || touring || capability !== 'social') return
-    const t = setInterval(() => {
-      setPost((p) => (p + 1) % feedPosts.length)
-    }, PRODUCT_MOTION.rotateMs)
-    return () => clearInterval(t)
-  }, [running, touring, capability])
+  }, [running, touring, stepCount, capability])
 
   const runOneClickDemo = () => {
     setRunning(false)
@@ -538,9 +642,7 @@ export default function SocialContentEngine() {
               >
                 {capability === 'web-agents' && <WebAgentsDiagram step={step} />}
                 {capability === 'training' && <TrainingDiagram step={step} />}
-                {capability === 'social' && (
-                  <SocialDiagram step={step} post={post} stepLabel={activeStep.label} />
-                )}
+                {capability === 'social' && <SocialDiagram step={step} post={post} />}
               </motion.div>
             </AnimatePresence>
           </div>

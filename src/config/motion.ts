@@ -5,20 +5,22 @@ export const PRODUCT_EASE = [0.22, 1, 0.36, 1] as const
 
 export const PRODUCT_MOTION = {
   /** Panel / tab content crossfade (seconds) */
-  swap: 0.6,
+  swap: 0.7,
   /** Expand/collapse panels (seconds) */
   expand: 0.55,
   /** Soft looping accents (seconds) */
-  pulse: 3.4,
+  pulse: 4.2,
   /** Auto-advance for step-by-step demos (ms) */
-  stepMs: 4200,
+  stepMs: 5200,
+  /** Content-engine pipeline stages — slower so the diagram is readable (ms) */
+  contentStepMs: 6500,
   /** Secondary pulse within a longer step (ms) */
-  beatMs: 2600,
+  beatMs: 3000,
   /** Rotating feed / card cycles (ms) */
-  rotateMs: 6000,
+  rotateMs: 9000,
   /** One-click tour step (ms) */
-  tourTickMs: 2200,
-  tourStartMs: 1000,
+  tourTickMs: 2800,
+  tourStartMs: 1200,
   /** Pillar / highlight cycle (ms) */
   pillarMs: 7000,
 } as const
