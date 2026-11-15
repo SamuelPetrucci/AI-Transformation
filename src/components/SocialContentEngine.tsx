@@ -22,25 +22,25 @@ const pipeline = [
 const feedPosts = [
   {
     platform: 'Instagram',
-    tone: 'from-fuchsia-500/40 to-orange-400/30',
+    tone: 'from-ember/40 to-ember/30',
     title: 'Before vs after HVAC tune-up',
     caption: 'Same truck. New booking flow. Posts went out while you were on jobs.',
   },
   {
     platform: 'Facebook',
-    tone: 'from-blue-500/40 to-cyan-400/25',
+    tone: 'from-signal/40 to-signal-bright/25',
     title: 'Spring service special',
     caption: 'Caption + creative drafted, scheduled, and tracked—no late nights in Canva.',
   },
   {
     platform: 'Meta Ads',
-    tone: 'from-violet-500/45 to-indigo-400/30',
+    tone: 'from-signal/45 to-signal-bright/30',
     title: 'Lead form campaign live',
     caption: 'Constant presence. Your ad budget works while you run the business.',
   },
   {
     platform: 'Instagram',
-    tone: 'from-pink-500/35 to-violet-400/30',
+    tone: 'from-ember/35 to-signal/30',
     title: 'Team tip Tuesday',
     caption: 'Calendar fills itself. You approve. We publish and keep the feed warm.',
   },
@@ -89,11 +89,11 @@ export default function SocialContentEngine() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#07070a]">
+    <div className="relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-white/55">
       {/* Agents-hero style atmosphere */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.4),transparent_55%)]" />
-      <div className="pointer-events-none absolute -left-20 top-1/3 h-64 w-64 rounded-full bg-fuchsia-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-violet-500/15 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.4),transparent_55%)]" />
+      <div className="pointer-events-none absolute -left-20 top-1/3 h-64 w-64 rounded-full bg-ember/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-signal/15 blur-3xl" />
 
       {/* Background slideshow of feed cards */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
@@ -105,10 +105,10 @@ export default function SocialContentEngine() {
           {[...feedPosts, ...feedPosts, ...feedPosts].map((item, i) => (
             <div
               key={`${item.title}-${i}`}
-              className={`h-56 w-40 shrink-0 rounded-3xl border border-white/10 bg-gradient-to-br ${item.tone} p-4`}
+              className={`h-56 w-40 shrink-0 rounded-3xl border border-[var(--line)] bg-gradient-to-br ${item.tone} p-4`}
             >
-              <p className="text-[10px] uppercase tracking-wider text-white/70">{item.platform}</p>
-              <p className="mt-8 font-display text-sm text-white">{item.title}</p>
+              <p className="text-[10px] uppercase tracking-wider text-ink/70">{item.platform}</p>
+              <p className="mt-8 font-display text-sm text-ink">{item.title}</p>
               <div className="mt-auto pt-10">
                 <div className="h-1.5 w-12 rounded-full bg-white/30" />
                 <div className="mt-2 h-1.5 w-20 rounded-full bg-white/20" />
@@ -120,12 +120,12 @@ export default function SocialContentEngine() {
 
       <div className="relative z-10 grid gap-8 p-6 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
-          <p className="overline mb-4 text-violet-300">Social content engine</p>
-          <h3 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+          <p className="overline mb-4 text-signal">Social content engine</p>
+          <h3 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
             You run the business.
-            <span className="block text-violet-200">We keep you posting.</span>
+            <span className="block text-signal-bright">We keep you posting.</span>
           </h3>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
             A configured content + ads engine drafts, schedules, and keeps advertising warm—so your
             feed stays alive while you stay on the tools, on the phone, and with customers.
           </p>
@@ -136,10 +136,10 @@ export default function SocialContentEngine() {
                 key={p.id}
                 className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
                   i === step
-                    ? 'border-violet-400/60 bg-violet-500/25 text-white'
+                    ? 'border-signal/60 bg-signal/15 text-ink'
                     : i < step
-                      ? 'border-emerald-400/30 text-emerald-300'
-                      : 'border-white/10 text-zinc-500'
+                      ? 'border-signal/30 text-signal'
+                      : 'border-[var(--line)] text-ink-soft/70'
                 }`}
               >
                 {i < step ? <Check className="h-3.5 w-3.5" /> : <p.icon className="h-3.5 w-3.5" />}
@@ -157,7 +157,7 @@ export default function SocialContentEngine() {
               href={CALENDLY_CONFIG.CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-violet-400/40 hover:bg-violet-500/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10"
             >
               Get the engine for your business
             </a>
@@ -166,14 +166,14 @@ export default function SocialContentEngine() {
 
         {/* Phone / feed stage */}
         <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute -inset-6 rounded-[2rem] bg-violet-500/10 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-black/70 shadow-[0_0_60px_rgba(139,92,246,0.25)]">
+          <div className="absolute -inset-6 rounded-[2rem] bg-signal/10 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-[#0c1a17] shadow-[0_0_60px_rgba(15,143,117,0.18)]">
             <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+              <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
                 Live engine
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
                 {activeStep.label}
               </span>
             </div>
@@ -189,27 +189,27 @@ export default function SocialContentEngine() {
                   className={`overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br ${current.tone}`}
                 >
                   <div className="flex items-center justify-between px-4 pt-4">
-                    <p className="text-xs font-semibold text-white/90">{current.platform}</p>
-                    <p className="text-[10px] uppercase tracking-wider text-white/60">Scheduled</p>
+                    <p className="text-xs font-semibold text-paper/90">{current.platform}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-paper/60">Scheduled</p>
                   </div>
                   <div className="mx-4 mt-4 aspect-square rounded-xl border border-white/10 bg-black/25">
                     <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
                       <motion.div
                         animate={{ rotate: [0, 6, -4, 0], scale: [1, 1.04, 1] }}
                         transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white"
+                        className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-paper"
                       >
                         <activeStep.icon className="h-7 w-7" />
                       </motion.div>
-                      <p className="font-display text-lg text-white">{current.title}</p>
+                      <p className="font-display text-lg text-paper">{current.title}</p>
                     </div>
                   </div>
-                  <p className="px-4 py-4 text-sm leading-relaxed text-white/85">{current.caption}</p>
+                  <p className="px-4 py-4 text-sm leading-relaxed text-paper/85">{current.caption}</p>
                 </motion.div>
               </AnimatePresence>
 
               <motion.div
-                className="mt-4 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 text-xs text-zinc-400"
+                className="mt-4 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs text-paper/75"
                 animate={{ opacity: [0.55, 1, 0.55] }}
                 transition={{ duration: 2.2, repeat: Infinity }}
               >

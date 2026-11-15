@@ -104,7 +104,7 @@ export default function Header() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? 'border-b border-white/8 bg-black/50 backdrop-blur-xl'
+          ? 'border-b border-[var(--line)] bg-[rgba(243,246,244,0.78)] backdrop-blur-md'
           : 'border-b border-transparent bg-transparent'
       }`}
     >
@@ -126,26 +126,36 @@ export default function Header() {
           </button>
 
           <nav className="hidden items-center gap-1 lg:flex">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => scrollToSection(item.sectionId, item.href)}
-                className={`rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-300 ${
-                  activeSection === item.id
-                    ? 'bg-white/10 text-white'
-                    : 'text-zinc-400 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
+            {navItems
+              .filter((item) => item.id !== 'booking')
+              .map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => scrollToSection(item.sectionId, item.href)}
+                  className={`rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-300 ${
+                    activeSection === item.id
+                      ? 'bg-signal/10 text-ink'
+                      : 'text-ink-soft hover:bg-white/50 hover:text-ink'
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            <a
+              href={CALENDLY_CONFIG.CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary ml-2 !px-4 !py-2 text-sm"
+            >
+              Book Consultation
+            </a>
           </nav>
 
           <button
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-zinc-300 transition-colors hover:text-white lg:hidden"
+            className="text-ink-soft transition-colors hover:text-ink lg:hidden"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -161,8 +171,8 @@ export default function Header() {
                 onClick={() => scrollToSection(item.sectionId, item.href)}
                 className={`block w-full rounded-xl px-4 py-3 text-left text-sm transition-all ${
                   activeSection === item.id
-                    ? 'bg-violet-500/20 text-white'
-                    : 'text-zinc-300 hover:bg-white/5 hover:text-white'
+                    ? 'bg-signal/10 text-ink'
+                    : 'text-ink-soft hover:bg-white/60 hover:text-ink'
                 }`}
               >
                 {item.name}

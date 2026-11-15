@@ -122,7 +122,7 @@ function AgentDemo() {
   return (
     <div className="space-y-4">
       <div className="glass-panel rounded-2xl p-4">
-        <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-wider text-violet-300">
+        <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-wider text-signal">
           <Sparkles className="h-3.5 w-3.5" />
           Live agent run
         </div>
@@ -136,22 +136,22 @@ function AgentDemo() {
               }}
               className={`flex items-start gap-3 rounded-xl border px-3 py-2.5 ${
                 i === active
-                  ? 'border-violet-400/40 bg-violet-500/15'
+                  ? 'border-signal/40 bg-signal/15'
                   : i < active
-                    ? 'border-white/10 bg-white/[0.03]'
+                    ? 'border-[var(--line)] bg-white/40'
                     : 'border-transparent bg-transparent'
               }`}
             >
               <span
                 className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
-                  i <= active ? 'bg-violet-500 text-white' : 'bg-white/10 text-zinc-500'
+                  i <= active ? 'bg-signal text-paper' : 'bg-paper-2 text-ink-soft/70'
                 }`}
               >
                 {i < active ? <Check className="h-3 w-3" /> : i + 1}
               </span>
               <div>
-                <p className="text-sm font-medium text-white">{s.label}</p>
-                <p className="text-xs text-zinc-400">{s.detail}</p>
+                <p className="text-sm font-medium text-ink">{s.label}</p>
+                <p className="text-xs text-ink-soft">{s.detail}</p>
               </div>
             </motion.div>
           ))}
@@ -163,9 +163,9 @@ function AgentDemo() {
           { k: 'Booked', v: 'Yes' },
           { k: 'Cost/lead', v: '$0.18' },
         ].map((m) => (
-          <div key={m.k} className="rounded-xl border border-white/8 bg-white/[0.03] px-2 py-3">
-            <p className="text-zinc-500">{m.k}</p>
-            <p className="mt-1 font-display text-sm text-violet-300">{m.v}</p>
+          <div key={m.k} className="rounded-xl border border-[var(--line)] bg-white/40 px-2 py-3">
+            <p className="text-ink-soft/70">{m.k}</p>
+            <p className="mt-1 font-display text-sm text-signal">{m.v}</p>
           </div>
         ))}
       </div>
@@ -189,12 +189,12 @@ function WebsiteDemo() {
 
   return (
     <div className="space-y-5">
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#0f0a1a] to-[#050505] p-5">
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-gradient-to-br from-paper-2 to-white p-5">
         <div className="mb-4 flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-          <span className="ml-2 text-xs text-zinc-500">preview.yourbrand.com</span>
+          <span className="ml-2 text-xs text-ink-soft/70">preview.yourbrand.com</span>
         </div>
         <motion.div
           key={step}
@@ -202,13 +202,13 @@ function WebsiteDemo() {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-3"
         >
-          <div className="h-3 w-1/3 rounded bg-violet-400/40" />
+          <div className="h-3 w-1/3 rounded bg-signal/40" />
           <div className="h-8 w-2/3 rounded bg-white/15" />
           <div className="h-2 w-full rounded bg-white/8" />
           <div className="h-2 w-5/6 rounded bg-white/8" />
           <div className="mt-4 grid grid-cols-3 gap-2">
-            <div className="h-14 rounded-lg bg-cyan-400/15" />
-            <div className="h-14 rounded-lg bg-violet-400/20" />
+            <div className="h-14 rounded-lg bg-signal/15" />
+            <div className="h-14 rounded-lg bg-signal/20" />
             <div className="h-14 rounded-lg bg-white/8" />
           </div>
         </motion.div>
@@ -219,10 +219,10 @@ function WebsiteDemo() {
             key={s.title}
             className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs ${
               i === step
-                ? 'border-violet-400/50 bg-violet-500/20 text-white'
+                ? 'border-signal/50 bg-signal/15 text-ink'
                 : i < step
-                  ? 'border-emerald-400/30 text-emerald-300'
-                  : 'border-white/10 text-zinc-500'
+                  ? 'border-signal/30 text-signal'
+                  : 'border-[var(--line)] text-ink-soft/70'
             }`}
           >
             <s.icon className="h-3.5 w-3.5" />
@@ -230,7 +230,7 @@ function WebsiteDemo() {
           </div>
         ))}
       </div>
-      <p className="text-sm text-zinc-400">
+      <p className="text-sm text-ink-soft">
         Simple services, done right: design, hosting, and delivery with clear milestones—so you go live
         without the agency bloat.
       </p>
@@ -248,29 +248,29 @@ function AdsDemo() {
           { label: 'Leads', value: '47', delta: '+9' },
           { label: 'CPL', value: '$6.40', delta: '−18%' },
         ].map((m) => (
-          <div key={m.label} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-            <p className="text-xs text-zinc-500">{m.label}</p>
-            <p className="mt-1 font-display text-2xl text-white">{m.value}</p>
-            <p className="mt-1 text-xs text-emerald-400">{m.delta}</p>
+          <div key={m.label} className="rounded-2xl border border-[var(--line)] bg-white/40 p-4">
+            <p className="text-xs text-ink-soft/70">{m.label}</p>
+            <p className="mt-1 font-display text-2xl text-ink">{m.value}</p>
+            <p className="mt-1 text-xs text-signal">{m.delta}</p>
           </div>
         ))}
       </div>
       <div className="glass-panel rounded-2xl p-4">
-        <p className="mb-3 text-xs uppercase tracking-wider text-zinc-500">Campaign pipeline</p>
+        <p className="mb-3 text-xs uppercase tracking-wider text-ink-soft/70">Campaign pipeline</p>
         <div className="space-y-2 text-sm">
           {[
             'Creative variants generated (AI-assisted)',
             'Audience tests running on Meta',
             'Leads synced to CRM + follow-up agent',
           ].map((line) => (
-            <div key={line} className="flex items-center gap-2 text-zinc-300">
-              <Check className="h-4 w-4 text-violet-400" />
+            <div key={line} className="flex items-center gap-2 text-ink-soft">
+              <Check className="h-4 w-4 text-signal" />
               {line}
             </div>
           ))}
         </div>
       </div>
-      <p className="text-sm text-zinc-400">
+      <p className="text-sm text-ink-soft">
         Pairs with Facebook Ads + Social ($499/mo). You pay ad spend separately—we manage creative,
         targeting, and reporting.
       </p>
@@ -295,14 +295,14 @@ function AgentSetupDemo() {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-        <div className="mb-2 flex justify-between text-xs text-zinc-400">
+      <div className="rounded-2xl border border-[var(--line)] bg-white/40 p-4">
+        <div className="mb-2 flex justify-between text-xs text-ink-soft">
           <span>Setup progress</span>
-          <span className="text-violet-300">{progress}%</span>
+          <span className="text-signal">{progress}%</span>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-white/10">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
+            className="h-full rounded-full bg-gradient-to-r from-signal-bright to-signal"
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.5 }}
           />
@@ -314,16 +314,16 @@ function AgentSetupDemo() {
           return (
             <li
               key={item.label}
-              className="flex items-center gap-3 rounded-xl border border-white/8 px-3 py-2.5 text-sm"
+              className="flex items-center gap-3 rounded-xl border border-[var(--line)] px-3 py-2.5 text-sm"
             >
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full ${
-                  done ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/5 text-zinc-500'
+                  done ? 'bg-signal/20 text-signal' : 'bg-white/70 text-ink-soft/70'
                 }`}
               >
                 {done ? <Check className="h-3 w-3" /> : <Settings2 className="h-3 w-3" />}
               </span>
-              <span className={done ? 'text-zinc-200' : 'text-zinc-500'}>{item.label}</span>
+              <span className={done ? 'text-ink' : 'text-ink-soft/70'}>{item.label}</span>
             </li>
           )
         })}
@@ -343,20 +343,20 @@ function MarketingDemo() {
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {posts.map((p) => (
-          <div key={p.day} className="rounded-2xl border border-white/8 bg-white/[0.03] p-3 text-center">
-            <p className="text-xs text-zinc-500">{p.day}</p>
-            <p className="mt-1 font-display text-sm text-white">{p.channel}</p>
-            <p className="mt-1 text-[10px] uppercase tracking-wider text-violet-300">{p.status}</p>
+          <div key={p.day} className="rounded-2xl border border-[var(--line)] bg-white/40 p-3 text-center">
+            <p className="text-xs text-ink-soft/70">{p.day}</p>
+            <p className="mt-1 font-display text-sm text-ink">{p.channel}</p>
+            <p className="mt-1 text-[10px] uppercase tracking-wider text-signal">{p.status}</p>
           </div>
         ))}
       </div>
-      <div className="glass-panel space-y-2 rounded-2xl p-4 text-sm text-zinc-300">
-        <div className="flex items-center gap-2 text-violet-300">
+      <div className="glass-panel space-y-2 rounded-2xl p-4 text-sm text-ink-soft">
+        <div className="flex items-center gap-2 text-signal">
           <Calendar className="h-4 w-4" />
           Monthly content calendar
         </div>
         <p>AI drafts captions + graphics → you approve → we schedule to Facebook & Instagram.</p>
-        <div className="flex items-center gap-2 pt-1 text-violet-300">
+        <div className="flex items-center gap-2 pt-1 text-signal">
           <MessageSquare className="h-4 w-4" />
           Nurture sequences
         </div>
@@ -434,7 +434,7 @@ function OpsSavingsDemo() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-zinc-400">
+      <p className="text-sm text-ink-soft">
         Pick a platform they already pay for. We rebuild it, self-host it, make it better, and keep
         shipping integrations—so they stop renting forever.
       </p>
@@ -447,8 +447,8 @@ function OpsSavingsDemo() {
             onClick={() => setActive(i)}
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
               i === active
-                ? 'border-violet-400/50 bg-violet-500/20 text-white'
-                : 'border-white/10 text-zinc-400 hover:border-white/20 hover:text-white'
+                ? 'border-signal/50 bg-signal/15 text-ink'
+                : 'border-[var(--line)] text-ink-soft hover:border-signal/40 hover:text-ink'
             }`}
           >
             <p.icon className="h-3.5 w-3.5" />
@@ -468,10 +468,10 @@ function OpsSavingsDemo() {
         >
           <div className="rounded-2xl border border-red-400/20 bg-red-500/5 p-4">
             <p className="text-[10px] uppercase tracking-wider text-red-300/80">What they rent today</p>
-            <p className="mt-2 font-display text-sm text-white">{platform.saas}</p>
-            <p className="mt-3 text-xs text-zinc-500">Typical spend</p>
+            <p className="mt-2 font-display text-sm text-ink">{platform.saas}</p>
+            <p className="mt-3 text-xs text-ink-soft/70">Typical spend</p>
             <p className="font-display text-xl text-red-300">{platform.saasCost}</p>
-            <ul className="mt-3 space-y-1 text-xs text-zinc-500">
+            <ul className="mt-3 space-y-1 text-xs text-ink-soft/70">
               <li>· Per-seat pricing that scales against them</li>
               <li>· Feature gates & vendor roadmaps</li>
               <li>· Data locked in someone else’s product</li>
@@ -479,24 +479,24 @@ function OpsSavingsDemo() {
           </div>
 
           <div className="flex flex-col items-center justify-center gap-2 py-2">
-            <span className="rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-violet-200">
+            <span className="rounded-full border border-signal/40 bg-signal/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
               AI Transformation
             </span>
-            <ArrowRight className="hidden h-5 w-5 text-violet-400 sm:block" />
-            <p className="text-center text-[10px] text-zinc-500 sm:max-w-[5.5rem]">
+            <ArrowRight className="hidden h-5 w-5 text-signal sm:block" />
+            <p className="text-center text-[10px] text-ink-soft/70 sm:max-w-[5.5rem]">
               Bridge: rebuild → own → improve
             </p>
           </div>
 
-          <div className="rounded-2xl border border-emerald-400/25 bg-emerald-500/10 p-4">
-            <p className="text-[10px] uppercase tracking-wider text-emerald-300/80">What we deliver</p>
-            <p className="mt-2 font-display text-sm text-white">{platform.rebuild}</p>
-            <p className="mt-3 text-xs text-zinc-500">Model</p>
-            <p className="font-display text-xl text-emerald-300">{platform.rebuildCost}</p>
+          <div className="rounded-2xl border border-emerald-400/25 bg-signal/10 p-4">
+            <p className="text-[10px] uppercase tracking-wider text-signal/80">What we deliver</p>
+            <p className="mt-2 font-display text-sm text-ink">{platform.rebuild}</p>
+            <p className="mt-3 text-xs text-ink-soft/70">Model</p>
+            <p className="font-display text-xl text-signal">{platform.rebuildCost}</p>
             <ul className="mt-3 space-y-1 text-xs text-emerald-100/80">
               {platform.upgrades.map((u) => (
                 <li key={u} className="flex items-center gap-1.5">
-                  <Check className="h-3 w-3 shrink-0 text-emerald-400" />
+                  <Check className="h-3 w-3 shrink-0 text-signal" />
                   {u}
                 </li>
               ))}
@@ -505,8 +505,8 @@ function OpsSavingsDemo() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-        <p className="mb-3 text-[10px] uppercase tracking-wider text-zinc-500">
+      <div className="rounded-2xl border border-[var(--line)] bg-white/40 p-4">
+        <p className="mb-3 text-[10px] uppercase tracking-wider text-ink-soft/70">
           How the reengineering run works
         </p>
         <div className="flex flex-wrap gap-2">
@@ -515,10 +515,10 @@ function OpsSavingsDemo() {
               key={b.label}
               className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition ${
                 i === phase
-                  ? 'border-violet-400/50 bg-violet-500/20 text-white'
+                  ? 'border-signal/50 bg-signal/15 text-ink'
                   : i < phase
-                    ? 'border-emerald-400/30 text-emerald-300'
-                    : 'border-white/10 text-zinc-500'
+                    ? 'border-signal/30 text-signal'
+                    : 'border-[var(--line)] text-ink-soft/70'
               }`}
             >
               <b.icon className="h-3.5 w-3.5" />
@@ -529,24 +529,24 @@ function OpsSavingsDemo() {
       </div>
 
       <div className="grid grid-cols-3 gap-2 text-center">
-        <div className="rounded-xl border border-white/8 bg-white/[0.03] px-2 py-3">
-          <p className="text-[10px] text-zinc-500">SaaS (high)</p>
+        <div className="rounded-xl border border-[var(--line)] bg-white/40 px-2 py-3">
+          <p className="text-[10px] text-ink-soft/70">SaaS (high)</p>
           <p className="font-display text-sm text-red-300">${saasHigh}/mo</p>
         </div>
-        <div className="rounded-xl border border-white/8 bg-white/[0.03] px-2 py-3">
-          <p className="text-[10px] text-zinc-500">Rebuilt ops</p>
-          <p className="font-display text-sm text-emerald-300">${rebuilt}/mo</p>
+        <div className="rounded-xl border border-[var(--line)] bg-white/40 px-2 py-3">
+          <p className="text-[10px] text-ink-soft/70">Rebuilt ops</p>
+          <p className="font-display text-sm text-signal">${rebuilt}/mo</p>
         </div>
-        <div className="rounded-xl border border-emerald-400/30 bg-emerald-500/10 px-2 py-3">
-          <p className="text-[10px] text-emerald-300/80">Illustrative save</p>
-          <p className="font-display text-sm text-white">
-            <TrendingDown className="mr-0.5 inline h-3.5 w-3.5 text-emerald-400" />$
+        <div className="rounded-xl border border-signal/30 bg-signal/10 px-2 py-3">
+          <p className="text-[10px] text-signal/80">Illustrative save</p>
+          <p className="font-display text-sm text-ink">
+            <TrendingDown className="mr-0.5 inline h-3.5 w-3.5 text-signal" />$
             {yearlySave.toLocaleString()}/yr
           </p>
         </div>
       </div>
 
-      <p className="text-xs leading-relaxed text-zinc-500">
+      <p className="text-xs leading-relaxed text-ink-soft/70">
         CRM, booking, inventory, POS, industry platforms—almost anything they can name can be
         replicated, self-hosted, and improved. Figures are planning examples, not guarantees. We
         baseline their real stack in discovery, then bridge them off rent forever.
@@ -570,14 +570,14 @@ function DiscoveryDemo() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.08 }}
-          className="rounded-2xl border border-white/8 bg-white/[0.03] p-4"
+          className="rounded-2xl border border-[var(--line)] bg-white/40 p-4"
         >
-          <p className="font-display text-sm text-violet-300">
+          <p className="font-display text-sm text-signal">
             0{i + 1} · {p.title}
           </p>
           <ul className="mt-2 space-y-1">
             {p.items.map((item) => (
-              <li key={item} className="text-xs text-zinc-400">
+              <li key={item} className="text-xs text-ink-soft">
                 · {item}
               </li>
             ))}
@@ -610,10 +610,10 @@ function ContentAgentDemo() {
             key={label}
             className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm ${
               i === step
-                ? 'border-violet-400/40 bg-violet-500/15 text-white'
+                ? 'border-signal/40 bg-signal/15 text-ink'
                 : i < step
-                  ? 'border-white/10 text-zinc-300'
-                  : 'border-transparent text-zinc-500'
+                  ? 'border-[var(--line)] text-ink-soft'
+                  : 'border-transparent text-ink-soft/70'
             }`}
           >
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-xs">
@@ -623,13 +623,13 @@ function ContentAgentDemo() {
           </div>
         ))}
       </div>
-      <p className="text-sm text-zinc-400">
+      <p className="text-sm text-ink-soft">
         We run this pipeline on AI Transformation first—then install it for clients. See the{' '}
-        <Link href="/#social-ads" className="text-violet-300 hover:underline">
+        <Link href="/#social-ads" className="text-signal hover:underline">
           social content engine
         </Link>{' '}
         · live drafts on{' '}
-        <Link href="/blog" className="text-violet-300 hover:underline">
+        <Link href="/blog" className="text-signal hover:underline">
           Blog
         </Link>
         .
@@ -683,7 +683,7 @@ export default function AutomationShowcase() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
             See the work in action
           </motion.h2>
@@ -692,7 +692,7 @@ export default function AutomationShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.06 }}
-            className="mt-4 text-base text-zinc-400 sm:text-lg"
+            className="mt-4 text-base text-ink-soft sm:text-lg"
           >
             Agents, websites, ads, marketing, ops rebuilds, and discovery—demos of how we help you
             save time, reduce costs, and grow.
@@ -722,8 +722,8 @@ export default function AutomationShowcase() {
                   }}
                   className={`relative z-20 flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
                     isActive
-                      ? 'border-violet-400/50 bg-violet-500/20 text-white shadow-[0_0_24px_rgba(139,92,246,0.25)]'
-                      : 'border-white/10 bg-[#0a0a0c] text-zinc-400 hover:border-white/20 hover:text-white'
+                      ? 'border-signal/50 bg-signal/15 text-ink shadow-[0_0_24px_rgba(15,143,117,0.25)]'
+                      : 'border-[var(--line)] bg-white/55 text-ink-soft hover:border-signal/40 hover:text-ink'
                   }`}
                 >
                   <Icon className="h-4 w-4 shrink-0" />
@@ -748,10 +748,10 @@ export default function AutomationShowcase() {
               >
                 <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
-                    <h3 className="font-display text-xl font-semibold text-white sm:text-2xl">
+                    <h3 className="font-display text-xl font-semibold text-ink sm:text-2xl">
                       {current.title}
                     </h3>
-                    <p className="mt-2 max-w-xl text-sm text-zinc-400">{current.blurb}</p>
+                    <p className="mt-2 max-w-xl text-sm text-ink-soft">{current.blurb}</p>
                   </div>
                   <button type="button" onClick={scrollToBooking} className="cta-pill shrink-0 text-sm">
                     Talk through this

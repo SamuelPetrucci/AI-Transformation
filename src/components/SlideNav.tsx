@@ -55,14 +55,14 @@ export default function SlideNav() {
             }
             className="group relative flex items-center justify-end"
           >
-            <span className="mr-3 translate-x-2 rounded-md bg-black/70 px-2 py-1 text-[10px] uppercase tracking-wider text-white opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+            <span className="mr-3 translate-x-2 rounded-md border border-[var(--line)] bg-white/80 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-ink opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
               {slide.label}
             </span>
             <span
               className={`block rounded-full transition-all duration-500 ease-out ${
                 isActive
-                  ? 'h-8 w-2 bg-violet-400 shadow-[0_0_16px_rgba(167,139,250,0.8)]'
-                  : 'h-2 w-2 bg-white/30 group-hover:bg-white/70'
+                  ? 'h-8 w-2 bg-signal'
+                  : 'h-2 w-2 bg-mist group-hover:bg-signal/60'
               }`}
             />
           </button>

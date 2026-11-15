@@ -39,7 +39,7 @@ const demoServices = [
     title: 'AI Customer Assistant',
     description: 'Intelligent chatbot that handles customer inquiries and provides 24/7 support.',
     features: ['Natural Language Processing', '24/7 Availability', 'Multi-language Support', 'CRM Integration'],
-    color: 'from-purple-500 to-purple-600',
+    color: 'from-signal to-ink',
     demoUrl: '#',
     status: 'Live Demo Available'
   },
@@ -99,7 +99,7 @@ export default function ProofOfConcept() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Demo Selection */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white mb-6">Choose a Demo to Explore</h3>
+            <h3 className="text-2xl font-bold text-ink mb-6">Choose a Demo to Explore</h3>
             {demoServices.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -118,10 +118,10 @@ export default function ProofOfConcept() {
                 >
                   <div className="flex items-start space-x-4">
                     <div className={`w-12 h-12 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                      <service.icon className="w-6 h-6 text-white" />
+                      <service.icon className="w-6 h-6 text-ink" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                      <h4 className="text-lg font-semibold text-ink mb-2 group-hover:text-blue-400 transition-colors duration-300">
                         {service.title}
                       </h4>
                       <p className="text-gray-400 text-sm leading-relaxed mb-3">
@@ -152,10 +152,10 @@ export default function ProofOfConcept() {
             >
               <div className="flex items-center space-x-3 mb-6">
                 <div className={`w-12 h-12 bg-gradient-to-r ${selectedDemo.color} rounded-xl flex items-center justify-center`}>
-                  <selectedDemo.icon className="w-6 h-6 text-white" />
+                  <selectedDemo.icon className="w-6 h-6 text-ink" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">{selectedDemo.title}</h3>
+                  <h3 className="text-xl font-bold text-ink">{selectedDemo.title}</h3>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-green-400 text-sm font-medium">Live Demo</span>
@@ -167,11 +167,11 @@ export default function ProofOfConcept() {
               <div className="bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl p-6 mb-6 min-h-[300px]">
                 {selectedDemo.title === 'Smart Booking System' && (
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Live Booking Demo</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-4">Live Booking Demo</h4>
                     <div className="bg-white rounded-lg p-4">
                       <div className="flex items-center space-x-3 mb-4">
                         <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                          <Calendar className="w-4 h-4 text-white" />
+                          <Calendar className="w-4 h-4 text-ink" />
                         </div>
                         <div>
                           <h5 className="font-semibold text-gray-800">Schedule Consultation</h5>
@@ -192,7 +192,7 @@ export default function ProofOfConcept() {
                           Thu 1:00 PM
                         </button>
                       </div>
-                      <button className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                      <button className="w-full bg-blue-600 text-ink py-2 px-4 rounded hover:bg-blue-700">
                         Book This Slot
                       </button>
                     </div>
@@ -201,7 +201,7 @@ export default function ProofOfConcept() {
 
                 {selectedDemo.title === 'Data Analytics Dashboard' && (
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Live Analytics Demo</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-4">Live Analytics Demo</h4>
                     <div className="bg-white rounded-lg p-4">
                       <div className="grid grid-cols-2 gap-4 mb-4">
                         <div className="text-center">
@@ -225,11 +225,11 @@ export default function ProofOfConcept() {
 
                 {selectedDemo.title === 'AI Customer Assistant' && (
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Live Chat Demo</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-4">Live Chat Demo</h4>
                     <div className="bg-white rounded-lg p-4">
                       <div className="space-y-3">
                         <div className="flex justify-end">
-                          <div className="bg-blue-600 text-white p-3 rounded-lg max-w-xs">
+                          <div className="bg-blue-600 text-ink p-3 rounded-lg max-w-xs">
                             Hi! How can I help you today?
                           </div>
                         </div>
@@ -239,7 +239,7 @@ export default function ProofOfConcept() {
                           </div>
                         </div>
                         <div className="flex justify-end">
-                          <div className="bg-blue-600 text-white p-3 rounded-lg max-w-xs">
+                          <div className="bg-blue-600 text-ink p-3 rounded-lg max-w-xs">
                             I&apos;d be happy to help! What specific issue are you experiencing?
                           </div>
                         </div>
@@ -250,7 +250,7 @@ export default function ProofOfConcept() {
                           placeholder="Type your message..." 
                           className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm"
                         />
-                        <button className="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">
+                        <button className="bg-blue-600 text-ink px-4 py-2 rounded text-sm hover:bg-blue-700">
                           Send
                         </button>
                       </div>
@@ -260,7 +260,7 @@ export default function ProofOfConcept() {
 
                 {selectedDemo.title === 'POS System' && (
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Live POS Demo</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-4">Live POS Demo</h4>
                     <div className="bg-white rounded-lg p-4">
                       <div className="grid grid-cols-3 gap-2 mb-4">
                         <button className="bg-gray-100 hover:bg-gray-200 p-3 rounded text-sm">Coffee $3.50</button>
@@ -280,7 +280,7 @@ export default function ProofOfConcept() {
                           <span>Total:</span>
                           <span>$20.51</span>
                         </div>
-                        <button className="w-full bg-green-600 text-white py-2 px-4 rounded mt-4 hover:bg-green-700">
+                        <button className="w-full bg-green-600 text-ink py-2 px-4 rounded mt-4 hover:bg-green-700">
                           Process Payment
                         </button>
                       </div>
@@ -290,10 +290,10 @@ export default function ProofOfConcept() {
 
                 {selectedDemo.title === 'Custom Website Builder' && (
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Live Website Builder</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-4">Live Website Builder</h4>
                     <div className="bg-white rounded-lg p-4">
                       <div className="flex space-x-2 mb-4">
-                        <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm">Header</button>
+                        <button className="bg-blue-600 text-ink px-3 py-1 rounded text-sm">Header</button>
                         <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Content</button>
                         <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Footer</button>
                       </div>
@@ -309,7 +309,7 @@ export default function ProofOfConcept() {
 
                 {selectedDemo.title === 'Business Automation' && (
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Live Automation Demo</h4>
+                    <h4 className="text-lg font-semibold text-ink mb-4">Live Automation Demo</h4>
                     <div className="bg-white rounded-lg p-4">
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3">
@@ -325,7 +325,7 @@ export default function ProofOfConcept() {
                           <span className="text-sm">Report generation pending</span>
                         </div>
                       </div>
-                      <button className="w-full bg-purple-600 text-white py-2 px-4 rounded mt-4 hover:bg-purple-700">
+                      <button className="w-full rounded-full bg-ink py-2 px-4 mt-4 text-paper hover:bg-signal">
                         Configure Automation
                       </button>
                     </div>
@@ -335,7 +335,7 @@ export default function ProofOfConcept() {
 
               {/* Features */}
               <div className="space-y-3 mb-6">
-                <h4 className="text-lg font-semibold text-white mb-3">Key Features</h4>
+                <h4 className="text-lg font-semibold text-ink mb-3">Key Features</h4>
                 {selectedDemo.features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
@@ -346,11 +346,11 @@ export default function ProofOfConcept() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <button className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2">
+                <button className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-ink font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2">
                   <Eye className="w-4 h-4" />
                   <span>View Full Demo</span>
                 </button>
-                <button className="flex-1 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2">
+                <button className="flex-1 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-ink font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2">
                   <ExternalLink className="w-4 h-4" />
                   <span>Get Custom Quote</span>
                 </button>
@@ -367,8 +367,8 @@ export default function ProofOfConcept() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-blue-500/10 to-signal/10 border border-blue-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-ink mb-4">
               Ready to Build Your Custom Solution?
             </h3>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
@@ -377,7 +377,7 @@ export default function ProofOfConcept() {
             </p>
             <button
               onClick={() => window.location.href = '/#booking'}
-              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-ink font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
             >
               <span>Start Your Project</span>
               <ArrowRight className="w-5 h-5" />

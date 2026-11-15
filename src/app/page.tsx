@@ -99,7 +99,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HashNavigation />
-      <main className="slideshow-root min-h-screen bg-[#050505] text-white">
+      <main className="slideshow-root min-h-screen text-ink">
         <Header />
         <SlideNav />
         <Hero />

@@ -57,7 +57,7 @@ export default function IndustryBenefits() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl"
           >
             Why Choose Our Tailored Solutions?
           </motion.h2>
@@ -65,7 +65,7 @@ export default function IndustryBenefits() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mx-auto mt-4 max-w-2xl text-zinc-400"
+            className="mx-auto mt-4 max-w-2xl text-ink-soft"
           >
             We focus on understanding your unique business needs and delivering custom solutions that
             scale with your growth.
@@ -82,11 +82,11 @@ export default function IndustryBenefits() {
               transition={{ delay: index * 0.06 }}
               className="glass-panel rounded-3xl p-6"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-signal/15 text-signal">
                 <benefit.icon className="h-6 w-6" />
               </div>
-              <h3 className="font-display text-xl font-medium text-white">{benefit.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-400">{benefit.description}</p>
+              <h3 className="font-display text-xl font-medium text-ink">{benefit.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{benefit.description}</p>
             </motion.article>
           ))}
         </div>

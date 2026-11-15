@@ -7,10 +7,12 @@ interface BrandLogoProps {
   withWordmark?: boolean
   wordmark?: string
   markClassName?: string
+  /** Use on dark/teal bands where wordmark must stay light */
+  onDark?: boolean
 }
 
 /**
- * Tech interlocking mark — dual frames with cyan→violet gradient + node accents.
+ * Tech interlocking mark — dual frames with teal signal gradients + node accents.
  */
 export function LogoMark({ className = 'h-9 w-9' }: { className?: string }) {
   const uid = useId().replace(/:/g, '')
@@ -28,13 +30,13 @@ export function LogoMark({ className = 'h-9 w-9' }: { className?: string }) {
     >
       <defs>
         <linearGradient id={strokeId} x1="4" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#67e8f9" />
-          <stop offset="0.45" stopColor="#a78bfa" />
-          <stop offset="1" stopColor="#e9e3ff" />
+          <stop stopColor="#18b894" />
+          <stop offset="0.5" stopColor="#0f8f75" />
+          <stop offset="1" stopColor="#0c1a17" />
         </linearGradient>
         <linearGradient id={coreId} x1="14" y1="14" x2="26" y2="26" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#22d3ee" stopOpacity="0.95" />
-          <stop offset="1" stopColor="#8b5cf6" stopOpacity="0.95" />
+          <stop stopColor="#18b894" stopOpacity="0.95" />
+          <stop offset="1" stopColor="#0f8f75" stopOpacity="0.95" />
         </linearGradient>
         <filter id={glowId} x="-40%" y="-40%" width="180%" height="180%">
           <feGaussianBlur stdDeviation="1.15" result="blur" />
@@ -71,14 +73,14 @@ export function LogoMark({ className = 'h-9 w-9' }: { className?: string }) {
         cx="18.5"
         cy="18.5"
         r="3.45"
-        stroke="#67e8f9"
+        stroke="#18b894"
         strokeOpacity="0.35"
         strokeWidth="0.8"
       />
 
       <path
         d="M18.5 16.15V14.35M18.5 22.65v1.8M16.15 18.5H14.35M22.65 18.5h1.8"
-        stroke="#c4b5fd"
+        stroke="#0f8f75"
         strokeWidth="1"
         strokeLinecap="round"
         opacity="0.95"
@@ -92,12 +94,19 @@ export default function BrandLogo({
   withWordmark = true,
   wordmark = 'AI Transformation',
   markClassName = 'h-9 w-9',
+  onDark = false,
 }: BrandLogoProps) {
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <LogoMark className={markClassName} />
       {withWordmark && (
-        <span className="font-display font-semibold tracking-tight text-white">{wordmark}</span>
+        <span
+          className={`font-display font-semibold tracking-tight ${
+            onDark ? 'text-paper' : 'text-ink'
+          }`}
+        >
+          {wordmark}
+        </span>
       )}
     </span>
   )

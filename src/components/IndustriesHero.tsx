@@ -39,15 +39,15 @@ const industries = [
 export default function IndustriesHero() {
   return (
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pt-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.35),transparent_55%)]" />
-      <div className="pointer-events-none absolute right-0 top-1/3 h-[50vh] w-[40vw] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.12),transparent_70%)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.35),transparent_55%)]" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-[50vh] w-[40vw] rounded-full bg-[radial-gradient(circle,rgba(24,184,148,0.14),transparent_70%)] blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="overline mb-4 text-violet-300"
+            className="overline mb-4 text-signal"
           >
             Industries we serve
           </motion.p>
@@ -55,7 +55,7 @@ export default function IndustriesHero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="font-display text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
+            className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl md:text-6xl"
           >
             AI Solutions for Industries
           </motion.h1>
@@ -63,7 +63,7 @@ export default function IndustriesHero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mt-5 text-base text-zinc-400 sm:text-lg"
+            className="mt-5 text-base text-ink-soft sm:text-lg"
           >
             We specialize in AI automation for insurance brokers, real estate agents, accounting
             firms, medical offices, law firms, and retail businesses.
@@ -79,11 +79,11 @@ export default function IndustriesHero() {
               transition={{ delay: 0.08 + index * 0.05 }}
               className="glass-panel group rounded-3xl p-6"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300 transition-transform group-hover:scale-110">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-signal/15 text-signal transition-transform group-hover:scale-110">
                 <industry.icon className="h-6 w-6" />
               </div>
-              <h2 className="font-display text-xl font-medium text-white">{industry.name}</h2>
-              <p className="mt-2 text-sm text-zinc-400">{industry.description}</p>
+              <h2 className="font-display text-xl font-medium text-ink">{industry.name}</h2>
+              <p className="mt-2 text-sm text-ink-soft">{industry.description}</p>
             </motion.article>
           ))}
         </div>

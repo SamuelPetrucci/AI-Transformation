@@ -22,15 +22,15 @@ const serviceCategories = [
     imagePlaceholder: '/images/integration.avif',
     details: (
       <div className="text-left space-y-4">
-        <h4 className="text-white text-lg font-semibold">What we deliver</h4>
+        <h4 className="text-ink text-lg font-semibold">What we deliver</h4>
         <p className="text-gray-400">We design, build, and integrate custom web apps, landing pages, and POS workflows with production-grade architectures and CI/CD. Our team bridges the gap between vision and execution—owning the technical roadmap and delivery.</p>
-        <h5 className="text-white font-semibold">Typical outcomes</h5>
+        <h5 className="text-ink font-semibold">Typical outcomes</h5>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
           <li>Faster go-to-market with scalable foundations</li>
           <li>Seamless AI integrations (chatbots, assistants, automations)</li>
           <li>Modern UX with measurable conversion improvements</li>
         </ul>
-        <h5 className="text-white font-semibold">Tech we use</h5>
+        <h5 className="text-ink font-semibold">Tech we use</h5>
         <p className="text-gray-400">Next.js, TypeScript, Node.js, Supabase/Postgres, vector databases, OpenAI, Stripe, Vercel.</p>
       </div>
     )
@@ -46,20 +46,20 @@ const serviceCategories = [
       'Intelligent Project Management',
       'Smart Business Automation'
     ],
-    color: 'from-purple-500 to-purple-600',
-    bgColor: 'from-purple-500/10 to-purple-600/10',
+    color: 'from-signal to-ink',
+    bgColor: 'from-signal/10 to-ink/10',
     imagePlaceholder: '/images/ai-solutions.webp',
     details: (
       <div className="text-left space-y-4">
-        <h4 className="text-white text-lg font-semibold">Use cases</h4>
+        <h4 className="text-ink text-lg font-semibold">Use cases</h4>
         <p className="text-gray-400">AI agents handle repetitive tasks, triage requests, summarize communications, and assist teams with research and structured workflows—24/7 with consistent quality.</p>
-        <h5 className="text-white font-semibold">Capabilities</h5>
+        <h5 className="text-ink font-semibold">Capabilities</h5>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
           <li>Natural language chat for customer and internal support</li>
           <li>Automated report generation and meeting notes</li>
           <li>Task routing, ownership, and follow‑ups</li>
         </ul>
-        <h5 className="text-white font-semibold">Benefits</h5>
+        <h5 className="text-ink font-semibold">Benefits</h5>
         <p className="text-gray-400">Lower handle time, higher customer satisfaction, and better team focus on high‑value work.</p>
       </div>
     )
@@ -80,9 +80,9 @@ const serviceCategories = [
     imagePlaceholder: '/images/analytics.avif',
     details: (
       <div className="text-left space-y-4">
-        <h4 className="text-white text-lg font-semibold">From data to decisions</h4>
+        <h4 className="text-ink text-lg font-semibold">From data to decisions</h4>
         <p className="text-gray-400">We unify data sources and build dashboards that surface KPIs, trends, and alerts—so leaders can act quickly and confidently.</p>
-        <h5 className="text-white font-semibold">Integrations</h5>
+        <h5 className="text-ink font-semibold">Integrations</h5>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
           <li>CRMs, POS, spreadsheets, databases, and third‑party APIs</li>
           <li>Scheduled pipelines with data quality checks</li>
@@ -107,22 +107,22 @@ const serviceCategories = [
     imagePlaceholder: '/images/consulting.avif',
     details: (
       <div className="text-left space-y-4">
-        <h4 className="text-white text-lg font-semibold">What is an AI Knowledge Base?</h4>
+        <h4 className="text-ink text-lg font-semibold">What is an AI Knowledge Base?</h4>
         <p className="text-gray-400">An AI knowledge base is your company’s source of truth—policies, SOPs, product docs, FAQs, specs—structured so AI can reliably find and use it to answer questions and automate tasks.</p>
-        <h5 className="text-white font-semibold">Why your AI needs business context</h5>
+        <h5 className="text-ink font-semibold">Why your AI needs business context</h5>
         <p className="text-gray-400">Out‑of‑the‑box models don’t know your offerings, rules, or tone. Adding context ensures accurate, brand‑aligned, compliant answers.</p>
-        <h5 className="text-white font-semibold">RAG (Retrieval‑Augmented Generation)</h5>
+        <h5 className="text-ink font-semibold">RAG (Retrieval‑Augmented Generation)</h5>
         <p className="text-gray-400">At answer time, the AI searches your private content (docs/wiki/DB), retrieves the most relevant passages, and grounds the response—often with citations. Benefits: up‑to‑date, auditable, and precise.</p>
-        <h5 className="text-white font-semibold">CAG (Context‑Augmented Generation)</h5>
+        <h5 className="text-ink font-semibold">CAG (Context‑Augmented Generation)</h5>
         <p className="text-gray-400">We enrich prompts with dynamic context—user role, account status, recent tickets, catalog, and policy rules—so answers adapt to who’s asking and what’s happening now.</p>
-        <h5 className="text-white font-semibold">What we implement</h5>
+        <h5 className="text-ink font-semibold">What we implement</h5>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
           <li>Content ingestion (PDFs, Google Docs, Notion/Confluence, CSV/DB) and normalization</li>
           <li>Embeddings + vector search with access controls and safety guardrails</li>
           <li>Prompt routing, policies, citations, confidence scoring, and feedback loops</li>
           <li>Monitoring and continuous updates to keep answers fresh</li>
         </ul>
-        <h5 className="text-white font-semibold">Ideal use cases</h5>
+        <h5 className="text-ink font-semibold">Ideal use cases</h5>
         <p className="text-gray-400">Customer support, internal IT/HR help desk, sales enablement, onboarding, compliance Q&A, SOP guidance.</p>
       </div>
     )
@@ -138,18 +138,18 @@ const serviceCategories = [
       'AI-assisted captions and graphics',
       'Optional AI automation add-ons'
     ],
-    color: 'from-violet-500 to-violet-600',
-    bgColor: 'from-violet-500/10 to-violet-600/10',
+    color: 'from-signal to-signal',
+    bgColor: 'from-signal/10 to-signal/10',
     imagePlaceholder: '/images/services-hero-bg.webp',
     details: (
       <div className="text-left space-y-4">
-        <h4 className="text-white text-lg font-semibold">Packages</h4>
+        <h4 className="text-ink text-lg font-semibold">Packages</h4>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
-          <li><strong className="text-white">Starter Social ($149/mo)</strong> — 8 posts, AI captions/graphics, one platform (Facebook or Instagram)</li>
-          <li><strong className="text-white">Social Growth ($299/mo)</strong> — 12 posts, Facebook + Instagram, content calendar, basic performance report</li>
-          <li><strong className="text-white">Facebook Ads + Social ($499/mo)</strong> — Social Growth essentials plus one Meta campaign; client pays ad spend separately</li>
+          <li><strong className="text-ink">Starter Social ($149/mo)</strong> — 8 posts, AI captions/graphics, one platform (Facebook or Instagram)</li>
+          <li><strong className="text-ink">Social Growth ($299/mo)</strong> — 12 posts, Facebook + Instagram, content calendar, basic performance report</li>
+          <li><strong className="text-ink">Facebook Ads + Social ($499/mo)</strong> — Social Growth essentials plus one Meta campaign; client pays ad spend separately</li>
         </ul>
-        <h5 className="text-white font-semibold">Optional AI automation (separate)</h5>
+        <h5 className="text-ink font-semibold">Optional AI automation (separate)</h5>
         <p className="text-gray-400">Monitoring &amp; maintenance ($99–$299/mo), AI receptionist, automated lead follow-up, website/CRM integration, and custom AI agents—quoted as needed.</p>
       </div>
     )
@@ -184,10 +184,10 @@ export default function ServiceCategories() {
           className="mb-16 text-center"
         >
           <p className="overline mb-4">Packaged under one positioning</p>
-          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+          <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl">
             Services that fit the job
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-zinc-400">
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-ink-soft">
             Save time, reduce costs, and grow—through custom software, AI automation, and modern
             technology solutions. Pick the engagement size that matches your goals.
           </p>
@@ -203,14 +203,14 @@ export default function ServiceCategories() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="glass-panel h-full rounded-3xl p-8 transition-all duration-300 hover:border-violet-400/30 hover:scale-[1.01]">
+              <div className="glass-panel h-full rounded-3xl p-8 transition-all duration-300 hover:border-signal/30 hover:scale-[1.01]">
                 {/* Header */}
                 <div className="flex items-start space-x-4 mb-6">
                   <div className={`w-16 h-16 bg-gradient-to-r ${category.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
-                    <category.icon className="w-8 h-8 text-white" />
+                    <category.icon className="w-8 h-8 text-ink" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-ink mb-3 group-hover:text-blue-400 transition-colors duration-300">
                       {category.title}
                     </h3>
                     <p className="text-gray-400 leading-relaxed">
@@ -244,7 +244,7 @@ export default function ServiceCategories() {
                 {/* CTA Button */}
                 <button
                   onClick={() => openModal(index)}
-                  className="group/btn w-full bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="group/btn w-full bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-ink font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <span>Learn More</span>
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
@@ -259,7 +259,7 @@ export default function ServiceCategories() {
       {isModalOpen && activeCategory && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={closeModal} />
+          <div className="absolute inset-0 bg-ink/85 backdrop-blur-sm" onClick={closeModal} />
 
           {/* Modal Content */}
           <motion.div
@@ -273,10 +273,10 @@ export default function ServiceCategories() {
             aria-labelledby="service-modal-title"
           >
             <div className="flex items-start justify-between mb-4">
-              <h3 id="service-modal-title" className="text-2xl font-bold text-white">
+              <h3 id="service-modal-title" className="text-2xl font-bold text-ink">
                 {activeCategory.title}
               </h3>
-              <button onClick={closeModal} aria-label="Close" className="text-gray-400 hover:text-white">✕</button>
+              <button onClick={closeModal} aria-label="Close" className="text-gray-400 hover:text-ink">✕</button>
             </div>
 
             {/* Service Image */}
@@ -299,11 +299,11 @@ export default function ServiceCategories() {
             <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-end flex-shrink-0">
               <button
                 onClick={() => (window.location.href = '/#booking')}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-ink font-semibold py-3 px-6 rounded-xl transition-all duration-300"
               >
                 Get a Free Consultation
               </button>
-              <button onClick={closeModal} className="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300">
+              <button onClick={closeModal} className="bg-gray-800 hover:bg-gray-700 text-ink font-semibold py-3 px-6 rounded-xl transition-all duration-300">
                 Close
               </button>
             </div>

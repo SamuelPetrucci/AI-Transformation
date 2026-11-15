@@ -50,7 +50,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, delay: 0.04 }}
-            className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+            className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
             Why Choose Us
           </motion.h2>
@@ -59,7 +59,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="mt-4 text-base text-zinc-400 sm:text-lg"
+            className="mt-4 text-base text-ink-soft sm:text-lg"
           >
             One positioning. Flexible packaging—from monthly growth plans to custom implementations.
           </motion.p>
@@ -75,11 +75,11 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="glass-panel group rounded-3xl p-6"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300 transition-transform duration-300 group-hover:scale-110">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-signal/15 text-signal transition-transform duration-300 group-hover:scale-110">
                 <reason.icon className="h-6 w-6" />
               </div>
-              <h3 className="font-display mb-3 text-xl font-medium text-white">{reason.title}</h3>
-              <p className="text-sm leading-relaxed text-zinc-400">{reason.description}</p>
+              <h3 className="font-display mb-3 text-xl font-medium text-ink">{reason.title}</h3>
+              <p className="text-sm leading-relaxed text-ink-soft">{reason.description}</p>
             </motion.article>
           ))}
         </div>

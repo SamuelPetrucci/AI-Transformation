@@ -76,7 +76,7 @@ export default function SmartBooking() {
 
   return (
     <section id="booking" className="scroll-slide relative min-h-[100svh] overflow-hidden py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.18),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.18),transparent_55%)]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -87,10 +87,10 @@ export default function SmartBooking() {
           className="mb-12 text-center md:mb-16"
         >
           <p className="overline mb-4">Book a consultation</p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
             Book Your Consultation
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-400 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg">
             Pick a time on Calendly for a free discovery call—or send a message if you prefer.
           </p>
         </motion.div>
@@ -102,11 +102,11 @@ export default function SmartBooking() {
           className="mx-auto mb-10 max-w-xl text-center"
         >
           <div className="glass-panel rounded-3xl p-8 sm:p-10">
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-signal/15 text-signal">
               <Calendar className="h-7 w-7" />
             </div>
-            <h3 className="font-display text-2xl font-semibold text-white">Discovery call</h3>
-            <p className="mx-auto mt-3 max-w-md text-sm text-zinc-400">
+            <h3 className="font-display text-2xl font-semibold text-ink">Discovery call</h3>
+            <p className="mx-auto mt-3 max-w-md text-sm text-ink-soft">
               Opens Calendly in a new tab so you can choose a time that works.
             </p>
             <a
@@ -121,7 +121,7 @@ export default function SmartBooking() {
             <button
               type="button"
               onClick={() => setShowForm((v) => !v)}
-              className="mt-5 text-sm text-zinc-500 underline-offset-4 transition hover:text-zinc-300 hover:underline"
+              className="mt-5 text-sm text-ink-soft/70 underline-offset-4 transition hover:text-ink-soft hover:underline"
             >
               {showForm ? 'Hide contact form' : 'Prefer email? Use the contact form'}
             </button>
@@ -136,12 +136,12 @@ export default function SmartBooking() {
           >
             <div className="glass-panel rounded-3xl p-8 shadow-2xl">
               <div className="mb-8 flex items-center">
-                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300">
+                <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-signal/15 text-signal">
                   <Send className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-display text-2xl font-semibold text-white">Contact Form</h3>
-                  <p className="text-zinc-400">We&apos;ll get back to you shortly</p>
+                  <h3 className="font-display text-2xl font-semibold text-ink">Contact Form</h3>
+                  <p className="text-ink-soft">We&apos;ll get back to you shortly</p>
                 </div>
               </div>
 
@@ -149,11 +149,11 @@ export default function SmartBooking() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-4"
+                  className="mb-6 rounded-xl border border-signal/30 bg-signal/10 p-4"
                 >
                   <div className="flex items-center">
-                    <CheckCircle className="mr-3 h-5 w-5 text-emerald-400" />
-                    <span className="font-medium text-emerald-300">
+                    <CheckCircle className="mr-3 h-5 w-5 text-signal" />
+                    <span className="font-medium text-signal">
                       Thank you! Your message has been sent successfully.
                     </span>
                   </div>
@@ -163,31 +163,31 @@ export default function SmartBooking() {
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-zinc-300">Full Name *</label>
+                    <label className="mb-2 block text-sm font-medium text-ink-soft">Full Name *</label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+                      <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-soft/70" />
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        className="w-full rounded-xl border border-[var(--line)] bg-white/70 py-3 pl-10 pr-4 text-ink placeholder:text-ink-soft/50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-signal"
                         placeholder="Enter your full name"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-zinc-300">Email *</label>
+                    <label className="mb-2 block text-sm font-medium text-ink-soft">Email *</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+                      <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-soft/70" />
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        className="w-full rounded-xl border border-[var(--line)] bg-white/70 py-3 pl-10 pr-4 text-ink placeholder:text-ink-soft/50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-signal"
                         placeholder="Enter your email"
                       />
                     </div>
@@ -196,29 +196,29 @@ export default function SmartBooking() {
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-zinc-300">Phone</label>
+                    <label className="mb-2 block text-sm font-medium text-ink-soft">Phone</label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+                      <Phone className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-soft/70" />
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        className="w-full rounded-xl border border-[var(--line)] bg-white/70 py-3 pl-10 pr-4 text-ink placeholder:text-ink-soft/50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-signal"
                         placeholder="Enter your phone number"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-zinc-300">Company</label>
+                    <label className="mb-2 block text-sm font-medium text-ink-soft">Company</label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+                      <Building className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-soft/70" />
                       <input
                         type="text"
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-10 pr-4 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        className="w-full rounded-xl border border-[var(--line)] bg-white/70 py-3 pl-10 pr-4 text-ink placeholder:text-ink-soft/50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-signal"
                         placeholder="Enter your company name"
                       />
                     </div>
@@ -226,7 +226,7 @@ export default function SmartBooking() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-zinc-300">
+                  <label className="mb-2 block text-sm font-medium text-ink-soft">
                     Consultation Type *
                   </label>
                   <select
@@ -234,13 +234,13 @@ export default function SmartBooking() {
                     value={formData.consultationType}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full rounded-xl border border-[var(--line)] bg-white/70 px-4 py-3 text-ink focus:border-transparent focus:outline-none focus:ring-2 focus:ring-signal"
                   >
-                    <option value="" className="bg-zinc-900">
+                    <option value="" className="bg-paper">
                       Select consultation type
                     </option>
                     {consultationTypes.map((type) => (
-                      <option key={type} value={type} className="bg-zinc-900">
+                      <option key={type} value={type} className="bg-paper">
                         {type}
                       </option>
                     ))}
@@ -248,13 +248,13 @@ export default function SmartBooking() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-zinc-300">Message</label>
+                  <label className="mb-2 block text-sm font-medium text-ink-soft">Message</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-zinc-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full resize-none rounded-xl border border-[var(--line)] bg-white/70 px-4 py-3 text-ink placeholder:text-ink-soft/50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-signal"
                     placeholder="Tell us about your project or questions..."
                   />
                 </div>
@@ -262,7 +262,7 @@ export default function SmartBooking() {
                 <button type="submit" disabled={isSubmitting} className="cta-pill w-full justify-center">
                   {isSubmitting ? (
                     <>
-                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-paper border-t-transparent" />
                       Sending...
                     </>
                   ) : (

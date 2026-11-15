@@ -55,7 +55,7 @@ const industrySolutions = [
   {
     icon: Scale,
     name: 'Law Firms',
-    color: 'from-purple-500 to-purple-600',
+    color: 'from-signal to-ink',
     description: 'Build client confidence and trust through intelligent legal solutions.',
     solutions: [
       'Automated client updates and case progress tracking',
@@ -112,9 +112,9 @@ export default function IndustrySolutions() {
               <div className="bg-gray-900/50 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8">
                 <div className="flex items-center mb-6">
                   <div className={`w-12 h-12 bg-gradient-to-r ${industry.color} rounded-xl flex items-center justify-center mr-4`}>
-                    <industry.icon className="w-6 h-6 text-white" />
+                    <industry.icon className="w-6 h-6 text-ink" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">{industry.name}</h3>
+                  <h3 className="text-2xl font-bold text-ink">{industry.name}</h3>
                 </div>
                 
                 <p className="text-gray-300 mb-6">
