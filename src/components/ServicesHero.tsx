@@ -17,11 +17,12 @@ export default function ServicesHero() {
           src="/images/services-hero-bg.jpg"
           alt="Services background"
           fill
-          className="object-cover opacity-30"
+          className="object-cover"
           priority
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-paper/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.35),transparent_55%)]" />
+        <div className="absolute inset-0 bg-paper/55" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.28),transparent_55%)]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
