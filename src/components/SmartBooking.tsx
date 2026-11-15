@@ -11,9 +11,9 @@ const consultationTypes = [
   'Digital Transformation',
   'Custom AI Solutions',
   'Data Analytics & Insights',
-  'Starter Social ($149/mo)',
-  'Social Growth ($299/mo)',
-  'Facebook Ads + Social ($499/mo)',
+  'Content Engine Starter ($149/mo)',
+  'Content Engine Growth ($299/mo)',
+  'Content Engine + Product Ads ($499/mo)',
   'Technology Consulting',
 ]
 

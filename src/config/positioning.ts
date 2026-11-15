@@ -33,7 +33,7 @@ export const POSITIONING = {
       id: 'modern-tech',
       title: 'Modern Technology Solutions',
       description:
-        'Application integrations, modern tech upgrades, and automated content engines that research your business, plan scripts, auto-post, and run product ads—SEO-optimized for organic growth.',
+        'Application integrations, modern tech upgrades, and automated content engines—we train the agent on your business, require human approval on every draft, post to any platforms you use, and run product ads—SEO-optimized for organic growth.',
     },
   ],
 } as const

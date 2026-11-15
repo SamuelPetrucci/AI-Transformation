@@ -74,18 +74,18 @@ export default function Home() {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Starter Social',
+            name: 'Content Engine Starter',
             description:
-              '8 social media posts per month with AI-assisted captions and scheduling for $149/month.',
+              'Trained content agent with human-approved posting on one platform of your choice—8 posts per month for $149/month.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Social Growth',
+            name: 'Content Engine Growth',
             description:
-              '12 social media posts per month with Facebook and Instagram scheduling for $299/month.',
+              'Multi-platform content engine with human approval on every draft—12 posts per month across the channels you choose for $299/month.',
           },
         },
       ],

@@ -6,7 +6,7 @@ import {
   ArrowUpRight,
   Search,
   Sparkles,
-  CalendarClock,
+  ShieldCheck,
   Megaphone,
   PiggyBank,
   Clock,
@@ -18,27 +18,27 @@ import SocialContentEngine from './SocialContentEngine'
 const engineSteps = [
   {
     icon: Search,
-    title: 'Market research from your business',
+    title: 'We train the agent on your business',
     detail:
-      'The agent learns what you sell, who you serve, your logos/brand assets, and what already works—so content isn’t generic.',
+      'Your offers, audience, logos, brand voice, and what already works get loaded in—so drafts sound like you, not a generic AI.',
   },
   {
     icon: Sparkles,
-    title: 'Scripts planned for you',
+    title: 'Scripts planned for every channel',
     detail:
-      'Hooks, captions, and SEO-minded outlines get planned against your offers and keywords—ready for approval, not blank-page busywork.',
+      'Hooks, captions, and SEO-minded outlines for the platforms you care about—Facebook, Instagram, LinkedIn, X, TikTok, YouTube, and beyond.',
   },
   {
-    icon: CalendarClock,
-    title: 'Automated posting configured',
+    icon: ShieldCheck,
+    title: 'Human approval on every post',
     detail:
-      'We wire scheduling to your accounts so the calendar fills itself. You approve; the engine keeps posting while you run the business.',
+      'Nothing publishes unchecked. A person reviews each draft—checks and balances so the agent stays on brand and on strategy.',
   },
   {
     icon: Megaphone,
-    title: 'Ads from past content—or a new plan',
+    title: 'Post anywhere + product ads',
     detail:
-      'Have history? We mine winning posts into product ads. Starting fresh? We design a new approach so paid and organic work together.',
+      'We configure automated posting across the media platforms you choose. Have past content? We turn winners into ads. Starting fresh? We plan a new approach.',
   },
 ]
 
@@ -48,13 +48,13 @@ const packages = [
     price: '$149',
     period: '/month',
     blurb:
-      'Automated posting for one platform—research + scripts included—so you stay visible without hiring a marketer.',
+      'Trained agent + human-approved posting on one platform of your choice—stay visible without hiring a marketer.',
     items: [
-      'Business + brand research (offers, logos, voice)',
-      '8 SEO-minded posts planned and scheduled / month',
+      'Agent trained on your business, brand, and logos',
+      '8 SEO-minded posts planned / month',
+      'Human approval on every draft before publish',
+      'One platform you choose (any major network)',
       'AI-assisted captions and graphics',
-      'One platform (Facebook or Instagram)',
-      'One revision round per monthly batch',
     ],
   },
   {
@@ -64,12 +64,12 @@ const packages = [
     highlight: true,
     badge: 'Recommended',
     blurb:
-      'Full content engine on Facebook + Instagram—calendar, scripts, and reporting so organic traffic compounds.',
+      'Full content engine across the channels you pick—trained agent, human gate, calendar, and reporting.',
     items: [
-      'Ongoing market research from your business data',
-      '12 posts / month across Facebook and Instagram',
+      'Ongoing training from your business data',
+      '12 posts / month across platforms you choose',
+      'Human approval checks & balances on every piece',
       'Script planning + monthly content calendar',
-      'AI-assisted captions and graphics',
       'Basic monthly performance report',
     ],
   },
@@ -78,12 +78,12 @@ const packages = [
     price: '$499',
     period: '/month',
     blurb:
-      'Content engine plus managed product advertising—reuse past winners or launch a new ads approach.',
+      'Multi-platform content engine plus managed product advertising—reuse past winners or launch a new ads plan.',
     items: [
       'Everything in Growth',
-      'Management of one Meta product ad campaign',
-      'Creative pulled from past content when available',
-      'Or a new ads plan if you’re starting fresh',
+      'Management of one product ad campaign',
+      'Creative from past content when available',
+      'Or a new ads approach if you’re starting fresh',
       'Lead tracking + monthly ads report',
       'Ad spend paid separately by you',
     ],
@@ -94,17 +94,17 @@ const outcomes = [
   {
     icon: Clock,
     title: 'Save time',
-    detail: 'No more weekly Canva marathons—approve scripts, then get back to customers.',
+    detail: 'Agent drafts; you (or we) approve once—then get back to customers.',
   },
   {
     icon: TrendingUp,
     title: 'Grow with automation',
-    detail: 'Consistent posting + SEO-minded content + ads that keep demand warm.',
+    detail: 'Consistent multi-platform posting + SEO-minded content + ads, with a human still in the loop.',
   },
   {
     icon: PiggyBank,
     title: 'Spend smarter on tech',
-    detail: 'One engine instead of stacking freelancers, tools, and unused SaaS seats.',
+    detail: 'One trained engine instead of freelancers, tool stacks, and unused SaaS seats.',
   },
 ]
 
@@ -158,8 +158,8 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Specific products a business owner can buy to grow with automation—save time on marketing
-            busywork, and spend less stacking tools when a configured engine will do.
+            We train the agent on your business, draft for any media platforms you use, and require
+            human approval on every piece—automation with checks and balances, not a black box.
           </motion.p>
         </div>
 
@@ -224,9 +224,9 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Clear monthly products—from automated posting to product ads—priced so owners can start
-            lean and scale. Layer on custom software, agents, and Save-on-tech rebuilds when you want
-            to own more of the stack.
+            Clear monthly products—from one channel to multi-platform posting plus ads. Every draft
+            gets a human yes before it goes live. Layer on custom software and Save-on-tech rebuilds
+            when you want to own more of the stack.
           </motion.p>
         </div>
 
@@ -290,9 +290,10 @@ export default function SocialAdsPackage() {
             What Content Engine + Product Ads can look like
           </h3>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft sm:text-base">
-            Example: an HVAC company pays the management fee plus ad spend. The engine researches
-            their services and brand, plans scripts, auto-posts, then turns strong past posts into
-            product ads—or launches a new ads plan if history is thin.
+            Example: an HVAC company pays the management fee plus ad spend. We train the agent on
+            their services and brand, plan scripts for the platforms they use, get a human approval
+            on every draft, then turn strong past posts into product ads—or launch a new ads plan if
+            history is thin.
           </p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-[var(--line)] bg-white/40 p-4">

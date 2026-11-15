@@ -82,7 +82,7 @@ const demos: {
     icon: Mail,
     title: 'Social media automation',
     blurb:
-      'Content calendar, captions, scheduling, and nurture sequences—AI drafts, you approve, we keep the feed warm.',
+      'Train the agent, draft for any platforms you use, human-approve every piece, then schedule and advertise—checks and balances built in.',
   },
   {
     id: 'ops',
@@ -354,7 +354,7 @@ function AdsDemo() {
         </div>
       </div>
       <p className="text-sm text-ink-soft">
-        Pairs with Facebook Ads + Social ($499/mo). You pay ad spend separately—we manage creative,
+        Pairs with Content Engine + Product Ads ($499/mo). You pay ad spend separately—we manage creative,
         targeting, and reporting.
       </p>
     </div>
@@ -432,10 +432,10 @@ function AgentSetupDemo() {
 
 function MarketingDemo() {
   const posts = [
-    { day: 'Mon', status: 'Scheduled', channel: 'IG' },
-    { day: 'Wed', status: 'Scheduled', channel: 'FB' },
-    { day: 'Fri', status: 'Draft', channel: 'IG + FB' },
-    { day: 'Sun', status: 'Queued', channel: 'FB' },
+    { day: 'Mon', status: 'Approved', channel: 'LinkedIn' },
+    { day: 'Wed', status: 'Scheduled', channel: 'TikTok' },
+    { day: 'Fri', status: 'In review', channel: 'IG + X' },
+    { day: 'Sun', status: 'Queued', channel: 'YouTube' },
   ]
   return (
     <div className="space-y-4">
@@ -453,7 +453,10 @@ function MarketingDemo() {
           <Calendar className="h-4 w-4" />
           Monthly content calendar
         </div>
-        <p>AI drafts captions + graphics → you approve → we schedule to Facebook & Instagram.</p>
+        <p>
+          We train the agent → it drafts for any platforms you use → a human approves every piece →
+          we schedule and publish.
+        </p>
         <div className="flex items-center gap-2 pt-1 text-signal">
           <MessageSquare className="h-4 w-4" />
           Nurture sequences

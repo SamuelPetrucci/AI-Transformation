@@ -129,14 +129,15 @@ const serviceCategories = [
   },
   {
     icon: Megaphone,
-    title: 'Social Media Automation & Advertising',
-    description: 'Active social presence and optional Meta ads management—Starter Social, Social Growth, or Facebook Ads + Social.',
+    title: 'Content Engine & Product Advertising',
+    description:
+      'Trained content agents, human approval on every post, automated posting on any media platforms you choose—plus optional product ads.',
     features: [
-      'Starter Social — $149/month',
-      'Social Growth — $299/month (recommended)',
-      'Facebook Ads + Social — $499/month',
-      'AI-assisted captions and graphics',
-      'Optional AI automation add-ons'
+      'Content Engine Starter — $149/month',
+      'Content Engine Growth — $299/month (recommended)',
+      'Content Engine + Product Ads — $499/month',
+      'Human approval checks & balances',
+      'Any major platforms you use',
     ],
     color: 'from-signal to-signal',
     bgColor: 'from-signal/10 to-signal/10',
@@ -145,10 +146,11 @@ const serviceCategories = [
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">Packages</h4>
         <ul className="list-disc list-inside space-y-1 text-gray-400">
-          <li><strong className="text-ink">Starter Social ($149/mo)</strong> — 8 posts, AI captions/graphics, one platform (Facebook or Instagram)</li>
-          <li><strong className="text-ink">Social Growth ($299/mo)</strong> — 12 posts, Facebook + Instagram, content calendar, basic performance report</li>
-          <li><strong className="text-ink">Facebook Ads + Social ($499/mo)</strong> — Social Growth essentials plus one Meta campaign; client pays ad spend separately</li>
+          <li><strong className="text-ink">Content Engine Starter ($149/mo)</strong> — Agent trained on your business; 8 posts; human approval; one platform of your choice</li>
+          <li><strong className="text-ink">Content Engine Growth ($299/mo)</strong> — 12 posts across platforms you choose; human gate; calendar + report</li>
+          <li><strong className="text-ink">Content Engine + Product Ads ($499/mo)</strong> — Growth plus one product ad campaign; client pays ad spend separately</li>
         </ul>
+        <p className="text-gray-400">Not limited to Facebook and Instagram—LinkedIn, X, TikTok, YouTube, and other networks you name. Nothing publishes without a human yes.</p>
         <h5 className="text-ink font-semibold">Optional AI automation (separate)</h5>
         <p className="text-gray-400">Monitoring &amp; maintenance ($99–$299/mo), AI receptionist, automated lead follow-up, website/CRM integration, and custom AI agents—quoted as needed.</p>
       </div>

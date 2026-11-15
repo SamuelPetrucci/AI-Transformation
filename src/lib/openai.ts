@@ -86,7 +86,7 @@ How we package work (same company, flexible size):
 - Custom software: websites, apps, CRMs, booking tools, project builds
 - AI automation: AI receptionists, lead follow-up, content agents, workflows
 - Modern technology solutions: integrations, analytics, SaaS rebuilds, larger implementations
-- Growth packages: Starter Social $149/mo, Social Growth $299/mo, Facebook Ads + Social $499/mo (ad spend separate)
+- Content Engine packages: Starter $149/mo (1 platform of your choice), Growth $299/mo (platforms you choose), + Product Ads $499/mo (ad spend separate). We train the agent on the business; a human approves every draft before publish—any major media platforms, not just Facebook/Instagram.
 
 Contact: (860) 705-3417 · info@aitransformationllc.com
 Industries: Insurance, real estate, accounting, medical, law, retail/service SMBs
