@@ -147,71 +147,111 @@ const feedPosts = [
 
 function WebAgentsDiagram({ step }: { step: number }) {
   const nodes = [
-    { label: 'Custom software', icon: Code2, x: '14%', y: '24%' },
-    { label: 'AI agents', icon: Bot, x: '50%', y: '22%' },
-    { label: 'Staff training', icon: GraduationCap, x: '86%', y: '28%' },
-    { label: 'Custom ops software', icon: Plug, x: '28%', y: '72%' },
-    { label: 'Your team', icon: Users, x: '72%', y: '74%' },
+    { label: 'Custom software', detail: 'Sites, CRMs, booking tools', icon: Code2 },
+    { label: 'AI agents', detail: 'Fine-tuned for repetitive work', icon: Bot },
+    { label: 'Staff training', detail: 'Playbooks + live handoff', icon: GraduationCap },
+    { label: 'Custom ops software', detail: 'Systems wired into your stack', icon: Plug },
+    { label: 'Your team', detail: 'Owns and runs the workflows', icon: Users },
   ]
   const active = Math.min(step, nodes.length - 1)
+  const progress = (active + 1) / nodes.length
 
   return (
-    <div className="relative min-h-[340px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] p-4">
-      <div className="mb-3 flex items-center justify-between">
+    <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c1a17] p-4">
+      <div className="mb-3 flex items-center justify-between gap-2">
         <span className="text-xs font-semibold uppercase tracking-wider text-paper/70">
           Build · implement · train
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
+        <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-signal/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-signal-bright">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal-bright" />
           Connecting
         </span>
       </div>
 
-      <div className="relative h-[280px] rounded-2xl border border-white/10 bg-gradient-to-br from-signal/10 to-ember/5">
-        <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-          <motion.path
-            d="M 55 70 L 180 65 L 310 80 L 100 200 L 260 210"
-            fill="none"
-            stroke="rgba(24,184,148,0.45)"
-            strokeWidth="2"
-            strokeDasharray="6 6"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: Math.min(1, (step + 1) / 5) }}
-            transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
-          />
-        </svg>
+      <div className="relative mb-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+        <motion.div
+          className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-signal to-signal-bright"
+          animate={{ width: `${progress * 100}%` }}
+          transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+        />
+      </div>
 
+      <div className="relative space-y-0">
         {nodes.map((n, i) => {
           const Icon = n.icon
-          const isOn = i <= active
+          const isActive = i === active
+          const isDone = i < active
+          const isUpcoming = i > active
+
           return (
-            <motion.div
-              key={n.label}
-              className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: n.x, top: n.y }}
-              animate={{
-                scale: i === active ? 1.06 : 1,
-                opacity: isOn ? 1 : 0.4,
-              }}
-            >
-              <div
-                className={`flex w-[7.75rem] flex-col items-center gap-2 rounded-2xl border px-3 py-3 text-center ${
-                  i === active
-                    ? 'border-signal/60 bg-signal/20 shadow-[0_0_24px_rgba(15,143,117,0.35)]'
-                    : isOn
-                      ? 'border-white/20 bg-white/10'
-                      : 'border-white/10 bg-black/20'
+            <div key={n.label} className="relative">
+              {i < nodes.length - 1 ? (
+                <motion.div
+                  className="absolute left-[1.15rem] top-12 h-[calc(100%-0.5rem)] w-px origin-top bg-white/15"
+                  aria-hidden
+                >
+                  <motion.div
+                    className="w-full bg-signal-bright"
+                    initial={{ height: '0%' }}
+                    animate={{ height: isDone || isActive ? '100%' : '0%' }}
+                    transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+                  />
+                </motion.div>
+              ) : null}
+
+              <motion.div
+                animate={{
+                  opacity: isUpcoming ? 0.45 : 1,
+                  x: isActive ? 2 : 0,
+                }}
+                transition={{ duration: PRODUCT_MOTION.swap, ease: PRODUCT_EASE }}
+                className={`relative z-10 flex items-start gap-3 rounded-2xl border px-3 py-3 ${
+                  isActive
+                    ? 'border-signal/55 bg-signal/20 shadow-[0_0_28px_rgba(15,143,117,0.28)]'
+                    : isDone
+                      ? 'border-white/15 bg-white/[0.06]'
+                      : 'border-white/10 bg-black/15'
                 }`}
               >
-                <Icon className={`h-5 w-5 ${i === active ? 'text-signal-bright' : 'text-paper/80'}`} />
-                <p className="text-xs font-semibold text-paper">{n.label}</p>
-              </div>
-            </motion.div>
+                <span
+                  className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+                    isDone
+                      ? 'bg-signal text-paper'
+                      : isActive
+                        ? 'bg-signal-bright text-ink'
+                        : 'bg-white/10 text-paper/65'
+                  }`}
+                >
+                  {isDone ? <Check className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-semibold text-paper">{n.label}</p>
+                    {isActive ? (
+                      <motion.span
+                        className="rounded-full bg-signal-bright/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-signal-bright"
+                        animate={{ opacity: [0.65, 1, 0.65] }}
+                        transition={{
+                          duration: PRODUCT_MOTION.pulse,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }}
+                      >
+                        Now
+                      </motion.span>
+                    ) : null}
+                  </div>
+                  <p className="mt-0.5 text-xs leading-relaxed text-paper/65">{n.detail}</p>
+                </div>
+              </motion.div>
+
+              {i < nodes.length - 1 ? <div className="h-2" /> : null}
+            </div>
           )
         })}
       </div>
 
-      <p className="mt-3 text-xs text-paper/70">
+      <p className="mt-4 text-xs leading-relaxed text-paper/70">
         Ops software + agent implementation + staff AI training—systems your team can run.
       </p>
     </div>
