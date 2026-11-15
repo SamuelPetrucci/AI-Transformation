@@ -33,17 +33,17 @@ export default function SocialContentEngine() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(15,143,117,0.22),transparent_55%)]" />
 
       <div className="relative z-10 max-w-3xl">
-        <p className="overline mb-4 text-signal">The problem → the fix</p>
+        <p className="overline mb-4 text-signal">Build · implement · train</p>
         <h3 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          Content stalls. Ads feel off-brand.
+          We build the systems,
           <span className="mt-2 block text-signal-bright">
-            One engine drafts; you approve; it posts.
+            implement the agents, and train your team.
           </span>
         </h3>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-          We train an agent on your business, brand, and logos. It plans scripts and drafts for the
-          channels you use. A human approves every piece. Past content can become product ads—or we
-          plan a new approach.
+          Custom software and ops tools, AI agents fine-tuned for repetitive work, and staff
+          training so your team can run it. Content Engine is one product line inside that
+          approach—train → script → human-approve → post.
         </p>
 
         <ol className="mt-8 grid gap-3 sm:grid-cols-2">
