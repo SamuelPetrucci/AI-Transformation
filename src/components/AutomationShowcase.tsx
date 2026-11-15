@@ -42,9 +42,9 @@ const demos: {
     id: 'ops',
     label: 'Own your tech',
     icon: PiggyBank,
-    title: 'Own your tech stack. Reduce costs. Own your data.',
+    title: 'Own your tech stack. Reduce costs. Take control of your business data.',
     blurb:
-      'We rebuild the CRM, booking tool, or platform you rent today into software you own—self-hosted, improved, integrated, at a fraction of SaaS cost, with your data under your control.',
+      'We rebuild the CRM, booking tool, or platform you rent today into software you own—self-hosted, improved, integrated, at a fraction of SaaS cost, so you take control of your business data.',
   },
   {
     id: 'agents',

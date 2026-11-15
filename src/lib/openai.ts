@@ -103,7 +103,7 @@ Custom Software (own the stack):
 - CRM & Custom Operation Software
 (all project quotes)
 
-Own Your Tech Stack (own the stack—reduce costs, own your data):
+Own Your Tech Stack (own the stack—reduce costs, take control of your business data):
 - Stack Rebuild (Own Your Stack) — replace rented SaaS with software you own
 - Application Integrations
 - Analytics Dashboard

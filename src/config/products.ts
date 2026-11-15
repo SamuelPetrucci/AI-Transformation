@@ -195,14 +195,14 @@ export const PRODUCT_LINES: ProductLine[] = [
     id: 'own-your-tech',
     name: 'Own Your Tech Stack',
     blurb:
-      'Own your tech stack instead of renting it—reduce costs, keep control of your data, and connect the tools you already have so nothing leaks.',
+      'Own your tech stack instead of renting it—reduce costs, take control of your business data, and connect the tools you already have so nothing leaks.',
     goal: 'own-stack',
     products: [
       {
         id: 'stack-rebuild',
         name: 'Stack Rebuild (Own Your Stack)',
         job: 'Rebuild a CRM, booking, or ops tool you rent today into software you own',
-        outcome: 'Lower recurring costs; own your data and the upgrades you actually need',
+        outcome: 'Lower recurring costs; take control of your business data and the upgrades you actually need',
         price: {
           kind: 'quote',
           amount: 'Project quote',
@@ -210,7 +210,7 @@ export const PRODUCT_LINES: ProductLine[] = [
         },
         includes: [
           'Audit of what you rent today and what you should own',
-          'Self-hosted rebuild of the core workflows—you own the code and data',
+          'Self-hosted rebuild of the core workflows—you own the code and control the business data',
           'Upgrades (AI, automation, integrations)',
           'Migration + staff training on the new stack',
         ],
@@ -219,7 +219,7 @@ export const PRODUCT_LINES: ProductLine[] = [
         id: 'integrations',
         name: 'Application Integrations',
         job: 'Connect the apps you already use so data and jobs flow under your control',
-        outcome: 'Own the handoffs; fewer leaks between tools you rent',
+        outcome: 'Control the handoffs; fewer leaks between tools you rent',
         price: { kind: 'quote', amount: 'Project quote' },
         includes: [
           'Map of current tools and gaps',
