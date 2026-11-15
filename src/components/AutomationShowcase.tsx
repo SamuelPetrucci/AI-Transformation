@@ -39,11 +39,11 @@ const demos: {
 }[] = [
   {
     id: 'ops',
-    label: 'Save on tech',
+    label: 'Own your tech',
     icon: PiggyBank,
-    title: 'Rebuild their stack. Own it. Pay less.',
+    title: 'Own your tech stack. Reduce costs. Own your data.',
     blurb:
-      'We replicate the CRM, booking tool, or platform they already use—self-host it, improve it, add integrations, and deliver it at a fraction of SaaS cost.',
+      'We rebuild the CRM, booking tool, or platform you rent today into software you own—self-hosted, improved, integrated, at a fraction of SaaS cost, with your data under your control.',
   },
   {
     id: 'agents',
@@ -839,7 +839,10 @@ function DiscoveryDemo() {
     { title: 'Discover', items: ['Process map', 'Tool audit', 'Pain + ROI score'] },
     { title: 'Design', items: ['Agent scopes', 'Integrations', 'Success metrics'] },
     { title: 'Pilot', items: ['2–4 week build', 'Sandbox tests', 'Go / no-go'] },
-    { title: 'Train & scale', items: ['Team training', 'Production', 'Ongoing optimize'] },
+    {
+      title: 'Train & care',
+      items: ['Team training', 'Maintenance retainer', 'Support retainer'],
+    },
   ]
   const [active, setActive] = useState(0)
   useEffect(() => {
@@ -882,8 +885,9 @@ function DiscoveryDemo() {
         ))}
       </div>
       <p className="text-sm text-ink-soft">
-        Implementation is not a dump-and-run: discovery → pilot → <strong className="text-ink">train your team</strong> →
-        scale what works.
+        Implementation is not a dump-and-run: discovery → pilot →{' '}
+        <strong className="text-ink">train your team on the tech</strong> → maintenance &amp; support
+        retainers.
       </p>
     </div>
   )

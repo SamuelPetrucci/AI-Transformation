@@ -7,7 +7,7 @@ import {
   Bot,
   GraduationCap,
   Megaphone,
-  PiggyBank,
+  KeyRound,
   ArrowRight,
 } from 'lucide-react'
 import { useState } from 'react'
@@ -18,7 +18,7 @@ const iconByLine: Record<string, typeof Code> = {
   'content-engine': Megaphone,
   'ai-agents': Bot,
   'custom-software': Code,
-  'save-on-tech': PiggyBank,
+  'own-your-tech': KeyRound,
   enablement: GraduationCap,
 }
 
@@ -27,7 +27,7 @@ const imageByLine: Record<string, string> = {
   'content-engine': '/images/strategy.jpg',
   'ai-agents': '/images/ai-solutions.jpg',
   'custom-software': '/images/integration.jpg',
-  'save-on-tech': '/images/analytics.jpg',
+  'own-your-tech': '/images/analytics.jpg',
   enablement: '/images/consulting.jpg',
 }
 
@@ -58,7 +58,7 @@ const serviceCategories = PRODUCT_LINES.map((line) => {
         </ul>
         <p className="text-ink-soft">
           Every product is scoped to save time, cut cost, grow demand, or help you own more of the
-          stack—not a vague retainer.
+          stack—including named maintenance and support retainers when you want ongoing care.
         </p>
       </div>
     ),
@@ -88,8 +88,8 @@ export default function ServiceCategories() {
             Five product lines. Clear outcomes.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
-            Five product lines—Content Engine, AI Agents, Custom Software, Save on Tech, and
-            Training & Knowledge—each with named products and clear outcomes.
+            Five product lines—Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and
+            Training & Support—each with named products and clear outcomes.
           </p>
         </div>
 

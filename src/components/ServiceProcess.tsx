@@ -56,11 +56,11 @@ const processSteps = [
     icon: CheckCircle,
     title: 'Ongoing Support',
     description:
-      'Continuous support, monitoring, and improvement to ensure long-term success and ROI.',
+      'Maintenance and support retainer packages—monitoring, fixes, and continued help after your team is trained.',
     details: [
-      '24/7 monitoring and maintenance',
-      'Regular performance reviews',
-      'Feature updates and enhancements',
+      'Systems maintenance retainer (patches, monitoring, bug fixes)',
+      'Support retainer (priority help, office hours, small changes)',
+      'Team coaching as workflows and tools evolve',
       'Ongoing optimization and scaling',
     ],
   },
