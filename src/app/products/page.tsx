@@ -45,11 +45,11 @@ export const metadata: Metadata = {
 }
 
 type ProductsPageProps = {
-  searchParams?: Promise<{ line?: string }> | { line?: string }
+  searchParams?: Promise<{ line?: string }>
 }
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
-  const params = searchParams ? await Promise.resolve(searchParams) : {}
+  const params = (await searchParams) ?? {}
   const initialLineId =
     typeof params.line === 'string' &&
     PRODUCT_LINES.some((l) => l.id === params.line)
