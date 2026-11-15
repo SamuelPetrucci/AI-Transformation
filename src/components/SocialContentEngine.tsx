@@ -9,8 +9,10 @@ import {
   Megaphone,
   Check,
   Play,
+  MessageSquare,
 } from 'lucide-react'
 import { CALENDLY_CONFIG } from '@/config/calendly'
+import { CONTACT_CONFIG, getSmsConsultHref } from '@/config/contact'
 
 const pipeline = [
   { id: 'brief', label: 'Brief', icon: Sparkles },
@@ -55,7 +57,7 @@ export default function SocialContentEngine() {
     if (!running) return
     const t = setInterval(() => {
       setStep((s) => (s + 1) % pipeline.length)
-    }, 1600)
+    }, 3000)
     return () => clearInterval(t)
   }, [running])
 
@@ -63,7 +65,7 @@ export default function SocialContentEngine() {
     if (!running) return
     const t = setInterval(() => {
       setPost((p) => (p + 1) % feedPosts.length)
-    }, 2400)
+    }, 4500)
     return () => clearInterval(t)
   }, [running])
 
@@ -80,12 +82,12 @@ export default function SocialContentEngine() {
       setStep(i % pipeline.length)
       if (i % 2 === 0) setPost((p) => (p + 1) % feedPosts.length)
       if (i < pipeline.length * 2) {
-        window.setTimeout(tick, 700)
+        window.setTimeout(tick, 1200)
       } else {
         setRunning(true)
       }
     }
-    window.setTimeout(tick, 500)
+    window.setTimeout(tick, 800)
   }
 
   return (
@@ -154,6 +156,14 @@ export default function SocialContentEngine() {
               One-click demo
             </button>
             <a
+              href={getSmsConsultHref()}
+              className="cta-pill"
+              aria-label={`Text ${CONTACT_CONFIG.SMS_DISPLAY} to start a consult`}
+            >
+              <MessageSquare className="h-4 w-4" />
+              Text my number for contact
+            </a>
+            <a
               href={CALENDLY_CONFIG.CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -162,6 +172,9 @@ export default function SocialContentEngine() {
               Get the engine for your business
             </a>
           </div>
+          <p className="mt-3 text-xs text-ink-soft/70">
+            Opens Messages to {CONTACT_CONFIG.SMS_DISPLAY} — send the draft to opt in for a consult by text.
+          </p>
         </div>
 
         {/* Phone / feed stage */}

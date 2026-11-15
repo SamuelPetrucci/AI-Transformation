@@ -18,9 +18,10 @@ interface QuickReply {
   emoji?: string
 }
 
-const AGENT_PHONE = '(860) 705-3417'
-const AGENT_PHONE_E164 = '+18607053417'
+const AGENT_PHONE = '(725) 338-1895'
+const AGENT_PHONE_E164 = '+17253381895'
 const AGENT_NAME = 'My Agent'
+const BUSINESS_PHONE = '(860) 705-3417'
 
 const quickReplies: QuickReply[] = [
   { text: "What can you help with?", emoji: "💬" },
