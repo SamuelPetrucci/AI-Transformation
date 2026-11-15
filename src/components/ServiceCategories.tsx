@@ -22,6 +22,15 @@ const iconByLine: Record<string, typeof Code> = {
   enablement: GraduationCap,
 }
 
+/** Unique generated photos from public/images — one per product line */
+const imageByLine: Record<string, string> = {
+  'content-engine': '/images/strategy.jpg',
+  'ai-assistance': '/images/ai-solutions.jpg',
+  'custom-software': '/images/integration.jpg',
+  'save-on-tech': '/images/analytics.jpg',
+  enablement: '/images/consulting.jpg',
+}
+
 const serviceCategories = PRODUCT_LINES.map((line) => {
   const icon = iconByLine[line.id] ?? BarChart3
   return {
@@ -30,12 +39,12 @@ const serviceCategories = PRODUCT_LINES.map((line) => {
     description: line.blurb,
     features: line.products.map((p) => `${p.name} — ${p.price.amount}`),
     color: 'from-signal to-signal',
-    bgColor: 'from-signal/10 to-signal/10',
-    imagePlaceholder: '/images/services-hero-bg.jpg',
+    bgColor: 'from-ink/50 via-ink/10 to-transparent',
+    image: imageByLine[line.id] ?? '/images/services-hero-bg.jpg',
     details: (
       <div className="text-left space-y-4">
         <h4 className="text-ink text-lg font-semibold">Products in this line</h4>
-        <ul className="list-disc list-inside space-y-2 text-gray-400">
+        <ul className="list-disc list-inside space-y-2 text-ink-soft">
           {line.products.map((p) => (
             <li key={p.id}>
               <strong className="text-ink">
@@ -47,7 +56,7 @@ const serviceCategories = PRODUCT_LINES.map((line) => {
             </li>
           ))}
         </ul>
-        <p className="text-gray-400">
+        <p className="text-ink-soft">
           Every product is scoped to save time, cut cost, grow demand, or help you own more of the
           stack—not a vague retainer.
         </p>
@@ -96,14 +105,15 @@ export default function ServiceCategories() {
               onClick={() => openModal(index)}
               className="group rounded-3xl border border-[var(--line)] bg-white/55 p-6 text-left backdrop-blur-sm transition hover:border-signal/40"
             >
-              <div className="relative mb-4 h-36 overflow-hidden rounded-2xl">
+              <div className="relative mb-4 h-40 overflow-hidden rounded-2xl">
                 <Image
-                  src={category.imagePlaceholder}
-                  alt=""
+                  src={category.image}
+                  alt={category.title}
                   fill
-                  className="object-cover opacity-80 transition duration-500 group-hover:scale-105"
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.bgColor}`} />
+                <div className={`absolute inset-0 bg-gradient-to-t ${category.bgColor}`} />
                 <span className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-full bg-paper/90 text-signal">
                   <category.icon className="h-5 w-5" />
                 </span>
@@ -149,6 +159,15 @@ export default function ServiceCategories() {
               >
                 Close
               </button>
+            </div>
+            <div className="relative mb-5 h-40 overflow-hidden rounded-2xl">
+              <Image
+                src={serviceCategories[openIndex].image}
+                alt={serviceCategories[openIndex].title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 512px"
+              />
             </div>
             {serviceCategories[openIndex].details}
           </div>
