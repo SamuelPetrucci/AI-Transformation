@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     'AI receptionist',
     'custom software',
     'own your tech stack',
-    'own your data',
+    'take control of your business data',
     'AI agents',
     'business automation',
     'stack rebuild',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Products — Grow, Save Time & Own Your Tech Stack',
     description:
-      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Products — Grow, Save Time & Own Your Tech Stack',
     description:
-      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, own your data.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
     images: ['/og-image.jpg'],
   },
 }
