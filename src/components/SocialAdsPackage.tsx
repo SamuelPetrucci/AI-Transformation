@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import SocialContentEngine from './SocialContentEngine'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 export default function SocialAdsPackage() {
   const scrollToProducts = () => {
@@ -11,7 +12,7 @@ export default function SocialAdsPackage() {
   }
 
   const scrollToBooking = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    void openCalendlyPopup()
   }
 
   return (

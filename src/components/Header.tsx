@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import BrandLogo from './BrandLogo'
-import { CALENDLY_CONFIG } from '@/config/calendly'
+import CalendlyButton from './CalendlyButton'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 /** Top bar: homepage story first, then secondary pages, then Book CTA. Logo = Home. */
 const navItems = [
@@ -15,8 +16,9 @@ const navItems = [
   {
     id: 'booking',
     name: 'Book Consultation',
-    sectionId: 'booking',
-    href: CALENDLY_CONFIG.CALENDLY_URL,
+    sectionId: null,
+    href: null,
+    calendly: true,
   },
 ]
 
@@ -30,14 +32,16 @@ export default function Header() {
   const isServicesPage = path === '/services'
   const isBlogPage = path === '/blog' || path.startsWith('/blog/')
 
-  const scrollToSection = (sectionId: string | null, href: string | null) => {
+  const scrollToSection = (
+    sectionId: string | null,
+    href: string | null,
+    calendly?: boolean,
+  ) => {
     const onSubpage = isIndustriesPage || isServicesPage || isBlogPage
-    if (href) {
-      if (href.startsWith('http')) {
-        window.open(href, '_blank', 'noopener,noreferrer')
-      } else {
-        window.location.href = href
-      }
+    if (calendly) {
+      void openCalendlyPopup()
+    } else if (href) {
+      window.location.href = href
     } else if (sectionId) {
       if (onSubpage) {
         window.location.href = `/#${sectionId}`
@@ -138,7 +142,7 @@ export default function Header() {
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => scrollToSection(item.sectionId, item.href)}
+                  onClick={() => scrollToSection(item.sectionId, item.href, 'calendly' in item && item.calendly)}
                   className={`rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-300 ${
                     activeSection === item.id
                       ? 'bg-signal/10 text-ink'
@@ -148,14 +152,9 @@ export default function Header() {
                   {item.name}
                 </button>
               ))}
-            <a
-              href={CALENDLY_CONFIG.CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary ml-2 !px-4 !py-2 text-sm"
-            >
+            <CalendlyButton className="btn-primary ml-2 !px-4 !py-2 text-sm">
               Book Consultation
-            </a>
+            </CalendlyButton>
           </nav>
 
           <button
@@ -174,7 +173,7 @@ export default function Header() {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => scrollToSection(item.sectionId, item.href)}
+                onClick={() => scrollToSection(item.sectionId, item.href, 'calendly' in item && item.calendly)}
                 className={`block w-full rounded-xl px-4 py-3 text-left text-sm transition-all ${
                   activeSection === item.id
                     ? 'bg-signal/10 text-ink'

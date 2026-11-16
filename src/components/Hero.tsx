@@ -6,8 +6,8 @@ import ScrollSlide from './ScrollSlide'
 import { LogoMark } from './BrandLogo'
 import { TypeLine } from './TypeLine'
 import { POSITIONING } from '@/config/positioning'
-import { CALENDLY_CONFIG } from '@/config/calendly'
 import { getSmsConsultHref } from '@/config/contact'
+import CalendlyButton from './CalendlyButton'
 
 export default function Hero() {
   const reduceMotion = useReducedMotion()
@@ -61,15 +61,10 @@ export default function Hero() {
           {...rise(0.38)}
           className="relative z-10 mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
         >
-          <a
-            href={CALENDLY_CONFIG.CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
+          <CalendlyButton className="btn-primary">
             Book Free Consultation
             <ArrowUpRight className="h-4 w-4" />
-          </a>
+          </CalendlyButton>
           <a href="#products" className="btn-ghost">
             See products
           </a>

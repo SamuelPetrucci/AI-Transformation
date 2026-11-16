@@ -2,9 +2,9 @@
 
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, Building, User, Mail, Phone, Send, CheckCircle, ExternalLink } from 'lucide-react'
-import { CALENDLY_CONFIG } from '@/config/calendly'
+import { Calendar, Building, User, Mail, Phone, Send, CheckCircle } from 'lucide-react'
 import { PRODUCTS_BOOKING_OPTIONS } from '@/config/products'
+import CalendlyButton from './CalendlyButton'
 
 const consultationTypes = [
   'Not sure — match me to a product',
@@ -102,17 +102,12 @@ export default function SmartBooking() {
             </div>
             <h3 className="font-display text-2xl font-semibold text-ink">Discovery call</h3>
             <p className="mx-auto mt-3 max-w-md text-sm text-ink-soft">
-              Opens Calendly in a new tab so you can choose a time that works.
+              Opens Calendly here so you can choose a time without leaving the site.
             </p>
-            <a
-              href={CALENDLY_CONFIG.CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cta-pill mx-auto mt-8"
-            >
+            <CalendlyButton className="cta-pill mx-auto mt-8">
               Book on Calendly
-              <ExternalLink className="h-4 w-4" />
-            </a>
+              <Calendar className="h-4 w-4" />
+            </CalendlyButton>
             <button
               type="button"
               onClick={() => setShowForm((v) => !v)}

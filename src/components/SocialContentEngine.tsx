@@ -1,8 +1,8 @@
 'use client'
 
 import { MessageSquare, Phone, Search, Sparkles, ShieldCheck, Megaphone } from 'lucide-react'
-import { CALENDLY_CONFIG } from '@/config/calendly'
 import { getCallHref, getSmsConsultHref } from '@/config/contact'
+import CalendlyButton from './CalendlyButton'
 
 const stages = [
   {
@@ -77,14 +77,9 @@ export default function SocialContentEngine() {
             <Phone className="h-4 w-4" />
             Call
           </a>
-          <a
-            href={CALENDLY_CONFIG.CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10"
-          >
+          <CalendlyButton className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-semibold text-ink transition hover:border-signal/40 hover:bg-signal/10">
             Book a walkthrough
-          </a>
+          </CalendlyButton>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, Linkedin, MessageSquare } from 'lucide-react'
 import BrandLogo from './BrandLogo'
 import { CONTACT_CONFIG, getCallHref, getSmsConsultHref } from '@/config/contact'
-import { CALENDLY_CONFIG } from '@/config/calendly'
+import CalendlyButton from './CalendlyButton'
 
 const exploreLinks = [
   { label: 'Products', href: '/#products' },
@@ -13,7 +13,6 @@ const exploreLinks = [
   { label: 'Blog', href: '/blog' },
   { label: 'Services', href: '/services' },
   { label: 'Industries', href: '/industries' },
-  { label: 'Book Consultation', href: CALENDLY_CONFIG.CALENDLY_URL, external: true },
 ]
 
 export default function Footer() {
@@ -77,17 +76,16 @@ export default function Footer() {
             <ul className="space-y-3 text-ink-soft">
               {exploreLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    {...(link.external
-                      ? { target: '_blank', rel: 'noopener noreferrer' }
-                      : {})}
-                    className="transition hover:text-ink"
-                  >
+                  <a href={link.href} className="transition hover:text-ink">
                     {link.label}
                   </a>
                 </li>
               ))}
+              <li>
+                <CalendlyButton className="transition hover:text-ink">
+                  Book Consultation
+                </CalendlyButton>
+              </li>
             </ul>
           </motion.div>
 
