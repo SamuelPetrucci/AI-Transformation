@@ -456,7 +456,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            POC visualizations
+            Live demos
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -480,7 +480,7 @@ export default function AutomationShowcase() {
         <div id="demo-stage" className="relative z-20 scroll-mt-28">
           <div
             role="tablist"
-            aria-label="POC visualizations"
+            aria-label="Live demos"
             className="mb-5 flex w-full gap-0 overflow-x-auto border-b border-[var(--line)]"
           >
             {demos.map((demo) => {

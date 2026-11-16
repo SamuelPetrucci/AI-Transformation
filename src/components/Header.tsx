@@ -9,8 +9,9 @@ import { openCalendlyPopup } from '@/lib/calendly-popup'
 /** Top bar: homepage story first, then secondary pages, then Book CTA. Logo = Home. */
 const navItems = [
   { id: 'products', name: 'Products', sectionId: 'products' as string | null, href: null as string | null },
-  { id: 'demos', name: 'POCs', sectionId: 'demos', href: null },
+  { id: 'demos', name: 'Demo', sectionId: 'demos', href: null },
   { id: 'process', name: 'Process', sectionId: 'how-it-works', href: null },
+  { id: 'pricing', name: 'Pricing', sectionId: 'pricing', href: null },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
   { id: 'services', name: 'Services', sectionId: null, href: '/services' },
   {
@@ -75,7 +76,16 @@ export default function Header() {
     window.addEventListener('scroll', onScrollChrome, { passive: true })
 
     // Real homepage section IDs only (matches page.tsx order)
-    const sectionIds = ['home', 'products', 'demos', 'social-ads', 'how-it-works', 'booking', 'contact']
+    const sectionIds = [
+      'home',
+      'products',
+      'demos',
+      'social-ads',
+      'how-it-works',
+      'pricing',
+      'booking',
+      'contact',
+    ]
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
