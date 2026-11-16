@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Phone, Mail } from 'lucide-react'
+import CalendlyButton from './CalendlyButton'
 
 export default function IndustryCTA() {
   return (
@@ -85,10 +86,10 @@ export default function IndustryCTA() {
             modern technology solutions.
           </p>
           <div className="mt-7">
-            <Link href="/#booking" className="cta-pill">
+            <CalendlyButton className="cta-pill">
               Schedule consultation
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </CalendlyButton>
           </div>
         </div>
       </div>
