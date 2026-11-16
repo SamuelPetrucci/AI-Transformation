@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageSquare, X, Send, Smartphone } from 'lucide-react'
 import { CONTACT_CONFIG } from '@/config/contact'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 interface Message {
   id: string
@@ -109,13 +110,11 @@ export default function Chatbot() {
     }
     setMessages(prev => [...prev, userMessage])
     
-    if (reply.text.toLowerCase().includes('book')) {
-      const element = document.getElementById('booking')
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
+    const lower = reply.text.toLowerCase()
+    if (lower.includes('book') || lower.includes('schedule') || lower.includes('call')) {
+      void openCalendlyPopup()
     }
-    
+
     handleAgentResponse(reply.text)
   }
 
@@ -134,7 +133,8 @@ export default function Chatbot() {
       } else if (lowerText.includes('quote') || lowerText.includes('price') || lowerText.includes('cost')) {
         responseText = "Projects usually run $5K-50K depending on scope.\n\nText me what you're looking to build and I'll get you a ballpark within a few hours 📱"
       } else if (lowerText.includes('book') || lowerText.includes('call') || lowerText.includes('schedule') || lowerText.includes('meet')) {
-        responseText = "I'll get you scheduled! You can:\n\n→ Text me your availability\n→ Book directly on the calendar below\n\nWhat works better for you?"
+        responseText =
+          "I'll get you scheduled! The calendar should be open now—pick a time, or text me your availability 📱"
       }
 
       const agentMessage: Message = {

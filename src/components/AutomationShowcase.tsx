@@ -24,6 +24,7 @@ import {
 } from 'lucide-react'
 import ScrollSlide from './ScrollSlide'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 type DemoId = 'ops' | 'agents' | 'marketing' | 'website'
 
@@ -442,7 +443,7 @@ export default function AutomationShowcase() {
   const current = demos.find((d) => d.id === active)!
 
   const scrollToBooking = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    void openCalendlyPopup()
   }
 
   return (

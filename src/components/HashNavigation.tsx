@@ -1,37 +1,33 @@
 'use client'
 
 import { useEffect } from 'react'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 export default function HashNavigation() {
   useEffect(() => {
-    // Handle hash navigation when page loads
     const handleHashNavigation = () => {
-      if (typeof window !== 'undefined' && window.location.hash) {
-        const hash = window.location.hash.substring(1) // Remove the #
-        const element = document.getElementById(hash)
-        
-        if (element) {
-          // Add a small delay to ensure the page is fully loaded
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          }, 100)
-        }
+      if (typeof window === 'undefined' || !window.location.hash) return
+      const hash = window.location.hash.substring(1)
+
+      // Booking deep links open Calendly in-place instead of only scrolling
+      if (hash === 'booking') {
+        window.setTimeout(() => {
+          void openCalendlyPopup()
+        }, 150)
+        return
+      }
+
+      const element = document.getElementById(hash)
+      if (element) {
+        window.setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
       }
     }
 
-    // Call on mount
     handleHashNavigation()
-
-    // Also listen for hash changes
-    const handleHashChange = () => {
-      handleHashNavigation()
-    }
-
-    window.addEventListener('hashchange', handleHashChange)
-    
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange)
-    }
+    window.addEventListener('hashchange', handleHashNavigation)
+    return () => window.removeEventListener('hashchange', handleHashNavigation)
   }, [])
 
   return null

@@ -14,6 +14,7 @@ import {
   Eye,
   Zap
 } from 'lucide-react'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 const demoServices = [
   {
@@ -376,7 +377,8 @@ export default function ProofOfConcept() {
               Let&apos;s discuss how we can create a tailored solution that perfectly fits your needs.
             </p>
             <button
-              onClick={() => window.location.href = '/#booking'}
+              type="button"
+              onClick={() => void openCalendlyPopup()}
               className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-ink font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2 mx-auto"
             >
               <span>Start Your Project</span>

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Phone, Mail } from 'lucide-react'
+import CalendlyButton from './CalendlyButton'
 
 export default function IndustryCTA() {
   return (
@@ -37,7 +38,12 @@ export default function IndustryCTA() {
 
         <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3">
           {[
-            { icon: Calendar, title: 'Book a call', detail: 'Pick a time that works for you' },
+            {
+              icon: Calendar,
+              title: 'Book a call',
+              detail: 'Pick a time that works for you',
+              calendly: true,
+            },
             {
               icon: Phone,
               title: 'Talk strategy',
@@ -64,7 +70,11 @@ export default function IndustryCTA() {
               </div>
               <div>
                 <h3 className="font-display text-lg text-ink">{item.title}</h3>
-                {'href' in item && item.href ? (
+                {'calendly' in item && item.calendly ? (
+                  <CalendlyButton className="mt-1 block text-left text-sm text-ink-soft transition hover:text-signal">
+                    {item.detail}
+                  </CalendlyButton>
+                ) : 'href' in item && item.href ? (
                   <a href={item.href} className="mt-1 block text-sm text-ink-soft transition hover:text-signal">
                     {item.detail}
                   </a>
@@ -85,10 +95,10 @@ export default function IndustryCTA() {
             modern technology solutions.
           </p>
           <div className="mt-7">
-            <Link href="/#booking" className="cta-pill">
+            <CalendlyButton className="cta-pill">
               Schedule consultation
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </CalendlyButton>
           </div>
         </div>
       </div>

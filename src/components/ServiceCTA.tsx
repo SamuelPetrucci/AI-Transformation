@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+import CalendlyButton from './CalendlyButton'
 
 export default function ServiceCTA() {
   return (
@@ -23,10 +24,10 @@ export default function ServiceCTA() {
             build. Same company. Right-sized engagement.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/#booking" className="cta-pill">
+            <CalendlyButton className="cta-pill">
               Book free consultation
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </CalendlyButton>
             <Link href="/#social-ads" className="btn-ghost">
               See the social engine
             </Link>

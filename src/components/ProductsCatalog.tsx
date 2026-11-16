@@ -14,6 +14,7 @@ import {
 import ScrollSlide from './ScrollSlide'
 import { PRODUCT_LINES, type ProductGoal } from '@/config/products'
 import { PRODUCT_EASE, PRODUCT_MOTION } from '@/config/motion'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 const goalMeta: Record<ProductGoal, { label: string; icon: typeof TrendingUp }> = {
   grow: { label: 'Grow', icon: TrendingUp },
@@ -25,8 +26,8 @@ const goalMeta: Record<ProductGoal, { label: string; icon: typeof TrendingUp }> 
 export default function ProductsCatalog() {
   const [openId, setOpenId] = useState<string | null>(null)
 
-  const scrollToBooking = () => {
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const bookConsultation = () => {
+    void openCalendlyPopup()
   }
 
   const scrollToEngine = () => {
@@ -169,7 +170,7 @@ export default function ProductsCatalog() {
                             </ul>
                             <button
                               type="button"
-                              onClick={scrollToBooking}
+                              onClick={bookConsultation}
                               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-signal hover:underline"
                             >
                               Get this product
@@ -201,7 +202,7 @@ export default function ProductsCatalog() {
           Not sure which line fits?{' '}
           <button
             type="button"
-            onClick={scrollToBooking}
+            onClick={bookConsultation}
             className="font-semibold text-signal hover:underline"
           >
             Book a consult
