@@ -33,7 +33,7 @@ export default function SocialAdsPackage() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl"
           >
-            How one product line works
+            Content pipeline explained
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -42,7 +42,7 @@ export default function SocialAdsPackage() {
             transition={{ delay: 0.05 }}
             className="mt-3 text-base text-ink-soft"
           >
-            Pricing is in its own section. Here is the problem it solves—and the four steps.
+            The problem it solves—and the four steps.
           </motion.p>
         </div>
 
