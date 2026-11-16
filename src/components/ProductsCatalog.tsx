@@ -139,24 +139,16 @@ export default function ProductsCatalog() {
                                 : 'border-[var(--line)] bg-white/50'
                             }`}
                           >
-                            <div className="flex flex-wrap items-baseline justify-between gap-2">
-                              <h4 className="font-display text-base font-semibold text-ink sm:text-lg">
-                                {product.name}
-                                {product.recommended && (
-                                  <span className="ml-2 align-middle font-mono text-[9px] tracking-wider text-signal uppercase">
-                                    Popular
-                                  </span>
-                                )}
-                              </h4>
-                              <p className="font-display text-lg font-semibold text-signal">
-                                {product.price.amount}
-                              </p>
-                            </div>
+                            <h4 className="font-display text-base font-semibold text-ink sm:text-lg">
+                              {product.name}
+                              {product.recommended && (
+                                <span className="ml-2 align-middle font-mono text-[9px] tracking-wider text-signal uppercase">
+                                  Popular
+                                </span>
+                              )}
+                            </h4>
                             <p className="mt-1.5 text-sm text-ink">{product.job}</p>
                             <p className="mt-0.5 text-sm text-ink-soft">{product.outcome}</p>
-                            {product.price.note && (
-                              <p className="mt-1 text-xs text-ink-soft/70">{product.price.note}</p>
-                            )}
                             <ul className="mt-3 space-y-1.5">
                               {product.includes.map((item) => (
                                 <li
@@ -199,7 +191,17 @@ export default function ProductsCatalog() {
         </div>
 
         <p className="mt-10 text-center text-sm text-ink-soft">
-          Not sure which line fits?{' '}
+          Pricing is quoted from operating cost, build complexity, and maintenance—see{' '}
+          <button
+            type="button"
+            onClick={() =>
+              document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+            className="font-semibold text-signal hover:underline"
+          >
+            Pricing
+          </button>
+          . Not sure which line fits?{' '}
           <button
             type="button"
             onClick={bookConsultation}
@@ -207,7 +209,7 @@ export default function ProductsCatalog() {
           >
             Book a consult
           </button>
-          —we’ll match the product to the outcome you need.
+          .
         </p>
       </div>
     </ScrollSlide>

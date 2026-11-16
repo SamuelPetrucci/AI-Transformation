@@ -131,7 +131,8 @@ export default function Chatbot() {
       } else if (lowerText.includes('automat') || lowerText.includes('ai') || lowerText.includes('tell')) {
         responseText = "AI Agents means we fine-tune and train agents to carry out repetitive, error-prone tasks—then queue the work for your review:\n\n→ Scheduled jobs (reports, reminders, cleanups)\n→ Triggers on leads, tickets, bookings\n→ Human review before anything that matters goes out\n\nWant me to walk you through an Efficiency Audit? Just text me 📱"
       } else if (lowerText.includes('quote') || lowerText.includes('price') || lowerText.includes('cost')) {
-        responseText = "Projects usually run $5K-50K depending on scope.\n\nText me what you're looking to build and I'll get you a ballpark within a few hours 📱"
+        responseText =
+          "Pricing depends on system operating cost, development complexity, and maintenance—every invoice is broken down to the penny.\n\nBook a consult or text me what you're building and I'll quote it transparently."
       } else if (lowerText.includes('book') || lowerText.includes('call') || lowerText.includes('schedule') || lowerText.includes('meet')) {
         responseText =
           "I'll get you scheduled! The calendar should be open now—pick a time, or text me your availability 📱"

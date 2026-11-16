@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import AutomationShowcase from '@/components/AutomationShowcase'
 import HowItWorks from '@/components/HowItWorks'
 import ProductsCatalog from '@/components/ProductsCatalog'
+import Pricing from '@/components/Pricing'
 import SocialAdsPackage from '@/components/SocialAdsPackage'
 import SmartBooking from '@/components/SmartBooking'
 import Footer from '@/components/Footer'
@@ -70,6 +71,7 @@ export default function Home() {
         <AutomationShowcase />
         <SocialAdsPackage />
         <HowItWorks />
+        <Pricing />
         <SmartBooking />
         <Footer />
       </main>

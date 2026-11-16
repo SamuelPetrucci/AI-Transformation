@@ -43,7 +43,7 @@ export const PRODUCT_LINES: ProductLine[] = [
         name: 'Content Engine Starter',
         job: 'Stay visible on one channel without hiring a marketer',
         outcome: 'Save hours every week; keep a steady presence',
-        price: { kind: 'monthly', amount: '$149/mo' },
+        price: { kind: 'quote', amount: 'Quoted' },
         includes: [
           'Agent trained on your business, brand, and logos',
           '8 SEO-minded posts / month',
@@ -56,7 +56,7 @@ export const PRODUCT_LINES: ProductLine[] = [
         name: 'Content Engine Growth',
         job: 'Compound organic reach across the channels that matter',
         outcome: 'Grow traffic and leads with a calendar that runs itself',
-        price: { kind: 'monthly', amount: '$299/mo' },
+        price: { kind: 'quote', amount: 'Quoted' },
         recommended: true,
         includes: [
           '12 posts / month across platforms you choose',
@@ -71,8 +71,8 @@ export const PRODUCT_LINES: ProductLine[] = [
         job: 'Pair organic posting with managed product advertising',
         outcome: 'Grow demand with paid + organic working together',
         price: {
-          kind: 'monthly',
-          amount: '$499/mo',
+          kind: 'quote',
+          amount: 'Quoted',
           note: 'Ad spend paid separately by you',
         },
         includes: [
@@ -135,7 +135,7 @@ export const PRODUCT_LINES: ProductLine[] = [
         name: 'Agent Care Plan',
         job: 'Keep agents accurate, monitored, and improving as your business changes',
         outcome: 'Protect ROI without hiring an in-house AI team',
-        price: { kind: 'range', amount: '$99–$299/mo' },
+        price: { kind: 'quote', amount: 'Quoted' },
         includes: [
           'Monitoring for failed runs and silent breaks',
           'Fine-tuning and rule updates as the business changes',
@@ -283,7 +283,7 @@ export const PRODUCT_LINES: ProductLine[] = [
         name: 'Maintenance Retainer',
         job: 'Keep the systems we built patched, monitored, and reliable',
         outcome: 'Uptime and quiet ops without hiring an in-house tech team',
-        price: { kind: 'range', amount: '$149–$399/mo' },
+        price: { kind: 'quote', amount: 'Quoted' },
         includes: [
           'Updates, dependency patches, and security hygiene',
           'Uptime and error monitoring with alerts',
@@ -296,7 +296,11 @@ export const PRODUCT_LINES: ProductLine[] = [
         name: 'Support Retainer',
         job: 'Priority help when something breaks or the business changes',
         outcome: 'Continued partnership—questions answered, small changes shipped',
-        price: { kind: 'range', amount: '$199–$499/mo', note: 'Pairs with Maintenance or stands alone' },
+        price: {
+          kind: 'quote',
+          amount: 'Quoted',
+          note: 'Pairs with Maintenance or stands alone',
+        },
         recommended: true,
         includes: [
           'Priority response window for support requests',
@@ -317,7 +321,4 @@ export function formatProductPrice(price: ProductPrice): string {
   return price.amount
 }
 
-export const PRODUCTS_BOOKING_OPTIONS = ALL_PRODUCTS.map((p) => {
-  const amount = p.price.amount
-  return `${p.name} (${amount})`
-})
+export const PRODUCTS_BOOKING_OPTIONS = ALL_PRODUCTS.map((p) => p.name)
