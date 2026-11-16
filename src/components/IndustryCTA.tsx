@@ -38,7 +38,12 @@ export default function IndustryCTA() {
 
         <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3">
           {[
-            { icon: Calendar, title: 'Book a call', detail: 'Pick a time that works for you' },
+            {
+              icon: Calendar,
+              title: 'Book a call',
+              detail: 'Pick a time that works for you',
+              calendly: true,
+            },
             {
               icon: Phone,
               title: 'Talk strategy',
@@ -65,7 +70,11 @@ export default function IndustryCTA() {
               </div>
               <div>
                 <h3 className="font-display text-lg text-ink">{item.title}</h3>
-                {'href' in item && item.href ? (
+                {'calendly' in item && item.calendly ? (
+                  <CalendlyButton className="mt-1 block text-left text-sm text-ink-soft transition hover:text-signal">
+                    {item.detail}
+                  </CalendlyButton>
+                ) : 'href' in item && item.href ? (
                   <a href={item.href} className="mt-1 block text-sm text-ink-soft transition hover:text-signal">
                     {item.detail}
                   </a>

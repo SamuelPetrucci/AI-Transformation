@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { openCalendlyPopup } from '@/lib/calendly-popup'
 
 /** Matches homepage section order + Header labels where they overlap. */
 const slides = [
@@ -9,7 +10,7 @@ const slides = [
   { id: 'demos', label: 'POCs' },
   { id: 'social-ads', label: 'Engine' },
   { id: 'how-it-works', label: 'Process' },
-  { id: 'booking', label: 'Book' },
+  { id: 'booking', label: 'Book', calendly: true },
 ]
 
 export default function SlideNav() {
@@ -50,9 +51,13 @@ export default function SlideNav() {
             title={slide.label}
             aria-label={`Go to ${slide.label}`}
             aria-current={isActive ? 'true' : undefined}
-            onClick={() =>
+            onClick={() => {
+              if ('calendly' in slide && slide.calendly) {
+                void openCalendlyPopup()
+                return
+              }
               document.getElementById(slide.id)?.scrollIntoView({ behavior: 'smooth' })
-            }
+            }}
             className="group relative flex items-center justify-end"
           >
             <span className="mr-3 translate-x-2 rounded-md border border-[var(--line)] bg-white/80 px-2 py-1 font-mono text-[10px] uppercase tracking-wider text-ink opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
