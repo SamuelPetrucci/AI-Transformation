@@ -7,7 +7,7 @@ import { openCalendlyPopup } from '@/lib/calendly-popup'
 const slides = [
   { id: 'home', label: 'Home' },
   { id: 'products', label: 'Products' },
-  { id: 'demos', label: 'Demo' },
+  { id: 'demos', label: 'Concept Demos' },
   { id: 'social-ads', label: 'Engine' },
   { id: 'how-it-works', label: 'Process' },
   { id: 'pricing', label: 'Pricing' },

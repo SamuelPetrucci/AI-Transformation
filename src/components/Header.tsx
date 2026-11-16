@@ -9,7 +9,7 @@ import { openCalendlyPopup } from '@/lib/calendly-popup'
 /** Top bar: homepage story first, then secondary pages, then Book CTA. Logo = Home. */
 const navItems = [
   { id: 'products', name: 'Products', sectionId: 'products' as string | null, href: null as string | null },
-  { id: 'demos', name: 'Demo', sectionId: 'demos', href: null },
+  { id: 'demos', name: 'Concept Demos', sectionId: 'demos', href: null },
   { id: 'process', name: 'Process', sectionId: 'how-it-works', href: null },
   { id: 'pricing', name: 'Pricing', sectionId: 'pricing', href: null },
   { id: 'blog', name: 'Blog', sectionId: null, href: '/blog' },
