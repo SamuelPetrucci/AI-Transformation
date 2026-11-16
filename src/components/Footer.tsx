@@ -8,7 +8,7 @@ import CalendlyButton from './CalendlyButton'
 
 const exploreLinks = [
   { label: 'Products', href: '/#products' },
-  { label: 'Demo', href: '/#demos' },
+  { label: 'Concept Demos', href: '/#demos' },
   { label: 'Process', href: '/#how-it-works' },
   { label: 'Pricing', href: '/#pricing' },
   { label: 'Blog', href: '/blog' },

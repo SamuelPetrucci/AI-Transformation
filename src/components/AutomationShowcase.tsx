@@ -456,7 +456,7 @@ export default function AutomationShowcase() {
             viewport={{ once: true }}
             className="overline mb-4"
           >
-            Live demos
+            Concept Demos
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -466,21 +466,12 @@ export default function AutomationShowcase() {
           >
             See how the work runs
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.06 }}
-            className="mt-4 text-base text-ink-soft sm:text-lg"
-          >
-            One clear problem → solution per product line. Pick a tab—no diagram theater.
-          </motion.p>
         </div>
 
         <div id="demo-stage" className="relative z-20 scroll-mt-28">
           <div
             role="tablist"
-            aria-label="Live demos"
+            aria-label="Concept Demos"
             className="mb-5 flex w-full gap-0 overflow-x-auto border-b border-[var(--line)]"
           >
             {demos.map((demo) => {
