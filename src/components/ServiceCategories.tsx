@@ -58,7 +58,8 @@ const serviceCategories = PRODUCT_LINES.map((line) => {
         </ul>
         <p className="text-ink-soft">
           Every product is scoped to save time, cut cost, grow demand, or help you own more of the
-          stack—including named maintenance and support retainers when you want ongoing care.
+          stack—including Go to Market for app ideas, and named maintenance and support retainers
+          when you want ongoing care.
         </p>
       </div>
     ),

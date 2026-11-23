@@ -11,6 +11,7 @@ import HashNavigation from '@/components/HashNavigation'
 import BookCallButton from '@/components/BookCallButton'
 import SlideNav from '@/components/SlideNav'
 import { ALL_PRODUCTS } from '@/config/products'
+import { POSITIONING } from '@/config/positioning'
 
 export default function Home() {
   const structuredData = {
@@ -19,8 +20,7 @@ export default function Home() {
     name: 'AI Transformation LLC',
     url: 'https://aitransformationllc.com',
     logo: 'https://aitransformationllc.com/favicon.svg',
-    description:
-      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI agents, and modern technology solutions.',
+    description: POSITIONING.statement,
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',

@@ -9,12 +9,13 @@ import BookCallButton from '@/components/BookCallButton'
 export const metadata: Metadata = {
   title: 'Products — Content Engine, AI Agents, Software & Own Your Tech Stack | AI Transformation LLC',
   description:
-    'Buy clear products: Content Engine, AI Agents, CRM & custom software, Own Your Tech Stack, Staff Tech Training, Maintenance & Support retainers, and more.',
+    'Buy clear products: Content Engine, AI Agents, CRM & custom software, Own Your Tech Stack, Go to Market, Staff Tech Training, Maintenance & Support retainers, and more.',
   keywords: [
     'content engine',
     'AI receptionist',
     'custom software',
     'own your tech stack',
+    'go to market',
     'take control of your business data',
     'AI agents',
     'business automation',
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Products — Grow, Save Time & Own Your Tech Stack',
     description:
-      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, Go to Market, and Training & Support—own your stack, reduce costs, take control of your business data.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Products — Grow, Save Time & Own Your Tech Stack',
     description:
-      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, Go to Market, and Training & Support—own your stack, reduce costs, take control of your business data.',
     images: ['/og-image.jpg'],
   },
 }

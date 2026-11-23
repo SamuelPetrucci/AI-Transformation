@@ -20,8 +20,8 @@ export default function ServiceCTA() {
             Ready to save time, cut costs, and grow?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-paper/80">
-            Tell us what you need—social growth, an AI receptionist, custom software, or a larger tech
-            build. Same company. Right-sized engagement.
+            Tell us what you need—social growth, an AI receptionist, custom software, a go-to-market
+            build, or a larger tech engagement. Same company. Right-sized product.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <CalendlyButton className="cta-pill">

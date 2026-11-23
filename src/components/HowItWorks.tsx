@@ -14,7 +14,7 @@ const steps = [
   {
     title: 'Pick the product',
     description:
-      'Content Engine, AI Agents, Custom Software, or Own Your Tech Stack—with clear scope.',
+      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, Go to Market, or Training & Support—with clear scope.',
     image: '/images/strategy.jpg',
   },
   {
@@ -26,7 +26,7 @@ const steps = [
   {
     title: 'Maintain & support',
     description:
-      'Maintenance and support retainer packages keep systems healthy and your team backed as things change.',
+      'Maintenance and support retainers—and Managed Uptime Care on Go to Market builds—keep systems healthy as things change.',
     image: '/images/optimization.jpg',
   },
 ]

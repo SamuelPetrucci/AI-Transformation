@@ -56,11 +56,11 @@ const processSteps = [
     icon: CheckCircle,
     title: 'Ongoing Support',
     description:
-      'Maintenance and support retainer packages—monitoring, fixes, and continued help after your team is trained.',
+      'Maintenance and support retainers—plus Managed Uptime Care when you choose the Go to Market line.',
     details: [
       'Systems maintenance retainer (patches, monitoring, bug fixes)',
       'Support retainer (priority help, office hours, small changes)',
-      'Team coaching as workflows and tools evolve',
+      'Managed uptime care for launched apps and services',
       'Ongoing optimization and scaling',
     ],
   },

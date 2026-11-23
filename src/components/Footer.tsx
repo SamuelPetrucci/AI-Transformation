@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, Linkedin, MessageSquare } from 'lucide-react'
 import BrandLogo from './BrandLogo'
 import { CONTACT_CONFIG, getCallHref, getSmsConsultHref } from '@/config/contact'
+import { POSITIONING } from '@/config/positioning'
 import CalendlyButton from './CalendlyButton'
 
 const exploreLinks = [
@@ -35,10 +36,7 @@ export default function Footer() {
                 className="[&>span:last-child]:text-2xl"
               />
             </div>
-            <p className="mb-6 max-w-md text-ink-soft">
-              AI Transformation LLC helps businesses save time, reduce costs, and grow through custom
-              software, AI agents, and modern technology solutions.
-            </p>
+            <p className="mb-6 max-w-md text-ink-soft">{POSITIONING.statement}</p>
             <div className="mb-6 flex flex-wrap gap-2">
               <a
                 href={getSmsConsultHref()}

@@ -1,6 +1,9 @@
 /**
  * Umbrella positioning for AI Transformation LLC.
  * Use across site, emails, social, schema, and agent prompts.
+ *
+ * Go-to-market / app-launch work is a product line—not the site-wide theme.
+ * See PRODUCT_LINES in config/products.ts.
  */
 export const POSITIONING = {
   company: 'AI Transformation LLC',
@@ -15,7 +18,7 @@ export const POSITIONING = {
     'Clear products to grow, save time, and own your tech stack—reduce costs and take control of your business data.',
   metaTitle: 'AI Transformation LLC — Products to Grow, Save Time & Own Your Tech Stack',
   metaDescription:
-    'AI Transformation LLC: Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
+    'AI Transformation LLC: Content Engine, AI Agents, Custom Software, Own Your Tech Stack, Go to Market, and Training & Support—own your stack, reduce costs, take control of your business data.',
   pillars: [
     {
       id: 'custom-software',
