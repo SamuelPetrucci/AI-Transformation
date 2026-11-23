@@ -41,7 +41,7 @@ export default function ServicesHero() {
           transition={{ duration: 0.7, delay: 0.05 }}
           className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl md:text-6xl"
         >
-          Products to grow, save time, and own your tech stack.
+          Go-to-market products—built, launched, and kept live.
         </motion.h1>
 
         <motion.p
@@ -51,7 +51,8 @@ export default function ServicesHero() {
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg"
         >
           Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—
-          clear products with outcomes, not a vague service menu.
+          with auth, roles, biometrics and passkeys where you need them, then managed for maximum
+          uptime.
         </motion.p>
 
         <motion.div

@@ -61,8 +61,8 @@ export default function ProductsCatalog() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Pick a line to see the products inside. Nothing else loads until you ask—so it stays
-            clear, not overwhelming.
+            Pick a line to take an idea, product, or in-house app further—built to launch, secured,
+            and ready to manage for uptime.
           </motion.p>
         </div>
 

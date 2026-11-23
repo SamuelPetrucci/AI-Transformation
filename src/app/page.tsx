@@ -2,6 +2,7 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import AutomationShowcase from '@/components/AutomationShowcase'
 import HowItWorks from '@/components/HowItWorks'
+import GoToMarketPartner from '@/components/GoToMarketPartner'
 import ProductsCatalog from '@/components/ProductsCatalog'
 import Pricing from '@/components/Pricing'
 import SocialAdsPackage from '@/components/SocialAdsPackage'
@@ -11,6 +12,7 @@ import HashNavigation from '@/components/HashNavigation'
 import BookCallButton from '@/components/BookCallButton'
 import SlideNav from '@/components/SlideNav'
 import { ALL_PRODUCTS } from '@/config/products'
+import { POSITIONING } from '@/config/positioning'
 
 export default function Home() {
   const structuredData = {
@@ -19,8 +21,7 @@ export default function Home() {
     name: 'AI Transformation LLC',
     url: 'https://aitransformationllc.com',
     logo: 'https://aitransformationllc.com/favicon.svg',
-    description:
-      'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI agents, and modern technology solutions.',
+    description: POSITIONING.statement,
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',
@@ -67,6 +68,7 @@ export default function Home() {
         <Header />
         <SlideNav />
         <Hero />
+        <GoToMarketPartner />
         <ProductsCatalog />
         <AutomationShowcase />
         <SocialAdsPackage />

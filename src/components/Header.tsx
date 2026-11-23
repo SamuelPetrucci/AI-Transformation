@@ -78,6 +78,7 @@ export default function Header() {
     // Real homepage section IDs only (matches page.tsx order)
     const sectionIds = [
       'home',
+      'gtm-partner',
       'products',
       'demos',
       'social-ads',
@@ -99,6 +100,10 @@ export default function Header() {
 
         const id = visible.target.id
         if (id === 'home' || id === 'contact') {
+          setActiveSection('home')
+          return
+        }
+        if (id === 'gtm-partner') {
           setActiveSection('home')
           return
         }

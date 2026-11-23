@@ -6,6 +6,7 @@ import { openCalendlyPopup } from '@/lib/calendly-popup'
 /** Matches homepage section order + Header labels where they overlap. */
 const slides = [
   { id: 'home', label: 'Home' },
+  { id: 'gtm-partner', label: 'Partner' },
   { id: 'products', label: 'Products' },
   { id: 'demos', label: 'Concept Demos' },
   { id: 'social-ads', label: 'Engine' },

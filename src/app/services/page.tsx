@@ -7,26 +7,27 @@ import ServiceCTA from '@/components/ServiceCTA'
 import BookCallButton from '@/components/BookCallButton'
 
 export const metadata: Metadata = {
-  title: 'Products — Content Engine, AI Agents, Software & Own Your Tech Stack | AI Transformation LLC',
+  title: 'Products — Go-to-Market Builds & Managed Uptime | AI Transformation LLC',
   description:
-    'Buy clear products: Content Engine, AI Agents, CRM & custom software, Own Your Tech Stack, Staff Tech Training, Maintenance & Support retainers, and more.',
+    'Go-to-market products: Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—auth, security, then managed for maximum uptime.',
   keywords: [
+    'go-to-market',
     'content engine',
     'AI receptionist',
     'custom software',
-    'own your tech stack',
-    'take control of your business data',
+    'user authentication',
+    'passkeys',
+    'biometrics',
+    'maximum uptime',
     'AI agents',
-    'business automation',
     'stack rebuild',
-    'staff tech training',
     'maintenance retainer',
     'support retainer',
   ],
   openGraph: {
-    title: 'Products — Grow, Save Time & Own Your Tech Stack',
+    title: 'Products — Go-to-Market Builds & Managed Uptime',
     description:
-      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
+      'Bring products to market fast with production-grade security—then manage and maintain for maximum uptime.',
     type: 'website',
     url: 'https://aitransformationllc.com/services',
     images: [
@@ -40,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Products — Grow, Save Time & Own Your Tech Stack',
+    title: 'Products — Go-to-Market Builds & Managed Uptime',
     description:
-      'Content Engine, AI Agents, Custom Software, Own Your Tech Stack, and Training & Support—own your stack, reduce costs, take control of your business data.',
+      'Bring products to market fast with production-grade security—then manage and maintain for maximum uptime.',
     images: ['/og-image.jpg'],
   },
 }
@@ -52,7 +53,7 @@ export default function ServicesPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "AI Services",
-    "description": "Comprehensive AI services including custom development, business automation, data analytics, and AI-powered solutions",
+    "description": "Go-to-market technology partner: custom development, AI agents, auth and security, and managed uptime for apps and services",
     "provider": {
       "@type": "Organization",
       "name": "AI Transformation LLC",

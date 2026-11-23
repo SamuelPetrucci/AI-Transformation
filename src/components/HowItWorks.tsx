@@ -8,25 +8,25 @@ const steps = [
   {
     title: 'Discovery & Assessment',
     description:
-      'We map where you lose time and money—then point at the product line that fits.',
+      'We map your app idea, product, or in-house application—and the go-to-market path that fits.',
     image: '/images/discovery.jpg',
   },
   {
     title: 'Pick the product',
     description:
-      'Content Engine, AI Agents, Custom Software, or Own Your Tech Stack—with clear scope.',
+      'Content Engine, AI Agents, Custom Software, or Own Your Tech Stack—with clear scope and security built in.',
     image: '/images/strategy.jpg',
   },
   {
-    title: 'Build & train',
+    title: 'Build & launch',
     description:
-      'Ship it, then train your team or client on the tech so they can run it without us in the room.',
+      'Ship fast with auth, roles, biometrics and passkeys where you need them—then train your team to run it.',
     image: '/images/implementation.jpg',
   },
   {
-    title: 'Maintain & support',
+    title: 'Manage for uptime',
     description:
-      'Maintenance and support retainer packages keep systems healthy and your team backed as things change.',
+      'We manage and help maintain your app or service after launch—monitoring and care aimed at maximum uptime.',
     image: '/images/optimization.jpg',
   },
 ]
@@ -59,7 +59,7 @@ export default function HowItWorks() {
             transition={{ delay: 0.06 }}
             className="mx-auto mt-4 max-w-2xl text-base text-ink-soft sm:text-lg"
           >
-            Same four steps for every product—so the path stays simple.
+            From concept to market, then ongoing management for maximum uptime.
           </motion.p>
         </div>
 
