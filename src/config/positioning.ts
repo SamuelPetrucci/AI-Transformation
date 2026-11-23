@@ -13,6 +13,12 @@ export const POSITIONING = {
     'AI Transformation LLC helps businesses save time, reduce costs, and grow through custom software, AI agents, and modern technology solutions.',
   /** Hero headline (brand stays separate / larger) */
   headline: 'Save time. Reduce costs. Grow.',
+  /**
+   * Speed tagline layered above the headline — does not replace brand positioning.
+   * Exact copy used in Hero.
+   */
+  tagline:
+    'Ship your software product, company website, or whatever you need in days—not weeks or months. With AI, it can happen that fast.',
   /** Short support under headline (no need to repeat company name) */
   support:
     'Clear products to grow, save time, and own your tech stack—reduce costs and take control of your business data.',

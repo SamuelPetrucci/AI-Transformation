@@ -36,6 +36,13 @@ export default function Hero() {
           </span>
         </motion.div>
 
+        <motion.p
+          {...rise(0.08)}
+          className="relative z-10 mb-5 max-w-2xl text-sm font-medium leading-snug tracking-wide text-signal sm:text-base"
+        >
+          {POSITIONING.tagline}
+        </motion.p>
+
         <motion.h1
           {...rise(0.12)}
           className="font-display relative z-10 max-w-4xl text-[clamp(2.4rem,7vw,4.75rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-ink"
