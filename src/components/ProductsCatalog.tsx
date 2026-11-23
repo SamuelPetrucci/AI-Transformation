@@ -52,7 +52,7 @@ export default function ProductsCatalog() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            Four outcomes. Five product lines.
+            Four outcomes. Six product lines.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -61,8 +61,8 @@ export default function ProductsCatalog() {
             transition={{ delay: 0.06 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Pick a line to take an idea, product, or in-house app further—built to launch, secured,
-            and ready to manage for uptime.
+            Pick a line to see the products inside—including Go to Market for app ideas you want to
+            own and launch fast. Nothing else loads until you ask.
           </motion.p>
         </div>
 

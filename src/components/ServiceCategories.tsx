@@ -57,9 +57,9 @@ const serviceCategories = PRODUCT_LINES.map((line) => {
           ))}
         </ul>
         <p className="text-ink-soft">
-          Every product is scoped to take something to market—or save time, cut cost, grow demand,
-          and own more of the
-          stack—including named maintenance and support retainers when you want ongoing care.
+          Every product is scoped to save time, cut cost, grow demand, or help you own more of the
+          stack—including Go to Market for app ideas, and named maintenance and support retainers
+          when you want ongoing care.
         </p>
       </div>
     ),

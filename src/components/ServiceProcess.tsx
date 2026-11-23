@@ -44,24 +44,24 @@ const processSteps = [
     icon: Rocket,
     title: 'Deployment & Launch',
     description:
-      'Ship to market fast—with training so your team can run the product from day one.',
+      'Deploy your solutions with comprehensive training and support for smooth operation.',
     details: [
       'Production deployment',
-      'Auth, roles, and security verification',
       'Team training and documentation',
       'Go-live support and monitoring',
+      'Performance tracking and optimization',
     ],
   },
   {
     icon: CheckCircle,
-    title: 'Manage & maintain',
+    title: 'Ongoing Support',
     description:
-      'We manage and help maintain your app or service after launch—with monitoring aimed at maximum uptime.',
+      'Maintenance and support retainers—plus Managed Uptime Care when you choose the Go to Market line.',
     details: [
-      'Uptime monitoring and alerting',
-      'Patches, fixes, and security hygiene',
-      'Priority support and small changes',
-      'Ongoing optimization as you grow',
+      'Systems maintenance retainer (patches, monitoring, bug fixes)',
+      'Support retainer (priority help, office hours, small changes)',
+      'Managed uptime care for launched apps and services',
+      'Ongoing optimization and scaling',
     ],
   },
 ]

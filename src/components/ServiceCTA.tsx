@@ -17,11 +17,11 @@ export default function ServiceCTA() {
         >
           <p className="section-label mb-4 !text-signal-bright">Next step</p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-paper sm:text-4xl md:text-5xl">
-            Ready to take it to market—and keep it live?
+            Ready to save time, cut costs, and grow?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-paper/80">
-            App idea, product, or in-house application—we build it, launch it with production-grade
-            security, and manage it for maximum uptime.
+            Tell us what you need—social growth, an AI receptionist, custom software, a go-to-market
+            build, or a larger tech engagement. Same company. Right-sized product.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <CalendlyButton className="cta-pill">

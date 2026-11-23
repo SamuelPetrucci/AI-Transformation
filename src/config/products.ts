@@ -246,6 +246,55 @@ export const PRODUCT_LINES: ProductLine[] = [
     ],
   },
   {
+    id: 'go-to-market',
+    name: 'Go to Market',
+    blurb:
+      'Have an app idea, a product, or an in-house application? We bring it to life and take it to market fast—with production-grade security—then manage and maintain it for maximum uptime.',
+    goals: ['grow', 'own-stack'],
+    products: [
+      {
+        id: 'app-to-market',
+        name: 'App Idea to Market',
+        job: 'Turn an app idea, product concept, or in-house tool into a launch-ready application',
+        outcome: 'Go to market fast—so people instantly see how the tech brings it to life',
+        price: { kind: 'quote', amount: 'Project quote' },
+        recommended: true,
+        includes: [
+          'Scope, design, and build from concept to launch',
+          'User authentication and role-based access',
+          'Security measures, biometrics, and passkeys where they fit',
+          'Secure storage for sensitive data',
+        ],
+      },
+      {
+        id: 'secure-product-foundation',
+        name: 'Secure Product Foundation',
+        job: 'Hardened identity and data layer for the product you are shipping',
+        outcome: 'Ship with trust built in—not bolted on after launch',
+        price: { kind: 'quote', amount: 'Project quote' },
+        includes: [
+          'Authentication flows your users can rely on',
+          'Role-based access matched to how your team works',
+          'Biometrics and passkeys for stronger sign-in',
+          'Secure storage patterns for sensitive data',
+        ],
+      },
+      {
+        id: 'managed-uptime',
+        name: 'Managed Uptime Care',
+        job: 'Manage and help maintain the app or service after it is live',
+        outcome: 'Maximum uptime—ongoing care so the product stays available',
+        price: { kind: 'quote', amount: 'Quoted' },
+        includes: [
+          'Monitoring and alerts aimed at maximum uptime',
+          'Patches, fixes, and security hygiene',
+          'Priority response when something drifts',
+          'Ongoing improvements as usage grows',
+        ],
+      },
+    ],
+  },
+  {
     id: 'enablement',
     name: 'Training & Support',
     blurb:

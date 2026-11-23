@@ -10,7 +10,7 @@ export const CONTACT_CONFIG = {
   VOICE_DISPLAY: '(860) 705-3417',
   EMAIL: 'info@aitransformationllc.com',
   SMS_OPT_IN_BODY:
-    "Hi — I'd like to talk about taking my app or product to market with AI Transformation.",
+    "Hi — I'd like to talk about AI Transformation for my business.",
 } as const
 
 /** Opens the native SMS app with number + draft prefilled. */

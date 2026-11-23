@@ -65,8 +65,8 @@ export default function IndustriesHero() {
             transition={{ delay: 0.1 }}
             className="mt-5 text-base text-ink-soft sm:text-lg"
           >
-            Go-to-market technology for insurance brokers, real estate agents, accounting firms,
-            medical offices, law firms, and retail—built fast, secured, and managed for uptime.
+            We specialize in AI automation for insurance brokers, real estate agents, accounting
+            firms, medical offices, law firms, and retail businesses.
           </motion.p>
         </div>
 

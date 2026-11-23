@@ -2,7 +2,6 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import AutomationShowcase from '@/components/AutomationShowcase'
 import HowItWorks from '@/components/HowItWorks'
-import GoToMarketPartner from '@/components/GoToMarketPartner'
 import ProductsCatalog from '@/components/ProductsCatalog'
 import Pricing from '@/components/Pricing'
 import SocialAdsPackage from '@/components/SocialAdsPackage'
@@ -68,7 +67,6 @@ export default function Home() {
         <Header />
         <SlideNav />
         <Hero />
-        <GoToMarketPartner />
         <ProductsCatalog />
         <AutomationShowcase />
         <SocialAdsPackage />

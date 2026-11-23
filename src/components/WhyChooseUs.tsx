@@ -6,28 +6,28 @@ import ScrollSlide from './ScrollSlide'
 
 const reasons = [
   {
-    icon: Zap,
-    title: 'Go-to-market speed',
-    description:
-      'App ideas, products, and in-house applications—built and launched so people instantly get how the tech brings them to life.',
-  },
-  {
     icon: Award,
-    title: 'Production-grade security',
+    title: 'Expert Team',
     description:
-      'User authentication, role-based access, biometrics and passkeys, and secure storage for sensitive data—built in, not bolted on.',
-  },
-  {
-    icon: Clock,
-    title: 'Manage for maximum uptime',
-    description:
-      'After launch we manage and help maintain your app or service—monitoring and care aimed at keeping it available.',
+      'Certified technology professionals with proven solutions for enterprise transformation.',
   },
   {
     icon: MessageSquare,
-    title: 'Partner, not a handoff',
+    title: 'Tailored SMB Solutions',
     description:
-      'Clear products and transparent quotes—then ongoing partnership so your stack stays reliable as you grow.',
+      'We consult closely with small and medium businesses to create custom solutions that fit your unique needs and budget.',
+  },
+  {
+    icon: Clock,
+    title: 'Continuous Support',
+    description:
+      'After we train your team on the tech, maintenance and support retainer packages keep operations smooth as you grow.',
+  },
+  {
+    icon: Zap,
+    title: 'Tech Operations Made Easy',
+    description:
+      'We make navigating complex tech operations a breeze, so you can focus on growing your business.',
   },
 ]
 
@@ -61,7 +61,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="mt-4 text-base text-ink-soft sm:text-lg"
           >
-            Your go-to-market technology partner—from concept to launch, then managed for uptime.
+            One positioning. Flexible packaging—from monthly growth plans to custom implementations.
           </motion.p>
         </div>
 

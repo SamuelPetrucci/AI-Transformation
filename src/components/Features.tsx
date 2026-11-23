@@ -26,7 +26,7 @@ export default function Features() {
             viewport={{ once: true }}
             className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
           >
-            One go-to-market partner. Three ways we deliver.
+            One company. Three ways we deliver.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
